@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registrasi"
+    android:orientation="vertical"
+    android:background="#E9EFC0">
+
+    <!--    <TextView
+        android:id="@+id/rgsfullName"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="252dp"
+        android:fontFamily="@font/ralewayregular"
+        android:text="Full Name:"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/rgsEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/ralewayregular"
+        android:text="Email:"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgsfullName" />
+
+    <TextView
+        android:id="@+id/rgsTelp"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/ralewayregular"
+        android:text="Phone Number:"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgsEmail" />
+
+    <TextView
+        android:id="@+id/rgsPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/ralewayregular"
+        android:text="Password:"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgsTelp" />
+
+    <TextView
+        android:id="@+id/rgsConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/ralewayregular"
+        android:text="Confirm Password:"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgsPassword" />-->
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/ralewayregular"
+        android:text="Welcome!"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:layout_width="350dp"
+        android:layout_height="275dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/belakangregistrasi">
+
+        <EditText
+            android:id="@+id/editrgsfullName"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittextrgsshape"
+            android:fontFamily="@font/ralewayregular"
+            android:hint="Full Name"
+            android:paddingLeft="5dp"
+            android:textSize="12dp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="@+id/belakangregis"
+            app:layout_constraintStart_toStartOf="@+id/belakangregis"
+            app:layout_constraintTop_toTopOf="@+id/belakangregis" />
+
+        <EditText
+            android:id="@+id/editrgsEmail"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="70dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/edittextrgsshape"
+            android:fontFamily="@font/ralewayregular"
+            android:hint="Email"
+            android:paddingLeft="5dp"
+            android:textSize="12dp"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/editrgsTelp"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="120dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/edittextrgsshape"
+            android:fontFamily="@font/ralewayregular"
+            android:hint="Phone Number"
+            android:paddingLeft="5dp"
+            android:textSize="12dp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="@+id/belakangregis"
+            app:layout_constraintStart_toStartOf="@+id/belakangregis"
+            app:layout_constraintTop_toBottomOf="@+id/editrgsEmail" />
+
+        <EditText
+            android:id="@+id/editrgsPassword"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="170dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/edittextrgsshape"
+            android:fontFamily="@font/ralewayregular"
+            android:hint="Password"
+            android:paddingLeft="5dp"
+            android:textSize="12dp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="@+id/belakangregis"
+            app:layout_constraintStart_toStartOf="@+id/belakangregis"
+            app:layout_constraintTop_toBottomOf="@+id/editrgsTelp" />
+
+        <EditText
+            android:id="@+id/editrgsConfirm"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="220dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/edittextrgsshape"
+            android:fontFamily="@font/ralewayregular"
+            android:hint="Confirm Password"
+            android:paddingLeft="5dp"
+            android:textSize="12dp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="@+id/belakangregis"
+            app:layout_constraintStart_toStartOf="@+id/belakangregis"
+            app:layout_constraintTop_toBottomOf="@+id/editrgsPassword" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#83BD75"
+        android:fontFamily="@font/ralewayregular"
+        android:text="Register"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/belakangregis" />
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:paddingBottom="50dp"
+        android:src="@drawable/registerstyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</LinearLayout>
