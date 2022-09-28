@@ -190,7 +190,7 @@
     <ImageView
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:paddingBottom="50dp"
+        android:layout_marginTop="60dp"
         android:src="@drawable/registerstyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
