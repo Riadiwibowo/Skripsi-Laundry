@@ -89,7 +89,7 @@
 
     <FrameLayout
         android:layout_width="350dp"
-        android:layout_height="275dp"
+        android:layout_height="360dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/belakangregistrasi">
@@ -97,9 +97,9 @@
         <EditText
             android:id="@+id/editrgsfullName"
             android:layout_width="300dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:background="@drawable/edittextrgsshape"
             android:fontFamily="@font/ralewayregular"
             android:hint="Full Name"
@@ -113,9 +113,9 @@
         <EditText
             android:id="@+id/editrgsEmail"
             android:layout_width="300dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="70dp"
+            android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="90dp"
             android:background="@drawable/edittextrgsshape"
             android:fontFamily="@font/ralewayregular"
             android:hint="Email"
@@ -126,9 +126,9 @@
         <EditText
             android:id="@+id/editrgsTelp"
             android:layout_width="300dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="120dp"
+            android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="155dp"
             android:background="@drawable/edittextrgsshape"
             android:fontFamily="@font/ralewayregular"
             android:hint="Phone Number"
@@ -142,9 +142,9 @@
         <EditText
             android:id="@+id/editrgsPassword"
             android:layout_width="300dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="170dp"
+            android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="220dp"
             android:background="@drawable/edittextrgsshape"
             android:fontFamily="@font/ralewayregular"
             android:hint="Password"
@@ -158,9 +158,9 @@
         <EditText
             android:id="@+id/editrgsConfirm"
             android:layout_width="300dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="220dp"
+            android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="285dp"
             android:background="@drawable/edittextrgsshape"
             android:fontFamily="@font/ralewayregular"
             android:hint="Confirm Password"
@@ -187,12 +187,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/belakangregis" />
 
-    <ImageView
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/registerstyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/registerStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            app:srcCompat="@drawable/register_style" />
+    </RelativeLayout>
+
 </LinearLayout>
