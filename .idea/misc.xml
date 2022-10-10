@@ -3,11 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/drawable/dropdownrgsshape.xml" value="0.2203125" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/drawable/edittextrgsshape.xml" value="0.2203125" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/drawable/edittextshape.xml" value="0.2203125" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/drawable/ic_profile_icon.xml" value="0.2203125" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/drawable/spinnerrgsshape.xml" value="0.2203125" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/layout/activity_homes.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/layout/activity_login.xml" value="0.12771739130434784" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/layout/activity_main.xml" value="0.5" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/layout/activity_registrasi.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/layout/activity_registrasi.xml" value="0.33" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/layout/banner_layout.xml" value="0.19519927536231885" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/layout/banner_slider.xml" value="0.19519927536231885" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/layout/laundrylist_home.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/layout/nav_header.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/menu/home_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Skripsi-Laundry/app/src/main/res/menu/nav_drawer_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

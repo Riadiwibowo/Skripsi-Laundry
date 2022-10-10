@@ -1,5 +1,6 @@
 package com.example.testawal;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,51 +12,90 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import javax.xml.transform.sax.SAXResult;
+
 public class MainActivity extends AppCompatActivity {
 
-    EditText editEmail, editPassword;
+    EditText txtEmail, txtPassword;
     Button btnLogin;
     TextView registernow;
-    DBHelper DB;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editEmail = findViewById(R.id.editEmail);
-        editPassword = findViewById(R.id.editPassword);
+        txtEmail = findViewById(R.id.editEmail);
+        txtPassword = findViewById(R.id.editPassword);
         btnLogin = findViewById(R.id.btnLogin);
         registernow = findViewById(R.id.registernow);
-        DB = new DBHelper(this);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        Toast.makeText(MainActivity.this, databaseReference.toString(), Toast.LENGTH_SHORT).show();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = editEmail.getText().toString();
-                String pass = editPassword.getText().toString();
-
-                if(TextUtils.isEmpty(email) || TextUtils.isEmpty(pass))
-                    Toast.makeText(MainActivity.this, "All fields required", Toast.LENGTH_SHORT).show();
-                else {
-                    Boolean checkmailpassword = DB.checkemailpassword(email, pass);
-                    if(checkmailpassword==true) {
-                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this, Registrasi.class);
-                        startActivity(intent);
-                    }else {
-                        Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                databaseReference.child("loginv2").child("member").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String input1 = txtEmail.getText().toString();
+                        String input2 = txtPassword.getText().toString();
+                        String usernames = input1.replace(".","");
+                        if (dataSnapshot.child(usernames).exists()) {
+                            if (dataSnapshot.child(usernames).child("password").getValue(String.class).equals(input2)) {
+                                Toast.makeText(MainActivity.this, "akun ada", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                            } else {
+                                Toast.makeText(MainActivity.this, "Kata sandi salah", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(MainActivity.this, "Data belum terdaftar", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                databaseReference.child("loginv2").child("laundry").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String input1 = txtEmail.getText().toString();
+                        String input2 = txtPassword.getText().toString();
+                        String usernames = input1.replace(".","");
+                        if (dataSnapshot.child(usernames).exists()) {
+                            if (dataSnapshot.child(usernames).child("password").getValue(String.class).equals(input2)) {
+                                Toast.makeText(MainActivity.this, "akun ada", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                            } else {
+                                Toast.makeText(MainActivity.this, "Kata sandi salah", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(MainActivity.this, "Data belum terdaftar", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
         registernow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Registrasi.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Registrasi.class));
             }
         });
+
     }
 }

@@ -89,7 +89,7 @@
 
     <FrameLayout
         android:layout_width="350dp"
-        android:layout_height="360dp"
+        android:layout_height="400dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/belakangregistrasi">
@@ -170,6 +170,16 @@
             app:layout_constraintEnd_toEndOf="@+id/belakangregis"
             app:layout_constraintStart_toStartOf="@+id/belakangregis"
             app:layout_constraintTop_toBottomOf="@+id/editrgsPassword" />
+
+        <Spinner
+            android:id="@+id/fidgetSpinner"
+            android:paddingLeft="5dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="350dp"
+            android:layout_width="150dp"
+            android:layout_height="25dp"
+            android:background="@drawable/spinnerrgsshape"
+            android:spinnerMode="dropdown"/>
     </FrameLayout>
 
     <Button

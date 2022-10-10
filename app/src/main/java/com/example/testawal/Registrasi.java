@@ -6,20 +6,36 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Registrasi extends AppCompatActivity {
 
     EditText editrgsfullName, editrgsEmail, editrgsTelp, editrgsPassword, editrgsConfirm;
     Button btnRegister;
-    DBHelper DB;
+    DatabaseReference databaseReference;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrasi);
+
+        //spinner
+        Spinner dropdown = findViewById(R.id.fidgetSpinner);
+//create a list of items for the spinner.
+        String[] items = new String[]{"user", "laundry"};
+//create an adapter to describe how the items are displayed, adapters are used in several places in android.
+//There are multiple variations of this, but this is the basic variant.
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+//set the spinners adapter to the previously created one.
+        dropdown.setAdapter(adapter);
 
         editrgsfullName = findViewById(R.id.editrgsfullName);
         editrgsEmail = findViewById(R.id.editrgsEmail);
@@ -27,7 +43,9 @@ public class Registrasi extends AppCompatActivity {
         editrgsPassword = findViewById(R.id.editrgsPassword);
         editrgsConfirm = findViewById(R.id.editrgsConfirm);
         btnRegister = findViewById(R.id.btnRegister);
-        DB = new DBHelper(this);
+        spinner = findViewById(R.id.fidgetSpinner);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("loginv2");
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,31 +55,37 @@ public class Registrasi extends AppCompatActivity {
                 String phone = editrgsTelp.getText().toString();
                 String pass = editrgsPassword.getText().toString();
                 String confpass = editrgsConfirm.getText().toString();
+                String role = spinner.getSelectedItem().toString();
 
-                if(TextUtils.isEmpty(fname) || TextUtils.isEmpty(email) || TextUtils.isEmpty(phone) || TextUtils.isEmpty(pass) || TextUtils.isEmpty(confpass))
-                    Toast.makeText(Registrasi.this, "All fields required", Toast.LENGTH_SHORT).show();
-                else {
-                    if(pass.equals(confpass)) {
-                        Boolean checkmail = DB.checkemail(email);
-                        if(checkmail==false) {
-                            Boolean insert = DB.insertData(fname, email, phone, pass);
-                            if(insert==true) {
-                                Toast.makeText(Registrasi.this, "Registered successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(Registrasi.this, MainActivity.class);
-                                startActivity(intent);
-                            }else {
-                                Toast.makeText(Registrasi.this, "Registration Failed", Toast.LENGTH_SHORT).show();
-                            }
-                        }else {
-                            Toast.makeText(Registrasi.this, "User already exists", Toast.LENGTH_SHORT).show();
-                        }
-                    }else {
-                        Toast.makeText(Registrasi.this, "Passwords are not matching", Toast.LENGTH_SHORT).show();
-                    }
+                if(role == "user"){
+                    insertDataUser();
+                }else if(role == "laundry"){
+                    insertDataLaundry();
                 }
             }
         });
-
-
     }
+
+    private void insertDataUser() {
+        String name = editrgsfullName.getText().toString();
+        String email = editrgsEmail.getText().toString();
+        String pass = editrgsPassword.getText().toString();
+        String emails = email.replace(".","");
+
+        User users = new User(name, emails, pass);
+        databaseReference.child("member").child(emails).setValue(users);
+        Toast.makeText(Registrasi.this, "sukses insert data user", Toast.LENGTH_SHORT).show();
+    }
+
+    private void insertDataLaundry() {
+        String name = editrgsfullName.getText().toString();
+        String email = editrgsEmail.getText().toString();
+        String pass = editrgsPassword.getText().toString();
+        String emails = email.replace(".","");
+
+        Laundry laundries = new Laundry(name, pass, null);
+        databaseReference.child("laundry").child(emails).setValue(laundries);
+        Toast.makeText(Registrasi.this, "sukses insert data laundry", Toast.LENGTH_SHORT).show();
+    }
+
 }
