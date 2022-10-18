@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item
-        android:id="@+id/item1"
-        android:title="item1"/>
-    <item
-        android:id="@+id/item2"
-        android:title="item2"/>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--    <group android:checkableBehavior="single">-->
+        <item
+            android:id="@+id/menuCategory"
+            android:icon="@drawable/categories"
+            android:title="Category">
+            <menu>
+                <item
+                    android:id="@+id/catBaju"
+                    android:icon="@drawable/categories"
+                    android:title="Baju"/>
+                <item
+                    android:id="@+id/catSepatu"
+                    android:icon="@drawable/categories"
+                    android:title="Sepatu"/>
+                <item
+                    android:id="@+id/catOther"
+                    android:icon="@drawable/categories"
+                    android:title="Others"/>
+            </menu>
+        </item>
+        <item
+            android:id="@+id/menuAbout"
+            android:icon="@drawable/ic_baseline_info_24"
+            android:title="About Us"/>
+<!--    </group>-->
 </menu>

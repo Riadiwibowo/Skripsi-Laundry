@@ -23,6 +23,7 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -94,7 +95,7 @@ public class HomeActivity extends AppCompatActivity {
 
         imageSlider.setImageList(img, ScaleTypes.CENTER_CROP);
 
-        //recyclerView
+        //region recyclerView
         rv = findViewById(R.id.recyclerLaundry);
         databaseReference = FirebaseDatabase.getInstance().getReference("loginv2").child("laundry");
         rv.setLayoutManager(new LinearLayoutManager(HomeActivity.this));
@@ -109,8 +110,8 @@ public class HomeActivity extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Laundry laundry = dataSnapshot.getValue(Laundry.class);
                     laundries.add(laundry);
-                    String info = dataSnapshot.getValue().toString();
-                    Toast.makeText(HomeActivity.this, info, Toast.LENGTH_LONG).show();
+//                    String info = dataSnapshot.getValue().toString();
+//                    Toast.makeText(HomeActivity.this, info, Toast.LENGTH_LONG).show();
                 }
                 myAdapter.notifyDataSetChanged();
             }
@@ -120,6 +121,7 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+        //endregion
     }
 
     @Override
@@ -133,6 +135,7 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.itemProfile:
+                logout();
                 Toast.makeText(this, "profile clicked", Toast.LENGTH_SHORT).show();
                 return true;
         }
@@ -161,6 +164,11 @@ public class HomeActivity extends AppCompatActivity {
         //animation
         viewFlipper.setInAnimation(this, android.R.anim.slide_in_left);
         viewFlipper.setOutAnimation(this, android.R.anim.slide_out_right);
+    }
+
+    public void logout(){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(HomeActivity.this, MainActivity.class));
     }
 
 }

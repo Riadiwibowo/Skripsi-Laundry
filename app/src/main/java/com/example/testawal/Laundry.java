@@ -13,15 +13,15 @@ public class Laundry {
         this.deskripsiLaundry = deskripsiLaundry;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public String getNamaLaundry() {
         return namaLaundry;
     }
 
     public String getDeskripsiLaundry() {
         return deskripsiLaundry;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
