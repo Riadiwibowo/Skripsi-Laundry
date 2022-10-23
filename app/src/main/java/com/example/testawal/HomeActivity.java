@@ -29,6 +29,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
@@ -44,14 +46,16 @@ public class HomeActivity extends AppCompatActivity {
     //recyclerView
     RecyclerView rv;
     DatabaseReference databaseReference;
+    StorageReference storageReference;
     MyAdapter myAdapter;
-    ArrayList<Laundry> laundries;
-//    int imageLaundry[] = {R.drawable.ic_profile_icon};
+    ArrayList<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        getSupportActionBar().setTitle("Home Page");
 
         drawerLayout = findViewById(R.id.home_layout);
         navigationView = findViewById(R.id.nav_home);
@@ -97,10 +101,11 @@ public class HomeActivity extends AppCompatActivity {
 
         //region recyclerView
         rv = findViewById(R.id.recyclerLaundry);
-        databaseReference = FirebaseDatabase.getInstance().getReference("loginv2").child("laundry");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        storageReference = FirebaseStorage.getInstance().getReference();
         rv.setLayoutManager(new LinearLayoutManager(HomeActivity.this));
-        laundries = new ArrayList<>();
-        myAdapter = new MyAdapter(HomeActivity.this, laundries);
+        users = new ArrayList<>();
+        myAdapter = new MyAdapter(HomeActivity.this, users);
         rv.setAdapter(myAdapter);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -108,8 +113,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Laundry laundry = dataSnapshot.getValue(Laundry.class);
-                    laundries.add(laundry);
+                    if (dataSnapshot.child("role").getValue().equals("laundry")) {
+                        User user1 = dataSnapshot.getValue(User.class);
+                        users.add(user1);
+                    }
 //                    String info = dataSnapshot.getValue().toString();
 //                    Toast.makeText(HomeActivity.this, info, Toast.LENGTH_LONG).show();
                 }

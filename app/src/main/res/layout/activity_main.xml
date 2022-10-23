@@ -8,7 +8,7 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"
     tools:context=".MainActivity"
-    android:background="#E9EFC0">
+    android:background="#1572A1">
 
     <ImageView
         android:id="@+id/logo"
@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:backgroundTint="#83BD75"
+        android:backgroundTint="#9AD0EC"
         android:fontFamily="@font/ralewayregular"
         android:text="LOGIN"
         android:textAllCaps="false"
@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ralewayregular"
             android:text="Don't have an account?"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -102,9 +102,9 @@
             android:fontFamily="@font/ralewayregular"
             android:minHeight="48dp"
             android:text="Register now!"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.110"
+            app:layout_constraintHorizontal_bias="0.070"
             app:layout_constraintStart_toEndOf="@+id/text1"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

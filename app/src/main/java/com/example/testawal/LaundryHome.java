@@ -51,6 +51,8 @@ public class LaundryHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laundry_home);
 
+        getSupportActionBar().setTitle("Home Page");
+
 //        databaseReference = FirebaseDatabase.getInstance().getReference().child("Image");
         btnAdd = findViewById(R.id.buttonAdd);
         btnShow = findViewById(R.id.buttonShow);

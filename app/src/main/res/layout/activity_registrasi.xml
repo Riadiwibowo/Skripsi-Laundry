@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E9EFC0"
+    android:background="#1572A1"
     android:orientation="vertical"
     tools:context=".Registrasi">
 
@@ -81,7 +81,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/ralewayregular"
         android:text="Welcome!"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -191,11 +191,11 @@
 
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#83BD75"
+        android:backgroundTint="#9AD0EC"
         android:fontFamily="@font/ralewayregular"
         android:text="Register"
         android:textAllCaps="false"

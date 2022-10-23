@@ -45,4 +45,8 @@ dependencies {
 //    slider from git
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
+
+//    glid from git
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 }

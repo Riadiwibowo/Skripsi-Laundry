@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/home_layout"
-    android:background="#E9EFC0">
+    android:background="#1572A1">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -143,7 +143,8 @@
                             android:text="Cari Laundry"
                             android:textAlignment="center"
                             android:textSize="15dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:textColor="@color/white"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -187,7 +188,8 @@
                             android:text="Cari Laundry"
                             android:textAlignment="center"
                             android:textSize="15dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:textColor="@color/white"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -231,7 +233,8 @@
                             android:text="Cari Laundry"
                             android:textAlignment="center"
                             android:textSize="15dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:textColor="@color/white"/>
                     </LinearLayout>
                 </TableRow>
 

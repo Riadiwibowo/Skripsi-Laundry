@@ -10,17 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
 
     Context context;
-//    int images[];
-    ArrayList<Laundry> laundryList;
+    ArrayList<User> userList;
 
-    public MyAdapter(Context context, ArrayList<Laundry> laundryList) {
+    public MyAdapter(Context context, ArrayList<User> userList) {
         this.context = context;
-        this.laundryList = laundryList;
+        this.userList = userList;
     }
 
     @NonNull
@@ -38,31 +39,29 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
         //isi dulu attribute myViewHolder
         //saat tarik viewHolder, kita isi di posisi berapa
-//        holder.myText1.setText(data1[position]);
-//        holder.myText2.setText(data2[position]);
-//        holder.myImage.setImageResource((images[position]));
-        Laundry laundry = laundryList.get(position);
-        holder.myText1.setText(laundry.getNamaLaundry());
-        holder.myText2.setText(laundry.getDeskripsiLaundry());
+
+        Glide.with(context).load(userList.get(position).getImageUrl()).into(holder.myImage);
+        holder.myText1.setText(userList.get(position).getNama());
+        holder.myText2.setText(userList.get(position).getRole());
 //        holder.myImage.setImageResource(images[position]);
     }
 
     @Override
     public int getItemCount() {
-        return laundryList.size();
+        return userList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         //    isi dari viewHolder yaitu nama desc dan img
         TextView myText1, myText2;
-//        ImageView myImage;
+        ImageView myImage;
         //    membuat new viewHolder
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-        //    itemView. artinya isi per item atau per row
+            //    itemView. artinya isi per item atau per row
             myText1 = itemView.findViewById(R.id.txtNamaLaundry);
             myText2 = itemView.findViewById(R.id.txtDescriptionLaundry);
-//            myImage = itemView.findViewById(R.id.imgLogo);
+            myImage = itemView.findViewById(R.id.imgLogo);
         }
     }
 

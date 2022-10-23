@@ -36,6 +36,8 @@ public class Registrasi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrasi);
 
+        getSupportActionBar().setTitle("Registrasi");
+
         //region spinner
         Spinner dropdown = findViewById(R.id.fidgetSpinner);
         //create a list of items for the spinner.
