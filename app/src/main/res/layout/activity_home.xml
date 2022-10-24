@@ -15,7 +15,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutTop"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="220dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -61,11 +61,11 @@
 <!--                app:layout_constraintTop_toTopOf="parent"/>-->
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="190dp"
                 app:cardCornerRadius="20dp"
                 app:cardUseCompatPadding="true"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -82,13 +82,34 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.cardview.widget.CardView>
 
+            <TextView
+                android:id="@+id/txtServices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="178dp"
+                android:paddingTop="17dp"
+                android:text="Services"
+                android:textColor="@color/white"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cardView"
+                app:layout_constraintVertical_bias="0.0" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
             android:id="@+id/constraintLayoutMid"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/lightblue"
+            app:cardBackgroundColor="@color/lightblue"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintCircleRadius="@android:dimen/app_icon_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayoutTop">
@@ -105,7 +126,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -114,7 +137,7 @@
                             android:background="@drawable/white_btn_background">
 
                             <ImageView
-                                android:id="@+id/imageView2"
+                                android:id="@+id/img1"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_margin="10dp"
@@ -125,12 +148,12 @@
                                 app:srcCompat="@drawable/circle_green" />
 
                             <ImageView
-                                android:id="@+id/imageView4"
+                                android:id="@+id/imageView1"
                                 android:layout_width="50dp"
                                 android:layout_height="30dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="@+id/imageView2"
-                                app:layout_constraintStart_toStartOf="@+id/imageView2"
+                                app:layout_constraintEnd_toEndOf="@+id/img1"
+                                app:layout_constraintStart_toStartOf="@+id/img1"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/btn_1" />
 
@@ -140,17 +163,19 @@
                             android:id="@+id/textViewCart"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Cari Laundry"
+                            android:text="Cuci Kilat"
                             android:textAlignment="center"
-                            android:textSize="15dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"/>
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -170,7 +195,7 @@
                                 app:srcCompat="@drawable/circle_green" />
 
                             <ImageView
-                                android:id="@+id/imageView42"
+                                android:id="@+id/imageView2"
                                 android:layout_width="50dp"
                                 android:layout_height="30dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -184,18 +209,27 @@
                         <TextView
                             android:id="@+id/textViewCart2"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Cari Laundry"
+                            android:layout_height="match_parent"
+                            android:text="Pickup Laundry"
                             android:textAlignment="center"
+                            android:textColor="@color/white"
                             android:textSize="15dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"/>
+                            android:textStyle="bold" />
                     </LinearLayout>
 
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:layout_margin="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -227,33 +261,114 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Cari Satuan"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/white_btn_background">
+
+                            <ImageView
+                                android:id="@+id/img4"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="10dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/circle_green" />
+
+                            <ImageView
+                                android:id="@+id/image4"
+                                android:layout_width="50dp"
+                                android:layout_height="30dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@+id/img4"
+                                app:layout_constraintStart_toStartOf="@+id/img4"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/btn_1" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
                             android:id="@+id/textView5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Cari Laundry"
+                            android:text="Cari Kiloan"
                             android:textAlignment="center"
+                            android:textColor="@color/white"
                             android:textSize="15dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"/>
+                            android:textStyle="bold" />
                     </LinearLayout>
+
                 </TableRow>
 
             </TableLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutBot"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="20px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayoutMid">
 
+            <TextView
+                android:id="@+id/txtHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Featured Laundry"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:paddingBottom="10px"
+                android:layout_marginBottom="10px"
+                android:layout_marginLeft="12dp"
+                app:layout_constraintBottom_toTopOf="@id/recyclerLaundry"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtSeeAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lihat Semua Laundry>>"
+                android:textColor="#EFDAD7"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/recyclerLaundry"
+                />
+
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="85px"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/recyclerLaundry"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

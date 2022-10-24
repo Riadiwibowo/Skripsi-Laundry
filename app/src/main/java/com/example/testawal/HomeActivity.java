@@ -49,6 +49,7 @@ public class HomeActivity extends AppCompatActivity {
     StorageReference storageReference;
     MyAdapter myAdapter;
     ArrayList<User> users;
+    Integer idx=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,14 +91,15 @@ public class HomeActivity extends AppCompatActivity {
 //            flipperChanges(imageIdx);
 //        }
 
-        //slider
+        //region slider
         imageSlider = findViewById(R.id.imgSlider);
         ArrayList<SlideModel> img = new ArrayList<>();
-        img.add(new SlideModel(R.drawable.twitter, null));
-        img.add(new SlideModel(R.drawable.facebook, null));
-        img.add(new SlideModel(R.drawable.google, null));
+        img.add(new SlideModel("https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=831&q=80", "Cara cuci sepatu dengan benar", null));
+        img.add(new SlideModel("https://images.unsplash.com/photo-1530558215369-ba361d8734f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=874&q=80", "Bingung cara setrika pakaian?", null));
+        img.add(new SlideModel("https://images.unsplash.com/photo-1469329989238-48310798c014?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=873&q=80", "Cuci mandiri jadi lebih mudah, asalkan dengan...", null));
 
         imageSlider.setImageList(img, ScaleTypes.CENTER_CROP);
+        //endregion
 
         //region recyclerView
         rv = findViewById(R.id.recyclerLaundry);
@@ -113,10 +115,16 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    if (dataSnapshot.child("role").getValue().equals("laundry")) {
-                        User user1 = dataSnapshot.getValue(User.class);
-                        users.add(user1);
+                    if(idx<3){
+                        if (dataSnapshot.child("role").getValue().equals("laundry")) {
+                            User user1 = dataSnapshot.getValue(User.class);
+                            users.add(user1);
+                            idx++;
+                        }
+                    }else{
+                        break;
                     }
+
 //                    String info = dataSnapshot.getValue().toString();
 //                    Toast.makeText(HomeActivity.this, info, Toast.LENGTH_LONG).show();
                 }
@@ -162,16 +170,16 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     //slider
-    public void flipperChanges(int img){
-        ImageView imageView = new ImageView(this);
-        imageView.setBackgroundResource(img);
-        viewFlipper.addView(imageView);
-        viewFlipper.setFlipInterval(2000);
-        viewFlipper.setAutoStart(true);
-        //animation
-        viewFlipper.setInAnimation(this, android.R.anim.slide_in_left);
-        viewFlipper.setOutAnimation(this, android.R.anim.slide_out_right);
-    }
+//    public void flipperChanges(int img){
+//        ImageView imageView = new ImageView(this);
+//        imageView.setBackgroundResource(img);
+//        viewFlipper.addView(imageView);
+//        viewFlipper.setFlipInterval(2000);
+//        viewFlipper.setAutoStart(true);
+//        //animation
+//        viewFlipper.setInAnimation(this, android.R.anim.slide_in_left);
+//        viewFlipper.setOutAnimation(this, android.R.anim.slide_out_right);
+//    }
 
     public void logout(){
         FirebaseAuth.getInstance().signOut();
