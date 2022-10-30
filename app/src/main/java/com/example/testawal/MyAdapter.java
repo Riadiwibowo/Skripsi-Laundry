@@ -1,13 +1,21 @@
 package com.example.testawal;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -18,6 +26,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
 
     Context context;
     ArrayList<User> userList;
+    Dialog myDialog;
+    EditText popupName;
+    Button btnPopup;
 
     public MyAdapter(Context context, ArrayList<User> userList) {
         this.context = context;
@@ -30,9 +41,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
         //layout inflater = membuat view yang sudah dibuat yaitu laundrylist_home berulang-ulang
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.laundrylist_home, parent, false);
+        final MyViewHolder viewHolder = new MyViewHolder(view);
         //saat dipanggil berulang-ulang akan return ke new ViewHolder
         //akan memanggil MyViewHolder
-        return new MyViewHolder(view);
+
+        myDialog = new Dialog(context);
+        myDialog.setContentView(R.layout.popup);
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupName = myDialog.findViewById(R.id.namePopup);
+                btnPopup = myDialog.findViewById(R.id.btnPopup);
+                myDialog.show();
+            }
+        });
+
+        return viewHolder;
     }
 
     @Override
@@ -55,6 +81,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
         //    isi dari viewHolder yaitu nama desc dan img
         TextView myText1, myText2;
         ImageView myImage;
+        CardView parentLayout;
         //    membuat new viewHolder
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +89,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
             myText1 = itemView.findViewById(R.id.txtNamaLaundry);
             myText2 = itemView.findViewById(R.id.txtDescriptionLaundry);
             myImage = itemView.findViewById(R.id.imgLogo);
+            parentLayout = itemView.findViewById(R.id.parentLayout);
+
+            //respons click on recyclerView
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    userList.get(getAdapterPosition());
+//                    Toast.makeText( context, "clicked" + userList.get(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+//                }
+//            });
         }
     }
 

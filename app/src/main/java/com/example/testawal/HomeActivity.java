@@ -14,8 +14,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -42,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
     ActionBarDrawerToggle toggle;
     ImageSlider imageSlider;
     ViewFlipper viewFlipper;
+    TextView txtSeeAll;
 
     //recyclerView
     RecyclerView rv;
@@ -58,6 +61,7 @@ public class HomeActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Home Page");
 
+        txtSeeAll = findViewById(R.id.txtSeeAll);
         drawerLayout = findViewById(R.id.home_layout);
         navigationView = findViewById(R.id.nav_home);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
@@ -67,15 +71,19 @@ public class HomeActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.item1: {
-                        Toast.makeText(HomeActivity.this, "item1", Toast.LENGTH_SHORT).show();
+                switch (item.getItemId()) {
+                    case R.id.catBaju:
+                        Toast.makeText(HomeActivity.this, "Category Baju", Toast.LENGTH_SHORT).show();
                         break;
-                    }
-                    case R.id.item2: {
-                        Toast.makeText(HomeActivity.this, "item2", Toast.LENGTH_SHORT).show();
+                    case R.id.catSepatu:
+                        Toast.makeText(HomeActivity.this, "Category Sepatu", Toast.LENGTH_SHORT).show();
                         break;
-                    }
+                    case R.id.catOther:
+                        Toast.makeText(HomeActivity.this, "Category Others", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.menuAbout:
+                        startActivity(new Intent(HomeActivity.this, AboutUs.class));
+                        break;
                 }
                 return false;
             }
@@ -137,6 +145,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         //endregion
+
+        txtSeeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, HomeLaundryList.class));
+            }
+        });
+
     }
 
     @Override
