@@ -19,6 +19,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     Context context;
     ArrayList<User> userList;
     Dialog myDialog;
-    EditText popupName;
+    TextView popupName, Alamat;
+    ImageView iconPopup;
     Button btnPopup;
 
     public MyAdapter(Context context, ArrayList<User> userList) {
@@ -52,8 +54,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                popupName = myDialog.findViewById(R.id.namePopup);
+                iconPopup = myDialog.findViewById(R.id.iconPopup);
+//                popupName = myDialog.findViewById(R.id.namePopup);
+                Alamat = myDialog.findViewById(R.id.Alamat);
                 btnPopup = myDialog.findViewById(R.id.btnPopup);
+                Glide.with(context).load(userList.get(viewHolder.getAdapterPosition()).getImageUrl()).into(iconPopup);
+//                iconPopup.setImageResource(userList.get(viewHolder.getAdapterPosition()).getImageUrl());
+                Alamat.setText(userList.get(viewHolder.getAdapterPosition()).getNama());
                 myDialog.show();
             }
         });

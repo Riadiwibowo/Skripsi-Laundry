@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1572A1"
     tools:context=".HomeLaundryList">
 
     <androidx.recyclerview.widget.RecyclerView

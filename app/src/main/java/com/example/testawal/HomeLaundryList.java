@@ -78,7 +78,7 @@ public class HomeLaundryList extends AppCompatActivity {
         //endregion
     }
 
-    public void createNewContactDialog(){
+    /*public void createNewContactDialog(){
         dialogBuilder = new AlertDialog.Builder(this);
         final View laundryPopupView = getLayoutInflater().inflate(R.layout.popup, null);
         popupName = laundryPopupView.findViewById(R.id.namePopup);
@@ -87,6 +87,17 @@ public class HomeLaundryList extends AppCompatActivity {
         dialogBuilder.setView(laundryPopupView);
         dialog = dialogBuilder.create();
         dialog.show();
+    }*/
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
 }
