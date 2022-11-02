@@ -12,12 +12,12 @@
         android:id="@+id/iconPopup"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:background="@drawable/ic_profile_icon"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="20dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintAbout"
@@ -60,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:layout_marginLeft="40dp"
+            android:paddingLeft="10dp"
             android:background="@drawable/edittextrgsshape"
             android:textColor="@color/white"
             android:textSize="16dp"
@@ -90,6 +91,7 @@
             android:background="@drawable/edittextrgsshape"
             android:textColor="@color/white"
             android:textSize="16dp"
+            android:paddingLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/txtTelp"
             app:layout_constraintTop_toTopOf="@+id/Alamat" />
@@ -117,6 +119,8 @@
             android:background="@drawable/edittextrgsshape"
             android:textColor="@color/white"
             android:textSize="16dp"
+            android:textAlignment="textStart"
+            android:paddingLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/txtJam"
             app:layout_constraintTop_toTopOf="@+id/Telp" />
@@ -136,7 +140,7 @@
             android:id="@+id/txtServices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Services"
+            android:text="Description"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp"
@@ -153,6 +157,8 @@
             android:background="@drawable/edittextrgsshape"
             android:textColor="@color/white"
             android:textSize="16dp"
+            android:text="asdasdas"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/txtServices" />

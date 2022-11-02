@@ -8,18 +8,23 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +40,8 @@ import com.google.firebase.storage.UploadTask;
 public class LaundryHome extends AppCompatActivity {
 
     //region properties
-    private Button btnAdd, btnShow;
+    private Button btnAdd, btnDesc;
+    EditText txtDesc;
     ProgressBar progressBar;
     private ImageView imageView;
     private DatabaseReference databaseReference;
@@ -55,10 +61,11 @@ public class LaundryHome extends AppCompatActivity {
 
 //        databaseReference = FirebaseDatabase.getInstance().getReference().child("Image");
         btnAdd = findViewById(R.id.buttonAdd);
-        btnShow = findViewById(R.id.buttonShow);
+        btnDesc = findViewById(R.id.buttonDesc);
         progressBar = findViewById(R.id.progressBar);
         imageView = findViewById(R.id.laundryImageAdd);
         progressBar.setVisibility(View.INVISIBLE);
+        txtDesc = findViewById(R.id.txtLaunDescription);
 
         //1
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +95,6 @@ public class LaundryHome extends AppCompatActivity {
         userId = fUser.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
-
         databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -103,6 +109,14 @@ public class LaundryHome extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(LaundryHome.this, "error get current user", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //4
+        btnDesc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                insertDescription();
             }
         });
     }
@@ -145,13 +159,6 @@ public class LaundryHome extends AppCompatActivity {
                                 Toast.makeText(LaundryHome.this, "error get current user", Toast.LENGTH_SHORT).show();
                             }
                         });
-
-                        //insert data
-//                        UrlLaundryImage uli = new UrlLaundryImage(uri.toString());
-//                        String uliId = databaseReference.push().getKey();
-//                        Toast.makeText(LaundryHome.this, "ulId = " + uliId, Toast.LENGTH_LONG).show();
-//                        databaseReference.child(uliId).setValue(uli);
-//                        Toast.makeText(LaundryHome.this, "Sukses upload foto", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -200,4 +207,30 @@ public class LaundryHome extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(LaundryHome.this, MainActivity.class));
     }
+
+    private void insertDescription() {
+        String description = txtDesc.getText().toString().trim();
+
+        //region validasi input
+        if(description.isEmpty()){
+            txtDesc.setError("Deskripsi harus diisi");
+            txtDesc.requestFocus();
+            return;
+        }
+        //endregion
+
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                databaseReference.child(userId).child("description").setValue(description.toString());
+                Toast.makeText(LaundryHome.this, "Description Inserted", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(LaundryHome.this, "error get current user", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

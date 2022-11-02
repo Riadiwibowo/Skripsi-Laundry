@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -28,7 +29,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     Context context;
     ArrayList<User> userList;
     Dialog myDialog;
-    TextView popupName, Alamat;
+    TextView Alamat, Description, Phone;
     ImageView iconPopup;
     Button btnPopup;
 
@@ -55,12 +56,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
             @Override
             public void onClick(View view) {
                 iconPopup = myDialog.findViewById(R.id.iconPopup);
-//                popupName = myDialog.findViewById(R.id.namePopup);
                 Alamat = myDialog.findViewById(R.id.Alamat);
+                Description = myDialog.findViewById(R.id.description);
+                Phone = myDialog.findViewById(R.id.Telp);
                 btnPopup = myDialog.findViewById(R.id.btnPopup);
-                Glide.with(context).load(userList.get(viewHolder.getAdapterPosition()).getImageUrl()).into(iconPopup);
-//                iconPopup.setImageResource(userList.get(viewHolder.getAdapterPosition()).getImageUrl());
+
+                if(userList.get(viewHolder.getAdapterPosition()).getImageUrl().toString().equals("")){
+                    iconPopup.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_profile_icon));
+                }else{
+                    Glide.with(context).load(userList.get(viewHolder.getAdapterPosition()).getImageUrl()).into(iconPopup);
+                }
+                Phone.setText(userList.get(viewHolder.getAdapterPosition()).getPhone());
                 Alamat.setText(userList.get(viewHolder.getAdapterPosition()).getNama());
+                Description.setText(userList.get(viewHolder.getAdapterPosition()).getDescription());
                 myDialog.show();
             }
         });
@@ -75,7 +83,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
 
         Glide.with(context).load(userList.get(position).getImageUrl()).into(holder.myImage);
         holder.myText1.setText(userList.get(position).getNama());
-        holder.myText2.setText(userList.get(position).getRole());
+        holder.myText2.setText(userList.get(position).getDescription());
 //        holder.myImage.setImageResource(images[position]);
     }
 
