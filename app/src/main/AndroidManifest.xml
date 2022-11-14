@@ -14,6 +14,9 @@
         android:theme="@style/Theme.TestAwal"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".LaundryMain"
+            android:exported="true" />
+        <activity
             android:name=".HomeLaundryList"
             android:exported="true" />
         <activity

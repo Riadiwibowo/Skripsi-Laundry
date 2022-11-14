@@ -26,6 +26,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,8 +45,9 @@ public class HomeActivity extends AppCompatActivity {
     ActionBarDrawerToggle toggle;
     ImageSlider imageSlider;
     ViewFlipper viewFlipper;
-    TextView txtSeeAll;
-
+    TextView txtSeeAll, txtNamaUser;
+    FirebaseUser fUser;
+    String userId;
     //recyclerView
     RecyclerView rv;
     DatabaseReference databaseReference;
@@ -61,6 +63,7 @@ public class HomeActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Home Page");
 
+        txtNamaUser = findViewById(R.id.txtNamaUser);
         txtSeeAll = findViewById(R.id.txtSeeAll);
         drawerLayout = findViewById(R.id.home_layout);
         navigationView = findViewById(R.id.nav_home);
@@ -146,6 +149,27 @@ public class HomeActivity extends AppCompatActivity {
         });
         //endregion
 
+        //region set user name
+        fUser = FirebaseAuth.getInstance().getCurrentUser();
+        userId = fUser.getUid();
+
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+               @Override
+               public void onDataChange(@NonNull DataSnapshot snapshot) {
+                   User user = snapshot.getValue(User.class);
+                   if(user != null){
+                       txtNamaUser.setText("Hello, " + user.nama + ".\nWelcome to our laundry apps!");
+                   }
+               }
+
+               @Override
+               public void onCancelled(@NonNull DatabaseError error) {
+
+               }
+        });
+
+        //endregion
+
         txtSeeAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,9 +189,9 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.itemProfile:
+            case R.id.itemLogout:
                 logout();
-                Toast.makeText(this, "profile clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "logout processed", Toast.LENGTH_SHORT).show();
                 return true;
         }
         if(toggle.onOptionsItemSelected(item)){

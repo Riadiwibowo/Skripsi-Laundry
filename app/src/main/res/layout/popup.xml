@@ -62,7 +62,7 @@
             android:layout_marginLeft="40dp"
             android:paddingLeft="10dp"
             android:background="@drawable/edittextrgsshape"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/txtAlamat"
@@ -89,7 +89,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginLeft="40dp"
             android:background="@drawable/edittextrgsshape"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="16dp"
             android:paddingLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -97,12 +97,12 @@
             app:layout_constraintTop_toTopOf="@+id/Alamat" />
 
         <TextView
-            android:id="@+id/txtJam"
+            android:id="@+id/txtService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:paddingLeft="5dp"
-            android:text="Jam buka"
+            android:text="Services"
             android:textColor="@color/white"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -111,18 +111,18 @@
             app:layout_constraintTop_toTopOf="@+id/txtTelp" />
 
         <TextView
-            android:id="@+id/Jam"
+            android:id="@+id/Service"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="40dp"
             android:background="@drawable/edittextrgsshape"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="16dp"
             android:textAlignment="textStart"
             android:paddingLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/txtJam"
+            app:layout_constraintStart_toStartOf="@id/txtService"
             app:layout_constraintTop_toTopOf="@+id/Telp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -137,7 +137,7 @@
         android:layout_marginTop="20dp">
 
         <TextView
-            android:id="@+id/txtServices"
+            android:id="@+id/txtDescs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"
@@ -161,7 +161,7 @@
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/txtServices" />
+            app:layout_constraintTop_toTopOf="@+id/txtDescs" />
 
 
 
@@ -269,7 +269,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/namePopup"
         app:layout_constraintVertical_bias="0.137" />
 
 

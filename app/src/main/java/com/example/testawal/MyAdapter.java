@@ -29,7 +29,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     Context context;
     ArrayList<User> userList;
     Dialog myDialog;
-    TextView Alamat, Description, Phone;
+    TextView Alamat, Description, Phone, Services;
     ImageView iconPopup;
     Button btnPopup;
 
@@ -60,6 +60,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                 Description = myDialog.findViewById(R.id.description);
                 Phone = myDialog.findViewById(R.id.Telp);
                 btnPopup = myDialog.findViewById(R.id.btnPopup);
+                Services = myDialog.findViewById(R.id.Service);
 
                 if(userList.get(viewHolder.getAdapterPosition()).getImageUrl().toString().equals("")){
                     iconPopup.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_profile_icon));

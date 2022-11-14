@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,7 +45,7 @@ public class LaundryHome extends AppCompatActivity {
     private Button btnAdd, btnDesc;
     EditText txtDesc;
     ProgressBar progressBar;
-    private ImageView imageView;
+    private ImageView imageView, imageProfile;
     private DatabaseReference databaseReference;
     //storageReference to store image data
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
@@ -57,15 +59,18 @@ public class LaundryHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laundry_home);
 
-        getSupportActionBar().setTitle("Home Page");
+        getSupportActionBar().setTitle("Laundry Profile Setting");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 //        databaseReference = FirebaseDatabase.getInstance().getReference().child("Image");
         btnAdd = findViewById(R.id.buttonAdd);
         btnDesc = findViewById(R.id.buttonDesc);
         progressBar = findViewById(R.id.progressBar);
+        imageProfile = findViewById(R.id.laundryProfileImage);
         imageView = findViewById(R.id.laundryImageAdd);
         progressBar.setVisibility(View.INVISIBLE);
         txtDesc = findViewById(R.id.txtLaunDescription);
+
 
         //1
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +107,16 @@ public class LaundryHome extends AppCompatActivity {
                 if(user != null){
                     String laundryName = user.nama;
                     String role = user.role;
+                    String images = user.imageUrl;
                     Toast.makeText(LaundryHome.this, "Hi " + laundryName + " role " + role, Toast.LENGTH_SHORT).show();
+                    if(user.imageUrl!=null && !user.imageUrl.equals("")){
+                        Glide.with(LaundryHome.this).load(user.getImageUrl()).into(imageProfile);
+                    }else if (user.imageUrl.equals("")){
+                        String uri = "@drawable/ic_profile_icon";
+                        int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+                        Drawable res = getResources().getDrawable(imageResource);
+                        imageProfile.setImageDrawable(res);
+                    }
                 }
             }
 
@@ -129,7 +143,7 @@ public class LaundryHome extends AppCompatActivity {
 
         if(requestCode==2 && resultCode==RESULT_OK && data!=null){
             imageUrl = data.getData();
-            imageView.setImageURI(imageUrl);
+            imageProfile.setImageURI(imageUrl);
         }
         Toast.makeText(LaundryHome.this, "foto di home", Toast.LENGTH_SHORT).show();
     }
@@ -196,7 +210,7 @@ public class LaundryHome extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.itemProfile:
                 logout();
-                Toast.makeText(this, "profile laundry clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "logout", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -231,6 +245,17 @@ public class LaundryHome extends AppCompatActivity {
                 Toast.makeText(LaundryHome.this, "error get current user", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
 }

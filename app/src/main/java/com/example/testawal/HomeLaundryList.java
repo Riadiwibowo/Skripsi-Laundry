@@ -7,21 +7,31 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ClipData;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class HomeLaundryList extends AppCompatActivity {
 
@@ -32,6 +42,13 @@ public class HomeLaundryList extends AppCompatActivity {
     MyAdapter myAdapter;
     ArrayList<User> users;
     CardView parentLayout;
+    //endregion
+
+    //region properties search
+    ListView listLaundry;
+    AutoCompleteTextView txtSearch;
+
+    SearchView searchView;
     //endregion
 
     private AlertDialog.Builder dialogBuilder;
@@ -76,6 +93,35 @@ public class HomeLaundryList extends AppCompatActivity {
             }
         });
         //endregion
+
+        //region search
+        searchView = findViewById(R.id.searchView);
+        searchView.onActionViewExpanded();
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filter(s);
+                return true;
+            }
+        });
+        //endregion
+    }
+
+    private void filter(String s) {
+        ArrayList<User> searchList = new ArrayList<>();
+        for (User obj : users){
+            if(obj.getNama().toLowerCase().contains(s.toLowerCase())){
+                searchList.add(obj);
+            }
+        }
+        MyAdapter adapterSearch = new MyAdapter(HomeLaundryList.this, searchList);
+        rv.setAdapter(adapterSearch);
     }
 
     /*public void createNewContactDialog(){

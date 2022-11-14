@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="90dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="6dp"
-    android:layout_margin="10dp"
+    app:cardCornerRadius="28dp"
+    android:layout_marginTop="6dp"
     app:cardBackgroundColor="#9AD0EC"
     android:id="@+id/parentLayout">
 
@@ -15,16 +15,16 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="15dp"
+            app:cardCornerRadius="16dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp">
+            android:layout_marginLeft="16dp">
 
             <ImageView
                 android:id="@+id/imgLogo"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:background="@drawable/roundbackground"
                 android:clipToOutline="true"
                 android:src="@drawable/ic_profile_icon"
@@ -39,10 +39,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="16dp"
             android:text="NamaLaundry"
             android:textColor="@color/white"
-            android:textSize="23dp"
+            android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -52,13 +52,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="8dp"
             android:text="DeskripsiLaundry"
             android:textColor="@color/white"
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtNamaLaundry" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.cardview.widget.CardView>
