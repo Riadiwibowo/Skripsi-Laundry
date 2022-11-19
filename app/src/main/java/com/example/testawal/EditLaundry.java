@@ -39,11 +39,11 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class LaundryHome extends AppCompatActivity {
+public class EditLaundry extends AppCompatActivity {
 
     //region properties
     private Button btnAdd, btnDesc;
-    EditText txtDesc;
+    EditText txtDesc, txtName, txtPhone;
     ProgressBar progressBar;
     private ImageView imageView, imageProfile;
     private DatabaseReference databaseReference;
@@ -57,19 +57,21 @@ public class LaundryHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_laundry_home);
+        setContentView(R.layout.activity_edit_laundry);
 
         getSupportActionBar().setTitle("Laundry Profile Setting");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 //        databaseReference = FirebaseDatabase.getInstance().getReference().child("Image");
         btnAdd = findViewById(R.id.buttonAdd);
-        btnDesc = findViewById(R.id.buttonDesc);
+//        btnDesc = findViewById(R.id.buttonDesc);
         progressBar = findViewById(R.id.progressBar);
         imageProfile = findViewById(R.id.laundryProfileImage);
         imageView = findViewById(R.id.laundryImageAdd);
         progressBar.setVisibility(View.INVISIBLE);
         txtDesc = findViewById(R.id.txtLaunDescription);
+        txtName = findViewById(R.id.txtLaunName);
+        txtPhone = findViewById(R.id.txtLaunPhone);
 
 
         //1
@@ -87,10 +89,40 @@ public class LaundryHome extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (imageUrl != null){
-                    uploadFirebase(imageUrl);
-                }else{
-                    Toast.makeText(LaundryHome.this, "Select a photo", Toast.LENGTH_SHORT).show();
+                if(!txtPhone.getText().toString().trim().isEmpty() && (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty())
+                && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty())) {
+                    insertPhone();
+                }
+                else if(!txtName.getText().toString().trim().isEmpty() && (txtPhone.getText().toString().trim().equals("") || txtPhone.getText().toString().trim().isEmpty())
+                && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty())) {
+                    insertName();
+                }
+                else if(!txtDesc.getText().toString().trim().isEmpty() && (txtPhone.getText().toString().trim().equals("") || txtPhone.getText().toString().trim().isEmpty())
+                    && (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty())) {
+                    insertDescription();
+                }
+                else if(!txtDesc.getText().toString().trim().isEmpty() && !txtPhone.getText().toString().trim().isEmpty()
+                        && (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty())) {
+                    insertPhone();
+                    insertDescription();
+                }
+                else if(!txtDesc.getText().toString().trim().isEmpty() && !txtName.getText().toString().trim().isEmpty()
+                        && (txtPhone.getText().toString().trim().equals("") || txtPhone.getText().toString().trim().isEmpty())) {
+                    insertName();
+                    insertDescription();
+                }
+                else if(!txtPhone.getText().toString().trim().isEmpty() && !txtName.getText().toString().trim().isEmpty()
+                        && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty())) {
+                    insertName();
+                    insertPhone();
+                }
+                else if(!txtName.getText().toString().trim().isEmpty() && !txtPhone.getText().toString().trim().isEmpty() && !txtDesc.getText().toString().trim().isEmpty()) {
+                    insertName();
+                    insertPhone();
+                    insertDescription();
+                }
+                else{
+                    Toast.makeText(EditLaundry.this, "Salah satu harus diisi", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -108,9 +140,9 @@ public class LaundryHome extends AppCompatActivity {
                     String laundryName = user.nama;
                     String role = user.role;
                     String images = user.imageUrl;
-                    Toast.makeText(LaundryHome.this, "Hi " + laundryName + " role " + role, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditLaundry.this, "Hi " + laundryName + " role " + role, Toast.LENGTH_SHORT).show();
                     if(user.imageUrl!=null && !user.imageUrl.equals("")){
-                        Glide.with(LaundryHome.this).load(user.getImageUrl()).into(imageProfile);
+                        Glide.with(EditLaundry.this).load(user.getImageUrl()).into(imageProfile);
                     }else if (user.imageUrl.equals("")){
                         String uri = "@drawable/ic_profile_icon";
                         int imageResource = getResources().getIdentifier(uri, null, getPackageName());
@@ -122,17 +154,17 @@ public class LaundryHome extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(LaundryHome.this, "error get current user", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditLaundry.this, "error get current user", Toast.LENGTH_SHORT).show();
             }
         });
 
         //4
-        btnDesc.setOnClickListener(new View.OnClickListener() {
+        /*btnDesc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 insertDescription();
             }
-        });
+        });*/
     }
 
     //region imageUrl
@@ -145,7 +177,7 @@ public class LaundryHome extends AppCompatActivity {
             imageUrl = data.getData();
             imageProfile.setImageURI(imageUrl);
         }
-        Toast.makeText(LaundryHome.this, "foto di home", Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditLaundry.this, "foto di home", Toast.LENGTH_SHORT).show();
     }
 
     //4
@@ -163,14 +195,14 @@ public class LaundryHome extends AppCompatActivity {
                                 User user = snapshot.getValue(User.class);
                                 if(user != null){
                                     databaseReference.child(userId).child("imageUrl").setValue(uri.toString());
-                                    Toast.makeText(LaundryHome.this, "Sukses upload foto", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EditLaundry.this, "Sukses upload foto", Toast.LENGTH_SHORT).show();
                                     progressBar.setVisibility(View.INVISIBLE);
                                 }
                             }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
-                                Toast.makeText(LaundryHome.this, "error get current user", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EditLaundry.this, "error get current user", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -185,7 +217,7 @@ public class LaundryHome extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(LaundryHome.this, "gagal upload", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditLaundry.this, "gagal upload", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -219,30 +251,80 @@ public class LaundryHome extends AppCompatActivity {
 
     public void logout(){
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(LaundryHome.this, MainActivity.class));
+        startActivity(new Intent(EditLaundry.this, MainActivity.class));
     }
 
     private void insertDescription() {
         String description = txtDesc.getText().toString().trim();
 
         //region validasi input
-        if(description.isEmpty()){
-            txtDesc.setError("Deskripsi harus diisi");
-            txtDesc.requestFocus();
-            return;
-        }
+//        if(description.isEmpty()){
+//            txtDesc.setError("Deskripsi harus diisi");
+//            txtDesc.requestFocus();
+//            return;
+//        }
         //endregion
 
         databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 databaseReference.child(userId).child("description").setValue(description.toString());
-                Toast.makeText(LaundryHome.this, "Description Inserted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditLaundry.this, "Description Inserted", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(LaundryHome.this, "error get current user", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditLaundry.this, "error get current user", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void insertName() {
+        String name = txtName.getText().toString().trim();
+
+        //region validasi input
+//        if(name.isEmpty()){
+//            txtName.setError("Nama harus diisi");
+//            txtName.requestFocus();
+//            return;
+//        }
+        //endregion
+
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                databaseReference.child(userId).child("nama").setValue(name.toString());
+                Toast.makeText(EditLaundry.this, "Name Inserted", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(EditLaundry.this, "error get current user", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void insertPhone() {
+        String phone = txtPhone.getText().toString().trim();
+
+        //region validasi input
+//        if(phone.isEmpty()){
+//            txtPhone.setError("No. Telp harus diisi");
+//            txtPhone.requestFocus();
+//            return;
+//        }
+        //endregion
+
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                databaseReference.child(userId).child("phone").setValue(phone.toString());
+                Toast.makeText(EditLaundry.this, "Phone Inserted", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(EditLaundry.this, "error get current user", Toast.LENGTH_SHORT).show();
             }
         });
     }

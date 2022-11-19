@@ -67,7 +67,7 @@ public class LaundryMain extends AppCompatActivity {
         profileSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LaundryMain.this, LaundryHome.class));
+                startActivity(new Intent(LaundryMain.this, ProfileLaundry.class));
             }
         });
     }
@@ -75,16 +75,16 @@ public class LaundryMain extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflates = getMenuInflater();
-        inflates.inflate(R.menu.home_menu, menu);
+        inflates.inflate(R.menu.logout_laundry, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.itemProfile:
+            case R.id.itemLogout:
                 logout();
-                Toast.makeText(this, "profile clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "logout", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);

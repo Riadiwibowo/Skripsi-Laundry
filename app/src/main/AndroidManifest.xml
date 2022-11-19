@@ -14,6 +14,18 @@
         android:theme="@style/Theme.TestAwal"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".EditLaundry"
+            android:exported="true" />
+        <activity
+            android:name=".ProfileLaundry"
+            android:exported="true" />
+        <activity
+            android:name=".EditUser"
+            android:exported="true" />
+        <activity
+            android:name=".ProfileUser"
+            android:exported="true" />
+        <activity
             android:name=".LaundryMain"
             android:exported="true" />
         <activity
@@ -21,9 +33,6 @@
             android:exported="true" />
         <activity
             android:name=".AboutUs"
-            android:exported="true" />
-        <activity
-            android:name=".LaundryHome"
             android:exported="true" />
         <activity
             android:name=".HomeActivity"

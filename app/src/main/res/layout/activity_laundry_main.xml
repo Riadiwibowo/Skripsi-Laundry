@@ -85,8 +85,8 @@
                         android:layout_gravity="center"/>
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:text="Profile\nSetting"
+                        android:layout_height="wrap_content"
+                        android:text="Profile"
                         android:textAlignment="center"
                         android:textSize="18dp"
                         android:textStyle="bold"
@@ -115,12 +115,12 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/ic_profile_icon"
+                        android:src="@drawable/ic_baseline_price_change_24"
                         android:layout_gravity="center"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Laundry"
+                        android:text="Transaction"
                         android:textAlignment="center"
                         android:textSize="18sp"
                         android:textStyle="bold"

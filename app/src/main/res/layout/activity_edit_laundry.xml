@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LaundryHome">
+    tools:context=".EditLaundry">
 
     <ImageView
         android:id="@+id/laundryImageAdd"
@@ -36,19 +36,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/buttonAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save Image"
+        android:text="Save"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/laundryImageAdd"
+        app:layout_constraintTop_toBottomOf="@+id/constraintProfile"
         app:layout_constraintVertical_bias="0.312" />
 
     <ProgressBar
@@ -64,21 +65,22 @@
         app:layout_constraintVertical_bias="0.161" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintProfile"
         android:layout_marginTop="20dp"
         android:layout_width="409dp"
         android:layout_height="219dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAdd"
+        app:layout_constraintTop_toBottomOf="@+id/laundryImageAdd"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/txtLaunDescription"
             android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:textAlignment="center"
-            android:hint="description"
+            android:hint="Deskripsi"
             android:background="@drawable/edittextrgsshape"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -87,16 +89,33 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.17" />
 
-        <Button
-            android:id="@+id/buttonDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Save Description"
-            android:textColor="@color/white"
+        <EditText
+            android:id="@+id/txtLaunName"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:textAlignment="center"
+            android:hint="Nama"
+            android:background="@drawable/edittextrgsshape"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtLaunDescription" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <EditText
+            android:id="@+id/txtLaunPhone"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:textAlignment="center"
+            android:hint="No Telp"
+            android:background="@drawable/edittextrgsshape"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.83" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
