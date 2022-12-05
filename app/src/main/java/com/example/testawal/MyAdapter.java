@@ -71,6 +71,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                 Alamat.setText(userList.get(viewHolder.getAdapterPosition()).getNama());
                 Description.setText(userList.get(viewHolder.getAdapterPosition()).getDescription());
                 myDialog.show();
+                btnPopup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context, OrderProcess.class);
+                        intent.putExtra("nama1", userList.get(viewHolder.getAdapterPosition()).getNama());
+                        context.startActivity(intent);
+                    }
+                });
             }
         });
 

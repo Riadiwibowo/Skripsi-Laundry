@@ -13,18 +13,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.media.Image;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,8 +28,6 @@ import android.widget.ViewFlipper;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -45,7 +38,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 
@@ -57,6 +49,7 @@ public class HomeFragment extends Fragment {
     ImageSlider imageSlider;
     ViewFlipper viewFlipper;
     TextView txtSeeAll, txtNamaUser;
+    ImageView img1, img2, img3, img4;
     FirebaseUser fUser;
     String userId;
     //recyclerView
@@ -76,6 +69,10 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         txtNamaUser = view.findViewById(R.id.txtNamaUser);
         txtSeeAll = view.findViewById(R.id.txtSeeAll);
+        img1 = view.findViewById(R.id.img1);
+        img2 = view.findViewById(R.id.img2);
+        img3 = view.findViewById(R.id.img3);
+        img4 = view.findViewById(R.id.img4);
         drawerLayout = view.findViewById(R.id.home_layout);
         navigationView = view.findViewById(R.id.nav_home);
         toggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, R.string.open, R.string.close);
@@ -87,12 +84,15 @@ public class HomeFragment extends Fragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.catBaju:
+                        startActivity(new Intent(getActivity(), CategoryBaju.class));
                         Toast.makeText(getActivity(), "Category Baju", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.catSepatu:
+                        startActivity(new Intent(getActivity(), CategorySepatu.class));
                         Toast.makeText(getActivity(), "Category Sepatu", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.catOther:
+                        startActivity(new Intent(getActivity(), CategoryLain.class));
                         Toast.makeText(getActivity(), "Category Others", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menuAbout:
@@ -169,6 +169,33 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        img1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ServiceKilat.class));
+            }
+        });
+
+        img2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Pickup.class));
+            }
+        });
+
+        img3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Satuan.class));
+            }
+        });
+
+        img4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Kiloan.class));
+            }
+        });
         //endregion
 
         txtSeeAll.setOnClickListener(new View.OnClickListener() {

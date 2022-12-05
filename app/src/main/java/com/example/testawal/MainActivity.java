@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //                    }
 //                });
-            usersLogin();
+                usersLogin();
             }
         });
 
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                                     if(role.equals("user")){
                                         startActivity(new Intent(MainActivity.this, HomeActivity.class));
                                     }else if(role.equals("laundry")){
-                                        startActivity(new Intent(MainActivity.this, LaundryMain.class));
+                                        startActivity(new Intent(MainActivity.this, ProfileLaundry.class));
                                     }
                                 }
                             }

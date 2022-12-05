@@ -14,6 +14,30 @@
         android:theme="@style/Theme.TestAwal"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".OrderProcess"
+            android:exported="true" />
+        <activity
+            android:name=".CategoryLain"
+            android:exported="true" />
+        <activity
+            android:name=".CategorySepatu"
+            android:exported="true" />
+        <activity
+            android:name=".CategoryBaju"
+            android:exported="true" />
+        <activity
+            android:name=".Kiloan"
+            android:exported="true" />
+        <activity
+            android:name=".Satuan"
+            android:exported="true" />
+        <activity
+            android:name=".Pickup"
+            android:exported="true" />
+        <activity
+            android:name=".ServiceKilat"
+            android:exported="true" />
+        <activity
             android:name=".EditLaundry"
             android:exported="true" />
         <activity

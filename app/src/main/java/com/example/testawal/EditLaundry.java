@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -42,8 +43,9 @@ import com.google.firebase.storage.UploadTask;
 public class EditLaundry extends AppCompatActivity {
 
     //region properties
-    private Button btnAdd, btnDesc;
+    private Button btnAdd;
     EditText txtDesc, txtName, txtPhone;
+    CheckBox services1, services2, services3, services4, category1, category2, category3;
     ProgressBar progressBar;
     private ImageView imageView, imageProfile;
     private DatabaseReference databaseReference;
@@ -64,7 +66,6 @@ public class EditLaundry extends AppCompatActivity {
 
 //        databaseReference = FirebaseDatabase.getInstance().getReference().child("Image");
         btnAdd = findViewById(R.id.buttonAdd);
-//        btnDesc = findViewById(R.id.buttonDesc);
         progressBar = findViewById(R.id.progressBar);
         imageProfile = findViewById(R.id.laundryProfileImage);
         imageView = findViewById(R.id.laundryImageAdd);
@@ -72,7 +73,18 @@ public class EditLaundry extends AppCompatActivity {
         txtDesc = findViewById(R.id.txtLaunDescription);
         txtName = findViewById(R.id.txtLaunName);
         txtPhone = findViewById(R.id.txtLaunPhone);
+        services1 = findViewById(R.id.services1);
+        services2 = findViewById(R.id.services2);
+        services3 = findViewById(R.id.services3);
+        services4 = findViewById(R.id.services4);
+        category1 = findViewById(R.id.category1);
+        category2 = findViewById(R.id.category2);
+        category3 = findViewById(R.id.category3);
 
+        //cek current user (untuk add image melalui reference current user)
+        fUser = FirebaseAuth.getInstance().getCurrentUser();
+        userId = fUser.getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
         //1
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -90,15 +102,15 @@ public class EditLaundry extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!txtPhone.getText().toString().trim().isEmpty() && (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty())
-                && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty())) {
+                        && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty())) {
                     insertPhone();
                 }
                 else if(!txtName.getText().toString().trim().isEmpty() && (txtPhone.getText().toString().trim().equals("") || txtPhone.getText().toString().trim().isEmpty())
-                && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty())) {
+                        && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty())) {
                     insertName();
                 }
                 else if(!txtDesc.getText().toString().trim().isEmpty() && (txtPhone.getText().toString().trim().equals("") || txtPhone.getText().toString().trim().isEmpty())
-                    && (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty())) {
+                        && (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty())) {
                     insertDescription();
                 }
                 else if(!txtDesc.getText().toString().trim().isEmpty() && !txtPhone.getText().toString().trim().isEmpty()
@@ -124,13 +136,80 @@ public class EditLaundry extends AppCompatActivity {
                 else{
                     Toast.makeText(EditLaundry.this, "Salah satu harus diisi", Toast.LENGTH_SHORT).show();
                 }
+
+                if(services1.isChecked() || services2.isChecked() || services3.isChecked() || services4.isChecked()) {
+                    if(services1.isChecked()){
+                        databaseReference.child(userId).child("services").setValue("Kilat");
+                    }
+                    else if(services2.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Pickup");
+                    }
+                    else if(services3.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Satuan");
+                    }
+                    else if(services4.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Kiloan");
+                    }
+                    if(services1.isChecked() && services2.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Kilat; Pickup");
+                    }
+                    if(services1.isChecked() && services3.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Kilat; Satuan");
+                    }
+                    if(services1.isChecked() && services4.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Kilat; Kiloan");
+                    }
+                    if(services2.isChecked() && services3.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Pickup; Satuan");
+                    }
+                    if(services2.isChecked() && services4.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Pickup; Kiloan");
+                    }
+                    if(services3.isChecked() && services4.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Satuan; Kiloan");
+                    }
+                    if(services1.isChecked() && services2.isChecked() && services3.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Kilat; Pickup; Satuan");
+                    }
+                    if(services1.isChecked() && services2.isChecked() && services4.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Kilat; Pickup; Kiloan");
+                    }
+                    if(services1.isChecked() && services3.isChecked() && services4.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Kilat; Satuan; Kiloan");
+                    }
+                    if(services2.isChecked() && services3.isChecked() && services4.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Pickup; Satuan; Kiloan");
+                    }
+                    if(services1.isChecked() && services2.isChecked() && services3.isChecked() && services4.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Kilat; Pickup; Satuan; Kiloan");
+                    }
+                }
+
+                if(category1.isChecked() || category2.isChecked() || category3.isChecked()) {
+                    if(category1.isChecked()) {
+                        databaseReference.child(userId).child("category").setValue("Baju");
+                    }
+                    else if(category2.isChecked()) {
+                        databaseReference.child(userId).child("category").setValue("Sepatu");
+                    }
+                    else if(category3.isChecked()) {
+                        databaseReference.child(userId).child("category").setValue("Lain-lain");
+                    }
+                    if(category1.isChecked() && category2.isChecked()) {
+                        databaseReference.child(userId).child("category").setValue("Baju; Sepatu");
+                    }
+                    else if(category1.isChecked() && category3.isChecked()) {
+                        databaseReference.child(userId).child("category").setValue("Baju; Lain-lain");
+                    }
+                    else if(category2.isChecked() && category3.isChecked()) {
+                        databaseReference.child(userId).child("category").setValue("Sepatu; Lain-lain");
+                    }
+                    if(category1.isChecked() && category2.isChecked() && category3.isChecked()) {
+                        databaseReference.child(userId).child("category").setValue("Baju; Sepatu; Lain-lain");
+                    }
+                }
             }
         });
-
-        //cek current user (untuk add image melalui reference current user)
-        fUser = FirebaseAuth.getInstance().getCurrentUser();
-        userId = fUser.getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
         databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -228,31 +307,6 @@ public class EditLaundry extends AppCompatActivity {
         return mime. getExtensionFromMimeType(cr.getType(uri));
     }
     //endregion
-
-    //region menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflates = getMenuInflater();
-        inflates.inflate(R.menu.home_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.itemProfile:
-                logout();
-                Toast.makeText(this, "logout", Toast.LENGTH_SHORT).show();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    //endregion
-
-    public void logout(){
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(EditLaundry.this, MainActivity.class));
-    }
 
     private void insertDescription() {
         String description = txtDesc.getText().toString().trim();
