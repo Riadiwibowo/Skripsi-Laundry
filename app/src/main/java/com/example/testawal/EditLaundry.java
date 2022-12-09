@@ -138,26 +138,29 @@ public class EditLaundry extends AppCompatActivity {
                 }
 
                 if(services1.isChecked() || services2.isChecked() || services3.isChecked() || services4.isChecked()) {
-                    if(services1.isChecked()){
-                        databaseReference.child(userId).child("services").setValue("Kilat");
-                    }
-                    else if(services2.isChecked()) {
-                        databaseReference.child(userId).child("services").setValue("Pickup");
-                    }
-                    else if(services3.isChecked()) {
+//                    if(services1.isChecked()){
+//                        databaseReference.child(userId).child("services").setValue("Kilat");
+//                    }
+//                    else if(services2.isChecked()) {
+//                        databaseReference.child(userId).child("services").setValue("Pickup");
+//                    }
+                    if(services3.isChecked()) {
                         databaseReference.child(userId).child("services").setValue("Satuan");
                     }
                     else if(services4.isChecked()) {
                         databaseReference.child(userId).child("services").setValue("Kiloan");
                     }
-                    if(services1.isChecked() && services2.isChecked()) {
-                        databaseReference.child(userId).child("services").setValue("Kilat; Pickup");
+                    if(services3.isChecked() && services4.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Satuan; Kiloan");
                     }
-                    if(services1.isChecked() && services3.isChecked()) {
+                    if(services1.isChecked() && services3.isChecked()){
                         databaseReference.child(userId).child("services").setValue("Kilat; Satuan");
                     }
-                    if(services1.isChecked() && services4.isChecked()) {
+                    if(services1.isChecked() && services4.isChecked()){
                         databaseReference.child(userId).child("services").setValue("Kilat; Kiloan");
+                    }
+                    if(services1.isChecked() && services3.isChecked() && services4.isChecked()){
+                        databaseReference.child(userId).child("services").setValue("Kilat; Satuan; Kiloan");
                     }
                     if(services2.isChecked() && services3.isChecked()) {
                         databaseReference.child(userId).child("services").setValue("Pickup; Satuan");
@@ -165,8 +168,8 @@ public class EditLaundry extends AppCompatActivity {
                     if(services2.isChecked() && services4.isChecked()) {
                         databaseReference.child(userId).child("services").setValue("Pickup; Kiloan");
                     }
-                    if(services3.isChecked() && services4.isChecked()) {
-                        databaseReference.child(userId).child("services").setValue("Satuan; Kiloan");
+                    if(services2.isChecked() && services3.isChecked() && services4.isChecked()) {
+                        databaseReference.child(userId).child("services").setValue("Pickup; Satuan; Kiloan");
                     }
                     if(services1.isChecked() && services2.isChecked() && services3.isChecked()) {
                         databaseReference.child(userId).child("services").setValue("Kilat; Pickup; Satuan");
@@ -174,15 +177,37 @@ public class EditLaundry extends AppCompatActivity {
                     if(services1.isChecked() && services2.isChecked() && services4.isChecked()) {
                         databaseReference.child(userId).child("services").setValue("Kilat; Pickup; Kiloan");
                     }
-                    if(services1.isChecked() && services3.isChecked() && services4.isChecked()) {
-                        databaseReference.child(userId).child("services").setValue("Kilat; Satuan; Kiloan");
-                    }
-                    if(services2.isChecked() && services3.isChecked() && services4.isChecked()) {
-                        databaseReference.child(userId).child("services").setValue("Pickup; Satuan; Kiloan");
-                    }
                     if(services1.isChecked() && services2.isChecked() && services3.isChecked() && services4.isChecked()) {
                         databaseReference.child(userId).child("services").setValue("Kilat; Pickup; Satuan; Kiloan");
                     }
+
+//                    if(services1.isChecked() && services4.isChecked()) {
+//                        databaseReference.child(userId).child("services").setValue("Kilat; Kiloan");
+//                    }
+//                    if(services2.isChecked() && services3.isChecked()) {
+//                        databaseReference.child(userId).child("services").setValue("Pickup; Satuan");
+//                    }
+//                    if(services2.isChecked() && services4.isChecked()) {
+//                        databaseReference.child(userId).child("services").setValue("Pickup; Kiloan");
+//                    }
+//                    if(services3.isChecked() && services4.isChecked()) {
+//                        databaseReference.child(userId).child("services").setValue("Satuan; Kiloan");
+//                    }
+//                    if(services1.isChecked() && services2.isChecked() && services3.isChecked()) {
+//                        databaseReference.child(userId).child("services").setValue("Kilat; Pickup; Satuan");
+//                    }
+//                    if(services1.isChecked() && services2.isChecked() && services4.isChecked()) {
+//                        databaseReference.child(userId).child("services").setValue("Kilat; Pickup; Kiloan");
+//                    }
+//                    if(services1.isChecked() && services3.isChecked() && services4.isChecked()) {
+//                        databaseReference.child(userId).child("services").setValue("Kilat; Satuan; Kiloan");
+//                    }
+//                    if(services2.isChecked() && services3.isChecked() && services4.isChecked()) {
+//                        databaseReference.child(userId).child("services").setValue("Pickup; Satuan; Kiloan");
+//                    }
+                }
+                else {
+                    Toast.makeText(EditLaundry.this, "Minimal memilih antara satuan atau kiloan", Toast.LENGTH_SHORT).show();
                 }
 
                 if(category1.isChecked() || category2.isChecked() || category3.isChecked()) {

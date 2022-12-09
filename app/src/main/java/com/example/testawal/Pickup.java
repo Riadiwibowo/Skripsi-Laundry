@@ -80,10 +80,9 @@ public class Pickup extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     if (dataSnapshot.child("role").getValue().equals("laundry") && dataSnapshot.child("services").getValue() != null &&
-                            (dataSnapshot.child("services").getValue().equals("Pickup") ||
-                            dataSnapshot.child("services").getValue().equals("Kilat; Pickup") || dataSnapshot.child("services").getValue().equals("Pickup; Satuan") ||
-                            dataSnapshot.child("services").getValue().equals("Pickup; Kiloan") || dataSnapshot.child("services").getValue().equals("Kilat; Pickup; Satuan") ||
-                            dataSnapshot.child("services").getValue().equals("Kilat; Pickup; Kiloan") || dataSnapshot.child("services").getValue().equals("Pickup; Satuan; Kiloan") ||
+                            (dataSnapshot.child("services").getValue().equals("Kilat; Pickup; Satuan") ||
+                            dataSnapshot.child("services").getValue().equals("Kilat; Pickup; Kiloan") || dataSnapshot.child("services").getValue().equals("Pickup; Satuan") ||
+                            dataSnapshot.child("services").getValue().equals("Pickup; Kiloan") || dataSnapshot.child("services").getValue().equals("Pickup; Satuan; Kiloan") ||
                             dataSnapshot.child("services").getValue().equals("Kilat; Pickup; Satuan; Kiloan"))) {
                         User user2 = dataSnapshot.getValue(User.class);
                         users.add(user2);
