@@ -39,7 +39,7 @@ public class ProfileUser extends AppCompatActivity {
 
         Nama = (TextView) findViewById(R.id.Nama);
         Email = (TextView) findViewById(R.id.Email);
-        Telp = (TextView) findViewById(R.id.Telp);
+        Telp = (TextView) findViewById(R.id.Phone);
         btnEdit = findViewById(R.id.btnEdit);
 
         fUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -50,6 +50,7 @@ public class ProfileUser extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
+                Toast.makeText(ProfileUser.this, "a " + user.nama, Toast.LENGTH_LONG).show();
                 if(user != null){
                     Nama.setText(user.nama);
                     Email.setText(user.email);

@@ -159,9 +159,9 @@ public class MainActivity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             for (DataSnapshot dataSnap : snapshot.getChildren()){
                                 if(dataSnap.child("email").getValue().equals(email)) {
-                                    Toast.makeText(MainActivity.this, "email = " + email, Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(MainActivity.this, "email = " + email, Toast.LENGTH_SHORT).show();
                                     role = dataSnap.child("role").getValue(String.class);
-                                    Toast.makeText(MainActivity.this, "role = " + role, Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(MainActivity.this, "role = " + role, Toast.LENGTH_SHORT).show();
                                     if(role.equals("user")){
                                         startActivity(new Intent(MainActivity.this, HomeActivity.class));
                                     }else if(role.equals("laundry")){
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                     });
                     //endregion
                 }else{
-                    Toast.makeText(MainActivity.this, "login gagal", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "การเข้าสู่ระบบล้มเหลว", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }

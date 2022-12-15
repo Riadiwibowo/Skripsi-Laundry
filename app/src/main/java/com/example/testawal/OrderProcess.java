@@ -32,10 +32,10 @@ public class OrderProcess extends AppCompatActivity {
     Button btnOrder;
     EditText editTanggal,  editJam;
     TextView txtNamaLaundry, txtNamaUser;
-    String userId, transactionid, namalaundry;
+    String userId, trId, laundryId, namaUser;
     ArrayList<User> users;
     FirebaseUser fUser;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseReferenceT;
 
     private FirebaseAuth mAuth;
 
@@ -50,6 +50,7 @@ public class OrderProcess extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String nama1 = (String) b.get("nama1");
 
+
         txtNamaUser = findViewById(R.id.txtNamaUser);
         txtNamaLaundry = findViewById(R.id.txtNamaLaundry);
         editTanggal = findViewById(R.id.editTanggal);
@@ -59,6 +60,7 @@ public class OrderProcess extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReferenceT = FirebaseDatabase.getInstance().getReference("Transactions");
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         userId = fUser.getUid();
 
@@ -69,6 +71,7 @@ public class OrderProcess extends AppCompatActivity {
                 if(user != null){
                     txtNamaUser.setText("Nama pengguna: " + user.nama);
                     txtNamaLaundry.setText("Nama Laundry: " + nama1);
+                    namaUser = user.nama;
                 }
             }
 
@@ -127,42 +130,59 @@ public class OrderProcess extends AppCompatActivity {
             }
         });
 
+        //region cara 1 trId di user
+//        btnOrder.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //add 21000 ke user.transaction
+//                trId = databaseReference.child(userId).child("transaction").push().getKey().toString();
+//                databaseReference.child(userId).child("transaction").child(trId).child("harga").setValue("25000");
+//                Toast.makeText(OrderProcess.this, "id ambil = " + trId, Toast.LENGTH_LONG).show();
+//
+//                //dbReference refer ke semua user, trId selalu unique
+//                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    //fetch data
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+//                            if(dataSnapshot.child("nama").getValue().toString().equals(nama1)){
+//                                namalaundry = dataSnapshot.getKey();
+//                                databaseReference.child(namalaundry).child("transaction").child(trId).child("harga").setValue("25000");
+//                                break;
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//
+//                Toast.makeText(OrderProcess.this, "DATA MASUK", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+        //endregion
+
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                databaseReference.child(userId).child("transaction").push().child("harga").setValue("15000");
-                // Ambil transactionid (key)
-                databaseReference.child(userId).child("transaction").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                            if (dataSnapshot.child("harga").getValue().toString().equals("15000")) {
-                                transactionid = dataSnapshot.getKey();
-                                break;
-                            }
-                            else {
-                                break;
-                            }
-                        }
-                        Toast.makeText(OrderProcess.this, transactionid, Toast.LENGTH_SHORT).show();
-                    }
+                trId = databaseReferenceT.push().getKey();
+                databaseReferenceT.child(trId).child("harga").setValue("25000");
+                databaseReferenceT.child(trId).child("services").setValue("cuci kilat");
+                databaseReferenceT.child(trId).child("namaLaundry").setValue(nama1);
+                databaseReferenceT.child(trId).child("namaUser").setValue(namaUser);
+                databaseReference.child(userId).child("transactions").child(trId).setValue(trId);
+                Toast.makeText(OrderProcess.this, "id generated = " + trId, Toast.LENGTH_LONG).show();
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-//                transactionid = databaseReference.child(userId).child("transaction").getKey();
+//              dbReference refer ke semua userId, trId selalu unique
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    //fetch data
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                             if(dataSnapshot.child("nama").getValue().toString().equals(nama1)){
-                                namalaundry = dataSnapshot.getKey();
-                                databaseReference.child(namalaundry).child("transaction").child(transactionid).child("harga").setValue("15000");
-                                break;
-                            }else{
+                                laundryId = dataSnapshot.getKey();
+                                databaseReference.child(laundryId).child("transaction").child(trId).setValue(trId);
                                 break;
                             }
                         }
@@ -174,8 +194,28 @@ public class OrderProcess extends AppCompatActivity {
                     }
                 });
 
-                Toast.makeText(OrderProcess.this, "DATA MASUK", Toast.LENGTH_SHORT).show();
+                //loop transaction si user
+//                databaseReference.child(userId).child("transaction").addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+//                            if (dataSnapshot.getKey().equals(databaseReferenceT.getKey())) {
+//                                Transaction
+//                                break;
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
             }
         });
+
+
     }
 }
+
+
