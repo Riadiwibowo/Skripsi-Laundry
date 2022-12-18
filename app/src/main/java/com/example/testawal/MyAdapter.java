@@ -29,7 +29,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     Context context;
     ArrayList<User> userList;
     Dialog myDialog;
-    TextView Alamat, Description, Phone, Services;
+    TextView Alamat, Description, Phone, Services, NamaLaundry;
     ImageView iconPopup;
     Button btnPopup;
 
@@ -61,14 +61,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                 Phone = myDialog.findViewById(R.id.Telp);
                 btnPopup = myDialog.findViewById(R.id.btnPopup);
                 Services = myDialog.findViewById(R.id.Service);
+                NamaLaundry = myDialog.findViewById(R.id.txtNamaLaundry);
 
                 if(userList.get(viewHolder.getAdapterPosition()).getImageUrl().toString().equals("")){
                     iconPopup.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_profile_icon));
                 }else{
                     Glide.with(context).load(userList.get(viewHolder.getAdapterPosition()).getImageUrl()).into(iconPopup);
                 }
+                NamaLaundry.setText(userList.get(viewHolder.getAdapterPosition()).getNama());
                 Phone.setText(userList.get(viewHolder.getAdapterPosition()).getPhone());
-                Alamat.setText(userList.get(viewHolder.getAdapterPosition()).getNama());
+                Alamat.setText(userList.get(viewHolder.getAdapterPosition()).getAddress());
                 Description.setText(userList.get(viewHolder.getAdapterPosition()).getDescription());
                 myDialog.show();
                 btnPopup.setOnClickListener(new View.OnClickListener() {

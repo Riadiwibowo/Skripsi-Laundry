@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LaundryMain extends AppCompatActivity {
 
-    CardView profileSetting;
+    CardView profileSetting, laundryTransaction;
     TextView laundryName;
     private DatabaseReference databaseReference;
     //storageReference to store image data
@@ -38,6 +38,7 @@ public class LaundryMain extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Laundry Home");
 
+        laundryTransaction = findViewById(R.id.laundryTransaction);
         profileSetting = findViewById(R.id.laundryProfileSet);
         laundryName = (TextView) findViewById(R.id.txtTop);
 
@@ -68,6 +69,13 @@ public class LaundryMain extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LaundryMain.this, ProfileLaundry.class));
+            }
+        });
+
+        laundryTransaction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LaundryMain.this, LaundryTransaction.class));
             }
         });
     }

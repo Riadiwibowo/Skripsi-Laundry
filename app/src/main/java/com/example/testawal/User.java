@@ -7,7 +7,7 @@ public class User {
 
     public User(){}
 
-    public User(String nama, String email, String password, String role, String phone, String description, String imageUrl, String services, String category) {
+    public User(String nama, String email, String password, String role, String phone, String description, String imageUrl, String services, String category, String address) {
         this.nama = nama;
         this.email = email;
         this.password = password;
@@ -17,6 +17,7 @@ public class User {
         this.imageUrl = imageUrl;
         this.services = services;
         this.category = category;
+        this.address = address;
     }
 
     public String nama;
@@ -28,6 +29,7 @@ public class User {
     public String imageUrl= "";
     public String services;
     public String category;
+    public String address = "";
 
     public String getNama() {
         return nama;
@@ -63,6 +65,10 @@ public class User {
 
     public String getCategory() {
         return category;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public void setImageUrl(String imageUrl) {

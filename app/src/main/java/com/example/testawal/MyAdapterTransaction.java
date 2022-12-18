@@ -45,6 +45,14 @@ public class MyAdapterTransaction extends RecyclerView.Adapter<MyAdapterTransact
         //saat dipanggil berulang-ulang akan return ke new ViewHolder
         //akan memanggil MyViewHolder
 
+        //toast list transaksi laundry
+        viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "nama = " + transactionList.get(viewHolder.getAdapterPosition()).getNamaUser(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return viewHolder;
     }
 
