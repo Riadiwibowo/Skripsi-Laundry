@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@drawable/edittextdetaillaundry"
         android:id="@+id/constraintTop"
+        android:backgroundTint="#9AD0EC"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +47,7 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -151,6 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp"
@@ -204,6 +207,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Price"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp"
@@ -270,21 +274,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/belakangbuttonorder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contstraintPrice"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/contstraintPrice">
 
         <Button
             android:id="@+id/btnPopup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Order"
-            android:textColor="@color/black"
-            android:textSize="20dp"
+            android:backgroundTint="#9AD0EC"
+            android:textColor="#1572A1"
+            android:textSize="16dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

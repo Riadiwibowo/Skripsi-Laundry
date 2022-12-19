@@ -1,67 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OrderProcess">
+    tools:context=".OrderProcess"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtNamaUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtNamaLaundry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNamaUser" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintTop"
+                android:layout_width="match_parent"
+                android:background="@drawable/belakangbuttonorder"
+                android:layout_height="120dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/editTanggal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:textColor="@color/black"
-        android:hint="tanggal"
-        android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNamaLaundry" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="20dp"
+                    android:paddingTop="28px"
+                    android:text="You will make an order at"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editJam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:textColor="@color/black"
-        android:hint="waktu"
-        android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.039"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTanggal" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="20dp"
+                    android:fontFamily="@font/ralewayregular"
+                    android:text="nama laundry"
+                    android:textSize="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/btnOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="564dp"
-        android:text="Order"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--        start of body-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/constraintTop">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Services"
+                    android:textSize="32dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardReguler"
+                    android:onClick="expand1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black"
+                    android:layout_margin="12dp"
+                    android:padding="120dp"
+                    android:elevation="16dp"
+                    app:cardCornerRadius="28dp"
+                    app:contentPadding="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/layoutReguler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:animateLayoutChanges="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Reguler"
+                            android:textColor="@color/black"
+                            android:textSize="24dp"
+                            android:textStyle="bold" />
+
+                        <RadioGroup
+                            android:visibility="gone"
+                            android:id="@+id/radioGroupReguler"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/regulerSatuan"
+                                android:text="Satuan"
+                                android:textSize="20dp"
+                                android:fontFamily="@font/ralewayregular"
+                                android:textStyle="bold"
+                                android:onClick="checkButton1"/>
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/regulerKiloan"
+                                android:text="Kiloan"
+                                android:textSize="20dp"
+                                android:fontFamily="@font/ralewayregular"
+                                android:textStyle="bold"
+                                android:onClick="checkButton1"/>
+                        </RadioGroup>
+
+                        <EditText
+                            android:visibility="gone"
+                            android:id="@+id/inputBerat1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="input estimated kg here"
+                            android:textSize="20dp"
+                            android:textStyle="bold|italic"/>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardKilat"
+                    android:onClick="expand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black"
+                    android:layout_margin="12dp"
+                    android:padding="120dp"
+                    android:elevation="16dp"
+                    app:cardCornerRadius="28dp"
+                    app:contentPadding="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/layoutKilat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:animateLayoutChanges="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kilat"
+                            android:textSize="24dp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
+                        <RadioGroup
+                            android:visibility="gone"
+                            android:id="@+id/radioGroupKilat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/kilatSatuan"
+                                android:text="Satuan"
+                                android:textSize="20dp"
+                                android:fontFamily="@font/ralewayregular"
+                                android:textStyle="bold"
+                                android:onClick="checkButton"/>
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/kilatKiloan"
+                                android:text="Kiloan"
+                                android:textSize="20dp"
+                                android:fontFamily="@font/ralewayregular"
+                                android:textStyle="bold"
+                                android:onClick="checkButton"/>
+                        </RadioGroup>
+
+                        <EditText
+                            android:visibility="gone"
+                            android:id="@+id/inputBerat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="input estimated kg here"
+                            android:textSize="20dp"
+                            android:textStyle="bold|italic"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+<!--    <TextView-->
+<!--        android:id="@+id/txtNamaUser"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.038"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/txtNamaLaundry"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.038"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txtNamaUser" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/editTanggal"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:hint="tanggal"-->
+<!--        android:clickable="true"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.04"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txtNamaLaundry" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/editJam"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:hint="waktu"-->
+<!--        android:clickable="true"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.039"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/editTanggal" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btnOrder"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="564dp"-->
+<!--        android:text="Order"-->
+<!--        android:textColor="@color/white"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+</LinearLayout>
