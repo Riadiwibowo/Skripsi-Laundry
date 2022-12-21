@@ -44,7 +44,7 @@ public class EditLaundry extends AppCompatActivity {
 
     //region properties
     private Button btnAdd;
-    EditText txtDesc, txtName, txtPhone;
+    EditText txtDesc, txtName, txtPhone, inputHargaSatuan, inputHargaKiloan;
     CheckBox services1, services2, services3, services4, category1, category2, category3;
     ProgressBar progressBar;
     private ImageView imageView, imageProfile;
@@ -73,6 +73,8 @@ public class EditLaundry extends AppCompatActivity {
         txtDesc = findViewById(R.id.txtLaunDescription);
         txtName = findViewById(R.id.txtLaunName);
         txtPhone = findViewById(R.id.txtLaunPhone);
+        inputHargaSatuan = findViewById(R.id.inputHargaSatuan);
+        inputHargaKiloan = findViewById(R.id.inputHargaKiloan);
         services1 = findViewById(R.id.services1);
         services2 = findViewById(R.id.services2);
         services3 = findViewById(R.id.services3);

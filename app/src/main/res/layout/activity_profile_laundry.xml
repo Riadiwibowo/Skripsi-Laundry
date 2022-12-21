@@ -132,7 +132,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintDesc"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="100dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/belakangdetailuser"
             app:layout_constraintEnd_toEndOf="parent"

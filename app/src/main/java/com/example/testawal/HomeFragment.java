@@ -1,5 +1,8 @@
 package com.example.testawal;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -48,7 +51,7 @@ public class HomeFragment extends Fragment {
     ActionBarDrawerToggle toggle;
     ImageSlider imageSlider;
     ViewFlipper viewFlipper;
-    TextView txtSeeAll, txtNamaUser;
+    TextView txtSeeAll, txtNamaUser, txtNo, txtYes;
     ImageView img1, img2, img3, img4;
     FirebaseUser fUser;
     String userId;
@@ -59,6 +62,7 @@ public class HomeFragment extends Fragment {
     MyAdapter myAdapter;
     ArrayList<User> users;
     Integer idx=0;
+    Dialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -219,8 +223,24 @@ public class HomeFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.itemLogout:
-                logout();
-                Toast.makeText(getActivity(), "logout processed", Toast.LENGTH_SHORT).show();
+                dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.popuplogout);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                txtNo = dialog.findViewById(R.id.txtNo);
+                txtYes = dialog.findViewById(R.id.txtYes);
+                dialog.show();
+                txtNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                txtYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        logout();
+                    }
+                });
                 return true;
             case R.id.itemProfile:
                 startActivity(new Intent(getActivity(), ProfileUser.class));

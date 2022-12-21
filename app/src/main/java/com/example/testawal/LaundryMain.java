@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,11 +28,12 @@ import com.google.firebase.database.ValueEventListener;
 public class LaundryMain extends AppCompatActivity {
 
     CardView profileSetting, laundryTransaction;
-    TextView laundryName;
+    TextView laundryName, txtNo, txtYes;
     private DatabaseReference databaseReference;
     //storageReference to store image data
     private FirebaseUser fUser;
     private String userId;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,8 +95,24 @@ public class LaundryMain extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.itemLogout:
-                logout();
-                Toast.makeText(this, "logout", Toast.LENGTH_SHORT).show();
+                dialog = new Dialog(this);
+                dialog.setContentView(R.layout.popuplogout);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                txtNo = dialog.findViewById(R.id.txtNo);
+                txtYes = dialog.findViewById(R.id.txtYes);
+                dialog.show();
+                txtNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                txtYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        logout();
+                    }
+                });
                 return true;
         }
         return super.onOptionsItemSelected(item);
