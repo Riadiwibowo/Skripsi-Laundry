@@ -19,7 +19,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintTop"
                 android:layout_width="match_parent"
-                android:background="@drawable/belakangbuttonorder"
+                android:background="@color/white"
                 android:layout_height="120dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
 <!--        start of body-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@color/blue"
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/constraintTop">
@@ -77,7 +77,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Category"
+                        android:text="thể loại"
                         android:textSize="32dp"
                         android:textStyle="bold"
                         android:textColor="@color/white"/>
@@ -138,7 +138,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Services"
+                        android:text="サービス"
                         android:textSize="32dp"
                         android:textStyle="bold"
                         android:textColor="@color/white"/>
@@ -328,6 +328,104 @@
                 </androidx.cardview.widget.CardView>
 <!--            ini services-->
 
+<!--            ini pickup-->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/headerPickup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/blue"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:src="@drawable/order_pickup" />
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ग्रहणम्"
+                        android:textSize="32dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardPickup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    app:contentPadding="18dp"
+                    android:elevation="16dp"
+                    app:cardBackgroundColor="#9AD0EC"
+                    app:cardCornerRadius="28dp">
+
+                    <LinearLayout
+                        android:animateLayoutChanges="true"
+                        android:id="@+id/bodyPickup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/bodyPickupTop"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Want to use pick up service? "
+                                android:textSize="16dp"/>
+
+                            <Spinner
+                                android:gravity="center_vertical"
+                                android:id="@+id/pickupSpinner"
+                                android:layout_width="60dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/spinnerrgsshape"
+                                android:layout_marginLeft="20dp"
+                                android:spinnerMode="dropdown" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:animateLayoutChanges="true"
+                            android:id="@+id/bodyPickupBottom"
+                            android:layout_marginRight="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/editTanggal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:textColor="@color/black"
+                                android:text="@string/tanggal"
+                                android:clickable="true"/>
+
+                            <TextView
+                                android:id="@+id/editJam"
+                                android:layout_marginLeft="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:textColor="@color/black"
+                                android:text="@string/jam"
+                                android:clickable="true"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+<!--            ini pickup-->
+
+<!--            ini detail-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -367,6 +465,7 @@
                         android:textSize="16dp"
                         android:buttonTint="@color/blue"/>
                 </LinearLayout>
+<!--            ini detail-->
 
             </LinearLayout>
 

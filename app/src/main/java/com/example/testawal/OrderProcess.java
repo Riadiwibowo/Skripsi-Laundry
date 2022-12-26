@@ -8,9 +8,14 @@ import android.animation.LayoutTransition;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -18,6 +23,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -38,7 +44,7 @@ import java.util.Locale;
 public class OrderProcess extends AppCompatActivity {
 
     Button btnOrder;
-    EditText editTanggal,  editJam;
+    TextView editTanggal,  editJam;
     TextView txtNamaLaundry, txtNamaUser;
     String userId, trId, laundryId, namaUser;
     ArrayList<User> users;
@@ -60,6 +66,9 @@ public class OrderProcess extends AppCompatActivity {
     RadioGroup radioGrp, radioGrp1, radioGrpPair, radioGrpPair1;
     int check=0, check1=0, checkPair=0, checkPair1=0;
 
+    LinearLayout headerPickup, bodyPickup, bodyPickupBottom, bodyPickupTop;
+    CardView cardPickup;
+    Spinner dropdown;
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
@@ -185,6 +194,77 @@ public class OrderProcess extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_process);
+
+        getSupportActionBar().setTitle("Order Form");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        //region spinner
+        dropdown = findViewById(R.id.pickupSpinner);
+        String[] items = new String[]{"No", "Yes"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        dropdown.setAdapter(adapter);
+        //endregion
+
+        editTanggal = findViewById(R.id.editTanggal);
+        editJam = findViewById(R.id.editJam);
+//        TextView editTanggal = (TextView) findViewById(R.id.editTanggal);
+//        TextView editJam = (TextView) findViewById(R.id.editJam);
+//        SpannableString content = new SpannableString("Tanggal");
+//        content.setSpan(new UnderlineSpan(), 0, content.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+//        SpannableString content1 = new SpannableString("Jam");
+//        content1.setSpan(new UnderlineSpan(), 0, content1.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+//        editTanggal.setText(content);
+//        editJam.setText(content1);
+
+        editJam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                jam = calendar.get(Calendar.HOUR_OF_DAY);
+                menit = calendar.get(Calendar.MINUTE);
+
+                TimePickerDialog timedialog;
+                timedialog = new TimePickerDialog(OrderProcess.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                        jam = hour;
+                        menit = minute;
+
+                        if (jam <= 12) {
+                            editJam.setText(String.format(Locale.getDefault(), "%d:%d am", jam, menit));
+                        }
+                        else {
+                            editJam.setText(String.format(Locale.getDefault(), "%d:%d pm", jam, menit));
+                        }
+                    }
+                }, jam, menit, true);
+                timedialog.show();
+            }
+        });
+
+        editTanggal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                tanggal = calendar.get(Calendar.DAY_OF_MONTH);
+                bulan = calendar.get(Calendar.MONTH);
+                tahun = calendar.get(Calendar.YEAR);
+
+                DatePickerDialog datedialog;
+                datedialog = new DatePickerDialog(OrderProcess.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int date, int month, int year) {
+                        tanggal = date;
+                        bulan = month;
+                        tahun = year;
+
+                        editTanggal.setText(tahun + "/" + bulan + "/" + tanggal);
+                    }
+                }, tahun, bulan, tanggal);
+                datedialog.show();
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -325,6 +405,53 @@ public class OrderProcess extends AppCompatActivity {
         });
         //endregion
 
+        //region get pickup
+        headerPickup = findViewById(R.id.headerPickup);
+        bodyPickup = findViewById(R.id.bodyPickup);
+        bodyPickupTop = findViewById(R.id.bodyPickupTop);
+        bodyPickupBottom = findViewById(R.id.bodyPickupBottom);
+        cardPickup = findViewById(R.id.cardPickup);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.child("nama").getValue().toString().equals(namaLaundry)) {
+                        if (dataSnapshot.child("services").getValue().toString().contains("Pickup")){
+                            headerPickup.setVisibility(View.VISIBLE);
+                            cardPickup.setVisibility(View.VISIBLE);
+                            bodyPickupTop.setVisibility(View.VISIBLE);
+                            bodyPickupBottom.setVisibility(View.GONE);
+                        }
+                        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                if (dropdown.getItemAtPosition(i).toString().equals("Yes")){
+                                    TransitionManager.beginDelayedTransition(bodyPickupBottom, new AutoTransition());
+                                    TransitionManager.beginDelayedTransition(cardPickup, new AutoTransition());
+                                    bodyPickupBottom.setVisibility(View.VISIBLE);
+                                }else{
+                                    TransitionManager.beginDelayedTransition(bodyPickupBottom, new AutoTransition());
+                                    TransitionManager.beginDelayedTransition(cardPickup, new AutoTransition());
+                                    bodyPickupBottom.setVisibility(View.GONE);
+                                }
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        //endregion
+
         //region expand properties
         layoutKilat = findViewById(R.id.layoutKilat);
         layoutKilat.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
@@ -343,6 +470,13 @@ public class OrderProcess extends AppCompatActivity {
         inputPair1 = findViewById(R.id.inputPair1);
         //endregion
 
+        for (int i=0;i<1;i++){
+            try {
+                Thread.sleep(1000);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
     }
 
     //region method expand
@@ -421,7 +555,7 @@ public class OrderProcess extends AppCompatActivity {
     }
     //endregion
 
-    //method checkSepatu
+    //region method checkSepatu
     public void checkSepatu(View view) {
         kilatPair.setEnabled(false);
         regulerPair.setEnabled(false);
@@ -429,6 +563,18 @@ public class OrderProcess extends AppCompatActivity {
             kilatPair.setEnabled(true);
             regulerPair.setEnabled(true);
         }
+    }
+    //endregion
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
 }
