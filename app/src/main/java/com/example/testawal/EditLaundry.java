@@ -220,19 +220,19 @@ public class EditLaundry extends AppCompatActivity {
                         databaseReference.child(userId).child("category").setValue("Sepatu");
                     }
                     else if(category3.isChecked()) {
-                        databaseReference.child(userId).child("category").setValue("Lain-lain");
+                        databaseReference.child(userId).child("category").setValue("Others");
                     }
                     if(category1.isChecked() && category2.isChecked()) {
                         databaseReference.child(userId).child("category").setValue("Baju; Sepatu");
                     }
                     else if(category1.isChecked() && category3.isChecked()) {
-                        databaseReference.child(userId).child("category").setValue("Baju; Lain-lain");
+                        databaseReference.child(userId).child("category").setValue("Baju; Others");
                     }
                     else if(category2.isChecked() && category3.isChecked()) {
-                        databaseReference.child(userId).child("category").setValue("Sepatu; Lain-lain");
+                        databaseReference.child(userId).child("category").setValue("Sepatu; Others");
                     }
                     if(category1.isChecked() && category2.isChecked() && category3.isChecked()) {
-                        databaseReference.child(userId).child("category").setValue("Baju; Sepatu; Lain-lain");
+                        databaseReference.child(userId).child("category").setValue("Baju; Sepatu; Others");
                     }
                 }
             }

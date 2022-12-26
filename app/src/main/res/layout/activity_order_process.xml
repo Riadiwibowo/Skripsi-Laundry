@@ -41,6 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_margin="20dp"
+                    android:id="@+id/txtNamaLaundry"
                     android:fontFamily="@font/ralewayregular"
                     android:text="nama laundry"
                     android:textSize="24dp"
@@ -58,25 +59,100 @@
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/constraintTop">
 
-                <TextView
+<!--            ini category-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/blue"
+                    android:orientation="horizontal"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical">
+                    <ImageView
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:src="@drawable/category"/>
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Category"
+                        android:textSize="32dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Services"
-                    android:textSize="32dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"/>
+                    android:layout_margin="12dp"
+                    android:paddingLeft="4dp"
+                    android:background="@drawable/belakangcategoryorder"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/categoryBaju"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/blue"
+                        android:text="Baju"
+                        android:textSize="16dp" />
+
+                    <CheckBox
+                        android:onClick="checkSepatu"
+                        android:id="@+id/categorySepatu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/blue"
+                        android:text="Sepatu"
+                        android:textSize="16dp" />
+
+                    <CheckBox
+                        android:id="@+id/categoryOthers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/blue"
+                        android:text="Others"
+                        android:textSize="16dp" />
+                </LinearLayout>
+<!--            ini category-->
+
+<!--            ini services-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/blue"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:src="@drawable/washing_machine" />
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Services"
+                        android:textSize="32dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardReguler"
                     android:onClick="expand1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
                     android:layout_margin="12dp"
                     android:padding="120dp"
                     android:elevation="16dp"
+                    app:cardBackgroundColor="#9AD0EC"
                     app:cardCornerRadius="28dp"
                     app:contentPadding="20dp">
 
@@ -108,7 +184,8 @@
                                 android:textSize="20dp"
                                 android:fontFamily="@font/ralewayregular"
                                 android:textStyle="bold"
-                                android:onClick="checkButton1"/>
+                                android:onClick="checkButton1"
+                                android:gravity="center_vertical"/>
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -117,7 +194,8 @@
                                 android:textSize="20dp"
                                 android:fontFamily="@font/ralewayregular"
                                 android:textStyle="bold"
-                                android:onClick="checkButton1"/>
+                                android:onClick="checkButton1"
+                                android:gravity="center_vertical"/>
                         </RadioGroup>
 
                         <EditText
@@ -129,6 +207,32 @@
                             android:textSize="20dp"
                             android:textStyle="bold|italic"/>
 
+                        <RadioGroup
+                            android:visibility="gone"
+                            android:id="@+id/radioGroupRegulerPair"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/regulerPair"
+                                android:text="Pair"
+                                android:textSize="20dp"
+                                android:fontFamily="@font/ralewayregular"
+                                android:textStyle="bold"
+                                android:onClick="checkButtonPair1"
+                                android:gravity="center_vertical"/>
+                        </RadioGroup>
+
+                        <EditText
+                            android:visibility="gone"
+                            android:id="@+id/inputPair1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="input pair here"
+                            android:textSize="20dp"
+                            android:textStyle="bold|italic"/>
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -137,10 +241,10 @@
                     android:onClick="expand"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
                     android:layout_margin="12dp"
                     android:padding="120dp"
                     android:elevation="16dp"
+                    app:cardBackgroundColor="#9AD0EC"
                     app:cardCornerRadius="28dp"
                     app:contentPadding="20dp">
 
@@ -171,7 +275,8 @@
                                 android:textSize="20dp"
                                 android:fontFamily="@font/ralewayregular"
                                 android:textStyle="bold"
-                                android:onClick="checkButton"/>
+                                android:onClick="checkButton"
+                                android:gravity="center_vertical"/>
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -180,7 +285,8 @@
                                 android:textSize="20dp"
                                 android:fontFamily="@font/ralewayregular"
                                 android:textStyle="bold"
-                                android:onClick="checkButton"/>
+                                android:onClick="checkButton"
+                                android:gravity="center_vertical"/>
                         </RadioGroup>
 
                         <EditText
@@ -191,8 +297,76 @@
                             android:hint="input estimated kg here"
                             android:textSize="20dp"
                             android:textStyle="bold|italic"/>
+
+                        <RadioGroup
+                            android:visibility="gone"
+                            android:id="@+id/radioGroupKilatPair"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/kilatPair"
+                                android:text="Pair"
+                                android:textSize="20dp"
+                                android:fontFamily="@font/ralewayregular"
+                                android:textStyle="bold"
+                                android:onClick="checkButtonPair"
+                                android:gravity="center_vertical"/>
+                        </RadioGroup>
+
+                        <EditText
+                            android:visibility="gone"
+                            android:id="@+id/inputPair"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="input pair here"
+                            android:textSize="20dp"
+                            android:textStyle="bold|italic"/>
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+<!--            ini services-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/blue"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical">
+                    <ImageView
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:src="@drawable/info"/>
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Detail"
+                        android:textSize="32dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_margin="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/belakangcategoryorder"
+                    android:gravity="center_vertical">
+
+                    <CheckBox
+                        android:id="@+id/details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="details"
+                        android:textSize="16dp"
+                        android:buttonTint="@color/blue"/>
+                </LinearLayout>
 
             </LinearLayout>
 

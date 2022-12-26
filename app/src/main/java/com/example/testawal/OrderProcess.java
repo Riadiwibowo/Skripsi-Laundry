@@ -12,6 +12,7 @@ import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -48,11 +49,16 @@ public class OrderProcess extends AppCompatActivity {
     private int jam, menit;
     private int tanggal, bulan, tahun;
 
-    EditText inputKg, inputKg1;
+    CheckBox catBaju, catSepatu, catOthers;
+
+    CardView cardReg, cardKil;
+    RadioButton regulerSatuan, regulerKiloan, kilatSatuan, kilatKiloan, regulerPair, kilatPair;
+    RadioGroup radioGrpKilatPair, radioGrpRegulerPair;
+
+    EditText inputKg, inputKg1, inputPair1, inputPair;
     LinearLayout layoutKilat, layoutReguler;
-    RadioGroup radioGrp, radioGrp1;
-    int check=0, check1=0;
-    CardView cardKilat;
+    RadioGroup radioGrp, radioGrp1, radioGrpPair, radioGrpPair1;
+    int check=0, check1=0, checkPair=0, checkPair1=0;
 
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
@@ -180,44 +186,202 @@ public class OrderProcess extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_process);
 
+        mAuth = FirebaseAuth.getInstance();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReferenceT = FirebaseDatabase.getInstance().getReference("Transactions");
+        fUser = FirebaseAuth.getInstance().getCurrentUser();
+        userId = fUser.getUid();
+
+        //region get current laundry
+        Bundle b = getIntent().getExtras();
+        String namaLaundry = (String) b.get("namaLaundry");
+        txtNamaLaundry = findViewById(R.id.txtNamaLaundry);
+        txtNamaLaundry.setText(namaLaundry);
+        //endregion
+
+        //region get category
+        catBaju = findViewById(R.id.categoryBaju);
+        catSepatu = findViewById(R.id.categorySepatu);
+        catOthers = findViewById(R.id.categoryOthers);
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    if(dataSnapshot.child("nama").getValue().toString().equals(namaLaundry)){
+                        if(dataSnapshot.child("category").getValue().toString().contains("Baju")){
+                            catBaju.setVisibility(View.VISIBLE);
+                            catSepatu.setVisibility(View.GONE);
+                            catOthers.setVisibility(View.GONE);
+                            if(dataSnapshot.child("category").getValue().toString().contains("Sepatu")) {
+                                catSepatu.setVisibility(View.VISIBLE);
+                            }
+                            if(dataSnapshot.child("category").getValue().toString().contains("Others")) {
+                                catOthers.setVisibility(View.VISIBLE);
+                            }
+                        }
+                        else if(dataSnapshot.child("category").getValue().toString().contains("Sepatu")){
+                            catBaju.setVisibility(View.GONE);
+                            catSepatu.setVisibility(View.VISIBLE);
+                            catOthers.setVisibility(View.GONE);
+                            if(dataSnapshot.child("category").getValue().toString().contains("Others")) {
+                                catOthers.setVisibility(View.VISIBLE);
+                            }
+                        }
+                        else if(dataSnapshot.child("category").getValue().toString().contains("Others")){
+                            catBaju.setVisibility(View.GONE);
+                            catSepatu.setVisibility(View.GONE);
+                            catOthers.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        //endregion
+
+        //region get services reguler/kilat
+        cardKil = findViewById(R.id.cardKilat);
+        cardReg = findViewById(R.id.cardReguler);
+        kilatSatuan = findViewById(R.id.kilatSatuan);
+        kilatKiloan = findViewById(R.id.kilatKiloan);
+        kilatPair = findViewById(R.id.kilatPair);
+        regulerSatuan = findViewById(R.id.regulerSatuan);
+        regulerKiloan = findViewById(R.id.regulerKiloan);
+        regulerPair = findViewById(R.id.regulerPair);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.child("nama").getValue().toString().equals(namaLaundry)) {
+                        if (dataSnapshot.child("services").getValue().toString().contains("Kilat")){
+                            cardKil.setVisibility(View.VISIBLE);
+                            cardReg.setVisibility(View.VISIBLE);
+                            kilatSatuan.setVisibility(View.GONE);
+                            kilatKiloan.setVisibility(View.GONE);
+                            kilatPair.setVisibility(View.GONE);
+                            regulerSatuan.setVisibility(View.GONE);
+                            regulerKiloan.setVisibility(View.GONE);
+                            regulerPair.setVisibility(View.GONE);
+                            if (dataSnapshot.child("services").getValue().toString().contains("Satuan")){
+                                kilatSatuan.setVisibility(View.VISIBLE);
+                                regulerSatuan.setVisibility(View.VISIBLE);
+                            }
+                            if (dataSnapshot.child("services").getValue().toString().contains("Kiloan")){
+                                kilatKiloan.setVisibility(View.VISIBLE);
+                                regulerKiloan.setVisibility(View.VISIBLE);
+                            }
+                            if (dataSnapshot.child("category").getValue().toString().contains("Sepatu")){
+                                kilatPair.setVisibility(View.VISIBLE);
+                                regulerPair.setVisibility(View.VISIBLE);
+                                kilatPair.setEnabled(false);
+                                regulerPair.setEnabled(false);
+                                if (dataSnapshot.child("category").getValue().toString().equals("Sepatu")){
+                                    kilatPair.setVisibility(View.VISIBLE);
+                                    regulerPair.setVisibility(View.VISIBLE);
+                                    kilatPair.setEnabled(false);
+                                    regulerPair.setEnabled(false);
+                                    kilatSatuan.setVisibility(View.GONE);
+                                    kilatKiloan.setVisibility(View.GONE);
+                                    regulerKiloan.setVisibility(View.GONE);
+                                    regulerSatuan.setVisibility(View.GONE);
+                                }
+                            }
+                        }else{
+                            cardReg.setVisibility(View.VISIBLE);
+                            cardKil.setVisibility(View.GONE);
+                            regulerSatuan.setVisibility(View.GONE);
+                            regulerKiloan.setVisibility(View.GONE);
+                            if (dataSnapshot.child("services").getValue().toString().contains("Satuan")){
+                                regulerSatuan.setVisibility(View.VISIBLE);
+                            }
+                            if (dataSnapshot.child("services").getValue().toString().contains("Kiloan")){
+                                regulerKiloan.setVisibility(View.VISIBLE);
+                            }
+                            if (dataSnapshot.child("category").getValue().toString().contains("Sepatu")){
+                                regulerPair.setVisibility(View.VISIBLE);
+                                regulerPair.setEnabled(false);
+                                if (dataSnapshot.child("category").getValue().toString().equals("Sepatu")){
+                                    regulerPair.setVisibility(View.VISIBLE);
+                                    regulerPair.setEnabled(false);
+                                    regulerKiloan.setVisibility(View.GONE);
+                                    regulerSatuan.setVisibility(View.GONE);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        //endregion
+
+        //region expand properties
         layoutKilat = findViewById(R.id.layoutKilat);
         layoutKilat.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
         layoutReguler = findViewById(R.id.layoutReguler);
         layoutReguler.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
 
-
         //kilat
         inputKg = findViewById(R.id.inputBerat);
         radioGrp = findViewById(R.id.radioGroupKilat);
-        cardKilat = findViewById(R.id.cardKilat);
+        radioGrpPair = findViewById(R.id.radioGroupKilatPair);
+        inputPair = findViewById(R.id.inputPair);
         //reguler
         inputKg1 = findViewById(R.id.inputBerat1);
         radioGrp1 = findViewById(R.id.radioGroupReguler);
+        radioGrpPair1 = findViewById(R.id.radioGroupRegulerPair);
+        inputPair1 = findViewById(R.id.inputPair1);
+        //endregion
+
     }
 
     //region method expand
     public void expand(View view) {
         int v = (radioGrp.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
+        int w = (radioGrpPair.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
         if (radioGrp.getVisibility()==View.VISIBLE){
             inputKg.setVisibility(View.GONE);
             radioGrp.clearCheck();
             check = 0;
         }
+        if (radioGrpPair.getVisibility()==View.VISIBLE){
+            inputPair.setVisibility(View.GONE);
+            radioGrpPair.clearCheck();
+            checkPair = 0;
+        }
 
         TransitionManager.beginDelayedTransition(layoutKilat, new AutoTransition());
         radioGrp.setVisibility(v);
+        radioGrpPair.setVisibility(w);
     }
 
     public void expand1(View view) {
         int v = (radioGrp1.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
+        int w = (radioGrpPair1.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
         if (radioGrp1.getVisibility()==View.VISIBLE){
             inputKg1.setVisibility(View.GONE);
             radioGrp1.clearCheck();
             check1 = 0;
         }
+        if (radioGrpPair1.getVisibility()==View.VISIBLE){
+            inputPair1.setVisibility(View.GONE);
+            radioGrpPair1.clearCheck();
+            checkPair1 = 0;
+        }
 
         TransitionManager.beginDelayedTransition(layoutReguler, new AutoTransition());
         radioGrp1.setVisibility(v);
+        radioGrpPair1.setVisibility(w);
     }
 
     public void checkButton(View view) {
@@ -227,8 +391,6 @@ public class OrderProcess extends AppCompatActivity {
             TransitionManager.beginDelayedTransition(layoutKilat, new AutoTransition());
             check+=1;
         }
-        String radioText = ((RadioButton)findViewById(radioGrp.getCheckedRadioButtonId())).getText().toString();
-        Toast.makeText(OrderProcess.this, "seleted : " + radioText, Toast.LENGTH_SHORT).show();
     }
 
     public void checkButton1(View view) {
@@ -238,10 +400,36 @@ public class OrderProcess extends AppCompatActivity {
             TransitionManager.beginDelayedTransition(layoutReguler, new AutoTransition());
             check1+=1;
         }
-        String radioText = ((RadioButton)findViewById(radioGrp1.getCheckedRadioButtonId())).getText().toString();
-        Toast.makeText(OrderProcess.this, "seleted : " + radioText, Toast.LENGTH_SHORT).show();
+    }
+
+    public void checkButtonPair1(View view) {
+        if (checkPair1==0){
+            int x = (inputPair1.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
+            inputPair1.setVisibility(x);
+            TransitionManager.beginDelayedTransition(layoutReguler, new AutoTransition());
+            checkPair1+=1;
+        }
+    }
+
+    public void checkButtonPair(View view) {
+        if (checkPair==0){
+            int x = (inputPair.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
+            inputPair.setVisibility(x);
+            TransitionManager.beginDelayedTransition(layoutReguler, new AutoTransition());
+            checkPair+=1;
+        }
     }
     //endregion
+
+    //method checkSepatu
+    public void checkSepatu(View view) {
+        kilatPair.setEnabled(false);
+        regulerPair.setEnabled(false);
+        if (catSepatu.isChecked()==true){
+            kilatPair.setEnabled(true);
+            regulerPair.setEnabled(true);
+        }
+    }
 
 }
 
