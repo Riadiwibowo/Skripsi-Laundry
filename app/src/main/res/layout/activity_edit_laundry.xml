@@ -126,58 +126,88 @@
                 android:id="@+id/layoutServices"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="20dp">
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/category"/>
 
                 <TextView
                     android:id="@+id/txtServices"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
                     android:text="Services:"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
+                    android:textSize="24dp"
                     android:textStyle="bold"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="120dp"
                 android:orientation="vertical"
+                android:paddingLeft="12dp"
                 android:background="@drawable/backgroundeditlaundry"
                 android:gravity="center_vertical">
 
-                <CheckBox
-                    android:id="@+id/services1"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kilat"
-                    android:textSize="16dp"
-                    android:buttonTint="@color/blue"/>
+                    android:orientation="horizontal">
 
-                <CheckBox
-                    android:id="@+id/services2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pickup"
-                    android:textSize="16dp"
-                    android:buttonTint="@color/blue"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginRight="20dp">
 
-                <CheckBox
-                    android:id="@+id/services3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Satuan"
-                    android:textSize="16dp"
-                    android:buttonTint="@color/blue"/>
+                        <CheckBox
+                            android:id="@+id/services1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kilat"
+                            android:textSize="16dp"
+                            android:buttonTint="@color/blue"/>
 
-                <CheckBox
-                    android:id="@+id/services4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kiloan"
-                    android:textSize="16dp"
-                    android:buttonTint="@color/blue"/>
+                        <CheckBox
+                            android:id="@+id/services2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pickup"
+                            android:textSize="16dp"
+                            android:buttonTint="@color/blue"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/services3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Satuan"
+                            android:textSize="16dp"
+                            android:buttonTint="@color/blue"/>
+
+                        <CheckBox
+                            android:id="@+id/services4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kiloan"
+                            android:textSize="16dp"
+                            android:buttonTint="@color/blue"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -185,22 +215,31 @@
                 android:id="@+id/layoutCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/washing_machine" />
 
                 <TextView
                     android:id="@+id/txtCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
                     android:text="Category:"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold"/>
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
+                android:paddingLeft="12dp"
                 android:orientation="vertical"
                 android:background="@drawable/backgroundeditlaundry"
                 android:gravity="center_vertical">
@@ -225,7 +264,7 @@
                     android:id="@+id/category3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lain-lain"
+                    android:text="Others"
                     android:textSize="16dp"
                     android:buttonTint="@color/blue"/>
 
@@ -251,42 +290,111 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="@drawable/backgroundeditlaundry"
-                android:orientation="vertical"
-                android:paddingTop="8dp"
-                android:paddingLeft="8dp">
+                android:layout_height="128dp"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp"
+                android:background="@drawable/backgroundeditlaundry">
 
-                <TextView
-                    android:id="@+id/txtHargaSatuan"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Satuan: "
-                    android:textColor="@color/black" />
+                    android:orientation="vertical"
+                    android:paddingTop="8dp">
 
-                <EditText
-                    android:id="@+id/inputHargaSatuan"
-                    android:background="@drawable/edittextshape"
-                    android:layout_width="80dp"
-                    android:layout_height="25dp"
-                    android:textSize="14dp"/>
+                    <LinearLayout
+                        android:id="@+id/linearSatuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtHargaKiloan"
+                        <TextView
+                            android:id="@+id/txtHargaSatuan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:text="Satuan: "
+                            android:textColor="@color/black" />
+
+                        <EditText
+                            android:id="@+id/inputHargaSatuan"
+                            android:background="@drawable/edittextshape"
+                            android:layout_width="100dp"
+                            android:layout_height="25dp"
+                            android:padding="4dp"
+                            android:textSize="14dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearKiloan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtHargaKiloan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="8dp"
+                            android:text="Kiloan: "
+                            android:textColor="@color/black" />
+
+                        <EditText
+                            android:id="@+id/inputHargaKiloan"
+                            android:background="@drawable/edittextshape"
+                            android:layout_width="100dp"
+                            android:layout_height="25dp"
+                            android:padding="4dp"
+                            android:textSize="14dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearSepatu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Kiloan: "
-                    android:textColor="@color/black" />
+                    android:paddingTop="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/inputHargaKiloan"
-                    android:background="@drawable/edittextshape"
-                    android:layout_width="80dp"
-                    android:layout_height="25dp"
-                    android:textSize="14dp"/>
+                    <TextView
+                        android:id="@+id/txtHargaSepatu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="Sepatu: "
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/inputHargaSepatu"
+                        android:background="@drawable/edittextshape"
+                        android:layout_width="100dp"
+                        android:layout_height="25dp"
+                        android:padding="4dp"
+                        android:textSize="14dp"/>
+
+
+                    <TextView
+                        android:id="@+id/txtHargaPickup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Pickup: "
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/inputHargaPickup"
+                        android:background="@drawable/edittextshape"
+                        android:layout_width="100dp"
+                        android:layout_height="25dp"
+                        android:padding="4dp"
+                        android:textSize="14dp"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -296,7 +404,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="12dp"
                 android:text="Save"
                 android:textColor="@color/white"
                 app:layout_constraintVertical_bias="0.962" />

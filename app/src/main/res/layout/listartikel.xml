@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="28dp"
+    android:layout_marginTop="6dp"
+    app:cardBackgroundColor="#9AD0EC"
+    android:id="@+id/artikelLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="16dp">
+
+            <ImageView
+                android:id="@+id/imgArtikel"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@drawable/roundbackground"
+                android:clipToOutline="true"
+                android:src="@drawable/ic_profile_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:id="@+id/txtJudulArtikel"
+            android:layout_width="252dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Judul Artikel"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

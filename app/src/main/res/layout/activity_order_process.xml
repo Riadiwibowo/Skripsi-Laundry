@@ -51,7 +51,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView2" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--        start of body-->
+            <!--        start of body-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -59,7 +59,7 @@
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/constraintTop">
 
-<!--            ini category-->
+                <!--            ini category-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -68,13 +68,14 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:gravity="center_vertical">
+
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
                         android:src="@drawable/category"/>
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="12dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="thể loại"
@@ -93,6 +94,7 @@
                     android:orientation="vertical">
 
                     <CheckBox
+                        android:onClick="checkRadioBtn"
                         android:id="@+id/categoryBaju"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -110,6 +112,7 @@
                         android:textSize="16dp" />
 
                     <CheckBox
+                        android:onClick="checkRadioBtn"
                         android:id="@+id/categoryOthers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -117,9 +120,9 @@
                         android:text="Others"
                         android:textSize="16dp" />
                 </LinearLayout>
-<!--            ini category-->
+                <!--            ini category-->
 
-<!--            ini services-->
+                <!--            ini services-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -135,7 +138,7 @@
                         android:src="@drawable/washing_machine" />
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="12dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="サービス"
@@ -326,11 +329,10 @@
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-<!--            ini services-->
+                <!--            ini services-->
 
-<!--            ini pickup-->
+                <!--            ini pickup-->
                 <LinearLayout
-                    android:visibility="gone"
                     android:id="@+id/headerPickup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -346,7 +348,7 @@
                         android:src="@drawable/order_pickup" />
 
                     <TextView
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="12dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="ग्रहणम्"
@@ -423,9 +425,9 @@
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
-<!--            ini pickup-->
+                <!--            ini pickup-->
 
-<!--            ini detail-->
+                <!--            ini detail-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -464,70 +466,80 @@
                         android:text="details"
                         android:textSize="16dp"
                         android:buttonTint="@color/blue"/>
+
                 </LinearLayout>
-<!--            ini detail-->
+                <!--            ini detail-->
+
+                <android.widget.Button
+                    android:id="@+id/buttonSubmit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:text="Submit"
+                    android:background="@drawable/buttonsave"
+                    android:layout_gravity="center_horizontal"/>
 
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
 
-<!--    <TextView-->
-<!--        android:id="@+id/txtNamaUser"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.038"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/txtNamaUser"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.038"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/txtNamaLaundry"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="40dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.038"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/txtNamaUser" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/txtNamaLaundry"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="40dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.038"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/txtNamaUser" />-->
 
-<!--    <EditText-->
-<!--        android:id="@+id/editTanggal"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="40dp"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:hint="tanggal"-->
-<!--        android:clickable="true"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.04"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/txtNamaLaundry" />-->
+    <!--    <EditText-->
+    <!--        android:id="@+id/editTanggal"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="40dp"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:hint="tanggal"-->
+    <!--        android:clickable="true"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.04"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/txtNamaLaundry" />-->
 
-<!--    <EditText-->
-<!--        android:id="@+id/editJam"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="40dp"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:hint="waktu"-->
-<!--        android:clickable="true"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.039"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/editTanggal" />-->
+    <!--    <EditText-->
+    <!--        android:id="@+id/editJam"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="40dp"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:hint="waktu"-->
+    <!--        android:clickable="true"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.039"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/editTanggal" />-->
 
-<!--    <Button-->
-<!--        android:id="@+id/btnOrder"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="564dp"-->
-<!--        android:text="Order"-->
-<!--        android:textColor="@color/white"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.498"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/btnOrder"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="564dp"-->
+    <!--        android:text="Order"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.498"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 </LinearLayout>

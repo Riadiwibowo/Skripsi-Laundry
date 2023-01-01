@@ -80,8 +80,7 @@ public class CategoryBaju extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     if (dataSnapshot.child("role").getValue().equals("laundry") && dataSnapshot.child("category").getValue() != null &&
-                            (dataSnapshot.child("category").getValue().equals("Baju") || dataSnapshot.child("category").getValue().equals("Baju; Sepatu") ||
-                                    dataSnapshot.child("category").getValue().equals("Baju; Lain-lain") || dataSnapshot.child("category").getValue().equals("Baju; Sepatu; Lain-lain"))) {
+                            dataSnapshot.child("category").getValue().toString().contains("Baju")) {
                         User user2 = dataSnapshot.getValue(User.class);
                         users.add(user2);
                     }

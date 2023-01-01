@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ArtikelSatu"
+    android:background="#1572A1"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:text="Cara Cuci Sepatu dengan Benar"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/belakangregistrasi" />
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:src="@drawable/artikelsatu"/>
+
+            <TextView
+                android:id="@+id/txtartikel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:padding="4dp"
+                android:background="@drawable/backgroundeditlaundry"
+                android:textColor="@color/black"
+                android:text="Layaknya pakaian yang kita gunakan sehari-hari seperti baju dan celana, kita juga harus memperhatikan kebersihan sepatu
+yang kita gunakan. Tidak hanya agar terlihat bagus, tetapi juga agar kita terhindar dari bakteri atau jamur. \n\nPertama-tama, kita harus tahu bahan dari sepatu yang kita miliki, karena bahan sepatu yang berbeda memiliki cara
+mencuci yang beda juga. Misalkan, bahan sepatunya suede, kita perlu menggunakan sikat gigi yang halus dan cairan pembersih
+khusus untuk sepatu berbahan suede. Jika, sepatunya berbahan kanvas, kita dapat gunakan sabun cair khusus yang biasanya
+dijual di toko sepatu.\n\nKedua, kita juga perlu membersihkan insole dan tali sepatu. Insole adalah sol bagian dalam sepatu yang biasa kita injak.
+Oleh karena itu, kita perlu membersihkan bagian insole sepatu. Untuk membersihkan insole, kita dapat gunakan
+deterjen ringan dan sikat gigi yang lembut. Jika sudah, kita dapat keringkan insole dengan diangin-anginkan, jangan
+langsung terkena sinar matahari. Tali sepatu juga tidak boleh terlewatkan, karena tali sepatu berada di bagian luar
+sehingga langsung terpapar kotoran dan tangan kita bisa saja terkena kotoran tersebut. Untuk membersihkan tali sepatu,
+kita dapat menggosok tali dengan sikat, lalu merendam tali sepatu dalam larutan pembersih. Setelah itu, biarkan tali
+sepatu hingga keringkan.\n\nKetiga, biasakan untuk tidak menjemur sepatu di bawah matahari dan simpan sepatu di tempat yang kering. Bahan
+sepatu seperti kulit dapat rusak jika langsung terkena paparan matahari dalam waktu yang lama. Kita juga perlu
+menyimpan sepatu di tempat yang kering, karena jika di tempat yang lembap maka dapat muncul jamur di sepatu."/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

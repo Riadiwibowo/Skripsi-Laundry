@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -44,9 +45,10 @@ public class EditLaundry extends AppCompatActivity {
 
     //region properties
     private Button btnAdd;
-    EditText txtDesc, txtName, txtPhone, inputHargaSatuan, inputHargaKiloan;
+    EditText txtDesc, txtName, txtPhone, inputHargaSatuan, inputHargaKiloan, inputHargaSepatu, inputHargaPickup;
     CheckBox services1, services2, services3, services4, category1, category2, category3;
     ProgressBar progressBar;
+    LinearLayout linearSatuan, linearKiloan, linearSepatu;
     private ImageView imageView, imageProfile;
     private DatabaseReference databaseReference;
     //storageReference to store image data
@@ -73,8 +75,6 @@ public class EditLaundry extends AppCompatActivity {
         txtDesc = findViewById(R.id.txtLaunDescription);
         txtName = findViewById(R.id.txtLaunName);
         txtPhone = findViewById(R.id.txtLaunPhone);
-        inputHargaSatuan = findViewById(R.id.inputHargaSatuan);
-        inputHargaKiloan = findViewById(R.id.inputHargaKiloan);
         services1 = findViewById(R.id.services1);
         services2 = findViewById(R.id.services2);
         services3 = findViewById(R.id.services3);
@@ -82,6 +82,13 @@ public class EditLaundry extends AppCompatActivity {
         category1 = findViewById(R.id.category1);
         category2 = findViewById(R.id.category2);
         category3 = findViewById(R.id.category3);
+        linearSatuan = findViewById(R.id.linearSatuan);
+        linearKiloan = findViewById(R.id.linearKiloan);
+        linearSepatu = findViewById(R.id.linearSepatu);
+        inputHargaSatuan = findViewById(R.id.inputHargaSatuan);
+        inputHargaKiloan = findViewById(R.id.inputHargaKiloan);
+        inputHargaSepatu = findViewById(R.id.inputHargaSepatu);
+        inputHargaPickup = findViewById(R.id.inputHargaPickup);
 
         //cek current user (untuk add image melalui reference current user)
         fUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -103,6 +110,9 @@ public class EditLaundry extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (imageUrl!=null) {
+                    uploadFirebase(imageUrl);
+                }
                 if(!txtPhone.getText().toString().trim().isEmpty() && (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty())
                         && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty())) {
                     insertPhone();
@@ -135,17 +145,11 @@ public class EditLaundry extends AppCompatActivity {
                     insertPhone();
                     insertDescription();
                 }
-                else{
-                    Toast.makeText(EditLaundry.this, "Salah satu harus diisi", Toast.LENGTH_SHORT).show();
-                }
+//                else{
+//                    Toast.makeText(EditLaundry.this, "Salah satu harus diisi", Toast.LENGTH_SHORT).show();
+//                }
 
                 if(services1.isChecked() || services2.isChecked() || services3.isChecked() || services4.isChecked()) {
-//                    if(services1.isChecked()){
-//                        databaseReference.child(userId).child("services").setValue("Kilat");
-//                    }
-//                    else if(services2.isChecked()) {
-//                        databaseReference.child(userId).child("services").setValue("Pickup");
-//                    }
                     if(services3.isChecked()) {
                         databaseReference.child(userId).child("services").setValue("Satuan");
                     }
@@ -182,35 +186,14 @@ public class EditLaundry extends AppCompatActivity {
                     if(services1.isChecked() && services2.isChecked() && services3.isChecked() && services4.isChecked()) {
                         databaseReference.child(userId).child("services").setValue("Kilat; Pickup; Satuan; Kiloan");
                     }
-
-//                    if(services1.isChecked() && services4.isChecked()) {
-//                        databaseReference.child(userId).child("services").setValue("Kilat; Kiloan");
-//                    }
-//                    if(services2.isChecked() && services3.isChecked()) {
-//                        databaseReference.child(userId).child("services").setValue("Pickup; Satuan");
-//                    }
-//                    if(services2.isChecked() && services4.isChecked()) {
-//                        databaseReference.child(userId).child("services").setValue("Pickup; Kiloan");
-//                    }
-//                    if(services3.isChecked() && services4.isChecked()) {
-//                        databaseReference.child(userId).child("services").setValue("Satuan; Kiloan");
-//                    }
-//                    if(services1.isChecked() && services2.isChecked() && services3.isChecked()) {
-//                        databaseReference.child(userId).child("services").setValue("Kilat; Pickup; Satuan");
-//                    }
-//                    if(services1.isChecked() && services2.isChecked() && services4.isChecked()) {
-//                        databaseReference.child(userId).child("services").setValue("Kilat; Pickup; Kiloan");
-//                    }
-//                    if(services1.isChecked() && services3.isChecked() && services4.isChecked()) {
-//                        databaseReference.child(userId).child("services").setValue("Kilat; Satuan; Kiloan");
-//                    }
-//                    if(services2.isChecked() && services3.isChecked() && services4.isChecked()) {
-//                        databaseReference.child(userId).child("services").setValue("Pickup; Satuan; Kiloan");
-//                    }
+                    if (!services3.isChecked() && !services4.isChecked()) {
+                        Toast.makeText(EditLaundry.this, "Minimal harus memilih antara satuan atau kiloan", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
-                else {
-                    Toast.makeText(EditLaundry.this, "Minimal memilih antara satuan atau kiloan", Toast.LENGTH_SHORT).show();
-                }
+//                else {
+//                    Toast.makeText(EditLaundry.this, "Minimal harus memilih antara satuan atau kiloan", Toast.LENGTH_SHORT).show();
+//                }
 
                 if(category1.isChecked() || category2.isChecked() || category3.isChecked()) {
                     if(category1.isChecked()) {
@@ -234,6 +217,30 @@ public class EditLaundry extends AppCompatActivity {
                     if(category1.isChecked() && category2.isChecked() && category3.isChecked()) {
                         databaseReference.child(userId).child("category").setValue("Baju; Sepatu; Others");
                     }
+                }
+//                else {
+//                    Toast.makeText(EditLaundry.this, "Harus memilih minimal 1 kategori", Toast.LENGTH_SHORT).show();
+//                }
+
+                if (!inputHargaSatuan.getText().toString().trim().isEmpty()) {
+                    databaseReference.child(userId).child("Harga").child("Satuan").setValue(inputHargaSatuan.getText().toString().trim());
+                }
+                if (!inputHargaKiloan.getText().toString().trim().isEmpty()) {
+                    databaseReference.child(userId).child("Harga").child("Kiloan").setValue(inputHargaKiloan.getText().toString().trim());
+                }
+                if (!inputHargaSepatu.getText().toString().trim().isEmpty()) {
+                    databaseReference.child(userId).child("Harga").child("Sepatu").setValue(inputHargaSepatu.getText().toString().trim());
+                }
+                if (!inputHargaPickup.getText().toString().trim().isEmpty()) {
+                    databaseReference.child(userId).child("Harga").child("Pickup").setValue(inputHargaPickup.getText().toString().trim());
+                }
+
+                if (txtDesc.getText().toString().trim().isEmpty() && txtName.getText().toString().trim().isEmpty() && txtPhone.getText().toString().trim().isEmpty() &&
+                        !services1.isChecked() && !services2.isChecked() && !services3.isChecked() && !services4.isChecked() && !category1.isChecked() && !category2.isChecked() &&
+                        !category3.isChecked() && inputHargaSatuan.getText().toString().trim().isEmpty() && inputHargaKiloan.getText().toString().trim().isEmpty() &&
+                        inputHargaSepatu.getText().toString().trim().isEmpty() && inputHargaPickup.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(EditLaundry.this, "Tidak ada perubahan data", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(EditLaundry.this, ProfileLaundry.class));
                 }
             }
         });

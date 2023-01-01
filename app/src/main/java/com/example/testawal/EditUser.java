@@ -80,7 +80,7 @@ public class EditUser extends AppCompatActivity {
                     startActivity(new Intent(EditUser.this, ProfileUser.class));
                 }
                 else{
-                    Toast.makeText(EditUser.this, "Salah satu harus diisi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditUser.this, "Tidak ada perubahan data", Toast.LENGTH_SHORT).show();
                 }
             }
         });

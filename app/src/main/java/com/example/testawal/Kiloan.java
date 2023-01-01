@@ -79,11 +79,8 @@ public class Kiloan extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    if (dataSnapshot.child("role").getValue().equals("laundry") && dataSnapshot.child("services").getValue() != null && (dataSnapshot.child("services").getValue().equals("Kiloan") ||
-                            dataSnapshot.child("services").getValue().equals("Kilat; Kiloan") || dataSnapshot.child("services").getValue().equals("Pickup; Kiloan") ||
-                            dataSnapshot.child("services").getValue().equals("Satuan; Kiloan") || dataSnapshot.child("services").getValue().equals("Kilat; Satuan; Kiloan") ||
-                            dataSnapshot.child("services").getValue().equals("Pickup; Satuan; Kiloan") || dataSnapshot.child("services").getValue().equals("Kilat; Pickup; Kiloan") ||
-                            dataSnapshot.child("services").getValue().equals("Kilat; Pickup; Satuan; Kiloan"))) {
+                    if (dataSnapshot.child("role").getValue().equals("laundry") && dataSnapshot.child("services").getValue() != null &&
+                            dataSnapshot.child("services").getValue().toString().contains("Kiloan")) {
                         User user2 = dataSnapshot.getValue(User.class);
                         users.add(user2);
                     }

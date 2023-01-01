@@ -5,9 +5,11 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -29,7 +31,10 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ActionTypes;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.interfaces.ItemClickListener;
+import com.denzcoskun.imageslider.interfaces.TouchListener;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,7 +56,7 @@ public class HomeFragment extends Fragment {
     ActionBarDrawerToggle toggle;
     ImageSlider imageSlider;
     ViewFlipper viewFlipper;
-    TextView txtSeeAll, txtNamaUser, txtNo, txtYes;
+    TextView txtArtikel, txtSeeAll, txtNamaUser, txtNo, txtYes;
     ImageView img1, img2, img3, img4;
     FirebaseUser fUser;
     String userId;
@@ -72,6 +77,7 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         txtNamaUser = view.findViewById(R.id.txtNamaUser);
+        txtArtikel = view.findViewById(R.id.txtArtikel);
         txtSeeAll = view.findViewById(R.id.txtSeeAll);
         img1 = view.findViewById(R.id.img1);
         img2 = view.findViewById(R.id.img2);
@@ -110,11 +116,37 @@ public class HomeFragment extends Fragment {
         //region slider
         imageSlider = view.findViewById(R.id.imgSlider);
         ArrayList<SlideModel> img = new ArrayList<>();
-        img.add(new SlideModel("https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=831&q=80", "Cara cuci sepatu dengan benar", null));
-        img.add(new SlideModel("https://images.unsplash.com/photo-1530558215369-ba361d8734f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=874&q=80", "Bingung cara setrika pakaian?", null));
-        img.add(new SlideModel("https://images.unsplash.com/photo-1469329989238-48310798c014?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=873&q=80", "Cuci mandiri jadi lebih mudah, asalkan dengan...", null));
+        img.add(new SlideModel("https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=831&q=80", "Cara Cuci Sepatu dengan Benar", null));
+        img.add(new SlideModel("https://images.unsplash.com/photo-1530558215369-ba361d8734f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=874&q=80", "Bingung Cara Setrika Pakaian?", null));
+        img.add(new SlideModel("https://images.unsplash.com/photo-1469329989238-48310798c014?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=873&q=80", "6 Keuntungan Menggunakan Jasa Laundry", null));
 
         imageSlider.setImageList(img, ScaleTypes.CENTER_CROP);
+
+        //region artikel clicked
+        imageSlider.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemSelected(int i) {
+                if (img.get(i).getTitle().toString().equals("Cara Cuci Sepatu dengan Benar")) {
+                    startActivity(new Intent(getActivity(), ArtikelSatu.class));
+                }
+                if (img.get(i).getTitle().toString().equals("Bingung Cara Setrika Pakaian?")) {
+                    startActivity(new Intent(getActivity(), ArtikelDua.class));
+                }
+                if (img.get(i).getTitle().toString().equals("6 Keuntungan Menggunakan Jasa Laundry")) {
+                    startActivity(new Intent(getActivity(), ArtikelTiga.class));
+                }
+            }
+        });
+
+        txtArtikel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Pindah ke halaman artikel", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), Artikel.class));
+            }
+        });
+        //endregion
+
         //endregion
 
         //region recyclerView

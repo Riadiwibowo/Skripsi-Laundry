@@ -8,8 +8,10 @@ import android.animation.LayoutTransition;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextWatcher;
 import android.text.style.UnderlineSpan;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -43,7 +45,6 @@ import java.util.Locale;
 
 public class OrderProcess extends AppCompatActivity {
 
-    Button btnOrder;
     TextView editTanggal,  editJam;
     TextView txtNamaLaundry, txtNamaUser;
     String userId, trId, laundryId, namaUser;
@@ -69,6 +70,8 @@ public class OrderProcess extends AppCompatActivity {
     LinearLayout headerPickup, bodyPickup, bodyPickupBottom, bodyPickupTop;
     CardView cardPickup;
     Spinner dropdown;
+
+    Button btnSubmit;
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
@@ -198,6 +201,30 @@ public class OrderProcess extends AppCompatActivity {
         getSupportActionBar().setTitle("Order Form");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //region expand properties
+        layoutKilat = findViewById(R.id.layoutKilat);
+        layoutKilat.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+        layoutReguler = findViewById(R.id.layoutReguler);
+        layoutReguler.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+
+        //kilat
+        inputKg = findViewById(R.id.inputBerat);
+        radioGrp = findViewById(R.id.radioGroupKilat);
+        radioGrpPair = findViewById(R.id.radioGroupKilatPair);
+        inputPair = findViewById(R.id.inputPair);
+        //reguler
+        inputKg1 = findViewById(R.id.inputBerat1);
+        radioGrp1 = findViewById(R.id.radioGroupReguler);
+        radioGrpPair1 = findViewById(R.id.radioGroupRegulerPair);
+        inputPair1 = findViewById(R.id.inputPair1);
+        //endregion
+
+        //region input kg/pair condition
+        inputKg.addTextChangedListener(inputKgWatcher);
+        inputKg1.addTextChangedListener(inputKgWatcher);
+        inputPair.addTextChangedListener(inputKgWatcher);
+        inputPair1.addTextChangedListener(inputKgWatcher);
+        //endregion
 
         //region spinner
         dropdown = findViewById(R.id.pickupSpinner);
@@ -206,16 +233,9 @@ public class OrderProcess extends AppCompatActivity {
         dropdown.setAdapter(adapter);
         //endregion
 
+        //region editTanggal dan editJam
         editTanggal = findViewById(R.id.editTanggal);
         editJam = findViewById(R.id.editJam);
-//        TextView editTanggal = (TextView) findViewById(R.id.editTanggal);
-//        TextView editJam = (TextView) findViewById(R.id.editJam);
-//        SpannableString content = new SpannableString("Tanggal");
-//        content.setSpan(new UnderlineSpan(), 0, content.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-//        SpannableString content1 = new SpannableString("Jam");
-//        content1.setSpan(new UnderlineSpan(), 0, content1.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-//        editTanggal.setText(content);
-//        editJam.setText(content1);
 
         editJam.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -265,13 +285,15 @@ public class OrderProcess extends AppCompatActivity {
                 datedialog.show();
             }
         });
+        //endregion
 
+        //region firebase properties
         mAuth = FirebaseAuth.getInstance();
-
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         databaseReferenceT = FirebaseDatabase.getInstance().getReference("Transactions");
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         userId = fUser.getUid();
+        //endregion
 
         //region get current laundry
         Bundle b = getIntent().getExtras();
@@ -329,10 +351,14 @@ public class OrderProcess extends AppCompatActivity {
         cardKil = findViewById(R.id.cardKilat);
         cardReg = findViewById(R.id.cardReguler);
         kilatSatuan = findViewById(R.id.kilatSatuan);
+        kilatSatuan.setEnabled(false);
         kilatKiloan = findViewById(R.id.kilatKiloan);
+        kilatKiloan.setEnabled(false);
         kilatPair = findViewById(R.id.kilatPair);
         regulerSatuan = findViewById(R.id.regulerSatuan);
+        regulerSatuan.setEnabled(false);
         regulerKiloan = findViewById(R.id.regulerKiloan);
+        regulerKiloan.setEnabled(false);
         regulerPair = findViewById(R.id.regulerPair);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -422,6 +448,10 @@ public class OrderProcess extends AppCompatActivity {
                             bodyPickupTop.setVisibility(View.VISIBLE);
                             bodyPickupBottom.setVisibility(View.GONE);
                         }
+                        else {
+                            headerPickup.setVisibility(View.GONE);
+                            cardPickup.setVisibility(View.GONE);
+                        }
                         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -452,23 +482,6 @@ public class OrderProcess extends AppCompatActivity {
         });
         //endregion
 
-        //region expand properties
-        layoutKilat = findViewById(R.id.layoutKilat);
-        layoutKilat.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
-        layoutReguler = findViewById(R.id.layoutReguler);
-        layoutReguler.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
-
-        //kilat
-        inputKg = findViewById(R.id.inputBerat);
-        radioGrp = findViewById(R.id.radioGroupKilat);
-        radioGrpPair = findViewById(R.id.radioGroupKilatPair);
-        inputPair = findViewById(R.id.inputPair);
-        //reguler
-        inputKg1 = findViewById(R.id.inputBerat1);
-        radioGrp1 = findViewById(R.id.radioGroupReguler);
-        radioGrpPair1 = findViewById(R.id.radioGroupRegulerPair);
-        inputPair1 = findViewById(R.id.inputPair1);
-        //endregion
 
         for (int i=0;i<1;i++){
             try {
@@ -477,18 +490,399 @@ public class OrderProcess extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                if(user != null){
+                    namaUser = user.nama;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //region input data transaksi
+        btnSubmit = findViewById(R.id.buttonSubmit);
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trId = databaseReferenceT.push().getKey();
+
+                //region kondisi category
+                if (catBaju.isChecked() || catSepatu.isChecked() || catOthers.isChecked()) {
+                    if (catBaju.isChecked()) {
+                        if ((regulerSatuan.isChecked() || regulerKiloan.isChecked()) && (kilatSatuan.isChecked() || kilatKiloan.isChecked())) {
+                            Toast.makeText(OrderProcess.this, "Pilih hanya satu servis untuk Baju!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        else if (!regulerSatuan.isChecked() && !regulerKiloan.isChecked() && !kilatSatuan.isChecked() && !kilatKiloan.isChecked()) {
+                            Toast.makeText(OrderProcess.this, "Pilih salah satu servis untuk Baju!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }//else cek inputKg dan inputKg1
+                        else {
+                            if (!inputKg1.getText().toString().trim().isEmpty()){
+                                if (regulerSatuan.isChecked()){
+                                    Toast.makeText(OrderProcess.this, "insert Reguler; Satuan", Toast.LENGTH_SHORT).show();
+                                }
+                                else if (regulerKiloan.isChecked()){
+                                    Toast.makeText(OrderProcess.this, "insert Reguler; Kiloan", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            if (!inputKg.getText().toString().trim().isEmpty()){
+                                if (kilatSatuan.isChecked()){
+                                    Toast.makeText(OrderProcess.this, "insert Kilat; Satuan", Toast.LENGTH_SHORT).show();
+                                }
+                                else if (kilatKiloan.isChecked()){
+                                    Toast.makeText(OrderProcess.this, "insert Kilat; Kiloan", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+//                            databaseReferenceT.child(trId).child("category").setValue("Baju");
+                            Toast.makeText(OrderProcess.this, "insert Baju", Toast.LENGTH_SHORT).show();
+
+                            if (catSepatu.isChecked()) {
+                                if (!regulerPair.isChecked() && !kilatPair.isChecked()) {
+                                    Toast.makeText(OrderProcess.this, "Pilih hanya satu servis untuk Pair!", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }//else cek inputPair dan inputPair1
+                                else {
+                                    if (!inputPair1.getText().toString().trim().isEmpty()){
+                                        if (regulerPair.isChecked()){
+                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair1.getText(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                    if (!inputPair.getText().toString().trim().isEmpty()){
+                                        if (kilatPair.isChecked()){
+                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair.getText(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                    Toast.makeText(OrderProcess.this, "insert Baju; Sepatu", Toast.LENGTH_SHORT).show();
+//                                databaseReferenceT.child(trId).child("category").setValue("Baju; Sepatu");
+                                }
+                            }
+
+                            if (catOthers.isChecked()) {
+                                //else cek inputKg dan inputKg1
+                                Toast.makeText(OrderProcess.this, "insert Baju; Others", Toast.LENGTH_SHORT).show();
+//                                databaseReferenceT.child(trId).child("category").setValue("Baju; Others");
+                            }
+
+                            if (catSepatu.isChecked() && catOthers.isChecked()){
+                                if (!regulerPair.isChecked() && !kilatPair.isChecked()) {
+                                    Toast.makeText(OrderProcess.this, "Pilih hanya satu servis untuk Pair!", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }//else cek inputPair dan inputPair1
+                                else {
+                                    if (!inputPair1.getText().toString().trim().isEmpty()){
+                                        if (regulerPair.isChecked()){
+                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair1.getText(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                    if (!inputPair.getText().toString().trim().isEmpty()){
+                                        if (kilatPair.isChecked()){
+                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair.getText(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                    Toast.makeText(OrderProcess.this, "insert Baju; Sepatu; Others", Toast.LENGTH_SHORT).show();
+//                                databaseReferenceT.child(trId).child("category").setValue("Baju; Sepatu; Others");
+                                }
+                            }
+//                            return;
+                        }
+                    }
+                    else if (catSepatu.isChecked()) {
+                        if (!regulerPair.isChecked() && !kilatPair.isChecked()) {
+                            Toast.makeText(OrderProcess.this, "Pilih hanya satu servis untuk Pair!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }//else cek inputPair dan inputPair1
+                        else {
+                            if (!inputPair1.getText().toString().trim().isEmpty()){
+                                if (regulerPair.isChecked()){
+                                    Toast.makeText(OrderProcess.this, "insert Reguler", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair1.getText(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            if (!inputPair.getText().toString().trim().isEmpty()){
+                                if (kilatPair.isChecked()){
+                                    Toast.makeText(OrderProcess.this, "insert Kilat", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair.getText(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+//                            databaseReferenceT.child(trId).child("category").setValue("Sepatu");
+                            Toast.makeText(OrderProcess.this, "insert Sepatu", Toast.LENGTH_SHORT).show();
+
+                            if (catOthers.isChecked()) {
+                                if (!regulerSatuan.isChecked() && !regulerKiloan.isChecked() && !kilatSatuan.isChecked() && !kilatKiloan.isChecked()) {
+                                    Toast.makeText(OrderProcess.this, "Pilih salah satu servis untuk Others!", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }//else cek inputKg dan inputKg1
+                                else {
+                                    if (!inputKg1.getText().toString().trim().isEmpty()) {
+                                        if (regulerSatuan.isChecked()) {
+                                            Toast.makeText(OrderProcess.this, "insert Reguler; Satuan", Toast.LENGTH_SHORT).show();
+                                        } else if (regulerKiloan.isChecked()) {
+                                            Toast.makeText(OrderProcess.this, "insert Reguler; Kiloan", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                    if (!inputKg.getText().toString().trim().isEmpty()) {
+                                        if (kilatSatuan.isChecked()) {
+                                            Toast.makeText(OrderProcess.this, "insert Kilat; Satuan", Toast.LENGTH_SHORT).show();
+                                        } else if (kilatKiloan.isChecked()) {
+                                            Toast.makeText(OrderProcess.this, "insert Kilat; Kiloan", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+//                                  databaseReferenceT.child(trId).child("category").setValue("Sepatu; Others");
+                                    Toast.makeText(OrderProcess.this, "insert Sepatu; Others", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+//                            return;
+                        }
+                    }
+                    else if (catOthers.isChecked()) {
+                        if (!regulerSatuan.isChecked() && !regulerKiloan.isChecked() && !kilatSatuan.isChecked() && !kilatKiloan.isChecked()) {
+                            Toast.makeText(OrderProcess.this, "Pilih salah satu servis untuk Others!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }//else cek inputKg dan inputKg1
+                        else {
+                            if (!inputKg1.getText().toString().trim().isEmpty()) {
+                                if (regulerSatuan.isChecked()) {
+                                    Toast.makeText(OrderProcess.this, "insert Reguler; Satuan", Toast.LENGTH_SHORT).show();
+                                } else if (regulerKiloan.isChecked()) {
+                                    Toast.makeText(OrderProcess.this, "insert Reguler; Kiloan", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            if (!inputKg.getText().toString().trim().isEmpty()) {
+                                if (kilatSatuan.isChecked()) {
+                                    Toast.makeText(OrderProcess.this, "insert Kilat; Satuan", Toast.LENGTH_SHORT).show();
+                                } else if (kilatKiloan.isChecked()) {
+                                    Toast.makeText(OrderProcess.this, "insert Kilat; Kiloan", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+//                                  databaseReferenceT.child(trId).child("category").setValue("Others");
+                            Toast.makeText(OrderProcess.this, "insert Others", Toast.LENGTH_SHORT).show();
+//                            return;
+                        }
+                    }
+                }
+                else {
+                    Toast.makeText(OrderProcess.this, "Harus memilih minimal 1 kategori", Toast.LENGTH_SHORT).show();
+                    if (!catBaju.isChecked()) {
+                        catBaju.requestFocus();
+                        return;
+                    }
+                    if (!catSepatu.isChecked()) {
+                        catSepatu.requestFocus();
+                        return;
+                    }
+                    if (!catOthers.isChecked()) {
+                        catOthers.requestFocus();
+                        return;
+                    }
+                }
+                //endregion
+
+//                //region kondisi services
+//                if (kilatSatuan.isChecked() || kilatKiloan.isChecked() || kilatPair.isChecked() || regulerSatuan.isChecked() || regulerKiloan.isChecked() || regulerPair.isChecked()) {
+//                    if (kilatSatuan.isChecked()) {
+//                        databaseReferenceT.child(trId).child("services").setValue("Kilat; Satuan");
+//                        databaseReferenceT.child(trId).child("kg").setValue(inputKg.getText().toString());
+//                        if (kilatPair.isChecked()) {
+//                            databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString());
+//                        }
+//                        if (dropdown.getSelectedItem().toString().equals("Yes")){
+//                            databaseReferenceT.child(trId).child("services").setValue("Pickup; Kilat; Satuan");
+//                            databaseReferenceT.child(trId).child("Tanggal pickup").setValue(editTanggal.getText().toString());
+//                            databaseReferenceT.child(trId).child("Jam pickup").setValue(editJam.getText().toString());
+//                        }
+//                    }
+//                    if (kilatKiloan.isChecked()) {
+//                        databaseReferenceT.child(trId).child("services").setValue("Kilat; Kiloan");
+//                        databaseReferenceT.child(trId).child("kg").setValue(inputKg.getText().toString());
+//                        if (kilatPair.isChecked()) {
+//                            databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString());
+//                        }
+//                        if (dropdown.getSelectedItem().toString().equals("Yes")){
+//                            databaseReferenceT.child(trId).child("services").setValue("Pickup; Kilat; Kiloan");
+//                            databaseReferenceT.child(trId).child("Tanggal pickup").setValue(editTanggal.getText().toString());
+//                            databaseReferenceT.child(trId).child("Jam pickup").setValue(editJam.getText().toString());
+//                        }
+//                    }
+//                    if (kilatPair.isChecked()) {
+//                        databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString());
+//                    }
+//                    if (regulerSatuan.isChecked()) {
+//                        databaseReferenceT.child(trId).child("services").setValue("Satuan");
+//                        databaseReferenceT.child(trId).child("kg").setValue(inputKg1.getText().toString());
+//                        if (regulerPair.isChecked()) {
+//                            databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString());
+//                        }
+//                        if (dropdown.getSelectedItem().toString().equals("Yes")){
+//                            databaseReferenceT.child(trId).child("services").setValue("Pickup; Satuan");
+//                            databaseReferenceT.child(trId).child("Tanggal pickup").setValue(editTanggal.getText().toString());
+//                            databaseReferenceT.child(trId).child("Jam pickup").setValue(editJam.getText().toString());
+//                        }
+//                    }
+//                    if (regulerKiloan.isChecked()) {
+//                        databaseReferenceT.child(trId).child("services").setValue("Kiloan");
+//                        databaseReferenceT.child(trId).child("kg").setValue(inputKg1.getText().toString());
+//                        if (regulerPair.isChecked()) {
+//                            databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString());
+//                        }
+//                        if (dropdown.getSelectedItem().toString().equals("Yes")){
+//                            databaseReferenceT.child(trId).child("services").setValue("Pickup; Kiloan");
+//                            databaseReferenceT.child(trId).child("Tanggal pickup").setValue(editTanggal.getText().toString());
+//                            databaseReferenceT.child(trId).child("Jam pickup").setValue(editJam.getText().toString());
+//                        }
+//                    }
+//                    if (regulerPair.isChecked()) {
+//                        databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString());
+//                    }
+//                }
+//                else {
+//                    Toast.makeText(OrderProcess.this, "Harus memilih minimal 1 servis", Toast.LENGTH_SHORT).show();
+//                    if (!kilatSatuan.isChecked()) {
+//                        kilatSatuan.requestFocus();
+//                        return;
+//                    }
+//                    if (!kilatKiloan.isChecked()) {
+//                        kilatKiloan.requestFocus();
+//                        return;
+//                    }
+//                    if (!kilatPair.isChecked()) {
+//                        kilatPair.requestFocus();
+//                        return;
+//                    }
+//                    if (!regulerSatuan.isChecked()) {
+//                        regulerSatuan.requestFocus();
+//                        return;
+//                    }
+//                    if (!regulerKiloan.isChecked()) {
+//                        regulerKiloan.requestFocus();
+//                        return;
+//                    }
+//                    if (!regulerPair.isChecked()) {
+//                        regulerPair.requestFocus();
+//                        return;
+//                    }
+//                }
+//                //endregion
+
+//                databaseReferenceT.child(trId).child("namaLaundry").setValue(namaLaundry);
+//                databaseReferenceT.child(trId).child("namaUser").setValue(namaUser);
+//                databaseReference.child(userId).child("transactions").child(trId).setValue(trId);
+//                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+//                            if(dataSnapshot.child("nama").getValue().toString().equals(namaLaundry)){
+//                                laundryId = dataSnapshot.getKey();
+//                                databaseReference.child(laundryId).child("transaction").child(trId).setValue(trId);
+//                                break;
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+            }
+        });
+        //endregion
     }
+
+    private  TextWatcher inputKgWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            String inputKgReguler = inputKg1.getText().toString().trim();
+            String inputKgKilat = inputKg.getText().toString().trim();
+            String inputPairKilat = inputPair.getText().toString().trim();
+            String inputPairReguler = inputPair1.getText().toString().trim();
+
+//            if (!inputKgReguler.isEmpty()){
+//                kilatSatuan.setEnabled(false);
+//                kilatKiloan.setEnabled(false);
+//                inputKg.setVisibility(View.GONE);
+//                radioGrp.clearCheck();
+//            }
+//            else{
+//                kilatSatuan.setEnabled(true);
+//                kilatKiloan.setEnabled(true);
+//            }
+//            if (!inputKgKilat.isEmpty()){
+//                regulerSatuan.setEnabled(false);
+//                regulerKiloan.setEnabled(false);
+//                inputKg1.setVisibility(View.GONE);
+//                radioGrp1.clearCheck();
+//            }
+//            else{
+//                regulerSatuan.setEnabled(true);
+//                regulerKiloan.setEnabled(true);
+//            }
+//            if (!inputPairReguler.isEmpty()){
+//                kilatPair.setEnabled(false);
+//                inputPair.setVisibility(View.GONE);
+//                radioGrpPair.clearCheck();
+//            }
+//            else{
+//                kilatPair.setEnabled(true);
+//            }
+//            if (!inputPairKilat.isEmpty()){
+//                regulerPair.setEnabled(false);
+//                inputPair1.setVisibility(View.GONE);
+//                radioGrpPair1.clearCheck();
+//            }
+//            else{
+//                regulerPair.setEnabled(true);
+//            }
+            inputPair.setEnabled(inputPairReguler.isEmpty());
+            inputPair1.setEnabled(inputPairKilat.isEmpty());
+            inputKg.setEnabled(inputKgReguler.isEmpty());
+            inputKg1.setEnabled(inputKgKilat.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
 
     //region method expand
     public void expand(View view) {
         int v = (radioGrp.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
         int w = (radioGrpPair.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
         if (radioGrp.getVisibility()==View.VISIBLE){
+            if (catBaju.isChecked() || catOthers.isChecked()){
+                regulerSatuan.setEnabled(true);
+                regulerKiloan.setEnabled(true);
+            }
+            if (catSepatu.isChecked()) {
+                regulerPair.setEnabled(true);
+            }
+            inputKg.setText("");
             inputKg.setVisibility(View.GONE);
             radioGrp.clearCheck();
             check = 0;
         }
         if (radioGrpPair.getVisibility()==View.VISIBLE){
+            if (catSepatu.isChecked()){
+                regulerPair.setEnabled(true);
+            }
+            if (catBaju.isChecked() || catOthers.isChecked()){
+                regulerSatuan.setEnabled(true);
+                regulerKiloan.setEnabled(true);
+            }
+            inputPair.setText("");
             inputPair.setVisibility(View.GONE);
             radioGrpPair.clearCheck();
             checkPair = 0;
@@ -503,11 +897,28 @@ public class OrderProcess extends AppCompatActivity {
         int v = (radioGrp1.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
         int w = (radioGrpPair1.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
         if (radioGrp1.getVisibility()==View.VISIBLE){
+            if (catBaju.isChecked() || catOthers.isChecked()){
+                kilatSatuan.setEnabled(true);
+                kilatKiloan.setEnabled(true);
+            }
+            if (catSepatu.isChecked()) {
+                kilatPair.setEnabled(true);
+            }
+            inputKg1.setText("");
             inputKg1.setVisibility(View.GONE);
             radioGrp1.clearCheck();
             check1 = 0;
         }
+
         if (radioGrpPair1.getVisibility()==View.VISIBLE){
+            if (catSepatu.isChecked()){
+                kilatPair.setEnabled(true);
+            }
+            if (catBaju.isChecked() || catOthers.isChecked()){
+                kilatSatuan.setEnabled(true);
+                kilatKiloan.setEnabled(true);
+            }
+            inputPair1.setText("");
             inputPair1.setVisibility(View.GONE);
             radioGrpPair1.clearCheck();
             checkPair1 = 0;
@@ -522,6 +933,9 @@ public class OrderProcess extends AppCompatActivity {
         if (check==0){
             int x = (inputKg.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
             inputKg.setVisibility(x);
+            regulerSatuan.setEnabled(false);
+            regulerPair.setEnabled(false);
+            regulerKiloan.setEnabled(false);
             TransitionManager.beginDelayedTransition(layoutKilat, new AutoTransition());
             check+=1;
         }
@@ -531,6 +945,9 @@ public class OrderProcess extends AppCompatActivity {
         if (check1==0){
             int x = (inputKg1.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
             inputKg1.setVisibility(x);
+            kilatSatuan.setEnabled(false);
+            kilatKiloan.setEnabled(false);
+            kilatPair.setEnabled(false);
             TransitionManager.beginDelayedTransition(layoutReguler, new AutoTransition());
             check1+=1;
         }
@@ -540,6 +957,9 @@ public class OrderProcess extends AppCompatActivity {
         if (checkPair1==0){
             int x = (inputPair1.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
             inputPair1.setVisibility(x);
+            kilatSatuan.setEnabled(false);
+            kilatKiloan.setEnabled(false);
+            kilatPair.setEnabled(false);
             TransitionManager.beginDelayedTransition(layoutReguler, new AutoTransition());
             checkPair1+=1;
         }
@@ -549,6 +969,9 @@ public class OrderProcess extends AppCompatActivity {
         if (checkPair==0){
             int x = (inputPair.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
             inputPair.setVisibility(x);
+            regulerSatuan.setEnabled(false);
+            regulerPair.setEnabled(false);
+            regulerKiloan.setEnabled(false);
             TransitionManager.beginDelayedTransition(layoutReguler, new AutoTransition());
             checkPair+=1;
         }
@@ -562,6 +985,71 @@ public class OrderProcess extends AppCompatActivity {
         if (catSepatu.isChecked()==true){
             kilatPair.setEnabled(true);
             regulerPair.setEnabled(true);
+            if (regulerPair.isChecked() || regulerSatuan.isChecked() || regulerKiloan.isChecked()) {
+                kilatPair.setEnabled(false);
+            }
+            if (kilatPair.isChecked() || kilatSatuan.isChecked() || kilatKiloan.isChecked()) {
+                regulerPair.setEnabled(false);
+            }
+        } else if (catSepatu.isChecked()==false) {
+            if (radioGrpPair.getVisibility() == View.VISIBLE) {
+                inputPair.setText("");
+                inputPair.setVisibility(View.GONE);
+                radioGrpPair.clearCheck();
+                checkPair = 0;
+            }
+            if (radioGrpPair1.getVisibility() == View.VISIBLE) {
+                inputPair1.setText("");
+                inputPair1.setVisibility(View.GONE);
+                radioGrpPair1.clearCheck();
+                checkPair1 = 0;
+            }
+            kilatPair.setEnabled(false);
+            regulerPair.setEnabled(false);
+        }
+    }
+    //endregion
+
+    //region method checkBaju dan checkOthers
+    public void checkRadioBtn(View view) {
+        regulerKiloan.setEnabled(false);
+        regulerSatuan.setEnabled(false);
+        kilatSatuan.setEnabled(false);
+        kilatKiloan.setEnabled(false);
+        if (catBaju.isChecked()==true || catOthers.isChecked()==true){
+            regulerKiloan.setEnabled(true);
+            regulerSatuan.setEnabled(true);
+            kilatSatuan.setEnabled(true);
+            kilatKiloan.setEnabled(true);
+            if (regulerSatuan.isChecked() || regulerKiloan.isChecked() || regulerPair.isChecked()){
+                kilatSatuan.setEnabled(false);
+                kilatKiloan.setEnabled(false);
+            }
+            if (kilatSatuan.isChecked() || kilatKiloan.isChecked() || kilatPair.isChecked()){
+                regulerKiloan.setEnabled(false);
+                regulerSatuan.setEnabled(false);
+            }
+//            regulerKiloan.setEnabled(true);
+//            regulerSatuan.setEnabled(true);
+//            kilatSatuan.setEnabled(true);
+//            kilatKiloan.setEnabled(true);
+        } else if (catBaju.isChecked()==false && catOthers.isChecked()==false){
+            if (radioGrp.getVisibility()==View.VISIBLE){
+                inputKg.setText("");
+                inputKg.setVisibility(View.GONE);
+                radioGrp.clearCheck();
+                check = 0;
+            }
+            if (radioGrp1.getVisibility()==View.VISIBLE){
+                inputKg1.setText("");
+                inputKg1.setVisibility(View.GONE);
+                radioGrp1.clearCheck();
+                check1 = 0;
+            }
+            regulerKiloan.setEnabled(false);
+            regulerSatuan.setEnabled(false);
+            kilatSatuan.setEnabled(false);
+            kilatKiloan.setEnabled(false);
         }
     }
     //endregion
@@ -578,5 +1066,3 @@ public class OrderProcess extends AppCompatActivity {
     }
 
 }
-
-
