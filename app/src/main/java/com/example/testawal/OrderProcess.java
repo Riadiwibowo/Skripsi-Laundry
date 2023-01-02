@@ -7,6 +7,7 @@ import androidx.cardview.widget.CardView;
 import android.animation.LayoutTransition;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Spannable;
@@ -45,6 +46,7 @@ import java.util.Locale;
 
 public class OrderProcess extends AppCompatActivity {
 
+    //region properties
     TextView editTanggal,  editJam;
     TextView txtNamaLaundry, txtNamaUser;
     String userId, trId, laundryId, namaUser;
@@ -52,6 +54,7 @@ public class OrderProcess extends AppCompatActivity {
     FirebaseUser fUser;
     DatabaseReference databaseReference, databaseReferenceT;
     private FirebaseAuth mAuth;
+    private Uri url;
 
     private int jam, menit;
     private int tanggal, bulan, tahun;
@@ -72,126 +75,7 @@ public class OrderProcess extends AppCompatActivity {
     Spinner dropdown;
 
     Button btnSubmit;
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_order_process);
-//
-//        Bundle b = getIntent().getExtras();
-//        String nama1 = (String) b.get("nama1");
-//
-//
-//        txtNamaUser = findViewById(R.id.txtNamaUser);
-//        txtNamaLaundry = findViewById(R.id.txtNamaLaundry);
-//        editTanggal = findViewById(R.id.editTanggal);
-//        editJam = findViewById(R.id.editJam);
-//        btnOrder = findViewById(R.id.btnOrder);
-//
-//        mAuth = FirebaseAuth.getInstance();
-//
-//        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-//        databaseReferenceT = FirebaseDatabase.getInstance().getReference("Transactions");
-//        fUser = FirebaseAuth.getInstance().getCurrentUser();
-//        userId = fUser.getUid();
-//
-//        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                User user = snapshot.getValue(User.class);
-//                if(user != null){
-//                    txtNamaUser.setText("Nama pengguna: " + user.nama);
-//                    txtNamaLaundry.setText("Nama Laundry: " + nama1);
-//                    namaUser = user.nama;
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//        editJam.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Calendar calendar = Calendar.getInstance();
-//                jam = calendar.get(Calendar.HOUR_OF_DAY);
-//                menit = calendar.get(Calendar.MINUTE);
-//
-//                TimePickerDialog timedialog;
-//                timedialog = new TimePickerDialog(OrderProcess.this, new TimePickerDialog.OnTimeSetListener() {
-//                    @Override
-//                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-//                        jam = hour;
-//                        menit = minute;
-//
-//                        if (jam <= 12) {
-//                            editJam.setText(String.format(Locale.getDefault(), "%d:%d am", jam, menit));
-//                        }
-//                        else {
-//                            editJam.setText(String.format(Locale.getDefault(), "%d:%d pm", jam, menit));
-//                        }
-//                    }
-//                }, jam, menit, true);
-//                timedialog.show();
-//            }
-//        });
-//
-//        editTanggal.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Calendar calendar = Calendar.getInstance();
-//                tanggal = calendar.get(Calendar.DAY_OF_MONTH);
-//                bulan = calendar.get(Calendar.MONTH);
-//                tahun = calendar.get(Calendar.YEAR);
-//
-//                DatePickerDialog datedialog;
-//                datedialog = new DatePickerDialog(OrderProcess.this, new DatePickerDialog.OnDateSetListener() {
-//                    @Override
-//                    public void onDateSet(DatePicker datePicker, int date, int month, int year) {
-//                        tanggal = date;
-//                        bulan = month;
-//                        tahun = year;
-//
-//                        editTanggal.setText(tahun + "/" + bulan + "/" + tanggal);
-//                    }
-//                }, tahun, bulan, tanggal);
-//                datedialog.show();
-//            }
-//        });
-//
-//        btnOrder.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                trId = databaseReferenceT.push().getKey();
-//                databaseReferenceT.child(trId).child("harga").setValue("25000");
-//                databaseReferenceT.child(trId).child("services").setValue("cuci kilat");
-//                databaseReferenceT.child(trId).child("namaLaundry").setValue(nama1);
-//                databaseReferenceT.child(trId).child("namaUser").setValue(namaUser);
-//                databaseReference.child(userId).child("transactions").child(trId).setValue(trId);
-//                Toast.makeText(OrderProcess.this, "id generated = " + trId, Toast.LENGTH_LONG).show();
-//
-////              dbReference refer ke semua userId, trId selalu unique
-//                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                            if(dataSnapshot.child("nama").getValue().toString().equals(nama1)){
-//                                laundryId = dataSnapshot.getKey();
-//                                databaseReference.child(laundryId).child("transaction").child(trId).setValue(trId);
-//                                break;
-//                            }
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-//            }
-//        });
-//    }
+    //rendregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -513,7 +397,7 @@ public class OrderProcess extends AppCompatActivity {
             public void onClick(View view) {
                 trId = databaseReferenceT.push().getKey();
 
-                //region kondisi category
+                //region order process without pickup
                 if (catBaju.isChecked() || catSepatu.isChecked() || catOthers.isChecked()) {
                     if (catBaju.isChecked()) {
                         if ((regulerSatuan.isChecked() || regulerKiloan.isChecked()) && (kilatSatuan.isChecked() || kilatKiloan.isChecked())) {
@@ -527,22 +411,31 @@ public class OrderProcess extends AppCompatActivity {
                         else {
                             if (!inputKg1.getText().toString().trim().isEmpty()){
                                 if (regulerSatuan.isChecked()){
-                                    Toast.makeText(OrderProcess.this, "insert Reguler; Satuan", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(OrderProcess.this, "insert Reguler; Satuan", Toast.LENGTH_SHORT).show();
+                                    databaseReferenceT.child(trId).child("services").setValue("Reguler, satuan");
+                                    databaseReferenceT.child(trId).child("jumlah").setValue(inputKg1.getText().toString().trim());
                                 }
                                 else if (regulerKiloan.isChecked()){
-                                    Toast.makeText(OrderProcess.this, "insert Reguler; Kiloan", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(OrderProcess.this, "insert Reguler; Kiloan", Toast.LENGTH_SHORT).show();
+                                    databaseReferenceT.child(trId).child("services").setValue("Reguler, kiloan");
+                                    databaseReferenceT.child(trId).child("berat").setValue(inputKg1.getText().toString().trim());
                                 }
                             }
                             if (!inputKg.getText().toString().trim().isEmpty()){
                                 if (kilatSatuan.isChecked()){
-                                    Toast.makeText(OrderProcess.this, "insert Kilat; Satuan", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(OrderProcess.this, "insert Kilat; Satuan", Toast.LENGTH_SHORT).show();
+                                    databaseReferenceT.child(trId).child("services").setValue("Kilat, satuan");
+                                    databaseReferenceT.child(trId).child("jumlah").setValue(inputKg.getText().toString().trim());
+
                                 }
                                 else if (kilatKiloan.isChecked()){
-                                    Toast.makeText(OrderProcess.this, "insert Kilat; Kiloan", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(OrderProcess.this, "insert Kilat; Kiloan", Toast.LENGTH_SHORT).show();
+                                    databaseReferenceT.child(trId).child("services").setValue("Kilat, kiloan");
+                                    databaseReferenceT.child(trId).child("berat").setValue(inputKg.getText().toString().trim());
                                 }
                             }
-//                            databaseReferenceT.child(trId).child("category").setValue("Baju");
-                            Toast.makeText(OrderProcess.this, "insert Baju", Toast.LENGTH_SHORT).show();
+                            databaseReferenceT.child(trId).child("category").setValue("Baju");
+//                            Toast.makeText(OrderProcess.this, "insert Baju", Toast.LENGTH_SHORT).show();
 
                             if (catSepatu.isChecked()) {
                                 if (!regulerPair.isChecked() && !kilatPair.isChecked()) {
@@ -552,23 +445,27 @@ public class OrderProcess extends AppCompatActivity {
                                 else {
                                     if (!inputPair1.getText().toString().trim().isEmpty()){
                                         if (regulerPair.isChecked()){
-                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair1.getText(), Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair1.getText(), Toast.LENGTH_SHORT).show();
+                                            databaseReferenceT.child(trId).child("services").setValue("Reguler, pair");
+                                            databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString().trim());
                                         }
                                     }
                                     if (!inputPair.getText().toString().trim().isEmpty()){
                                         if (kilatPair.isChecked()){
-                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair.getText(), Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair.getText(), Toast.LENGTH_SHORT).show();
+                                            databaseReferenceT.child(trId).child("services").setValue("Kilat, pair");
+                                            databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString().trim());
                                         }
                                     }
-                                    Toast.makeText(OrderProcess.this, "insert Baju; Sepatu", Toast.LENGTH_SHORT).show();
-//                                databaseReferenceT.child(trId).child("category").setValue("Baju; Sepatu");
+//                                    Toast.makeText(OrderProcess.this, "insert Baju; Sepatu", Toast.LENGTH_SHORT).show();
+                                    databaseReferenceT.child(trId).child("category").setValue("Baju, sepatu");
                                 }
                             }
 
                             if (catOthers.isChecked()) {
                                 //else cek inputKg dan inputKg1
-                                Toast.makeText(OrderProcess.this, "insert Baju; Others", Toast.LENGTH_SHORT).show();
-//                                databaseReferenceT.child(trId).child("category").setValue("Baju; Others");
+//                                Toast.makeText(OrderProcess.this, "insert Baju; Others", Toast.LENGTH_SHORT).show();
+                                databaseReferenceT.child(trId).child("category").setValue("Baju, others");
                             }
 
                             if (catSepatu.isChecked() && catOthers.isChecked()){
@@ -579,19 +476,26 @@ public class OrderProcess extends AppCompatActivity {
                                 else {
                                     if (!inputPair1.getText().toString().trim().isEmpty()){
                                         if (regulerPair.isChecked()){
-                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair1.getText(), Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair1.getText(), Toast.LENGTH_SHORT).show();
+                                            databaseReferenceT.child(trId).child("services").setValue("Reguler, pair");
+                                            databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString().trim());
                                         }
                                     }
                                     if (!inputPair.getText().toString().trim().isEmpty()){
                                         if (kilatPair.isChecked()){
-                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair.getText(), Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair.getText(), Toast.LENGTH_SHORT).show();
+                                            databaseReferenceT.child(trId).child("services").setValue("Kilat, pair");
+                                            databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString().trim());
                                         }
                                     }
-                                    Toast.makeText(OrderProcess.this, "insert Baju; Sepatu; Others", Toast.LENGTH_SHORT).show();
-//                                databaseReferenceT.child(trId).child("category").setValue("Baju; Sepatu; Others");
+//                                    Toast.makeText(OrderProcess.this, "insert Baju; Sepatu; Others", Toast.LENGTH_SHORT).show();
+                                    databaseReferenceT.child(trId).child("category").setValue("Baju, sepatu, others");
                                 }
                             }
 //                            return;
+                            databaseReferenceT.child(trId).child("isPickup").setValue("No");
+                            databaseReferenceT.child(trId).child("status").setValue("0");
+                            databaseReferenceT.child(trId).child("id").setValue(trId);
                         }
                     }
                     else if (catSepatu.isChecked()) {
@@ -602,18 +506,22 @@ public class OrderProcess extends AppCompatActivity {
                         else {
                             if (!inputPair1.getText().toString().trim().isEmpty()){
                                 if (regulerPair.isChecked()){
-                                    Toast.makeText(OrderProcess.this, "insert Reguler", Toast.LENGTH_SHORT).show();
-                                    Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair1.getText(), Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(OrderProcess.this, "insert Reguler", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair1.getText(), Toast.LENGTH_SHORT).show();
+                                    databaseReferenceT.child(trId).child("services").setValue("Reguler, pair");
+                                    databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString().trim());
                                 }
                             }
                             if (!inputPair.getText().toString().trim().isEmpty()){
                                 if (kilatPair.isChecked()){
-                                    Toast.makeText(OrderProcess.this, "insert Kilat", Toast.LENGTH_SHORT).show();
-                                    Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair.getText(), Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(OrderProcess.this, "insert Kilat", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair.getText(), Toast.LENGTH_SHORT).show();
+                                    databaseReferenceT.child(trId).child("services").setValue("Kilat, pair");
+                                    databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString().trim());
                                 }
                             }
-//                            databaseReferenceT.child(trId).child("category").setValue("Sepatu");
-                            Toast.makeText(OrderProcess.this, "insert Sepatu", Toast.LENGTH_SHORT).show();
+                            databaseReferenceT.child(trId).child("category").setValue("Sepatu");
+//                            Toast.makeText(OrderProcess.this, "insert Sepatu", Toast.LENGTH_SHORT).show();
 
                             if (catOthers.isChecked()) {
                                 if (!regulerSatuan.isChecked() && !regulerKiloan.isChecked() && !kilatSatuan.isChecked() && !kilatKiloan.isChecked()) {
@@ -623,23 +531,34 @@ public class OrderProcess extends AppCompatActivity {
                                 else {
                                     if (!inputKg1.getText().toString().trim().isEmpty()) {
                                         if (regulerSatuan.isChecked()) {
-                                            Toast.makeText(OrderProcess.this, "insert Reguler; Satuan", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(OrderProcess.this, "insert Reguler; Satuan", Toast.LENGTH_SHORT).show();
+                                            databaseReferenceT.child(trId).child("services").setValue("Reguler, satuan");
+                                            databaseReferenceT.child(trId).child("jumlah").setValue(inputKg1.getText().toString().trim());
                                         } else if (regulerKiloan.isChecked()) {
-                                            Toast.makeText(OrderProcess.this, "insert Reguler; Kiloan", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(OrderProcess.this, "insert Reguler; Kiloan", Toast.LENGTH_SHORT).show();
+                                            databaseReferenceT.child(trId).child("services").setValue("Reguler, kiloan");
+                                            databaseReferenceT.child(trId).child("berat").setValue(inputKg1.getText().toString().trim());
                                         }
                                     }
                                     if (!inputKg.getText().toString().trim().isEmpty()) {
                                         if (kilatSatuan.isChecked()) {
-                                            Toast.makeText(OrderProcess.this, "insert Kilat; Satuan", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(OrderProcess.this, "insert Kilat; Satuan", Toast.LENGTH_SHORT).show();
+                                            databaseReferenceT.child(trId).child("services").setValue("Kilat, satuan");
+                                            databaseReferenceT.child(trId).child("jumlah").setValue(inputKg.getText().toString().trim());
                                         } else if (kilatKiloan.isChecked()) {
-                                            Toast.makeText(OrderProcess.this, "insert Kilat; Kiloan", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(OrderProcess.this, "insert Kilat; Kiloan", Toast.LENGTH_SHORT).show();
+                                            databaseReferenceT.child(trId).child("services").setValue("Kilat, kiloan");
+                                            databaseReferenceT.child(trId).child("berat").setValue(inputKg.getText().toString().trim());
                                         }
                                     }
-//                                  databaseReferenceT.child(trId).child("category").setValue("Sepatu; Others");
-                                    Toast.makeText(OrderProcess.this, "insert Sepatu; Others", Toast.LENGTH_SHORT).show();
+                                    databaseReferenceT.child(trId).child("category").setValue("Sepatu, others");
+//                                    Toast.makeText(OrderProcess.this, "insert Sepatu; Others", Toast.LENGTH_SHORT).show();
                                 }
                             }
 //                            return;
+                            databaseReferenceT.child(trId).child("isPickup").setValue("No");
+                            databaseReferenceT.child(trId).child("status").setValue("0");
+                            databaseReferenceT.child(trId).child("id").setValue(trId);
                         }
                     }
                     else if (catOthers.isChecked()) {
@@ -650,22 +569,33 @@ public class OrderProcess extends AppCompatActivity {
                         else {
                             if (!inputKg1.getText().toString().trim().isEmpty()) {
                                 if (regulerSatuan.isChecked()) {
-                                    Toast.makeText(OrderProcess.this, "insert Reguler; Satuan", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(OrderProcess.this, "insert Reguler; Satuan", Toast.LENGTH_SHORT).show();
+                                    databaseReferenceT.child(trId).child("services").setValue("Reguler, satuan");
+                                    databaseReferenceT.child(trId).child("jumlah").setValue(inputKg1.getText().toString().trim());
                                 } else if (regulerKiloan.isChecked()) {
-                                    Toast.makeText(OrderProcess.this, "insert Reguler; Kiloan", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(OrderProcess.this, "insert Reguler; Kiloan", Toast.LENGTH_SHORT).show();
+                                    databaseReferenceT.child(trId).child("services").setValue("Reguler, kiloan");
+                                    databaseReferenceT.child(trId).child("berat").setValue(inputKg1.getText().toString().trim());
                                 }
                             }
                             if (!inputKg.getText().toString().trim().isEmpty()) {
                                 if (kilatSatuan.isChecked()) {
-                                    Toast.makeText(OrderProcess.this, "insert Kilat; Satuan", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(OrderProcess.this, "insert Kilat; Satuan", Toast.LENGTH_SHORT).show();
+                                    databaseReferenceT.child(trId).child("services").setValue("Kilat, satuan");
+                                    databaseReferenceT.child(trId).child("jumlah").setValue(inputKg.getText().toString().trim());
                                 } else if (kilatKiloan.isChecked()) {
-                                    Toast.makeText(OrderProcess.this, "insert Kilat; Kiloan", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(OrderProcess.this, "insert Kilat; Kiloan", Toast.LENGTH_SHORT).show();
+                                    databaseReferenceT.child(trId).child("services").setValue("Kilat, kiloan");
+                                    databaseReferenceT.child(trId).child("berat").setValue(inputKg.getText().toString().trim());
                                 }
                             }
-//                                  databaseReferenceT.child(trId).child("category").setValue("Others");
-                            Toast.makeText(OrderProcess.this, "insert Others", Toast.LENGTH_SHORT).show();
-//                            return;
+                            databaseReferenceT.child(trId).child("category").setValue("Others");
+//                            Toast.makeText(OrderProcess.this, "insert Others", Toast.LENGTH_SHORT).show();
                         }
+//                        return;
+                        databaseReferenceT.child(trId).child("isPickup").setValue("No");
+                        databaseReferenceT.child(trId).child("status").setValue("0");
+                        databaseReferenceT.child(trId).child("id").setValue(trId);
                     }
                 }
                 else {
@@ -685,112 +615,53 @@ public class OrderProcess extends AppCompatActivity {
                 }
                 //endregion
 
-//                //region kondisi services
-//                if (kilatSatuan.isChecked() || kilatKiloan.isChecked() || kilatPair.isChecked() || regulerSatuan.isChecked() || regulerKiloan.isChecked() || regulerPair.isChecked()) {
-//                    if (kilatSatuan.isChecked()) {
-//                        databaseReferenceT.child(trId).child("services").setValue("Kilat; Satuan");
-//                        databaseReferenceT.child(trId).child("kg").setValue(inputKg.getText().toString());
-//                        if (kilatPair.isChecked()) {
-//                            databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString());
-//                        }
-//                        if (dropdown.getSelectedItem().toString().equals("Yes")){
-//                            databaseReferenceT.child(trId).child("services").setValue("Pickup; Kilat; Satuan");
-//                            databaseReferenceT.child(trId).child("Tanggal pickup").setValue(editTanggal.getText().toString());
-//                            databaseReferenceT.child(trId).child("Jam pickup").setValue(editJam.getText().toString());
-//                        }
-//                    }
-//                    if (kilatKiloan.isChecked()) {
-//                        databaseReferenceT.child(trId).child("services").setValue("Kilat; Kiloan");
-//                        databaseReferenceT.child(trId).child("kg").setValue(inputKg.getText().toString());
-//                        if (kilatPair.isChecked()) {
-//                            databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString());
-//                        }
-//                        if (dropdown.getSelectedItem().toString().equals("Yes")){
-//                            databaseReferenceT.child(trId).child("services").setValue("Pickup; Kilat; Kiloan");
-//                            databaseReferenceT.child(trId).child("Tanggal pickup").setValue(editTanggal.getText().toString());
-//                            databaseReferenceT.child(trId).child("Jam pickup").setValue(editJam.getText().toString());
-//                        }
-//                    }
-//                    if (kilatPair.isChecked()) {
-//                        databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString());
-//                    }
-//                    if (regulerSatuan.isChecked()) {
-//                        databaseReferenceT.child(trId).child("services").setValue("Satuan");
-//                        databaseReferenceT.child(trId).child("kg").setValue(inputKg1.getText().toString());
-//                        if (regulerPair.isChecked()) {
-//                            databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString());
-//                        }
-//                        if (dropdown.getSelectedItem().toString().equals("Yes")){
-//                            databaseReferenceT.child(trId).child("services").setValue("Pickup; Satuan");
-//                            databaseReferenceT.child(trId).child("Tanggal pickup").setValue(editTanggal.getText().toString());
-//                            databaseReferenceT.child(trId).child("Jam pickup").setValue(editJam.getText().toString());
-//                        }
-//                    }
-//                    if (regulerKiloan.isChecked()) {
-//                        databaseReferenceT.child(trId).child("services").setValue("Kiloan");
-//                        databaseReferenceT.child(trId).child("kg").setValue(inputKg1.getText().toString());
-//                        if (regulerPair.isChecked()) {
-//                            databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString());
-//                        }
-//                        if (dropdown.getSelectedItem().toString().equals("Yes")){
-//                            databaseReferenceT.child(trId).child("services").setValue("Pickup; Kiloan");
-//                            databaseReferenceT.child(trId).child("Tanggal pickup").setValue(editTanggal.getText().toString());
-//                            databaseReferenceT.child(trId).child("Jam pickup").setValue(editJam.getText().toString());
-//                        }
-//                    }
-//                    if (regulerPair.isChecked()) {
-//                        databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString());
-//                    }
-//                }
-//                else {
-//                    Toast.makeText(OrderProcess.this, "Harus memilih minimal 1 servis", Toast.LENGTH_SHORT).show();
-//                    if (!kilatSatuan.isChecked()) {
-//                        kilatSatuan.requestFocus();
-//                        return;
-//                    }
-//                    if (!kilatKiloan.isChecked()) {
-//                        kilatKiloan.requestFocus();
-//                        return;
-//                    }
-//                    if (!kilatPair.isChecked()) {
-//                        kilatPair.requestFocus();
-//                        return;
-//                    }
-//                    if (!regulerSatuan.isChecked()) {
-//                        regulerSatuan.requestFocus();
-//                        return;
-//                    }
-//                    if (!regulerKiloan.isChecked()) {
-//                        regulerKiloan.requestFocus();
-//                        return;
-//                    }
-//                    if (!regulerPair.isChecked()) {
-//                        regulerPair.requestFocus();
-//                        return;
-//                    }
-//                }
-//                //endregion
+                //region order process with pickup
+                if (dropdown.getSelectedItem().toString().equals("Yes")){
+                    databaseReferenceT.child(trId).child("isPickup").setValue("Yes");
+                    databaseReferenceT.child(trId).child("Tanggal pickup").setValue(editTanggal.getText().toString());
+                    databaseReferenceT.child(trId).child("Jam pickup").setValue(editJam.getText().toString());
+                }
+                //endregion
 
-//                databaseReferenceT.child(trId).child("namaLaundry").setValue(namaLaundry);
-//                databaseReferenceT.child(trId).child("namaUser").setValue(namaUser);
-//                databaseReference.child(userId).child("transactions").child(trId).setValue(trId);
-//                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                            if(dataSnapshot.child("nama").getValue().toString().equals(namaLaundry)){
-//                                laundryId = dataSnapshot.getKey();
-//                                databaseReference.child(laundryId).child("transaction").child(trId).setValue(trId);
-//                                break;
-//                            }
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            User user = dataSnapshot.getValue(User.class);
+                            if(namaLaundry.equals(user.nama)){
+                                url = Uri.parse(user.imageUrl);
+                                databaseReferenceT.child(trId).child("imageUrl").setValue(url.toString());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+                databaseReferenceT.child(trId).child("namaLaundry").setValue(namaLaundry);
+                databaseReferenceT.child(trId).child("namaUser").setValue(namaUser);
+                databaseReference.child(userId).child("transactions").child(trId).setValue(trId);
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            if(dataSnapshot.child("nama").getValue().toString().equals(namaLaundry)){
+                                laundryId = dataSnapshot.getKey();
+                                databaseReference.child(laundryId).child("transactions").child(trId).setValue(trId);
+                                Toast.makeText(OrderProcess.this, "Transaksi sukses, silahkan menunggu respon Laundry", Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
         //endregion

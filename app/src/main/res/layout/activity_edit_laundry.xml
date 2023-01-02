@@ -74,8 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical"
-                android:gravity="center"
-                app:layout_constraintVertical_bias="0.256">
+                android:gravity="center">
 
                 <EditText
                     android:id="@+id/txtLaunDescription"
@@ -84,13 +83,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/edittextshape"
                     android:hint="Deskripsi"
-                    android:paddingLeft="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.17" />
+                    android:paddingLeft="8dp" />
 
                 <EditText
                     android:id="@+id/txtLaunName"
@@ -99,27 +92,24 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/edittextshape"
                     android:hint="Nama"
-                    android:paddingLeft="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5" />
+                    android:paddingLeft="8dp" />
 
                 <EditText
                     android:id="@+id/txtLaunPhone"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/edittextshape"
                     android:hint="No Telp"
-                    android:paddingLeft="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.83" />
+                    android:paddingLeft="8dp" />
+
+                <EditText
+                    android:id="@+id/txtLaunAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/edittextshape"
+                    android:hint="Alamat"
+                    android:paddingLeft="8dp" />
             </LinearLayout>
 
             <LinearLayout

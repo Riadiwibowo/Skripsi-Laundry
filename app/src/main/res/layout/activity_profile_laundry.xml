@@ -48,7 +48,7 @@
 
             <TextView
                 android:id="@+id/txtNama"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="Nama"
                 android:textColor="@color/white"
@@ -56,24 +56,23 @@
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.07"
+                app:layout_constraintHorizontal_bias="0.165"
                 app:layout_constraintStart_toEndOf="@+id/imageProfile"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.181" />
 
             <TextView
                 android:id="@+id/Nama"
-                android:layout_width="wrap_content"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:text="Nama usernya"
                 android:textColor="@color/white"
                 android:textSize="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.101"
+                app:layout_constraintHorizontal_bias="0.26"
                 app:layout_constraintStart_toEndOf="@+id/imageProfile"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toBottomOf="@id/txtNama"
+                app:layout_constraintVertical_bias="0.85" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -100,32 +99,30 @@
 
             <TextView
                 android:id="@+id/txtPhone"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:text="Phone Number"
+                android:text="No. Telp"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.118"
+                app:layout_constraintHorizontal_bias="0.165"
                 app:layout_constraintStart_toEndOf="@+id/imagePhone"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.181" />
 
             <TextView
                 android:id="@+id/Telp"
-                android:layout_width="wrap_content"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:text="Nomor hpnya"
                 android:textColor="@color/white"
                 android:textSize="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.099"
+                app:layout_constraintHorizontal_bias="0.26"
                 app:layout_constraintStart_toEndOf="@+id/imagePhone"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.868" />
+                app:layout_constraintTop_toBottomOf="@id/txtPhone"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -144,7 +141,7 @@
                 android:id="@+id/imageEmail"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="28dp"
                 android:src="@drawable/mail"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -153,7 +150,7 @@
 
             <TextView
                 android:id="@+id/txtDesc"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="Desc"
                 android:textColor="@color/white"
@@ -161,7 +158,7 @@
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.084"
+                app:layout_constraintHorizontal_bias="0.165"
                 app:layout_constraintStart_toEndOf="@+id/imageEmail"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.105" />
@@ -169,16 +166,14 @@
             <TextView
                 android:id="@+id/Desc"
                 android:layout_width="240dp"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:text="Descnya"
                 android:textColor="@color/white"
                 android:textSize="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.349"
+                app:layout_constraintHorizontal_bias="0.26"
                 app:layout_constraintStart_toEndOf="@+id/imageEmail"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.683" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDesc" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -199,155 +194,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/garis1"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="10dp"-->
-    <!--        android:layout_marginTop="28dp"-->
-    <!--        android:background="@color/white"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/imageLaundry"-->
-    <!--        />-->
-
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:id="@+id/constraintNama"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="12dp"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/garis1">-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/txtNama"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Nama Laundry"-->
-    <!--            android:textColor="@color/white"-->
-    <!--            android:textSize="20dp"-->
-    <!--            app:layout_constraintHorizontal_bias="0.08"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent"/>-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/Nama"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginTop="30dp"-->
-    <!--            android:text="Nama laundrynya"-->
-    <!--            android:textColor="@color/white"-->
-    <!--            app:layout_constraintHorizontal_bias="0.075"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent"/>-->
-
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/garis2"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="10dp"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:background="@color/white"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/constraintNama"-->
-    <!--        />-->
-
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:id="@+id/constraintTelp"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="12dp"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/garis2">-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/txtTelp"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="No Telp Laundry"-->
-    <!--            android:textColor="@color/white"-->
-    <!--            android:textSize="20dp"-->
-    <!--            app:layout_constraintHorizontal_bias="0.08"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent"/>-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/Telp"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginTop="30dp"-->
-    <!--            android:text="No telp laundrynya"-->
-    <!--            android:textColor="@color/white"-->
-    <!--            app:layout_constraintHorizontal_bias="0.075"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent"/>-->
-
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/garis3"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="10dp"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:background="@color/white"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/constraintTelp"-->
-    <!--        />-->
-
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:id="@+id/constraintDesc"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="12dp"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/garis3">-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/txtDesc"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Deskripsi Laundry"-->
-    <!--            android:textColor="@color/white"-->
-    <!--            android:textSize="20dp"-->
-    <!--            app:layout_constraintHorizontal_bias="0.08"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent"/>-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/Desc"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginTop="30dp"-->
-    <!--            android:text="Deskripsi laundrynya"-->
-    <!--            android:textColor="@color/white"-->
-    <!--            app:layout_constraintHorizontal_bias="0.075"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent"/>-->
-
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--    <Button-->
-    <!--        android:id="@+id/btnEdit"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="28dp"-->
-    <!--        android:backgroundTint="#9AD0EC"-->
-    <!--        android:text="Edit Profile"-->
-    <!--        android:textColor="@color/black"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/constraintDesc"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

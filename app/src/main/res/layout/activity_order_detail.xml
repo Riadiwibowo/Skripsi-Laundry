@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrderDetail"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:background="@drawable/backgroundorderid">
+
+        <TextView
+            android:id="@+id/Id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order ID"
+            android:textColor="@color/white"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/ralewayregular"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:src="@drawable/edittextshape"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/edittextshape">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Laundry Detail"
+                android:textColor="@color/black"
+                android:textSize="28dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/ralewayregular"/>
+
+            <TextView
+                android:id="@+id/namaLaundry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Laundry:"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ralewayregular"/>
+
+            <TextView
+                android:id="@+id/noTelp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No. Telp:"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ralewayregular"/>
+
+            <TextView
+                android:id="@+id/alamat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alamat:"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ralewayregular"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order Detail"
+                android:textSize="28sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/ralewayregular"/>
+
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category:"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ralewayregular"/>
+
+            <TextView
+                android:id="@+id/service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Service:"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ralewayregular"/>
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price:"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ralewayregular"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/linearPickup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pickup Detail"
+                android:textSize="28dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/ralewayregular"/>
+
+            <TextView
+                android:id="@+id/tanggal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tanggal:"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ralewayregular"/>
+
+            <TextView
+                android:id="@+id/jam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jam:"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ralewayregular"/>
+
+            <TextView
+                android:id="@+id/alamatpickup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alamat Pickup:"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ralewayregular"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearReschedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reschedule"
+                android:textSize="28dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/ralewayregular"/>
+
+            <TextView
+                android:clickable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tanggal?"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ralewayregular"/>
+
+            <TextView
+                android:clickable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jam?"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ralewayregular"/>
+
+        </LinearLayout>
+
+        <android.widget.Button
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Save"
+            android:fontFamily="@font/ralewayregular"
+            android:background="@drawable/buttonsave"/>
+
+    </LinearLayout>
+
+</LinearLayout>

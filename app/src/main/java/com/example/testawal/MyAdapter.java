@@ -78,6 +78,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                     public void onClick(View view) {
                         Intent intent = new Intent(context, OrderProcess.class);
                         intent.putExtra("namaLaundry", userList.get(viewHolder.getAdapterPosition()).getNama());
+                        intent.putExtra("alamatLaundry", userList.get(viewHolder.getAdapterPosition()).getAddress());
+                        intent.putExtra("noTelpLaundry", userList.get(viewHolder.getAdapterPosition()).getPhone());
                         context.startActivity(intent);
                     }
                 });

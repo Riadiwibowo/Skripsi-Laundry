@@ -50,6 +50,11 @@ public class MyAdapterTransaction extends RecyclerView.Adapter<MyAdapterTransact
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, "nama = " + transactionList.get(viewHolder.getAdapterPosition()).getNamaUser(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, OrderDetail.class);
+                intent.putExtra("orderid", transactionList.get(viewHolder.getAdapterPosition()).getId());
+                intent.putExtra("namaLaundry1", transactionList.get(viewHolder.getAdapterPosition()).getNamaLaundry());
+                intent.putExtra("alamatLaundry1", transactionList.get(viewHolder.getAdapterPosition()).getAlamat());
+                context.startActivity(intent);
             }
         });
 
@@ -60,8 +65,19 @@ public class MyAdapterTransaction extends RecyclerView.Adapter<MyAdapterTransact
     public void onBindViewHolder(@NonNull MyAdapterTransaction.MyViewHolder holder, int position) {
         //isi dulu attribute myViewHolder
         //saat tarik viewHolder, kita isi di posisi berapa
+        Glide.with(context).load(transactionList.get(position).getImageUrl()).into(holder.myImage);
         holder.myText1.setText(transactionList.get(position).getNamaLaundry());
         holder.myText2.setText(transactionList.get(position).getHarga());
+        if(transactionList.get(position).getStatus().toString().equals("0")){
+            holder.myText3.setText("Awaiting");
+        }else if(transactionList.get(position).getStatus().toString().equals("1")){
+            holder.myText3.setText("On Process");
+        }else if(transactionList.get(position).getStatus().toString().equals("2")){
+            holder.myText3.setText("Done");
+        }else if(transactionList.get(position).getStatus().toString().equals("3")){
+            holder.myText3.setText("Canceled");
+        }
+        holder.myText4.setText(transactionList.get(position).getId());
     }
 
     @Override
@@ -71,14 +87,18 @@ public class MyAdapterTransaction extends RecyclerView.Adapter<MyAdapterTransact
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         //    isi dari viewHolder yaitu namaLaundry dan harga
-        TextView myText1, myText2;
+        TextView myText1, myText2, myText3, myText4;
         CardView parentLayout;
+        ImageView myImage;
         //    membuat new viewHolder
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             //    itemView. artinya isi per item atau per row
             myText1 = itemView.findViewById(R.id.txtNamaLaundry);
             myText2 = itemView.findViewById(R.id.txtHarga);
+            myText3 = itemView.findViewById(R.id.txtStatus);
+            myText4 = itemView.findViewById(R.id.txtId);
+            myImage = itemView.findViewById(R.id.imgLaundryTransaction);
             parentLayout = itemView.findViewById(R.id.parentLayout);
         }
     }

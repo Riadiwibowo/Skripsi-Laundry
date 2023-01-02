@@ -88,7 +88,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="12dp"
-                    android:paddingLeft="4dp"
+                    android:paddingLeft="12dp"
                     android:background="@drawable/belakangcategoryorder"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
@@ -459,12 +459,13 @@
                     android:background="@drawable/belakangcategoryorder"
                     android:gravity="center_vertical">
 
-                    <CheckBox
+                    <TextView
                         android:id="@+id/details"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="details"
+                        android:text="Harga"
                         android:textSize="16dp"
+                        android:textColor="@color/black"
                         android:buttonTint="@color/blue"/>
 
                 </LinearLayout>

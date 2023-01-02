@@ -1,6 +1,9 @@
 package com.example.testawal;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +21,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -48,6 +52,8 @@ public class TransactionFragment extends Fragment {
     ArrayList<Transaction> transactions;
     FirebaseUser fUser;
     String userId;
+    Dialog dialog;
+    TextView txtNo, txtYes;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -148,8 +154,24 @@ public class TransactionFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.itemLogout:
-                logout();
-                Toast.makeText(getActivity(), "logout processed", Toast.LENGTH_SHORT).show();
+                dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.popuplogout);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                txtNo = dialog.findViewById(R.id.txtNo);
+                txtYes = dialog.findViewById(R.id.txtYes);
+                dialog.show();
+                txtNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                txtYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        logout();
+                    }
+                });
                 return true;
             case R.id.itemProfile:
                 startActivity(new Intent(getActivity(), ProfileUser.class));

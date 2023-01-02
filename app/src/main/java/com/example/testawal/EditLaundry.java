@@ -45,7 +45,7 @@ public class EditLaundry extends AppCompatActivity {
 
     //region properties
     private Button btnAdd;
-    EditText txtDesc, txtName, txtPhone, inputHargaSatuan, inputHargaKiloan, inputHargaSepatu, inputHargaPickup;
+    EditText txtDesc, txtName, txtPhone, txtAlamat, inputHargaSatuan, inputHargaKiloan, inputHargaSepatu, inputHargaPickup;
     CheckBox services1, services2, services3, services4, category1, category2, category3;
     ProgressBar progressBar;
     LinearLayout linearSatuan, linearKiloan, linearSepatu;
@@ -75,6 +75,7 @@ public class EditLaundry extends AppCompatActivity {
         txtDesc = findViewById(R.id.txtLaunDescription);
         txtName = findViewById(R.id.txtLaunName);
         txtPhone = findViewById(R.id.txtLaunPhone);
+        txtAlamat = findViewById(R.id.txtLaunAddress);
         services1 = findViewById(R.id.services1);
         services2 = findViewById(R.id.services2);
         services3 = findViewById(R.id.services3);
@@ -114,36 +115,91 @@ public class EditLaundry extends AppCompatActivity {
                     uploadFirebase(imageUrl);
                 }
                 if(!txtPhone.getText().toString().trim().isEmpty() && (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty())
-                        && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty())) {
+                        && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty()) &&
+                        (txtAlamat.getText().toString().trim().equals("") || txtAlamat.getText().toString().trim().isEmpty())) {
                     insertPhone();
                 }
                 else if(!txtName.getText().toString().trim().isEmpty() && (txtPhone.getText().toString().trim().equals("") || txtPhone.getText().toString().trim().isEmpty())
-                        && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty())) {
+                        && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty()) &&
+                        (txtAlamat.getText().toString().trim().equals("") || txtAlamat.getText().toString().trim().isEmpty())) {
                     insertName();
                 }
                 else if(!txtDesc.getText().toString().trim().isEmpty() && (txtPhone.getText().toString().trim().equals("") || txtPhone.getText().toString().trim().isEmpty())
-                        && (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty())) {
+                        && (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty()) &&
+                        (txtAlamat.getText().toString().trim().equals("") || txtAlamat.getText().toString().trim().isEmpty())) {
                     insertDescription();
                 }
+                else if(!txtAlamat.getText().toString().trim().isEmpty() && (txtPhone.getText().toString().trim().equals("") || txtPhone.getText().toString().trim().isEmpty())
+                        && (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty()) &&
+                        (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty())) {
+                    insertAlamat();
+                }
                 else if(!txtDesc.getText().toString().trim().isEmpty() && !txtPhone.getText().toString().trim().isEmpty()
-                        && (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty())) {
+                        && (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty()) &&
+                        (txtAlamat.getText().toString().trim().equals("") || txtAlamat.getText().toString().trim().isEmpty())) {
                     insertPhone();
                     insertDescription();
                 }
                 else if(!txtDesc.getText().toString().trim().isEmpty() && !txtName.getText().toString().trim().isEmpty()
-                        && (txtPhone.getText().toString().trim().equals("") || txtPhone.getText().toString().trim().isEmpty())) {
+                        && (txtPhone.getText().toString().trim().equals("") || txtPhone.getText().toString().trim().isEmpty()) &&
+                        (txtAlamat.getText().toString().trim().equals("") || txtAlamat.getText().toString().trim().isEmpty())) {
                     insertName();
+                    insertDescription();
+                }
+                else if(!txtDesc.getText().toString().trim().isEmpty() && !txtAlamat.getText().toString().trim().isEmpty()
+                        && (txtPhone.getText().toString().trim().equals("") || txtPhone.getText().toString().trim().isEmpty()) &&
+                        (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty())) {
+                    insertAlamat();
                     insertDescription();
                 }
                 else if(!txtPhone.getText().toString().trim().isEmpty() && !txtName.getText().toString().trim().isEmpty()
-                        && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty())) {
+                        && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty()) &&
+                        (txtAlamat.getText().toString().trim().equals("") || txtAlamat.getText().toString().trim().isEmpty())) {
                     insertName();
                     insertPhone();
                 }
-                else if(!txtName.getText().toString().trim().isEmpty() && !txtPhone.getText().toString().trim().isEmpty() && !txtDesc.getText().toString().trim().isEmpty()) {
+                else if(!txtAlamat.getText().toString().trim().isEmpty() && !txtName.getText().toString().trim().isEmpty()
+                        && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty()) &&
+                        (txtPhone.getText().toString().trim().equals("") || txtPhone.getText().toString().trim().isEmpty())) {
+                    insertName();
+                    insertAlamat();
+                }
+                else if(!txtAlamat.getText().toString().trim().isEmpty() && !txtPhone.getText().toString().trim().isEmpty()
+                        && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty()) &&
+                        (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty())) {
+                    insertPhone();
+                    insertAlamat();
+                }
+                else if(!txtName.getText().toString().trim().isEmpty() && !txtPhone.getText().toString().trim().isEmpty() && !txtDesc.getText().toString().trim().isEmpty()
+                        && (txtAlamat.getText().toString().trim().equals("") || txtAlamat.getText().toString().trim().isEmpty())) {
                     insertName();
                     insertPhone();
                     insertDescription();
+                }
+                else if(!txtName.getText().toString().trim().isEmpty() && !txtAlamat.getText().toString().trim().isEmpty() && !txtDesc.getText().toString().trim().isEmpty()
+                        && (txtPhone.getText().toString().trim().equals("") || txtPhone.getText().toString().trim().isEmpty())) {
+                    insertName();
+                    insertAlamat();
+                    insertDescription();
+                }
+                else if(!txtPhone.getText().toString().trim().isEmpty() && !txtAlamat.getText().toString().trim().isEmpty() && !txtDesc.getText().toString().trim().isEmpty()
+                        && (txtName.getText().toString().trim().equals("") || txtName.getText().toString().trim().isEmpty())) {
+                    insertPhone();
+                    insertAlamat();
+                    insertDescription();
+                }
+                else if(!txtName.getText().toString().trim().isEmpty() && !txtAlamat.getText().toString().trim().isEmpty() && !txtPhone.getText().toString().trim().isEmpty()
+                        && (txtDesc.getText().toString().trim().equals("") || txtDesc.getText().toString().trim().isEmpty())) {
+                    insertName();
+                    insertAlamat();
+                    insertPhone();
+                }
+                else if(!txtName.getText().toString().trim().isEmpty() && !txtPhone.getText().toString().trim().isEmpty() && !txtDesc.getText().toString().trim().isEmpty()
+                        && !txtAlamat.getText().toString().trim().isEmpty()) {
+                    insertName();
+                    insertPhone();
+                    insertDescription();
+                    insertAlamat();
                 }
 //                else{
 //                    Toast.makeText(EditLaundry.this, "Salah satu harus diisi", Toast.LENGTH_SHORT).show();
@@ -358,6 +414,31 @@ public class EditLaundry extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 databaseReference.child(userId).child("description").setValue(description.toString());
                 Toast.makeText(EditLaundry.this, "Description Inserted", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(EditLaundry.this, "error get current user", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void insertAlamat() {
+        String alamat = txtAlamat.getText().toString().trim();
+
+        //region validasi input
+//        if(description.isEmpty()){
+//            txtDesc.setError("Deskripsi harus diisi");
+//            txtDesc.requestFocus();
+//            return;
+//        }
+        //endregion
+
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                databaseReference.child(userId).child("address").setValue(alamat.toString());
+                Toast.makeText(EditLaundry.this, "Alamat Inserted", Toast.LENGTH_SHORT).show();
             }
 
             @Override
