@@ -40,7 +40,7 @@ public class LaundryTransaction extends AppCompatActivity {
     RecyclerView rv;
     DatabaseReference databaseReference, databaseReferenceT;
     StorageReference storageReference;
-    MyAdapterTransaction myAdapter;
+    MyAdapterTransactionLaundry myAdapter;
     ArrayList<Transaction> transactions;
     FirebaseUser fUser;
     String userId;
@@ -59,13 +59,13 @@ public class LaundryTransaction extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
         rv.setLayoutManager(new LinearLayoutManager(LaundryTransaction.this));
         transactions = new ArrayList<>();
-        myAdapter = new MyAdapterTransaction(LaundryTransaction.this, transactions);
+        myAdapter = new MyAdapterTransactionLaundry(LaundryTransaction.this, transactions);
         rv.setAdapter(myAdapter);
 
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         userId = fUser.getUid();
 
-        databaseReference.child(userId).child("transaction").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child(userId).child("transactions").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
@@ -76,7 +76,7 @@ public class LaundryTransaction extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             for (DataSnapshot trSnapshot : snapshot.getChildren()) {
                                 if(trSnapshot.getKey().equals(dataSnapshot.getKey())){
-//                                    Toast.makeText(getActivity(), "trId = " + dataSnapshot.getKey(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LaundryTransaction.this, "trId = " + dataSnapshot.getKey(), Toast.LENGTH_SHORT).show();
                                     Transaction transaction1 = trSnapshot.getValue(Transaction.class);
                                     transactions.add(transaction1);
                                 }
