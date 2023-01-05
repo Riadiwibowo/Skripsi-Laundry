@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                     });
                     //endregion
                 }else{
-                    Toast.makeText(MainActivity.this, "การเข้าสู่ระบบล้มเหลว", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Mohon periksa kembali email serta password anda", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }

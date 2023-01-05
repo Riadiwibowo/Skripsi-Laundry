@@ -111,9 +111,15 @@ public class OrderDetail extends AppCompatActivity {
                         category.setText("Category: " + dataSnapshot.child("category").getValue().toString());
                         service.setText("Services: " + dataSnapshot.child("services").getValue().toString());
                         price.setText("Harga: " + dataSnapshot.child("harga").getValue().toString());
-                        tanggalpickup.setText("Tanggal pickup: " + dataSnapshot.child("Tanggal pickup").getValue().toString());
-                        jampickup.setText("Jam pickup: " + dataSnapshot.child("Jam pickup").getValue().toString());
-                        alamatpickup.setText("Alamat pickup: " + dataSnapshot.child("address").getValue().toString());
+                        if (dataSnapshot.child("Tanggal pickup").exists()){
+                            tanggalpickup.setText("Tanggal pickup: " + dataSnapshot.child("Tanggal pickup").getValue().toString());
+                        }
+                        if (dataSnapshot.child("Jam pickup").exists()){
+                            jampickup.setText("Jam pickup: " + dataSnapshot.child("Jam pickup").getValue().toString());
+                        }
+                        if (dataSnapshot.child("address").exists()){
+                            alamatpickup.setText("Alamat pickup: " + dataSnapshot.child("address").getValue().toString());
+                        }
                         if (dataSnapshot.child("isPickup").getValue().toString().equals("No")) {
                             layoutPickup.setVisibility(View.GONE);
                             layoutReschedule.setVisibility(View.GONE);

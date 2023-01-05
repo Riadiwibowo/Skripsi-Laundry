@@ -78,7 +78,7 @@
                         android:layout_marginLeft="12dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="thể loại"
+                        android:text="Category"
                         android:textSize="32dp"
                         android:textStyle="bold"
                         android:textColor="@color/white"/>
@@ -141,7 +141,7 @@
                         android:layout_marginLeft="12dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="サービス"
+                        android:text="Service"
                         android:textSize="32dp"
                         android:textStyle="bold"
                         android:textColor="@color/white"/>
@@ -355,7 +355,7 @@
                         android:layout_marginLeft="12dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ग्रहणम्"
+                        android:text="Pick Up"
                         android:textSize="32dp"
                         android:textStyle="bold"
                         android:textColor="@color/white"/>
