@@ -869,6 +869,12 @@ public class OrderProcess extends AppCompatActivity {
     public void checkButton(View view) {
         if (check==0){
             int x = (inputKg.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
+            if (kilatKiloan.isChecked()) {
+                inputKg.setHint("Input estimated kg here");
+            }
+            if (kilatSatuan.isChecked()) {
+                inputKg.setHint("Input estimated pcs here");
+            }
             inputKg.setVisibility(x);
             regulerSatuan.setEnabled(false);
             regulerPair.setEnabled(false);
@@ -881,6 +887,12 @@ public class OrderProcess extends AppCompatActivity {
     public void checkButton1(View view) {
         if (check1==0){
             int x = (inputKg1.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
+            if (regulerKiloan.isChecked()) {
+                inputKg1.setHint("Input estimated kg here");
+            }
+            if (regulerSatuan.isChecked()) {
+                inputKg1.setHint("Input estimated pcs here");
+            }
             inputKg1.setVisibility(x);
             kilatSatuan.setEnabled(false);
             kilatKiloan.setEnabled(false);

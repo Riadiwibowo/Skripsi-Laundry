@@ -64,18 +64,25 @@ public class MyAdapterTransactionLaundry extends RecyclerView.Adapter<MyAdapterT
     public void onBindViewHolder(@NonNull MyAdapterTransactionLaundry.MyViewHolder holder, int position) {
         //isi dulu attribute myViewHolder
         //saat tarik viewHolder, kita isi di posisi berapa
-        holder.myText1.setText(transactionList.get(position).getNamaLaundry());
+        holder.myText1.setText(transactionList.get(position).getNamaUser());
         holder.myText2.setText(transactionList.get(position).getHarga());
         if(transactionList.get(position).getStatus().toString().equals("0")){
             holder.myText3.setText("Awaiting");
-        }else if(transactionList.get(position).getStatus().toString().equals("1")){
-            holder.myText3.setText("On Process");
-        }else if(transactionList.get(position).getStatus().toString().equals("2")){
-            holder.myText3.setText("Done");
-        }else if(transactionList.get(position).getStatus().toString().equals("3")){
-            holder.myText3.setText("Cancelled");
-        }else if(transactionList.get(position).getStatus().toString().equals("4")){
+        }
+        else if(transactionList.get(position).getStatus().toString().equals("1")){
+            holder.myText3.setText("Accepted");
+        }
+        else if(transactionList.get(position).getStatus().toString().equals("2")){
             holder.myText3.setText("On Pickup");
+        }
+        else if(transactionList.get(position).getStatus().toString().equals("3")){
+            holder.myText3.setText("On Process");
+        }
+        else if(transactionList.get(position).getStatus().toString().equals("4")){
+            holder.myText3.setText("Done");
+        }
+        else if(transactionList.get(position).getStatus().toString().equals("5")){
+            holder.myText3.setText("Cancelled");
         }
         holder.myText4.setText(transactionList.get(position).getId());
     }

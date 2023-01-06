@@ -35,7 +35,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class OrderDetail extends AppCompatActivity {
+public class OrderDetailNew extends AppCompatActivity {
 
     TextView Id, namaLaundry, noTelp, alamat, category, service, price, tanggalpickup, jampickup, alamatpickup, editTanggal, editJam;
     private int jam, menit;
@@ -45,14 +45,22 @@ public class OrderDetail extends AppCompatActivity {
     FirebaseUser fUser;
     String userId, trId;
     Spinner rescheduleSpinner;
-    LinearLayout layoutPickup, layoutReschedule, bodyPickupTop;
+    LinearLayout layoutPickup, layoutReschedule;
     Button btnCancel, btnSave, btnAccept;
     Space space;
+
+    //daniel
+    TextView status;
+    TextView jumlahbaju, jumlahsepatu, jumlahothers;
+    String categoryDetail, servicesDetail;
+    LinearLayout detailBaju, detailSepatu, detailOthers, bodyPickupTop;
+    TextView subTotalBaju, subTotalSepatu, subTotalOthers;
+    Integer subCalcSatuan=0, subCalcKiloan=0, subCalcSepatu=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_detail);
+        setContentView(R.layout.activity_order_detail_new);
 
         getSupportActionBar().setTitle("Transaction Detail");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -66,13 +74,26 @@ public class OrderDetail extends AppCompatActivity {
 
         Id = findViewById(R.id.Id);
 
+        //daniel properties UI new
+        status = findViewById(R.id.Status);
+        detailBaju = findViewById(R.id.detailBaju);
+        detailSepatu = findViewById(R.id.detailSepatu);
+//        detailOthers = findViewById(R.id.detailOthers);
+        jumlahbaju = findViewById(R.id.jumlahbaju);
+        jumlahsepatu = findViewById(R.id.jumlahsepatu);
+//        jumlahothers = findViewById(R.id.jumlahothers);
+        subTotalBaju = findViewById(R.id.subTotalBaju);
+        subTotalSepatu = findViewById(R.id.subTotalSepatu);
+//        subTotalOthers = findViewById(R.id.subTotalOthers);
+
+
         //laundry properties
         namaLaundry = findViewById(R.id.namaLaundry);
         noTelp = findViewById(R.id.noTelp);
         alamat = findViewById(R.id.alamat);
 
         //order properties
-        category = findViewById(R.id.category);
+//        category = findViewById(R.id.category);
         service = findViewById(R.id.service);
         price = findViewById(R.id.price);
 
@@ -103,23 +124,140 @@ public class OrderDetail extends AppCompatActivity {
 
         Id.setText(orderid);
 
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.child("nama").getValue().toString().equals(namaLaundry1)) {
+                        noTelp.setText(dataSnapshot.child("phone").getValue().toString());
+                        if (dataSnapshot.child("address").exists()) {
+                            alamat.setText(dataSnapshot.child("address").getValue().toString());
+                        }
+                        else {
+                            alamat.setText("-");
+                        }
+                        if (dataSnapshot.child("Harga").child("Satuan").exists()){
+                            subCalcSatuan = Integer.valueOf(dataSnapshot.child("Harga").child("Satuan").getValue().toString());
+                        }
+                        if (dataSnapshot.child("Harga").child("Kiloan").exists()){
+                            subCalcKiloan = Integer.valueOf(dataSnapshot.child("Harga").child("Kiloan").getValue().toString());
+                        }
+                        if (dataSnapshot.child("Harga").child("Sepatu").exists()){
+                            subCalcSepatu = Integer.valueOf(dataSnapshot.child("Harga").child("Sepatu").getValue().toString());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         databaseReferenceT.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (dataSnapshot.child("id").getValue().toString().equals(orderid)) {
-                        namaLaundry.setText("Nama Laundry: " + dataSnapshot.child("namaLaundry").getValue().toString());
-                        category.setText("Category: " + dataSnapshot.child("category").getValue().toString());
+                        namaLaundry.setText(dataSnapshot.child("namaLaundry").getValue().toString());
+//                        category.setText("Category: " + dataSnapshot.child("category").getValue().toString());
+//                        service.setText("Services: " + dataSnapshot.child("services").getValue().toString());
+                        price.setText(dataSnapshot.child("harga").getValue().toString());
                         service.setText("Services: " + dataSnapshot.child("services").getValue().toString());
-                        price.setText("Harga: " + dataSnapshot.child("harga").getValue().toString());
+                        categoryDetail = dataSnapshot.child("category").getValue().toString();
+                        servicesDetail = dataSnapshot.child("services").getValue().toString();
+                        if (categoryDetail.contains("Baju") || categoryDetail.contains("Baju")){
+//                            detailOthers.setVisibility(View.GONE);
+                            detailSepatu.setVisibility(View.GONE);
+                            if (dataSnapshot.child("services").getValue().toString().contains("Satuan") || dataSnapshot.child("services").getValue().toString().contains("satuan")){
+                                jumlahbaju.setText(dataSnapshot.child("jumlah").getValue().toString() + " pcs");
+                                if (subCalcSatuan!=0){
+                                    subTotalBaju.setText(String.valueOf(subCalcSatuan*Integer.valueOf(dataSnapshot.child("jumlah").getValue().toString())));
+                                }
+                            }
+                            if (dataSnapshot.child("services").getValue().toString().contains("Kiloan") || dataSnapshot.child("services").getValue().toString().contains("kiloan")){
+                                jumlahbaju.setText(dataSnapshot.child("berat").getValue().toString() + " kg");
+                                if (subCalcKiloan!=0){
+                                    subTotalBaju.setText(String.valueOf(subCalcKiloan*Integer.valueOf(dataSnapshot.child("berat").getValue().toString())));
+                                }
+                            }
+                            if (categoryDetail.contains("sepatu") || categoryDetail.contains("Sepatu")){
+//                                detailOthers.setVisibility(View.GONE);
+                                detailSepatu.setVisibility(View.VISIBLE);
+                                if (dataSnapshot.child("services").getValue().toString().contains("pair") || dataSnapshot.child("services").getValue().toString().contains("Pair")){
+                                    jumlahsepatu.setText(dataSnapshot.child("pair").getValue().toString() + " pair(s)");
+                                    if (subCalcSepatu!=0){
+                                        subTotalSepatu.setText(String.valueOf(subCalcSepatu*Integer.valueOf(dataSnapshot.child("pair").getValue().toString())));
+                                    }
+                                }
+                            }
+                            if (categoryDetail.contains("others") || categoryDetail.contains("Others")){
+//                                detailOthers.setVisibility(View.VISIBLE);
+                                if (dataSnapshot.child("services").getValue().toString().contains("Satuan") || dataSnapshot.child("services").getValue().toString().contains("satuan")){
+                                    jumlahbaju.setText(dataSnapshot.child("jumlah").getValue().toString() + " pcs");
+                                    if (subCalcSatuan!=0){
+                                        subTotalBaju.setText(String.valueOf(subCalcSatuan*Integer.valueOf(dataSnapshot.child("jumlah").getValue().toString())));
+                                    }
+                                }
+                                if (dataSnapshot.child("services").getValue().toString().contains("Kiloan") || dataSnapshot.child("services").getValue().toString().contains("kiloan")){
+                                    jumlahbaju.setText(dataSnapshot.child("berat").getValue().toString() + " kg");
+                                    if (subCalcKiloan!=0){
+                                        subTotalBaju.setText(String.valueOf(subCalcKiloan*Integer.valueOf(dataSnapshot.child("berat").getValue().toString())));
+                                    }
+                                }
+                            }
+                        }
+                        else if (categoryDetail.contains("sepatu") || categoryDetail.contains("Sepatu")){
+//                            detailOthers.setVisibility(View.GONE);
+                            detailBaju.setVisibility(View.GONE);
+                            if (dataSnapshot.child("services").getValue().toString().contains("pair") || dataSnapshot.child("services").getValue().toString().contains("Pair")){
+                                jumlahsepatu.setText(dataSnapshot.child("pair").getValue().toString() + " pair(s)");
+                                if (subCalcSepatu!=0){
+                                    subTotalSepatu.setText(String.valueOf(subCalcSepatu*Integer.valueOf(dataSnapshot.child("pair").getValue().toString())));
+                                }
+                            }
+                            if (categoryDetail.contains("others") || categoryDetail.contains("Others")){
+//                                detailOthers.setVisibility(View.VISIBLE);
+                                if (dataSnapshot.child("services").getValue().toString().contains("Satuan") || dataSnapshot.child("services").getValue().toString().contains("satuan")){
+                                    jumlahbaju.setText(dataSnapshot.child("jumlah").getValue().toString() + " pcs");
+                                    if (subCalcSatuan!=0){
+                                        subTotalBaju.setText(String.valueOf(subCalcSatuan*Integer.valueOf(dataSnapshot.child("jumlah").getValue().toString())));
+                                    }
+                                }
+                                if (dataSnapshot.child("services").getValue().toString().contains("Kiloan") || dataSnapshot.child("services").getValue().toString().contains("kiloan")){
+                                    jumlahbaju.setText(dataSnapshot.child("berat").getValue().toString() + " kg");
+                                    if (subCalcKiloan!=0){
+                                        subTotalBaju.setText(String.valueOf(subCalcKiloan*Integer.valueOf(dataSnapshot.child("berat").getValue().toString())));
+                                    }
+                                }
+                            }
+                        }
+                        else if (categoryDetail.contains("others") || categoryDetail.contains("Others")){
+//                                detailOthers.setVisibility(View.VISIBLE);
+                            if (dataSnapshot.child("services").getValue().toString().contains("Satuan") || dataSnapshot.child("services").getValue().toString().contains("satuan")){
+                                jumlahbaju.setText(dataSnapshot.child("jumlah").getValue().toString() + " pcs");
+                                if (subCalcSatuan!=0){
+                                    subTotalBaju.setText(String.valueOf(subCalcSatuan*Integer.valueOf(dataSnapshot.child("jumlah").getValue().toString())));
+                                }
+                            }
+                            if (dataSnapshot.child("services").getValue().toString().contains("Kiloan") || dataSnapshot.child("services").getValue().toString().contains("kiloan")){
+                                jumlahbaju.setText(dataSnapshot.child("berat").getValue().toString() + " kg");
+                                if (subCalcKiloan!=0){
+                                    subTotalBaju.setText(String.valueOf(subCalcKiloan*Integer.valueOf(dataSnapshot.child("berat").getValue().toString())));
+                                }
+                            }
+                        }
+
+
                         if (dataSnapshot.child("Tanggal pickup").exists()){
-                            tanggalpickup.setText("Tanggal pickup: " + dataSnapshot.child("Tanggal pickup").getValue().toString());
+                            tanggalpickup.setText(dataSnapshot.child("Tanggal pickup").getValue().toString());
                         }
                         if (dataSnapshot.child("Jam pickup").exists()){
-                            jampickup.setText("Jam pickup: " + dataSnapshot.child("Jam pickup").getValue().toString());
+                            jampickup.setText(dataSnapshot.child("Jam pickup").getValue().toString());
                         }
                         if (dataSnapshot.child("address").exists()){
-                            alamatpickup.setText("Alamat pickup: " + dataSnapshot.child("address").getValue().toString());
+                            alamatpickup.setText(dataSnapshot.child("address").getValue().toString());
                         }
                         if (dataSnapshot.child("isPickup").getValue().toString().equals("No")) {
                             bodyPickupTop.setVisibility(View.GONE);
@@ -204,20 +342,20 @@ public class OrderDetail extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 databaseReferenceT.child(orderid).child("status").setValue("5");
-                                startActivity(new Intent(OrderDetail.this, HomeActivity.class));
+                                startActivity(new Intent(OrderDetailNew.this, HomeActivity.class));
                             }
                         });
                         btnSave.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 if (editTanggal.getText().toString().equals("Tanggal?") || editJam.getText().toString().equals("Jam?")) {
-                                    Toast.makeText(OrderDetail.this, "Harus input data reschedule", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(OrderDetailNew.this, "Harus input data reschedule", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                                 else {
                                     databaseReferenceT.child(orderid).child("Tanggal pickup").setValue(editTanggal.getText().toString());
                                     databaseReferenceT.child(orderid).child("Jam pickup").setValue(editJam.getText().toString());
-                                    startActivity(new Intent(OrderDetail.this, HomeActivity.class));
+                                    startActivity(new Intent(OrderDetailNew.this, HomeActivity.class));
                                 }
                             }
                         });
@@ -231,27 +369,6 @@ public class OrderDetail extends AppCompatActivity {
             }
         });
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    if (dataSnapshot.child("nama").getValue().toString().equals(namaLaundry1)) {
-                           noTelp.setText("No. Telp: " + dataSnapshot.child("phone").getValue().toString());
-                           if (dataSnapshot.child("address").exists()) {
-                               alamat.setText("Alamat: " + dataSnapshot.child("address").getValue().toString());
-                           }
-                           else {
-                               alamat.setText("Alamat: -");
-                           }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         editJam.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -261,7 +378,7 @@ public class OrderDetail extends AppCompatActivity {
                 menit = calendar.get(Calendar.MINUTE);
 
                 TimePickerDialog timedialog;
-                timedialog = new TimePickerDialog(OrderDetail.this, new TimePickerDialog.OnTimeSetListener() {
+                timedialog = new TimePickerDialog(OrderDetailNew.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                         jam = hour;
@@ -288,7 +405,7 @@ public class OrderDetail extends AppCompatActivity {
                 tahun = calendar.get(Calendar.YEAR);
 
                 DatePickerDialog datedialog;
-                datedialog = new DatePickerDialog(OrderDetail.this, new DatePickerDialog.OnDateSetListener() {
+                datedialog = new DatePickerDialog(OrderDetailNew.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int date, int month, int year) {
                         tanggal = date;

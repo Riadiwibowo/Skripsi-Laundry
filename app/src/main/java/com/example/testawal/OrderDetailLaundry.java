@@ -109,9 +109,14 @@ public class OrderDetailLaundry extends AppCompatActivity {
                             btnPickup.setVisibility(View.GONE);
                             space1.setVisibility(View.GONE);
                             if (dataSnapshot.child("status").getValue().toString().equals("1")) {
-                                btnAccept.setText("Done");
+                                btnAccept.setText("On Process");
                             }
-                            if (dataSnapshot.child("status").getValue().toString().equals("2") || dataSnapshot.child("status").getValue().toString().equals("3")) {
+                            if (dataSnapshot.child("status").getValue().toString().equals("3")) {
+                                btnCancel.setVisibility(View.GONE);
+                                btnAccept.setText("Done");
+                                space.setVisibility(View.GONE);
+                            }
+                            if (dataSnapshot.child("status").getValue().toString().equals("4") || dataSnapshot.child("status").getValue().toString().equals("5")) {
                                 btnCancel.setVisibility(View.GONE);
                                 btnAccept.setVisibility(View.GONE);
                                 space.setVisibility(View.GONE);
@@ -123,20 +128,28 @@ public class OrderDetailLaundry extends AppCompatActivity {
                                 space1.setVisibility(View.GONE);
                             }
                             if (dataSnapshot.child("status").getValue().toString().equals("1")) {
-                                btnAccept.setVisibility(View.GONE);
+                                btnPickup.setVisibility(View.VISIBLE);
                                 space.setVisibility(View.GONE);
+                                btnAccept.setVisibility(View.GONE);
                             }
-                            if (dataSnapshot.child("status").getValue().toString().equals("4")) {
+                            if (dataSnapshot.child("status").getValue().toString().equals("2")) {
                                 btnCancel.setVisibility(View.GONE);
+                                space.setVisibility(View.GONE);
+                                space1.setVisibility(View.GONE);
+                                btnPickup.setVisibility(View.GONE);
+                                btnAccept.setText("On Process");
+                            }
+                            if (dataSnapshot.child("status").getValue().toString().equals("3")) {
+                                btnCancel.setVisibility(View.GONE);
+                                btnAccept.setText("Done");
                                 btnPickup.setVisibility(View.GONE);
                                 space.setVisibility(View.GONE);
                                 space1.setVisibility(View.GONE);
-                                btnAccept.setText("Done");
                             }
-                            if (dataSnapshot.child("status").getValue().toString().equals("2") || dataSnapshot.child("status").getValue().toString().equals("3")) {
+                            if (dataSnapshot.child("status").getValue().toString().equals("4") || dataSnapshot.child("status").getValue().toString().equals("5")) {
                                 btnCancel.setVisibility(View.GONE);
-                                btnAccept.setVisibility(View.GONE);
                                 btnPickup.setVisibility(View.GONE);
+                                btnAccept.setVisibility(View.GONE);
                                 space.setVisibility(View.GONE);
                                 space1.setVisibility(View.GONE);
                             }
@@ -144,7 +157,7 @@ public class OrderDetailLaundry extends AppCompatActivity {
                         btnCancel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                databaseReferenceT.child(orderid).child("status").setValue("3");
+                                databaseReferenceT.child(orderid).child("status").setValue("5");
                                 startActivity(new Intent(OrderDetailLaundry.this, LaundryTransaction.class));
                             }
                         });
@@ -155,8 +168,12 @@ public class OrderDetailLaundry extends AppCompatActivity {
                                     databaseReferenceT.child(orderid).child("status").setValue("1");
                                     startActivity(new Intent(OrderDetailLaundry.this, LaundryTransaction.class));
                                 }
+                                else if (btnAccept.getText().toString().equals("On Process") || btnAccept.getText().toString().equals("ON PROCESS")) {
+                                    databaseReferenceT.child(orderid).child("status").setValue("3");
+                                    startActivity(new Intent(OrderDetailLaundry.this, LaundryTransaction.class));
+                                }
                                 else if (btnAccept.getText().toString().equals("DONE") || btnAccept.getText().toString().equals("Done")) {
-                                    databaseReferenceT.child(orderid).child("status").setValue("2");
+                                    databaseReferenceT.child(orderid).child("status").setValue("4");
                                     startActivity(new Intent(OrderDetailLaundry.this, LaundryTransaction.class));
                                 }
                             }
@@ -164,7 +181,7 @@ public class OrderDetailLaundry extends AppCompatActivity {
                         btnPickup.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                databaseReferenceT.child(orderid).child("status").setValue("4");
+                                databaseReferenceT.child(orderid).child("status").setValue("2");
                                 startActivity(new Intent(OrderDetailLaundry.this, LaundryTransaction.class));
                             }
                         });

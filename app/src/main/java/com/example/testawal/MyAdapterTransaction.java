@@ -50,7 +50,7 @@ public class MyAdapterTransaction extends RecyclerView.Adapter<MyAdapterTransact
             @Override
             public void onClick(View view) {
 //                Toast.makeText(context, "nama = " + transactionList.get(viewHolder.getAdapterPosition()).getNamaUser(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, OrderDetail.class);
+                Intent intent = new Intent(context, OrderDetailNew.class);
                 intent.putExtra("orderid", transactionList.get(viewHolder.getAdapterPosition()).getId());
                 intent.putExtra("namaLaundry1", transactionList.get(viewHolder.getAdapterPosition()).getNamaLaundry());
                 context.startActivity(intent);
@@ -69,14 +69,21 @@ public class MyAdapterTransaction extends RecyclerView.Adapter<MyAdapterTransact
         holder.myText2.setText(transactionList.get(position).getHarga());
         if(transactionList.get(position).getStatus().toString().equals("0")){
             holder.myText3.setText("Awaiting");
-        }else if(transactionList.get(position).getStatus().toString().equals("1")){
-            holder.myText3.setText("On Process");
-        }else if(transactionList.get(position).getStatus().toString().equals("2")){
-            holder.myText3.setText("Done");
-        }else if(transactionList.get(position).getStatus().toString().equals("3")){
-            holder.myText3.setText("Cancelled");
-        }else if(transactionList.get(position).getStatus().toString().equals("4")){
+        }
+        else if(transactionList.get(position).getStatus().toString().equals("1")){
+            holder.myText3.setText("Accepted");
+        }
+        else if(transactionList.get(position).getStatus().toString().equals("2")){
             holder.myText3.setText("On Pickup");
+        }
+        else if(transactionList.get(position).getStatus().toString().equals("3")){
+            holder.myText3.setText("On Process");
+        }
+        else if(transactionList.get(position).getStatus().toString().equals("4")){
+            holder.myText3.setText("Done");
+        }
+        else if(transactionList.get(position).getStatus().toString().equals("5")){
+            holder.myText3.setText("Cancelled");
         }
         holder.myText4.setText(transactionList.get(position).getId());
     }
