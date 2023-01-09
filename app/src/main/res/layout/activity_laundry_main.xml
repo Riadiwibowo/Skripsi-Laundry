@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="160dp"
         android:background="@drawable/belakangmain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,11 +20,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="58dp"
+            android:layout_marginTop="48dp"
             android:text="Hello, Laundry!!"
             android:textColor="@color/white"
             android:textSize="30dp"
             android:textStyle="bold"
+            android:fontFamily="@font/ralewayregular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,9 +34,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:text="Manage your laundry here"
+            android:text="Kelola Laundry Anda"
             android:textColor="@color/white"
             android:textSize="20dp"
+            android:fontFamily="@font/ralewayregular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtTop" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -86,10 +88,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Profile"
+                        android:text="Profil"
                         android:textAlignment="center"
                         android:textSize="18dp"
                         android:textStyle="bold"
+                        android:fontFamily="@font/ralewayregular"
                         android:layout_gravity="center"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -121,10 +124,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Transaction"
+                        android:text="Transaksi"
                         android:textAlignment="center"
                         android:textSize="18sp"
                         android:textStyle="bold"
+                        android:fontFamily="@font/ralewayregular"
                         android:layout_gravity="center"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

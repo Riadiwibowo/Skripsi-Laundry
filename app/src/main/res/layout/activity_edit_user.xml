@@ -24,6 +24,7 @@
             android:background="@drawable/edittextrgsshape"
             android:hint="Nama"
             android:textAlignment="center"
+            android:fontFamily="@font/ralewayregular"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -31,27 +32,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.17" />
 
-<!--        <EditText-->
-<!--            android:id="@+id/txtUserEmail"-->
-<!--            android:layout_width="300dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:background="@drawable/edittextrgsshape"-->
-<!--            android:hint="Email"-->
-<!--            android:textAlignment="center"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.498"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintVertical_bias="0.5" />-->
-
         <EditText
             android:id="@+id/txtUserPhone"
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:background="@drawable/edittextrgsshape"
-            android:hint="No Telp"
+            android:hint="Nomor Telepon"
             android:textAlignment="center"
+            android:fontFamily="@font/ralewayregular"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -67,6 +55,7 @@
         android:background="@drawable/buttonsave"
         android:text="Save"
         android:textColor="@color/white"
+        android:fontFamily="@font/ralewayregular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

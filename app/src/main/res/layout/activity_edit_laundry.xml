@@ -83,6 +83,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/edittextshape"
                     android:hint="Deskripsi"
+                    android:fontFamily="@font/ralewayregular"
                     android:paddingLeft="8dp" />
 
                 <EditText
@@ -92,6 +93,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/edittextshape"
                     android:hint="Nama"
+                    android:fontFamily="@font/ralewayregular"
                     android:paddingLeft="8dp" />
 
                 <EditText
@@ -100,7 +102,8 @@
                     android:layout_height="40dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/edittextshape"
-                    android:hint="No Telp"
+                    android:hint="Nomor Telepon"
+                    android:fontFamily="@font/ralewayregular"
                     android:paddingLeft="8dp" />
 
                 <EditText
@@ -109,6 +112,7 @@
                     android:layout_height="40dp"
                     android:background="@drawable/edittextshape"
                     android:hint="Alamat"
+                    android:fontFamily="@font/ralewayregular"
                     android:paddingLeft="8dp" />
             </LinearLayout>
 
@@ -123,17 +127,18 @@
                 <ImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/category"/>
+                    android:src="@drawable/washing_machine"/>
 
                 <TextView
                     android:id="@+id/txtServices"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
-                    android:text="Services:"
+                    android:text="Services"
                     android:textColor="@color/white"
                     android:textSize="24dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:fontFamily="@font/ralewayregular"/>
 
             </LinearLayout>
 
@@ -162,6 +167,7 @@
                             android:layout_height="wrap_content"
                             android:text="Kilat"
                             android:textSize="16dp"
+                            android:fontFamily="@font/ralewayregular"
                             android:buttonTint="@color/blue"/>
 
                         <CheckBox
@@ -170,6 +176,7 @@
                             android:layout_height="wrap_content"
                             android:text="Pickup"
                             android:textSize="16dp"
+                            android:fontFamily="@font/ralewayregular"
                             android:buttonTint="@color/blue"/>
 
                     </LinearLayout>
@@ -185,6 +192,7 @@
                             android:layout_height="wrap_content"
                             android:text="Satuan"
                             android:textSize="16dp"
+                            android:fontFamily="@font/ralewayregular"
                             android:buttonTint="@color/blue"/>
 
                         <CheckBox
@@ -193,6 +201,7 @@
                             android:layout_height="wrap_content"
                             android:text="Kiloan"
                             android:textSize="16dp"
+                            android:fontFamily="@font/ralewayregular"
                             android:buttonTint="@color/blue"/>
 
                     </LinearLayout>
@@ -212,17 +221,18 @@
                 <ImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/washing_machine" />
+                    android:src="@drawable/category" />
 
                 <TextView
                     android:id="@+id/txtCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
-                    android:text="Category:"
+                    android:text="Category"
                     android:textColor="@color/white"
                     android:textSize="24dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/ralewayregular" />
 
             </LinearLayout>
 
@@ -240,6 +250,7 @@
                     android:layout_height="wrap_content"
                     android:text="Baju"
                     android:textSize="16dp"
+                    android:fontFamily="@font/ralewayregular"
                     android:buttonTint="@color/blue"/>
 
                 <CheckBox
@@ -248,14 +259,16 @@
                     android:layout_height="wrap_content"
                     android:text="Sepatu"
                     android:textSize="16dp"
+                    android:fontFamily="@font/ralewayregular"
                     android:buttonTint="@color/blue"/>
 
                 <CheckBox
                     android:id="@+id/category3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Others"
+                    android:text="Lain-lain"
                     android:textSize="16dp"
+                    android:fontFamily="@font/ralewayregular"
                     android:buttonTint="@color/blue"/>
 
             </LinearLayout>
@@ -264,17 +277,25 @@
                 android:id="@+id/layoutHarga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="20dp">
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/dollar"/>
 
                 <TextView
                     android:id="@+id/txtHarga"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Harga:"
+                    android:layout_marginLeft="12dp"
+                    android:text="Harga"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/ralewayregular" />
 
             </LinearLayout>
 
@@ -303,7 +324,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             android:text="Satuan: "
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/ralewayregular" />
 
                         <EditText
                             android:id="@+id/inputHargaSatuan"
@@ -311,7 +333,8 @@
                             android:layout_width="100dp"
                             android:layout_height="25dp"
                             android:padding="4dp"
-                            android:textSize="14dp"/>
+                            android:textSize="14dp"
+                            android:fontFamily="@font/ralewayregular"/>
 
                     </LinearLayout>
 
@@ -328,7 +351,8 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginTop="8dp"
                             android:text="Kiloan: "
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/ralewayregular" />
 
                         <EditText
                             android:id="@+id/inputHargaKiloan"
@@ -336,7 +360,8 @@
                             android:layout_width="100dp"
                             android:layout_height="25dp"
                             android:padding="4dp"
-                            android:textSize="14dp"/>
+                            android:textSize="14dp"
+                            android:fontFamily="@font/ralewayregular"/>
 
                     </LinearLayout>
 
@@ -356,7 +381,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:text="Sepatu: "
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/ralewayregular" />
 
                     <EditText
                         android:id="@+id/inputHargaSepatu"
@@ -364,7 +390,8 @@
                         android:layout_width="100dp"
                         android:layout_height="25dp"
                         android:padding="4dp"
-                        android:textSize="14dp"/>
+                        android:textSize="14dp"
+                        android:fontFamily="@font/ralewayregular"/>
 
 
                     <TextView
@@ -374,7 +401,8 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="5dp"
                         android:text="Pickup: "
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/ralewayregular" />
 
                     <EditText
                         android:id="@+id/inputHargaPickup"
@@ -382,7 +410,8 @@
                         android:layout_width="100dp"
                         android:layout_height="25dp"
                         android:padding="4dp"
-                        android:textSize="14dp"/>
+                        android:textSize="14dp"
+                        android:fontFamily="@font/ralewayregular"/>
 
                 </LinearLayout>
 
@@ -398,6 +427,7 @@
                 android:layout_marginBottom="12dp"
                 android:text="Save"
                 android:textColor="@color/white"
+                android:fontFamily="@font/ralewayregular"
                 app:layout_constraintVertical_bias="0.962" />
 
         </LinearLayout>

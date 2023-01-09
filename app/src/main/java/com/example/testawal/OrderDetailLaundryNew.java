@@ -35,9 +35,9 @@ import com.google.firebase.storage.StorageReference;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class OrderDetailNew extends AppCompatActivity {
+public class OrderDetailLaundryNew extends AppCompatActivity {
 
-    TextView Id, namaLaundry, noTelp, alamat, category, service, price, tanggalpickup, jampickup, alamatpickup, editTanggal, editJam;
+    TextView Id, namaUser, noTelp, alamat, category, service, price, tanggalpickup, jampickup, alamatpickup, editTanggal, editJam;
     private int jam, menit;
     private int tanggal, bulan, tahun;
     DatabaseReference databaseReference, databaseReferenceT;
@@ -46,8 +46,8 @@ public class OrderDetailNew extends AppCompatActivity {
     String userId, trId;
     Spinner rescheduleSpinner;
     LinearLayout layoutPickup, layoutReschedule;
-    Button btnCancel, btnSave, btnAccept;
-    Space space;
+    Button btnCancel, btnAccept, btnPickup;
+    Space space, space1;
 
     //daniel
     TextView status;
@@ -60,7 +60,7 @@ public class OrderDetailNew extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_detail_new);
+        setContentView(R.layout.activity_order_detail_laundry_new);
 
         getSupportActionBar().setTitle("Transaction Detail");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -88,7 +88,7 @@ public class OrderDetailNew extends AppCompatActivity {
 
 
         //laundry properties
-        namaLaundry = findViewById(R.id.namaLaundry);
+        namaUser = findViewById(R.id.namaUser);
         noTelp = findViewById(R.id.noTelp);
         alamat = findViewById(R.id.alamat);
 
@@ -101,26 +101,19 @@ public class OrderDetailNew extends AppCompatActivity {
         tanggalpickup = findViewById(R.id.tanggalPickup);
         jampickup = findViewById(R.id.jamPickup);
         alamatpickup = findViewById(R.id.alamatpickup);
-
-        //reschedule properties
-        bodyPickupTop = findViewById(R.id.bodyPickupTop);
-        rescheduleSpinner = findViewById(R.id.rescheduleSpinner);
-        String[] items = new String[]{"No", "Yes"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        rescheduleSpinner.setAdapter(adapter);
-        editTanggal = findViewById(R.id.editTanggal);
-        editJam = findViewById(R.id.editJam);
         layoutPickup = findViewById(R.id.layoutPickup);
-        layoutReschedule = findViewById(R.id.layoutReschedule);
 
         //button properties
         btnCancel = findViewById(R.id.btnCancel);
-        btnSave = findViewById(R.id.btnSave);
+        btnAccept = findViewById(R.id.btnAccept);
+        btnPickup = findViewById(R.id.btnPickup);
         space = findViewById(R.id.space);
+        space1 = findViewById(R.id.space1);
 
         Bundle b = getIntent().getExtras();
         String orderid = (String) b.get("orderid");
         String namaLaundry1 = (String) b.get("namaLaundry1");
+        String namaUser1 = (String) b.get("namaUser1");
 
         Id.setText("Order ID: " + orderid);
 
@@ -128,14 +121,11 @@ public class OrderDetailNew extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.child("nama").getValue().toString().equals(namaUser1)) {
+                        noTelp.setText(dataSnapshot.child("phone").getValue().toString());
+                    }
                     if (dataSnapshot.child("nama").getValue().toString().equals(namaLaundry1)) {
                         noTelp.setText(dataSnapshot.child("phone").getValue().toString());
-                        if (dataSnapshot.child("address").exists()) {
-                            alamat.setText(dataSnapshot.child("address").getValue().toString());
-                        }
-                        else {
-                            alamat.setText("-");
-                        }
                         if (dataSnapshot.child("Harga").child("Satuan").exists()){
                             subCalcSatuan = Integer.valueOf(dataSnapshot.child("Harga").child("Satuan").getValue().toString());
                         }
@@ -160,7 +150,7 @@ public class OrderDetailNew extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (dataSnapshot.child("id").getValue().toString().equals(orderid)) {
-                        namaLaundry.setText(dataSnapshot.child("namaLaundry").getValue().toString());
+                        namaUser.setText(dataSnapshot.child("namaUser").getValue().toString());
 //                        category.setText("Category: " + dataSnapshot.child("category").getValue().toString());
 //                        service.setText("Services: " + dataSnapshot.child("services").getValue().toString());
                         if (dataSnapshot.child("status").getValue().toString().equals("0")) {
@@ -278,103 +268,84 @@ public class OrderDetailNew extends AppCompatActivity {
                             alamatpickup.setText(dataSnapshot.child("address").getValue().toString());
                         }
                         if (dataSnapshot.child("isPickup").getValue().toString().equals("No")) {
-                            bodyPickupTop.setVisibility(View.GONE);
                             layoutPickup.setVisibility(View.GONE);
-                            layoutReschedule.setVisibility(View.GONE);
-                            btnSave.setVisibility(View.GONE);
-                            space.setVisibility(View.GONE);
-                            if (dataSnapshot.child("status").getValue().toString().equals("3") || dataSnapshot.child("status").getValue().toString().equals("4") || dataSnapshot.child("status").getValue().toString().equals("5")) {
-                                btnCancel.setVisibility(View.GONE);
+                            btnPickup.setVisibility(View.GONE);
+                            space1.setVisibility(View.GONE);
+                            if (dataSnapshot.child("status").getValue().toString().equals("1")) {
+                                btnAccept.setText("On Process");
                             }
-                        }
-
-                        //4=on pickup 2=done
-                        else if (dataSnapshot.child("isPickup").getValue().toString().equals("Yes")) {
-                            if (dataSnapshot.child("status").getValue().toString().equals("2") || dataSnapshot.child("status").getValue().toString().equals("3") || dataSnapshot.child("status").getValue().toString().equals("4") || dataSnapshot.child("status").getValue().toString().equals("5")) {
-                                bodyPickupTop.setVisibility(View.GONE);
-                                layoutReschedule.setVisibility(View.GONE);
+                            if (dataSnapshot.child("status").getValue().toString().equals("3")) {
                                 btnCancel.setVisibility(View.GONE);
-                                btnSave.setVisibility(View.GONE);
+                                btnAccept.setText("Done");
                                 space.setVisibility(View.GONE);
                             }
-                            rescheduleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                @Override
-                                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                    if (rescheduleSpinner.getItemAtPosition(i).toString().equals("Yes")){
-                                        if (dataSnapshot.child("status").getValue().toString().equals("0") || dataSnapshot.child("status").getValue().toString().equals("1")) {
-                                            layoutReschedule.setVisibility(View.VISIBLE);
-                                            btnCancel.setVisibility(View.VISIBLE);
-                                            btnSave.setVisibility(View.VISIBLE);
-                                            space.setVisibility(View.VISIBLE);
-                                        }
-                                    }
-                                    else if (rescheduleSpinner.getItemAtPosition(i).toString().equals("No")){
-                                        layoutReschedule.setVisibility(View.GONE);
-                                        btnSave.setVisibility(View.GONE);
-                                        space.setVisibility(View.GONE);
-                                        if (dataSnapshot.child("status").getValue().toString().equals("0")) {
-                                            btnCancel.setVisibility(View.VISIBLE);
-                                        }
-                                        if (dataSnapshot.child("status").getValue().toString().equals("1")) {
-                                            btnCancel.setVisibility(View.VISIBLE);
-                                        }
-                                    }
-                                }
-
-                                @Override
-                                public void onNothingSelected(AdapterView<?> adapterView) {
-
-                                }
-                            });
-//                            if (rescheduleSpinner.getSelectedItem().toString().equals("No")) {
-//                                layoutReschedule.setVisibility(View.GONE);
-//                                btnSave.setVisibility(View.GONE);
-//                                space.setVisibility(View.GONE);
-//                                if (dataSnapshot.child("status").getValue().toString().equals("0")) {
-//                                    btnCancel.setVisibility(View.VISIBLE);
-//                                }
-//                                if (dataSnapshot.child("status").getValue().toString().equals("1") || dataSnapshot.child("status").getValue().toString().equals("2") || dataSnapshot.child("status").getValue().toString().equals("3") || dataSnapshot.child("status").getValue().toString().equals("4")) {
-//                                    btnCancel.setVisibility(View.GONE);
-//                                }
-//                            }
-//                            else if (rescheduleSpinner.getSelectedItem().toString().equals("Yes")) {
-//                                layoutReschedule.setVisibility(View.VISIBLE);
-//                                if (dataSnapshot.child("status").getValue().toString().equals("0")) {
-//                                    btnCancel.setVisibility(View.VISIBLE);
-//                                    btnSave.setVisibility(View.VISIBLE);
-//                                }
-//                                if (dataSnapshot.child("status").getValue().toString().equals("1")) {
-//                                    btnCancel.setVisibility(View.GONE);
-//                                    space.setVisibility(View.GONE);
-//                                }
-//                                if (dataSnapshot.child("status").getValue().toString().equals("2") || dataSnapshot.child("status").getValue().toString().equals("3") || dataSnapshot.child("status").getValue().toString().equals("4")) {
-//                                    layoutReschedule.setVisibility(View.GONE);
-//                                    btnCancel.setVisibility(View.GONE);
-//                                    btnSave.setVisibility(View.GONE);
-//                                    space.setVisibility(View.GONE);
-//                                }
-//                            }
-
+                            if (dataSnapshot.child("status").getValue().toString().equals("4") || dataSnapshot.child("status").getValue().toString().equals("5")) {
+                                btnCancel.setVisibility(View.GONE);
+                                btnAccept.setVisibility(View.GONE);
+                                space.setVisibility(View.GONE);
+                            }
+                        }
+                        else if (dataSnapshot.child("isPickup").getValue().toString().equals("Yes")) {
+                            if (dataSnapshot.child("status").getValue().toString().equals("0")) {
+                                btnPickup.setVisibility(View.GONE);
+                                space1.setVisibility(View.GONE);
+                            }
+                            if (dataSnapshot.child("status").getValue().toString().equals("1")) {
+                                btnPickup.setVisibility(View.VISIBLE);
+                                space.setVisibility(View.GONE);
+                                btnAccept.setVisibility(View.GONE);
+                            }
+                            if (dataSnapshot.child("status").getValue().toString().equals("2")) {
+                                btnCancel.setVisibility(View.GONE);
+                                space.setVisibility(View.GONE);
+                                space1.setVisibility(View.GONE);
+                                btnPickup.setVisibility(View.GONE);
+                                btnAccept.setText("On Process");
+                            }
+                            if (dataSnapshot.child("status").getValue().toString().equals("3")) {
+                                btnCancel.setVisibility(View.GONE);
+                                btnAccept.setText("Done");
+                                btnPickup.setVisibility(View.GONE);
+                                space.setVisibility(View.GONE);
+                                space1.setVisibility(View.GONE);
+                            }
+                            if (dataSnapshot.child("status").getValue().toString().equals("4") || dataSnapshot.child("status").getValue().toString().equals("5")) {
+                                btnCancel.setVisibility(View.GONE);
+                                btnPickup.setVisibility(View.GONE);
+                                btnAccept.setVisibility(View.GONE);
+                                space.setVisibility(View.GONE);
+                                space1.setVisibility(View.GONE);
+                            }
                         }
                         btnCancel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 databaseReferenceT.child(orderid).child("status").setValue("5");
-                                startActivity(new Intent(OrderDetailNew.this, HomeActivity.class));
+                                startActivity(new Intent(OrderDetailLaundryNew.this, LaundryTransaction.class));
                             }
                         });
-                        btnSave.setOnClickListener(new View.OnClickListener() {
+                        btnAccept.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                if (editTanggal.getText().toString().equals("Tanggal?") || editJam.getText().toString().equals("Jam?")) {
-                                    Toast.makeText(OrderDetailNew.this, "Harus input data reschedule", Toast.LENGTH_SHORT).show();
-                                    return;
+                                if (btnAccept.getText().toString().equals("ACCEPT") || btnAccept.getText().toString().equals("Accept")) {
+                                    databaseReferenceT.child(orderid).child("status").setValue("1");
+                                    startActivity(new Intent(OrderDetailLaundryNew.this, LaundryTransaction.class));
                                 }
-                                else {
-                                    databaseReferenceT.child(orderid).child("Tanggal pickup").setValue(editTanggal.getText().toString());
-                                    databaseReferenceT.child(orderid).child("Jam pickup").setValue(editJam.getText().toString());
-                                    startActivity(new Intent(OrderDetailNew.this, HomeActivity.class));
+                                else if (btnAccept.getText().toString().equals("On Process") || btnAccept.getText().toString().equals("ON PROCESS")) {
+                                    databaseReferenceT.child(orderid).child("status").setValue("3");
+                                    startActivity(new Intent(OrderDetailLaundryNew.this, LaundryTransaction.class));
                                 }
+                                else if (btnAccept.getText().toString().equals("DONE") || btnAccept.getText().toString().equals("Done")) {
+                                    databaseReferenceT.child(orderid).child("status").setValue("4");
+                                    startActivity(new Intent(OrderDetailLaundryNew.this, LaundryTransaction.class));
+                                }
+                            }
+                        });
+                        btnPickup.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                databaseReferenceT.child(orderid).child("status").setValue("2");
+                                startActivity(new Intent(OrderDetailLaundryNew.this, LaundryTransaction.class));
                             }
                         });
                     }
@@ -384,56 +355,6 @@ public class OrderDetailNew extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
-
-        editJam.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                jam = calendar.get(Calendar.HOUR_OF_DAY);
-                menit = calendar.get(Calendar.MINUTE);
-
-                TimePickerDialog timedialog;
-                timedialog = new TimePickerDialog(OrderDetailNew.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                        jam = hour;
-                        menit = minute;
-
-                        if (jam <= 12) {
-                            editJam.setText(String.format(Locale.getDefault(), "%d:%d am", jam, menit));
-                        }
-                        else {
-                            editJam.setText(String.format(Locale.getDefault(), "%d:%d pm", jam, menit));
-                        }
-                    }
-                }, jam, menit, true);
-                timedialog.show();
-            }
-        });
-
-        editTanggal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                tanggal = calendar.get(Calendar.DAY_OF_MONTH);
-                bulan = calendar.get(Calendar.MONTH);
-                tahun = calendar.get(Calendar.YEAR);
-
-                DatePickerDialog datedialog;
-                datedialog = new DatePickerDialog(OrderDetailNew.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int date, int month, int year) {
-                        tanggal = date;
-                        bulan = month+1;
-                        tahun = year;
-
-                        editTanggal.setText(tahun + "/" + bulan + "/" + tanggal);
-                    }
-                }, tahun, bulan, tanggal);
-                datedialog.show();
             }
         });
 

@@ -108,5 +108,6 @@ public class LaundryTransaction extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        startActivity(new Intent(LaundryTransaction.this, LaundryMain.class));
     }
 }

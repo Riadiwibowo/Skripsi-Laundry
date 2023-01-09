@@ -870,10 +870,10 @@ public class OrderProcess extends AppCompatActivity {
         if (check==0){
             int x = (inputKg.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
             if (kilatKiloan.isChecked()) {
-                inputKg.setHint("Input estimated kg here");
+                inputKg.setHint("masukkan perkiraan berat (kg)");
             }
             if (kilatSatuan.isChecked()) {
-                inputKg.setHint("Input estimated pcs here");
+                inputKg.setHint("masukkan jumlah dalam satuan");
             }
             inputKg.setVisibility(x);
             regulerSatuan.setEnabled(false);

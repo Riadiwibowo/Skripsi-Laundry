@@ -31,7 +31,7 @@
                     android:layout_height="40dp"
                     android:layout_margin="20dp"
                     android:paddingTop="28px"
-                    android:text="You will make an order at"
+                    android:text="Anda akan melakukan transaksi di"
                     android:textSize="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +117,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/blue"
-                        android:text="Others"
+                        android:text="Lain-lain"
                         android:textSize="16dp" />
                 </LinearLayout>
                 <!--            ini category-->
@@ -207,7 +207,6 @@
                             android:id="@+id/inputBerat1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="input estimated kg here"
                             android:textSize="20dp"
                             android:textStyle="bold|italic"/>
 
@@ -234,7 +233,7 @@
                             android:id="@+id/inputPair1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="input pair here"
+                            android:hint="masukkan jumlah pasang"
                             android:textSize="20dp"
                             android:textStyle="bold|italic"/>
 
@@ -300,7 +299,6 @@
                             android:id="@+id/inputBerat"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="input estimated kg here"
                             android:textSize="20dp"
                             android:textStyle="bold|italic"/>
 
@@ -327,7 +325,7 @@
                             android:id="@+id/inputPair"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="input pair here"
+                            android:hint="masukkan jumlah pasang"
                             android:textSize="20dp"
                             android:textStyle="bold|italic"/>
 
@@ -355,7 +353,7 @@
                         android:layout_marginLeft="12dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pick Up"
+                        android:text="Pickup"
                         android:textSize="32dp"
                         android:textStyle="bold"
                         android:textColor="@color/white"/>
@@ -386,7 +384,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:text="Want to use pick up service? "
+                                android:text="Ingin menggunakan jasa pickup?"
                                 android:textSize="16dp"/>
 
                             <Spinner
@@ -482,10 +480,18 @@
                             android:buttonTint="@color/blue"/>
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:text="Rp."
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+
+                        <TextView
                             android:id="@+id/txtHarga"
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="24dp"
                             android:text="0"
                             android:textSize="16dp"
                             android:textColor="@color/black"
@@ -525,7 +531,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    android:text="Submit"
+                    android:text="Pesan"
                     android:background="@drawable/buttonsave"
                     android:layout_gravity="center_horizontal"/>
 

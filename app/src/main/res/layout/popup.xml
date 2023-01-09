@@ -152,7 +152,7 @@
             android:id="@+id/txtDescs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description"
+            android:text="Deskripsi"
             android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -268,6 +268,33 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/txtSatuan"
             app:layout_constraintTop_toTopOf="@+id/Kg" />
+
+        <TextView
+            android:id="@+id/txtPair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Per pasang"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.049"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtSatuan" />
+
+        <TextView
+            android:id="@+id/Pair"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/edittextdetaillaundry"
+            android:paddingLeft="5dp"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txtSatuan"
+            app:layout_constraintTop_toTopOf="@+id/Satuan" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

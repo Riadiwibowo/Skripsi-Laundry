@@ -87,12 +87,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ralewayregular"
-            android:text="Don't have an account?"
+            android:text="Belum  mempunyai akun?"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.3"/>
+            app:layout_constraintHorizontal_bias="0.275"/>
 
         <TextView
             android:id="@+id/registernow"
@@ -100,8 +100,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:fontFamily="@font/ralewayregular"
-            android:minHeight="48dp"
-            android:text="Register now!"
+            android:text="Daftar sekarang!"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.070"

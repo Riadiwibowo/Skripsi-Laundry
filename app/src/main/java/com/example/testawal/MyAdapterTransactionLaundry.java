@@ -50,8 +50,9 @@ public class MyAdapterTransactionLaundry extends RecyclerView.Adapter<MyAdapterT
             @Override
             public void onClick(View view) {
 //                Toast.makeText(context, "nama = " + transactionList.get(viewHolder.getAdapterPosition()).getNamaUser(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, OrderDetailLaundry.class);
+                Intent intent = new Intent(context, OrderDetailLaundryNew.class);
                 intent.putExtra("orderid", transactionList.get(viewHolder.getAdapterPosition()).getId());
+                intent.putExtra("namaLaundry1", transactionList.get(viewHolder.getAdapterPosition()).getNamaLaundry());
                 intent.putExtra("namaUser1", transactionList.get(viewHolder.getAdapterPosition()).getNamaUser());
                 context.startActivity(intent);
             }

@@ -56,6 +56,10 @@
                         android:textStyle="bold"
                         android:fontFamily="@font/ralewayregular"/>
 
+                    <Space
+                        android:layout_width="12dp"
+                        android:layout_height="wrap_content"/>
+
                     <TextView
                         android:id="@+id/Status"
                         android:layout_width="100dp"
@@ -108,6 +112,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <ImageView
                             android:layout_width="22dp"
                             android:layout_height="22dp"
@@ -119,7 +124,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ralewayregular"
-                            android:text="Info Laundry"
+                            android:text="Info Customer"
                             android:layout_gravity="center"
                             android:layout_marginBottom="4dp"
                             android:textColor="@color/black"
@@ -136,7 +141,7 @@
                         <TextView
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:text="Nama Laundry"
+                            android:text="Nama Customer"
                             android:textSize="12sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
@@ -150,11 +155,11 @@
                             android:fontFamily="@font/ralewayregular"/>
 
                         <TextView
-                            android:id="@+id/namaLaundry"
+                            android:id="@+id/namaUser"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
-                            android:text="Nama Laundry"
+                            android:text="Nama Customer"
                             android:textSize="12sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
@@ -188,39 +193,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:text="No. Telp"
-                            android:textSize="12sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/ralewayregular"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:text="Alamat"
-                            android:textSize="12sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/ralewayregular"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:textSize="12sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/ralewayregular"/>
-
-                        <TextView
-                            android:id="@+id/alamat"
-                            android:layout_width="110dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:text="Alamat"
                             android:textSize="12sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
@@ -294,7 +266,7 @@
                                     <TextView
                                         android:layout_width="120dp"
                                         android:layout_height="wrap_content"
-                                        android:text="Baju/Lain-lain"
+                                        android:text="Baju/Others"
                                         android:textSize="16sp"
                                         android:textStyle="bold"
                                         android:textColor="@color/black"
@@ -547,35 +519,10 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/bodyPickupTop"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Ingin reschedule?"
-                        android:textSize="14dp"
-                        android:textColor="@color/black"/>
-
-                    <Spinner
-                        android:gravity="center_vertical"
-                        android:id="@+id/rescheduleSpinner"
-                        android:layout_width="60dp"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/spinnerrgsshape"
-                        android:layout_marginLeft="20dp"
-                        android:spinnerMode="dropdown" />
-                </LinearLayout>
-
-                <LinearLayout
                     android:visibility="gone"
                     android:id="@+id/layoutReschedule"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
                     android:layout_marginBottom="16dp"
                     android:orientation="vertical">
 
@@ -626,18 +573,30 @@
                         android:background="@drawable/backgroundcancel"/>
 
                     <Space
-                        android:visibility="gone"
                         android:id="@+id/space"
                         android:layout_width="12dp"
                         android:layout_height="match_parent"/>
 
                     <android.widget.Button
-                        android:visibility="gone"
-                        android:id="@+id/btnSave"
+                        android:id="@+id/btnAccept"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_gravity="center_horizontal"
-                        android:text="Save"
+                        android:text="Accept"
+                        android:fontFamily="@font/ralewayregular"
+                        android:background="@drawable/buttonsave"/>
+
+                    <Space
+                        android:id="@+id/space1"
+                        android:layout_width="12dp"
+                        android:layout_height="match_parent"/>
+
+                    <android.widget.Button
+                        android:id="@+id/btnPickup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Go Pickup"
                         android:fontFamily="@font/ralewayregular"
                         android:background="@drawable/buttonsave"/>
 
