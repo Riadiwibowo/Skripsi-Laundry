@@ -163,7 +163,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    if(idx<3){
+                    if(idx<4){
                         if (dataSnapshot.child("role").getValue().equals("laundry")) {
                             User user1 = dataSnapshot.getValue(User.class);
                             users.add(user1);

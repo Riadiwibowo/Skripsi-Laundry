@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.Spinner;
@@ -56,6 +57,7 @@ public class OrderDetailNew extends AppCompatActivity {
     LinearLayout detailBaju, detailSepatu, detailOthers, bodyPickupTop;
     TextView subTotalBaju, subTotalSepatu, subTotalOthers;
     Integer subCalcSatuan=0, subCalcKiloan=0, subCalcSepatu=0;
+    ImageView lastLine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,7 @@ public class OrderDetailNew extends AppCompatActivity {
         status = findViewById(R.id.Status);
         detailBaju = findViewById(R.id.detailBaju);
         detailSepatu = findViewById(R.id.detailSepatu);
+        lastLine = findViewById(R.id.lastLine);
 //        detailOthers = findViewById(R.id.detailOthers);
         jumlahbaju = findViewById(R.id.jumlahbaju);
         jumlahsepatu = findViewById(R.id.jumlahsepatu);
@@ -105,7 +108,7 @@ public class OrderDetailNew extends AppCompatActivity {
         //reschedule properties
         bodyPickupTop = findViewById(R.id.bodyPickupTop);
         rescheduleSpinner = findViewById(R.id.rescheduleSpinner);
-        String[] items = new String[]{"No", "Yes"};
+        String[] items = new String[]{"Tidak", "Ya"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         rescheduleSpinner.setAdapter(adapter);
         editTanggal = findViewById(R.id.editTanggal);
@@ -165,21 +168,27 @@ public class OrderDetailNew extends AppCompatActivity {
 //                        service.setText("Services: " + dataSnapshot.child("services").getValue().toString());
                         if (dataSnapshot.child("status").getValue().toString().equals("0")) {
                             status.setText("Awaiting");
+                            status.setTextColor(getResources().getColor(R.color.blue));
                         }
                         if (dataSnapshot.child("status").getValue().toString().equals("1")) {
                             status.setText("Accepted");
+                            status.setTextColor(getResources().getColor(R.color.blue));
                         }
                         if (dataSnapshot.child("status").getValue().toString().equals("2")) {
                             status.setText("On Pickup");
+                            status.setTextColor(getResources().getColor(R.color.orange));
                         }
                         if (dataSnapshot.child("status").getValue().toString().equals("3")) {
                             status.setText("On Process");
+                            status.setTextColor(getResources().getColor(R.color.orange));
                         }
                         if (dataSnapshot.child("status").getValue().toString().equals("4")) {
                             status.setText("Done");
+                            status.setTextColor(getResources().getColor(R.color.green));
                         }
                         if (dataSnapshot.child("status").getValue().toString().equals("5")) {
                             status.setText("Cancelled");
+                            status.setTextColor(getResources().getColor(R.color.red));
                         }
                         price.setText(dataSnapshot.child("harga").getValue().toString());
                         service.setText("Services: " + dataSnapshot.child("services").getValue().toString());
@@ -270,12 +279,18 @@ public class OrderDetailNew extends AppCompatActivity {
 
                         if (dataSnapshot.child("Tanggal pickup").exists()){
                             tanggalpickup.setText(dataSnapshot.child("Tanggal pickup").getValue().toString());
+                        }else{
+                            tanggalpickup.setText("-");
                         }
                         if (dataSnapshot.child("Jam pickup").exists()){
                             jampickup.setText(dataSnapshot.child("Jam pickup").getValue().toString());
+                        }else{
+                            jampickup.setText("-");
                         }
                         if (dataSnapshot.child("address").exists()){
                             alamatpickup.setText(dataSnapshot.child("address").getValue().toString());
+                        }else{
+                            alamatpickup.setText("-");
                         }
                         if (dataSnapshot.child("isPickup").getValue().toString().equals("No")) {
                             bodyPickupTop.setVisibility(View.GONE);
@@ -283,12 +298,11 @@ public class OrderDetailNew extends AppCompatActivity {
                             layoutReschedule.setVisibility(View.GONE);
                             btnSave.setVisibility(View.GONE);
                             space.setVisibility(View.GONE);
+                            lastLine.setVisibility(View.GONE);
                             if (dataSnapshot.child("status").getValue().toString().equals("3") || dataSnapshot.child("status").getValue().toString().equals("4") || dataSnapshot.child("status").getValue().toString().equals("5")) {
                                 btnCancel.setVisibility(View.GONE);
                             }
                         }
-
-                        //4=on pickup 2=done
                         else if (dataSnapshot.child("isPickup").getValue().toString().equals("Yes")) {
                             if (dataSnapshot.child("status").getValue().toString().equals("2") || dataSnapshot.child("status").getValue().toString().equals("3") || dataSnapshot.child("status").getValue().toString().equals("4") || dataSnapshot.child("status").getValue().toString().equals("5")) {
                                 bodyPickupTop.setVisibility(View.GONE);

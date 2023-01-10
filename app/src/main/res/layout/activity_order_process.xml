@@ -70,8 +70,8 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="42dp"
-                        android:layout_height="42dp"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
                         android:src="@drawable/category"/>
 
                     <TextView
@@ -79,7 +79,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Category"
-                        android:textSize="32dp"
+                        android:textSize="26dp"
                         android:textStyle="bold"
                         android:textColor="@color/white"/>
                 </LinearLayout>
@@ -133,8 +133,8 @@
                     android:layout_marginTop="20dp">
 
                     <ImageView
-                        android:layout_width="42dp"
-                        android:layout_height="42dp"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
                         android:src="@drawable/washing_machine" />
 
                     <TextView
@@ -142,7 +142,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Service"
-                        android:textSize="32dp"
+                        android:textSize="26dp"
                         android:textStyle="bold"
                         android:textColor="@color/white"/>
                 </LinearLayout>
@@ -171,7 +171,7 @@
                             android:layout_height="wrap_content"
                             android:text="Reguler"
                             android:textColor="@color/black"
-                            android:textSize="24dp"
+                            android:textSize="20dp"
                             android:textStyle="bold" />
 
                         <RadioGroup
@@ -184,7 +184,7 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/regulerSatuan"
                                 android:text="Satuan"
-                                android:textSize="20dp"
+                                android:textSize="18dp"
                                 android:fontFamily="@font/ralewayregular"
                                 android:textStyle="bold"
                                 android:onClick="checkButton1"
@@ -194,7 +194,7 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/regulerKiloan"
                                 android:text="Kiloan"
-                                android:textSize="20dp"
+                                android:textSize="18dp"
                                 android:fontFamily="@font/ralewayregular"
                                 android:textStyle="bold"
                                 android:onClick="checkButton1"
@@ -207,7 +207,7 @@
                             android:id="@+id/inputBerat1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="20dp"
+                            android:textSize="16dp"
                             android:textStyle="bold|italic"/>
 
                         <RadioGroup
@@ -220,7 +220,7 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/regulerPair"
                                 android:text="Pair"
-                                android:textSize="20dp"
+                                android:textSize="18dp"
                                 android:fontFamily="@font/ralewayregular"
                                 android:textStyle="bold"
                                 android:onClick="checkButtonPair1"
@@ -234,7 +234,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="masukkan jumlah pasang"
-                            android:textSize="20dp"
+                            android:textSize="16dp"
                             android:textStyle="bold|italic"/>
 
                     </LinearLayout>
@@ -263,7 +263,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Kilat"
-                            android:textSize="24dp"
+                            android:textSize="20dp"
                             android:textColor="@color/black"
                             android:textStyle="bold"/>
                         <RadioGroup
@@ -276,7 +276,7 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/kilatSatuan"
                                 android:text="Satuan"
-                                android:textSize="20dp"
+                                android:textSize="18dp"
                                 android:fontFamily="@font/ralewayregular"
                                 android:textStyle="bold"
                                 android:onClick="checkButton"
@@ -286,7 +286,7 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/kilatKiloan"
                                 android:text="Kiloan"
-                                android:textSize="20dp"
+                                android:textSize="18dp"
                                 android:fontFamily="@font/ralewayregular"
                                 android:textStyle="bold"
                                 android:onClick="checkButton"
@@ -299,7 +299,7 @@
                             android:id="@+id/inputBerat"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="20dp"
+                            android:textSize="16dp"
                             android:textStyle="bold|italic"/>
 
                         <RadioGroup
@@ -312,7 +312,7 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/kilatPair"
                                 android:text="Pair"
-                                android:textSize="20dp"
+                                android:textSize="18dp"
                                 android:fontFamily="@font/ralewayregular"
                                 android:textStyle="bold"
                                 android:onClick="checkButtonPair"
@@ -326,7 +326,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="masukkan jumlah pasang"
-                            android:textSize="20dp"
+                            android:textSize="16dp"
                             android:textStyle="bold|italic"/>
 
                     </LinearLayout>
@@ -345,8 +345,8 @@
                     android:layout_marginTop="20dp">
 
                     <ImageView
-                        android:layout_width="42dp"
-                        android:layout_height="42dp"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
                         android:src="@drawable/order_pickup" />
 
                     <TextView
@@ -354,7 +354,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pickup"
-                        android:textSize="32dp"
+                        android:textSize="26dp"
                         android:textStyle="bold"
                         android:textColor="@color/white"/>
                 </LinearLayout>
@@ -457,9 +457,7 @@
                     android:layout_margin="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="18dp"
-                    android:paddingBottom="18dp"
-                    android:paddingLeft="18dp"
+                    android:padding="18dp"
                     android:orientation="vertical"
                     android:background="@drawable/belakangcategoryorder"
                     android:gravity="center_vertical">

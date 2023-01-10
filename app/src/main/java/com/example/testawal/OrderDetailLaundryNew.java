@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.Spinner;
@@ -56,6 +57,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
     LinearLayout detailBaju, detailSepatu, detailOthers, bodyPickupTop;
     TextView subTotalBaju, subTotalSepatu, subTotalOthers;
     Integer subCalcSatuan=0, subCalcKiloan=0, subCalcSepatu=0;
+    ImageView lastLine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
         status = findViewById(R.id.Status);
         detailBaju = findViewById(R.id.detailBaju);
         detailSepatu = findViewById(R.id.detailSepatu);
+        lastLine = findViewById(R.id.lastLine);
 //        detailOthers = findViewById(R.id.detailOthers);
         jumlahbaju = findViewById(R.id.jumlahbaju);
         jumlahsepatu = findViewById(R.id.jumlahsepatu);
@@ -90,7 +93,6 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
         //laundry properties
         namaUser = findViewById(R.id.namaUser);
         noTelp = findViewById(R.id.noTelp);
-        alamat = findViewById(R.id.alamat);
 
         //order properties
 //        category = findViewById(R.id.category);
@@ -105,7 +107,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
 
         //button properties
         btnCancel = findViewById(R.id.btnCancel);
-        btnAccept = findViewById(R.id.btnAccept);
+        btnAccept = findViewById(R.id.btnSave);
         btnPickup = findViewById(R.id.btnPickup);
         space = findViewById(R.id.space);
         space1 = findViewById(R.id.space1);
@@ -155,21 +157,27 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
 //                        service.setText("Services: " + dataSnapshot.child("services").getValue().toString());
                         if (dataSnapshot.child("status").getValue().toString().equals("0")) {
                             status.setText("Awaiting");
+                            status.setTextColor(getResources().getColor(R.color.blue));
                         }
                         if (dataSnapshot.child("status").getValue().toString().equals("1")) {
                             status.setText("Accepted");
+                            status.setTextColor(getResources().getColor(R.color.blue));
                         }
                         if (dataSnapshot.child("status").getValue().toString().equals("2")) {
                             status.setText("On Pickup");
+                            status.setTextColor(getResources().getColor(R.color.orange));
                         }
                         if (dataSnapshot.child("status").getValue().toString().equals("3")) {
                             status.setText("On Process");
+                            status.setTextColor(getResources().getColor(R.color.orange));
                         }
                         if (dataSnapshot.child("status").getValue().toString().equals("4")) {
                             status.setText("Done");
+                            status.setTextColor(getResources().getColor(R.color.green));
                         }
                         if (dataSnapshot.child("status").getValue().toString().equals("5")) {
                             status.setText("Cancelled");
+                            status.setTextColor(getResources().getColor(R.color.red));
                         }
                         price.setText(dataSnapshot.child("harga").getValue().toString());
                         service.setText("Services: " + dataSnapshot.child("services").getValue().toString());

@@ -13,7 +13,7 @@
         android:id="@+id/constraintTop"
         android:backgroundTint="#9AD0EC"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,7 +22,7 @@
             android:id="@+id/iconPopup"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -194,7 +194,7 @@
         android:id="@+id/contstraintPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -224,15 +224,15 @@
             android:textColor="@color/white"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.049"
+            app:layout_constraintHorizontal_bias="0.047"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/txtPrice" />
 
         <TextView
             android:id="@+id/Kg"
-            android:layout_width="240dp"
+            android:layout_width="232dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="48dp"
             android:layout_marginTop="36dp"
             android:background="@drawable/edittextdetaillaundry"
             android:paddingLeft="5dp"
@@ -257,9 +257,9 @@
 
         <TextView
             android:id="@+id/Satuan"
-            android:layout_width="240dp"
+            android:layout_width="232dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="48dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/edittextdetaillaundry"
             android:paddingLeft="5dp"
@@ -284,9 +284,9 @@
 
         <TextView
             android:id="@+id/Pair"
-            android:layout_width="240dp"
+            android:layout_width="232dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="48dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/edittextdetaillaundry"
             android:paddingLeft="5dp"
@@ -301,6 +301,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

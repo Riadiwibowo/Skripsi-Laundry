@@ -27,7 +27,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="580dp"
+        android:paddingBottom="20dp"
         android:fillViewport="true">
 
         <LinearLayout
@@ -37,7 +38,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="80dp"
                 android:orientation="vertical"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp">
@@ -67,7 +68,7 @@
                         android:text="Status"
                         android:textColor="@color/black"
                         android:textSize="14dp"
-                        android:textStyle="bold"
+                        android:textStyle="bold|italic"
                         android:fontFamily="@font/ralewayregular"/>
                 </LinearLayout>
 
@@ -104,9 +105,9 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingLeft="16dp"
-                    android:paddingTop="8dp"
+                    android:paddingTop="14dp"
                     android:paddingRight="16dp"
-                    android:paddingBottom="12dp">
+                    android:paddingBottom="16dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -215,9 +216,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="24dp"
                         android:orientation="horizontal"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="14dp"
                         android:layout_marginLeft="16dp"
-                        android:layout_marginBottom="4dp">
+                        android:layout_marginBottom="8dp">
                         <ImageView
                             android:layout_width="22dp"
                             android:layout_height="26dp"
@@ -242,10 +243,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
                         android:layout_marginRight="12dp"
-                        android:layout_marginBottom="4dp"
+                        android:layout_marginBottom="8dp"
                         app:cardCornerRadius="12dp"
                         app:contentPadding="8dp"
-                        app:cardElevation="20dp">
+                        app:cardElevation="8dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -340,12 +341,12 @@
                 </LinearLayout>
 
 
-                <ImageView
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:src="@drawable/calculateline"/>
+<!--                <ImageView-->
+<!--                    android:layout_marginLeft="16dp"-->
+<!--                    android:layout_marginRight="16dp"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="2dp"-->
+<!--                    android:src="@drawable/calculateline"/>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -354,7 +355,7 @@
                     android:layout_gravity="center_vertical"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:paddingBottom="8dp">
+                    android:paddingBottom="14dp">
 
                     <TextView
                         android:layout_width="100dp"
@@ -388,6 +389,7 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/lastLine"
                     android:layout_width="match_parent"
                     android:layout_height="3dp"
                     android:src="@drawable/lineblack"/>
@@ -399,7 +401,7 @@
                     android:layout_marginBottom="16dp"
                     android:orientation="vertical"
                     android:paddingLeft="16dp"
-                    android:paddingTop="8dp"
+                    android:paddingTop="14dp"
                     android:paddingRight="16dp"
                     android:paddingBottom="12dp">
 
@@ -557,55 +559,114 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_horizontal">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:gravity="center_horizontal">-->
 
-                    <android.widget.Button
-                        android:id="@+id/btnCancel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Cancel"
-                        android:fontFamily="@font/ralewayregular"
-                        android:background="@drawable/backgroundcancel"/>
+<!--                    <android.widget.Button-->
+<!--                        android:id="@+id/btnCancel"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="30dp"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:text="Cancel"-->
+<!--                        android:fontFamily="@font/ralewayregular"-->
+<!--                        android:background="@drawable/backgroundcancel"/>-->
 
-                    <Space
-                        android:id="@+id/space"
-                        android:layout_width="12dp"
-                        android:layout_height="match_parent"/>
+<!--                    <Space-->
+<!--                        android:id="@+id/space"-->
+<!--                        android:layout_width="12dp"-->
+<!--                        android:layout_height="match_parent"/>-->
 
-                    <android.widget.Button
-                        android:id="@+id/btnAccept"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Accept"
-                        android:fontFamily="@font/ralewayregular"
-                        android:background="@drawable/buttonsave"/>
+<!--                    <android.widget.Button-->
+<!--                        android:id="@+id/btnAccept"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="30dp"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:text="Accept"-->
+<!--                        android:fontFamily="@font/ralewayregular"-->
+<!--                        android:background="@drawable/buttonsave"/>-->
 
-                    <Space
-                        android:id="@+id/space1"
-                        android:layout_width="12dp"
-                        android:layout_height="match_parent"/>
+<!--                    <Space-->
+<!--                        android:id="@+id/space1"-->
+<!--                        android:layout_width="12dp"-->
+<!--                        android:layout_height="match_parent"/>-->
 
-                    <android.widget.Button
-                        android:id="@+id/btnPickup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Go Pickup"
-                        android:fontFamily="@font/ralewayregular"
-                        android:background="@drawable/buttonsave"/>
+<!--                    <android.widget.Button-->
+<!--                        android:id="@+id/btnPickup"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="30dp"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:text="Go Pickup"-->
+<!--                        android:fontFamily="@font/ralewayregular"-->
+<!--                        android:background="@drawable/buttonsave"/>-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
             </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <android.widget.Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/backgroundcancel"
+            android:fontFamily="@font/ralewayregular"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <Space
+            android:visibility="gone"
+            android:id="@+id/space"
+            android:layout_width="12dp"
+            android:layout_height="match_parent"/>
+
+        <android.widget.Button
+            android:visibility="gone"
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:text="Save"
+            android:fontFamily="@font/ralewayregular"
+            android:background="@drawable/buttonsave"/>
+
+        <Space
+            android:visibility="gone"
+            android:id="@+id/space1"
+            android:layout_width="12dp"
+            android:layout_height="match_parent"/>
+
+        <android.widget.Button
+            android:visibility="gone"
+            android:id="@+id/btnPickup"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:text="Save"
+            android:fontFamily="@font/ralewayregular"
+            android:background="@drawable/buttonsave"/>
+
+    </LinearLayout>
 
 </LinearLayout>

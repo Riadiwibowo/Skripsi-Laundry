@@ -122,7 +122,7 @@ public class OrderProcess extends AppCompatActivity {
 
         //region spinner
         dropdown = findViewById(R.id.pickupSpinner);
-        String[] items = new String[]{"No", "Yes"};
+        String[] items = new String[]{"Tidak", "Ya"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
         //endregion
@@ -870,10 +870,10 @@ public class OrderProcess extends AppCompatActivity {
         if (check==0){
             int x = (inputKg.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
             if (kilatKiloan.isChecked()) {
-                inputKg.setHint("masukkan perkiraan berat (kg)");
+                inputKg.setHint("masukkan estimasi berat cucian (kg)");
             }
             if (kilatSatuan.isChecked()) {
-                inputKg.setHint("masukkan jumlah dalam satuan");
+                inputKg.setHint("masukkan jumlah cucian (satuan)");
             }
             inputKg.setVisibility(x);
             regulerSatuan.setEnabled(false);
@@ -888,10 +888,10 @@ public class OrderProcess extends AppCompatActivity {
         if (check1==0){
             int x = (inputKg1.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
             if (regulerKiloan.isChecked()) {
-                inputKg1.setHint("Input estimated kg here");
+                inputKg1.setHint("masukkan estimasi berat cucian (kg)");
             }
             if (regulerSatuan.isChecked()) {
-                inputKg1.setHint("Input estimated pcs here");
+                inputKg1.setHint("masukkan jumlah cucian (satuan)");
             }
             inputKg1.setVisibility(x);
             kilatSatuan.setEnabled(false);
