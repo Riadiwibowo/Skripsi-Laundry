@@ -63,6 +63,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
     ImageView lastLine;
 
     //popupcancel
+    ImageView lineblack;
     LinearLayout alasan1, alasan2;
     Dialog dialog;
 
@@ -127,6 +128,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alasan1 = dialog.findViewById(R.id.alasan1);
         alasan2 = dialog.findViewById(R.id.alasan2);
+        lineblack = dialog.findViewById(R.id.lineblack);
 
         Bundle b = getIntent().getExtras();
         String orderid = (String) b.get("orderid");
@@ -144,17 +146,17 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                     }
                     if (dataSnapshot.child("nama").getValue().toString().equals(namaLaundry1)) {
                         noTelp.setText(dataSnapshot.child("phone").getValue().toString());
-                        if (dataSnapshot.child("Harga").child("Satuan").exists()){
-                            subCalcSatuan = Integer.valueOf(dataSnapshot.child("Harga").child("Satuan").getValue().toString());
+                        if (dataSnapshot.child("satuan").exists()){
+                            subCalcSatuan = Integer.valueOf(dataSnapshot.child("satuan").getValue().toString());
                         }
-                        if (dataSnapshot.child("Harga").child("Kiloan").exists()){
-                            subCalcKiloan = Integer.valueOf(dataSnapshot.child("Harga").child("Kiloan").getValue().toString());
+                        if (dataSnapshot.child("kiloan").exists()){
+                            subCalcKiloan = Integer.valueOf(dataSnapshot.child("kiloan").getValue().toString());
                         }
-                        if (dataSnapshot.child("Harga").child("Sepatu").exists()){
-                            subCalcSepatu = Integer.valueOf(dataSnapshot.child("Harga").child("Sepatu").getValue().toString());
+                        if (dataSnapshot.child("sepatu").exists()){
+                            subCalcSepatu = Integer.valueOf(dataSnapshot.child("sepatu").getValue().toString());
                         }
-                        if (dataSnapshot.child("Harga").child("Pickup").exists()) {
-                            hargaPickup.setText(dataSnapshot.child("Harga").child("Pickup").getValue().toString());
+                        if (dataSnapshot.child("pickup").exists()) {
+                            hargaPickup.setText(dataSnapshot.child("pickup").getValue().toString());
                         }
                         else {
                             layoutHargaPickup.setVisibility(View.GONE);
@@ -366,10 +368,11 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                                 }
                                 else if (dataSnapshot.child("isPickup").getValue().toString().equals("Yes")) {
                                     alasan2.setVisibility(View.VISIBLE);
+                                    lineblack.setVisibility(View.VISIBLE);
                                     alasan2.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            databaseReferenceT.child(orderid).child("alasan").setValue("Jarak pickup terlalu jauh");
+                                            databaseReferenceT.child(orderid).child("alasan").setValue("Jarak pickup tidak sesuai");
                                             databaseReferenceT.child(orderid).child("status").setValue("5");
                                             startActivity(new Intent(OrderDetailLaundryNew.this, LaundryMain.class));
                                         }

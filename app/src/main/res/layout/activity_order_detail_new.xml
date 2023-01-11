@@ -7,27 +7,27 @@
     tools:context=".OrderDetailLaundry"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:background="@drawable/backgroundorderid">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:gravity="center"-->
+<!--        android:background="@drawable/backgroundorderid">-->
 
-        <TextView
-            android:id="@+id/IdX"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pesanan"
-            android:textColor="@color/white"
-            android:textSize="28dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/ralewayregular"/>
+<!--        <TextView-->
+<!--            android:id="@+id/IdX"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Pesanan"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="28dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:fontFamily="@font/ralewayregular"/>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="640dp"
         android:fillViewport="true">
 
         <LinearLayout
@@ -48,7 +48,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:text="Order ID"
                         android:textColor="@color/black"
@@ -66,7 +66,7 @@
 
                     <TextView
                         android:id="@+id/Id"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:text="Order ID"
@@ -80,7 +80,7 @@
 
                     <TextView
                         android:id="@+id/Status"
-                        android:layout_width="100dp"
+                        android:layout_width="110dp"
                         android:layout_height="wrap_content"
                         android:text="Status"
                         android:textColor="@color/black"
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="120dp"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:text="Service"
                         android:textSize="14sp"
@@ -176,7 +176,7 @@
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Nama Laundry"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -184,7 +184,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -194,7 +194,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:text="Nama Laundry"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -209,7 +209,7 @@
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="No. Telp"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -217,7 +217,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -227,7 +227,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:text="No. Telp"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -242,7 +242,7 @@
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Alamat"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -250,7 +250,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -260,7 +260,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:text="Alamat"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -339,8 +339,15 @@
                                         android:textColor="@color/black"
                                         android:fontFamily="@font/ralewayregular"/>
                                     <Space
-                                        android:layout_width="160dp"
+                                        android:layout_width="152dp"
                                         android:layout_height="0dp"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Rp "
+                                        android:textSize="14sp"
+                                        android:textColor="@color/black"
+                                        android:fontFamily="@font/ralewayregular"/>
                                     <TextView
                                         android:id="@+id/subTotalBaju"
                                         android:layout_width="wrap_content"
@@ -380,8 +387,15 @@
                                         android:textColor="@color/black"
                                         android:fontFamily="@font/ralewayregular"/>
                                     <Space
-                                        android:layout_width="160dp"
+                                        android:layout_width="152dp"
                                         android:layout_height="0dp"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Rp "
+                                        android:textSize="14sp"
+                                        android:textColor="@color/black"
+                                        android:fontFamily="@font/ralewayregular"/>
                                     <TextView
                                         android:id="@+id/subTotalSepatu"
                                         android:layout_width="wrap_content"
@@ -420,7 +434,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
+                    android:paddingRight="16dp"
+                    android:layout_marginBottom="4dp">
 
                     <TextView
                         android:layout_width="100dp"
@@ -431,14 +446,14 @@
                         android:fontFamily="@font/ralewayregular"/>
 
                     <Space
-                        android:layout_width="184dp"
+                        android:layout_width="176dp"
                         android:layout_height="0dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp "
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/ralewayregular"/>
 
@@ -447,7 +462,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="hargapickup"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/ralewayregular"/>
 
@@ -472,14 +487,15 @@
                         android:fontFamily="@font/ralewayregular"/>
 
                     <Space
-                        android:layout_width="184dp"
+                        android:layout_width="176dp"
                         android:layout_height="0dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp "
-                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/ralewayregular"/>
                     <TextView
@@ -487,7 +503,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="total"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:fontFamily="@font/ralewayregular"/>
 
@@ -530,7 +547,7 @@
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Tanggal"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -538,7 +555,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -548,7 +565,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:text="Tanggal"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:textStyle="italic"
                             android:fontFamily="@font/ralewayregular"/>
@@ -564,7 +581,7 @@
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Jam"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -572,7 +589,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -582,7 +599,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:text="Jam"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:textStyle="italic"
                             android:fontFamily="@font/ralewayregular"/>
@@ -598,7 +615,7 @@
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Alamat Pickup"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -606,7 +623,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/ralewayregular"/>
 
@@ -616,7 +633,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:text="Alamat Pickup"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textColor="@color/black"
                             android:textStyle="italic"
                             android:fontFamily="@font/ralewayregular"/>
@@ -689,38 +706,38 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_horizontal">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:gravity="center_horizontal">-->
 
-                    <android.widget.Button
-                        android:id="@+id/btnCancel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Cancel"
-                        android:fontFamily="@font/ralewayregular"
-                        android:background="@drawable/backgroundcancel"/>
+<!--                    <android.widget.Button-->
+<!--                        android:id="@+id/btnCancel"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="30dp"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:text="Cancel"-->
+<!--                        android:fontFamily="@font/ralewayregular"-->
+<!--                        android:background="@drawable/backgroundcancel"/>-->
 
-                    <Space
-                        android:visibility="gone"
-                        android:id="@+id/space"
-                        android:layout_width="12dp"
-                        android:layout_height="match_parent"/>
+<!--                    <Space-->
+<!--                        android:visibility="gone"-->
+<!--                        android:id="@+id/space"-->
+<!--                        android:layout_width="12dp"-->
+<!--                        android:layout_height="match_parent"/>-->
 
-                    <android.widget.Button
-                        android:visibility="gone"
-                        android:id="@+id/btnSave"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Save"
-                        android:fontFamily="@font/ralewayregular"
-                        android:background="@drawable/buttonsave"/>
+<!--                    <android.widget.Button-->
+<!--                        android:visibility="gone"-->
+<!--                        android:id="@+id/btnSave"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="30dp"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:text="Save"-->
+<!--                        android:fontFamily="@font/ralewayregular"-->
+<!--                        android:background="@drawable/buttonsave"/>-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
             </LinearLayout>
 
@@ -728,44 +745,44 @@
 
     </ScrollView>
 
-<!--    <LinearLayout-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:gravity="center_horizontal">-->
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
 
-<!--        <android.widget.Button-->
-<!--            android:id="@+id/btnCancel"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:layout_gravity="center_horizontal"-->
-<!--            android:text="Cancel"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textAllCaps="false"-->
-<!--            android:fontFamily="@font/ralewayregular"-->
-<!--            android:background="@drawable/backgroundcancel"/>-->
+        <android.widget.Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Cancel"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:fontFamily="@font/ralewayregular"
+            android:background="@drawable/backgroundcancel"/>
 
-<!--        <Space-->
-<!--            android:visibility="gone"-->
-<!--            android:id="@+id/space"-->
-<!--            android:layout_width="12dp"-->
-<!--            android:layout_height="match_parent"/>-->
+        <Space
+            android:visibility="gone"
+            android:id="@+id/space"
+            android:layout_width="12dp"
+            android:layout_height="match_parent"/>
 
-<!--        <android.widget.Button-->
-<!--            android:visibility="gone"-->
-<!--            android:id="@+id/btnSave"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:textAllCaps="false"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textStyle="bold"-->
-<!--            android:layout_gravity="center_horizontal"-->
-<!--            android:text="Save"-->
-<!--            android:fontFamily="@font/ralewayregular"-->
-<!--            android:background="@drawable/buttonsave"/>-->
+        <android.widget.Button
+            android:visibility="gone"
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:text="Save"
+            android:fontFamily="@font/ralewayregular"
+            android:background="@drawable/buttonsave"/>
 
-<!--    </LinearLayout>-->
+    </LinearLayout>
 
 </LinearLayout>

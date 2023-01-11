@@ -63,6 +63,7 @@ public class OrderDetailNew extends AppCompatActivity {
     ImageView lastLine;
 
     //popupcancel
+    ImageView lineblack;
     LinearLayout alasan1, alasan2, alasan3, alasan4;
     Dialog dialog;
 
@@ -138,6 +139,7 @@ public class OrderDetailNew extends AppCompatActivity {
         alasan2 = dialog.findViewById(R.id.alasan2);
         alasan3 = dialog.findViewById(R.id.alasan3);
         alasan4 = dialog.findViewById(R.id.alasan4);
+        lineblack = dialog.findViewById(R.id.lineblack);
 
         Bundle b = getIntent().getExtras();
         String orderid = (String) b.get("orderid");
@@ -151,8 +153,8 @@ public class OrderDetailNew extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (dataSnapshot.child("nama").getValue().toString().equals(namaLaundry1)) {
                         noTelp.setText(dataSnapshot.child("phone").getValue().toString());
-                        if (dataSnapshot.child("Harga").child("Pickup").exists()) {
-                            hargaPickup.setText(dataSnapshot.child("Harga").child("Pickup").getValue().toString());
+                        if (dataSnapshot.child("pickup").exists()) {
+                            hargaPickup.setText(dataSnapshot.child("pickup").getValue().toString());
                         }
                         else {
                             layoutHargaPickup.setVisibility(View.GONE);
@@ -163,14 +165,14 @@ public class OrderDetailNew extends AppCompatActivity {
                         else {
                             alamat.setText("-");
                         }
-                        if (dataSnapshot.child("Harga").child("Satuan").exists()){
-                            subCalcSatuan = Integer.valueOf(dataSnapshot.child("Harga").child("Satuan").getValue().toString());
+                        if (dataSnapshot.child("satuan").exists()){
+                            subCalcSatuan = Integer.valueOf(dataSnapshot.child("satuan").getValue().toString());
                         }
-                        if (dataSnapshot.child("Harga").child("Kiloan").exists()){
-                            subCalcKiloan = Integer.valueOf(dataSnapshot.child("Harga").child("Kiloan").getValue().toString());
+                        if (dataSnapshot.child("kiloan").exists()){
+                            subCalcKiloan = Integer.valueOf(dataSnapshot.child("kiloan").getValue().toString());
                         }
-                        if (dataSnapshot.child("Harga").child("Sepatu").exists()){
-                            subCalcSepatu = Integer.valueOf(dataSnapshot.child("Harga").child("Sepatu").getValue().toString());
+                        if (dataSnapshot.child("sepatu").exists()){
+                            subCalcSepatu = Integer.valueOf(dataSnapshot.child("sepatu").getValue().toString());
                         }
                     }
                 }
@@ -427,6 +429,7 @@ public class OrderDetailNew extends AppCompatActivity {
                                 }
                                 else if (dataSnapshot.child("isPickup").getValue().toString().equals("Yes")) {
                                     alasan4.setVisibility(View.VISIBLE);
+                                    lineblack.setVisibility(View.VISIBLE);
                                     alasan4.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {

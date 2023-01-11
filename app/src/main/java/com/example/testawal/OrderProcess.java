@@ -351,7 +351,7 @@ public class OrderProcess extends AppCompatActivity {
                         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                if (dropdown.getItemAtPosition(i).toString().equals("Yes")){
+                                if (dropdown.getItemAtPosition(i).toString().equals("Ya")){
                                     TransitionManager.beginDelayedTransition(bodyPickupBottom, new AutoTransition());
                                     TransitionManager.beginDelayedTransition(cardPickup, new AutoTransition());
                                     bodyPickupBottom.setVisibility(View.VISIBLE);
@@ -409,26 +409,26 @@ public class OrderProcess extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (dataSnapshot.child("nama").getValue().toString().equals(namaLaundry)) {
-                        if (dataSnapshot.child("Harga").child("Kiloan").exists()) {
-                            hargaKiloan = dataSnapshot.child("Harga").child("Kiloan").getValue().toString();
+                        if (dataSnapshot.child("kiloan").exists()) {
+                            hargaKiloan = dataSnapshot.child("kiloan").getValue().toString();
                         }
                         else {
                             hargaKiloan = "0";
                         }
-                        if (dataSnapshot.child("Harga").child("Satuan").exists()) {
-                            hargaSatuan = dataSnapshot.child("Harga").child("Satuan").getValue().toString();
+                        if (dataSnapshot.child("satuan").exists()) {
+                            hargaSatuan = dataSnapshot.child("satuan").getValue().toString();
                         }
                         else {
                             hargaSatuan = "0";
                         }
-                        if (dataSnapshot.child("Harga").child("Sepatu").exists()) {
-                            hargaPair = dataSnapshot.child("Harga").child("Sepatu").getValue().toString();
+                        if (dataSnapshot.child("sepatu").exists()) {
+                            hargaPair = dataSnapshot.child("sepatu").getValue().toString();
                         }
                         else {
                             hargaPair = "0";
                         }
-                        if (dataSnapshot.child("Harga").child("Pickup").exists()) {
-                            hargaPickup = dataSnapshot.child("Harga").child("Pickup").getValue().toString();
+                        if (dataSnapshot.child("pickup").exists()) {
+                            hargaPickup = dataSnapshot.child("pickup").getValue().toString();
                         }
                         else {
                             hargaPickup = "0";
@@ -478,7 +478,7 @@ public class OrderProcess extends AppCompatActivity {
                         calckilat += Integer.valueOf(inputPair.getText().toString()) * Integer.valueOf(hargaPair) * 1.2;
                     }
                 }
-                if (dropdown.getSelectedItem().toString().equals("Yes")){
+                if (dropdown.getSelectedItem().toString().equals("Ya")){
                     calcpickup = Integer.valueOf(hargaPickup);
                 }
                 temptotal = calcreguler+calckilat+calcpickup;
@@ -718,7 +718,7 @@ public class OrderProcess extends AppCompatActivity {
                 //endregion
 
                 //region order process with pickup
-                if (dropdown.getSelectedItem().toString().equals("Yes")){
+                if (dropdown.getSelectedItem().toString().equals("Ya")){
                     databaseReferenceT.child(trId).child("isPickup").setValue("Yes");
                     databaseReferenceT.child(trId).child("Tanggal pickup").setValue(editTanggal.getText().toString());
                     databaseReferenceT.child(trId).child("Jam pickup").setValue(editJam.getText().toString());
