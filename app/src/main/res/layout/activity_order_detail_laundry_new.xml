@@ -27,8 +27,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="580dp"
-        android:paddingBottom="20dp"
+        android:layout_height="wrap_content"
         android:fillViewport="true">
 
         <LinearLayout
@@ -47,18 +46,36 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
-                        android:id="@+id/Id"
-                        android:layout_width="280dp"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:text="Order ID"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/ralewayregular"/>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/ralewayregular"/>
+
+                    <TextView
+                        android:id="@+id/Id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="Order ID"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/ralewayregular"/>
+
                     <Space
-                        android:layout_width="12dp"
+                        android:layout_width="8dp"
                         android:layout_height="wrap_content"/>
 
                     <TextView
@@ -67,7 +84,7 @@
                         android:layout_height="wrap_content"
                         android:text="Status"
                         android:textColor="@color/black"
-                        android:textSize="14dp"
+                        android:textSize="14sp"
                         android:textStyle="bold|italic"
                         android:fontFamily="@font/ralewayregular"/>
                 </LinearLayout>
@@ -77,12 +94,29 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:text="Service"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/ralewayregular"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/ralewayregular"/>
+
+                    <TextView
                         android:id="@+id/service"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Service:"
-                        android:textSize="16dp"
-                        android:textStyle="bold"
+                        android:layout_marginLeft="8dp"
+                        android:text="Service"
+                        android:textSize="14sp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/ralewayregular"/>
 
@@ -272,9 +306,19 @@
                                         android:textStyle="bold"
                                         android:textColor="@color/black"
                                         android:fontFamily="@font/ralewayregular"/>
+
                                     <Space
                                         android:layout_width="160dp"
                                         android:layout_height="0dp"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Rp "
+                                        android:textSize="14sp"
+                                        android:textColor="@color/black"
+                                        android:fontFamily="@font/ralewayregular"/>
+
                                     <TextView
                                         android:id="@+id/subTotalBaju"
                                         android:layout_width="wrap_content"
@@ -283,7 +327,9 @@
                                         android:textSize="14sp"
                                         android:textColor="@color/black"
                                         android:fontFamily="@font/ralewayregular"/>
+
                                 </LinearLayout>
+
                                 <TextView
                                     android:id="@+id/jumlahbaju"
                                     android:layout_width="wrap_content"
@@ -292,6 +338,7 @@
                                     android:text="jumlahBaju"
                                     android:textSize="14sp"
                                     android:fontFamily="@font/ralewayregular"/>
+
                             </LinearLayout>
 
                             <LinearLayout
@@ -300,11 +347,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
+
                                 <LinearLayout
                                     android:id="@+id/layoutTotalSepatu"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
+
                                     <TextView
                                         android:layout_width="120dp"
                                         android:layout_height="wrap_content"
@@ -313,9 +362,19 @@
                                         android:textStyle="bold"
                                         android:textColor="@color/black"
                                         android:fontFamily="@font/ralewayregular"/>
+
                                     <Space
                                         android:layout_width="160dp"
                                         android:layout_height="0dp"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Rp "
+                                        android:textSize="14sp"
+                                        android:textColor="@color/black"
+                                        android:fontFamily="@font/ralewayregular"/>
+
                                     <TextView
                                         android:id="@+id/subTotalSepatu"
                                         android:layout_width="wrap_content"
@@ -324,7 +383,9 @@
                                         android:textSize="14sp"
                                         android:textColor="@color/black"
                                         android:fontFamily="@font/ralewayregular"/>
+
                                 </LinearLayout>
+
                                 <TextView
                                     android:id="@+id/jumlahsepatu"
                                     android:layout_width="wrap_content"
@@ -333,6 +394,7 @@
                                     android:text="jumlahSepatu"
                                     android:textSize="14sp"
                                     android:fontFamily="@font/ralewayregular"/>
+
                             </LinearLayout>
 
                         </LinearLayout>
@@ -347,6 +409,45 @@
 <!--                    android:layout_width="match_parent"-->
 <!--                    android:layout_height="2dp"-->
 <!--                    android:src="@drawable/calculateline"/>-->
+
+                <LinearLayout
+                    android:id="@+id/layoutHargaPickup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Pickup"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/ralewayregular"/>
+
+                    <Space
+                        android:layout_width="184dp"
+                        android:layout_height="0dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp "
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/ralewayregular"/>
+
+                    <TextView
+                        android:id="@+id/hargaPickup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="hargapickup"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/ralewayregular"/>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -559,50 +660,50 @@
 
                 </LinearLayout>
 
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:gravity="center_horizontal">-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal">
 
-<!--                    <android.widget.Button-->
-<!--                        android:id="@+id/btnCancel"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="30dp"-->
-<!--                        android:layout_gravity="center_horizontal"-->
-<!--                        android:text="Cancel"-->
-<!--                        android:fontFamily="@font/ralewayregular"-->
-<!--                        android:background="@drawable/backgroundcancel"/>-->
+                    <android.widget.Button
+                        android:id="@+id/btnCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Cancel"
+                        android:fontFamily="@font/ralewayregular"
+                        android:background="@drawable/backgroundcancel"/>
 
-<!--                    <Space-->
-<!--                        android:id="@+id/space"-->
-<!--                        android:layout_width="12dp"-->
-<!--                        android:layout_height="match_parent"/>-->
+                    <Space
+                        android:id="@+id/space"
+                        android:layout_width="12dp"
+                        android:layout_height="match_parent"/>
 
-<!--                    <android.widget.Button-->
-<!--                        android:id="@+id/btnAccept"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="30dp"-->
-<!--                        android:layout_gravity="center_horizontal"-->
-<!--                        android:text="Accept"-->
-<!--                        android:fontFamily="@font/ralewayregular"-->
-<!--                        android:background="@drawable/buttonsave"/>-->
+                    <android.widget.Button
+                        android:id="@+id/btnAccept"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Accept"
+                        android:fontFamily="@font/ralewayregular"
+                        android:background="@drawable/buttonsave"/>
 
-<!--                    <Space-->
-<!--                        android:id="@+id/space1"-->
-<!--                        android:layout_width="12dp"-->
-<!--                        android:layout_height="match_parent"/>-->
+                    <Space
+                        android:id="@+id/space1"
+                        android:layout_width="12dp"
+                        android:layout_height="match_parent"/>
 
-<!--                    <android.widget.Button-->
-<!--                        android:id="@+id/btnPickup"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="30dp"-->
-<!--                        android:layout_gravity="center_horizontal"-->
-<!--                        android:text="Go Pickup"-->
-<!--                        android:fontFamily="@font/ralewayregular"-->
-<!--                        android:background="@drawable/buttonsave"/>-->
+                    <android.widget.Button
+                        android:id="@+id/btnPickup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Go Pickup"
+                        android:fontFamily="@font/ralewayregular"
+                        android:background="@drawable/buttonsave"/>
 
-<!--                </LinearLayout>-->
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -610,63 +711,63 @@
 
     </ScrollView>
 
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+<!--    <LinearLayout-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:gravity="center_horizontal">-->
 
-        <android.widget.Button
-            android:id="@+id/btnCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="27dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/backgroundcancel"
-            android:fontFamily="@font/ralewayregular"
-            android:text="Cancel"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+<!--        <android.widget.Button-->
+<!--            android:id="@+id/btnCancel"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="27dp"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:background="@drawable/backgroundcancel"-->
+<!--            android:fontFamily="@font/ralewayregular"-->
+<!--            android:text="Cancel"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textStyle="bold" />-->
 
-        <Space
-            android:visibility="gone"
-            android:id="@+id/space"
-            android:layout_width="12dp"
-            android:layout_height="match_parent"/>
+<!--        <Space-->
+<!--            android:visibility="gone"-->
+<!--            android:id="@+id/space"-->
+<!--            android:layout_width="12dp"-->
+<!--            android:layout_height="match_parent"/>-->
 
-        <android.widget.Button
-            android:visibility="gone"
-            android:id="@+id/btnSave"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:text="Save"
-            android:fontFamily="@font/ralewayregular"
-            android:background="@drawable/buttonsave"/>
+<!--        <android.widget.Button-->
+<!--            android:visibility="gone"-->
+<!--            android:id="@+id/btnSave"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:text="Save"-->
+<!--            android:fontFamily="@font/ralewayregular"-->
+<!--            android:background="@drawable/buttonsave"/>-->
 
-        <Space
-            android:visibility="gone"
-            android:id="@+id/space1"
-            android:layout_width="12dp"
-            android:layout_height="match_parent"/>
+<!--        <Space-->
+<!--            android:visibility="gone"-->
+<!--            android:id="@+id/space1"-->
+<!--            android:layout_width="12dp"-->
+<!--            android:layout_height="match_parent"/>-->
 
-        <android.widget.Button
-            android:visibility="gone"
-            android:id="@+id/btnPickup"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:text="Save"
-            android:fontFamily="@font/ralewayregular"
-            android:background="@drawable/buttonsave"/>
+<!--        <android.widget.Button-->
+<!--            android:visibility="gone"-->
+<!--            android:id="@+id/btnPickup"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:text="Save"-->
+<!--            android:fontFamily="@font/ralewayregular"-->
+<!--            android:background="@drawable/buttonsave"/>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 </LinearLayout>

@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.appwidget.AppWidgetHost;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -38,7 +41,7 @@ import java.util.Locale;
 
 public class OrderDetailLaundryNew extends AppCompatActivity {
 
-    TextView Id, namaUser, noTelp, alamat, category, service, price, tanggalpickup, jampickup, alamatpickup, editTanggal, editJam;
+    TextView Id, namaUser, noTelp, alamat, category, service, hargaPickup, price, tanggalpickup, jampickup, alamatpickup, editTanggal, editJam;
     private int jam, menit;
     private int tanggal, bulan, tahun;
     DatabaseReference databaseReference, databaseReferenceT;
@@ -46,7 +49,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
     FirebaseUser fUser;
     String userId, trId;
     Spinner rescheduleSpinner;
-    LinearLayout layoutPickup, layoutReschedule;
+    LinearLayout layoutPickup, layoutReschedule, layoutHargaPickup;
     Button btnCancel, btnAccept, btnPickup;
     Space space, space1;
 
@@ -58,6 +61,10 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
     TextView subTotalBaju, subTotalSepatu, subTotalOthers;
     Integer subCalcSatuan=0, subCalcKiloan=0, subCalcSepatu=0;
     ImageView lastLine;
+
+    //popupcancel
+    LinearLayout alasan1, alasan2;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +104,8 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
         //order properties
 //        category = findViewById(R.id.category);
         service = findViewById(R.id.service);
+        hargaPickup = findViewById(R.id.hargaPickup);
+        layoutHargaPickup = findViewById(R.id.layoutHargaPickup);
         price = findViewById(R.id.price);
 
         //pickup properties
@@ -107,17 +116,24 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
 
         //button properties
         btnCancel = findViewById(R.id.btnCancel);
-        btnAccept = findViewById(R.id.btnSave);
+        btnAccept = findViewById(R.id.btnAccept);
         btnPickup = findViewById(R.id.btnPickup);
         space = findViewById(R.id.space);
         space1 = findViewById(R.id.space1);
+
+        //popupcancel properties
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.popupcancelorderlaundry);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alasan1 = dialog.findViewById(R.id.alasan1);
+        alasan2 = dialog.findViewById(R.id.alasan2);
 
         Bundle b = getIntent().getExtras();
         String orderid = (String) b.get("orderid");
         String namaLaundry1 = (String) b.get("namaLaundry1");
         String namaUser1 = (String) b.get("namaUser1");
 
-        Id.setText("Order ID: " + orderid);
+        Id.setText(orderid);
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -136,6 +152,12 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                         }
                         if (dataSnapshot.child("Harga").child("Sepatu").exists()){
                             subCalcSepatu = Integer.valueOf(dataSnapshot.child("Harga").child("Sepatu").getValue().toString());
+                        }
+                        if (dataSnapshot.child("Harga").child("Pickup").exists()) {
+                            hargaPickup.setText(dataSnapshot.child("Harga").child("Pickup").getValue().toString());
+                        }
+                        else {
+                            layoutHargaPickup.setVisibility(View.GONE);
                         }
                     }
                 }
@@ -180,7 +202,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                             status.setTextColor(getResources().getColor(R.color.red));
                         }
                         price.setText(dataSnapshot.child("harga").getValue().toString());
-                        service.setText("Services: " + dataSnapshot.child("services").getValue().toString());
+                        service.setText(dataSnapshot.child("services").getValue().toString());
                         categoryDetail = dataSnapshot.child("category").getValue().toString();
                         servicesDetail = dataSnapshot.child("services").getValue().toString();
                         if (categoryDetail.contains("Baju") || categoryDetail.contains("Baju")){
@@ -279,6 +301,8 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                             layoutPickup.setVisibility(View.GONE);
                             btnPickup.setVisibility(View.GONE);
                             space1.setVisibility(View.GONE);
+                            lastLine.setVisibility(View.GONE);
+                            layoutHargaPickup.setVisibility(View.GONE);
                             if (dataSnapshot.child("status").getValue().toString().equals("1")) {
                                 btnAccept.setText("On Process");
                             }
@@ -328,8 +352,29 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                         btnCancel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                databaseReferenceT.child(orderid).child("status").setValue("5");
-                                startActivity(new Intent(OrderDetailLaundryNew.this, LaundryTransaction.class));
+                                dialog.show();
+                                alasan1.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        databaseReferenceT.child(orderid).child("alasan").setValue("Pesanan melebihi batas maksimum");
+                                        databaseReferenceT.child(orderid).child("status").setValue("5");
+                                        startActivity(new Intent(OrderDetailLaundryNew.this, LaundryMain.class));
+                                    }
+                                });
+                                if (dataSnapshot.child("isPickup").getValue().toString().equals("No")) {
+                                    alasan2.setVisibility(View.GONE);
+                                }
+                                else if (dataSnapshot.child("isPickup").getValue().toString().equals("Yes")) {
+                                    alasan2.setVisibility(View.VISIBLE);
+                                    alasan2.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            databaseReferenceT.child(orderid).child("alasan").setValue("Jarak pickup terlalu jauh");
+                                            databaseReferenceT.child(orderid).child("status").setValue("5");
+                                            startActivity(new Intent(OrderDetailLaundryNew.this, LaundryMain.class));
+                                        }
+                                    });
+                                }
                             }
                         });
                         btnAccept.setOnClickListener(new View.OnClickListener() {

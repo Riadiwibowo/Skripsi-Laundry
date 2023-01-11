@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Apa alasan Anda membatalkan pesanan?"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:fontFamily="@font/ralewayregular"
+            android:gravity="center"
+            android:background="@drawable/borderlogout"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/alasan1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Salah memilih tempat laundry"
+            android:textColor="@color/black"
+            android:fontFamily="@font/ralewayregular"
+            android:gravity="center_vertical"
+            android:background="@drawable/borderlogout"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/alasan2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Ingin mengubah servis laundry"
+            android:textColor="@color/black"
+            android:fontFamily="@font/ralewayregular"
+            android:gravity="center_vertical"
+            android:background="@drawable/borderlogout"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/alasan3"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Salah input berat/satuan/pasang"
+            android:textColor="@color/black"
+            android:fontFamily="@font/ralewayregular"
+            android:gravity="center_vertical"
+            android:background="@drawable/borderlogout"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/alasan4"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Ingin mengubah detail pickup"
+            android:textColor="@color/black"
+            android:fontFamily="@font/ralewayregular"
+            android:gravity="center_vertical"
+            android:background="@drawable/borderlogout"/>
+
+    </LinearLayout>
+
+</LinearLayout>
