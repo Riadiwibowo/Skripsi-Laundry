@@ -16,11 +16,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!--        start of body-->
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintTop"
                 android:layout_width="match_parent"
-                android:background="@color/white"
                 android:layout_height="120dp"
+                android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -38,10 +40,10 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/txtNamaLaundry"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_margin="20dp"
-                    android:id="@+id/txtNamaLaundry"
                     android:fontFamily="@font/ralewayregular"
                     android:text="nama laundry"
                     android:textSize="24dp"
@@ -51,7 +53,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView2" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--        start of body-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -463,6 +464,191 @@
                     android:gravity="center_vertical">
 
                     <LinearLayout
+                        android:visibility="gone"
+                        android:layout_marginBottom="4dp"
+                        android:id="@+id/layoutHargaSatuan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_marginRight="4dp"
+                            android:id="@+id/hargaSatuan"
+                            android:layout_width="108dp"
+                            android:layout_height="wrap_content"
+                            android:text="Harga Satuan"
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+                        <TextView
+                            android:layout_width="4dp"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="Rp "
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+
+                        <TextView
+                            android:id="@+id/txtHargaSatuan"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/layoutHargaSepatu"
+                        android:layout_marginBottom="4dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_marginRight="4dp"
+                            android:id="@+id/hargaSepatu"
+                            android:layout_width="108dp"
+                            android:layout_height="wrap_content"
+                            android:text="Harga Sepatu"
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+                        <TextView
+                            android:layout_width="4dp"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="Rp "
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+
+                        <TextView
+                            android:id="@+id/txtHargaSepatu"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_marginBottom="4dp"
+                        android:id="@+id/layoutHargaKiloan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_marginRight="4dp"
+                            android:id="@+id/hargaKiloan"
+                            android:layout_width="108dp"
+                            android:layout_height="wrap_content"
+                            android:text="Harga Kiloan"
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+                        <TextView
+                            android:layout_width="4dp"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="Rp "
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+
+                        <TextView
+                            android:id="@+id/txtHargaKiloan"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_marginBottom="4dp"
+                        android:id="@+id/layoutHargaPickup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_marginRight="4dp"
+                            android:id="@+id/hargaPickup"
+                            android:layout_width="108dp"
+                            android:layout_height="wrap_content"
+                            android:text="Harga Pickup"
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+
+                        <TextView
+                            android:layout_width="4dp"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="Rp "
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+
+                        <TextView
+                            android:id="@+id/txtHargaPickup"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="16dp"
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/blue"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_marginBottom="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:src="@drawable/lineblackpopup"/>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -481,7 +667,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="24dp"
-                            android:text="Rp."
+                            android:text="Rp "
                             android:textSize="16dp"
                             android:textColor="@color/black"
                             android:buttonTint="@color/blue"/>
@@ -499,11 +685,11 @@
                             android:id="@+id/buttonHarga"
                             android:layout_width="80dp"
                             android:layout_height="40dp"
-                            android:layout_marginLeft="100dp"
+                            android:layout_marginLeft="80dp"
                             android:text="Tampilkan Harga"
                             android:textSize="12sp"
                             android:textAllCaps="false"
-                            android:background="@drawable/edittextrgsshape"/>
+                            android:background="@drawable/spinnerrgsshape"/>
 
                     </LinearLayout>
 
@@ -530,6 +716,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:text="Pesan"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/ralewayregular"
                     android:background="@drawable/buttonsave"
                     android:layout_gravity="center_horizontal"/>
 

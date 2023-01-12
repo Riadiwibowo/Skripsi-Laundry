@@ -279,16 +279,16 @@ public class EditLaundry extends AppCompatActivity {
 //                }
 
                 if (!inputHargaSatuan.getText().toString().trim().isEmpty()) {
-                    databaseReference.child(userId).child("satuan").setValue(inputHargaSatuan.getText().toString().trim());
+                    databaseReference.child(userId).child("harga").child("satuan").setValue(inputHargaSatuan.getText().toString().trim());
                 }
                 if (!inputHargaKiloan.getText().toString().trim().isEmpty()) {
-                    databaseReference.child(userId).child("kiloan").setValue(inputHargaKiloan.getText().toString().trim());
+                    databaseReference.child(userId).child("harga").child("kiloan").setValue(inputHargaKiloan.getText().toString().trim());
                 }
                 if (!inputHargaSepatu.getText().toString().trim().isEmpty()) {
-                    databaseReference.child(userId).child("sepatu").setValue(inputHargaSepatu.getText().toString().trim());
+                    databaseReference.child(userId).child("harga").child("sepatu").setValue(inputHargaSepatu.getText().toString().trim());
                 }
                 if (!inputHargaPickup.getText().toString().trim().isEmpty()) {
-                    databaseReference.child(userId).child("pickup").setValue(inputHargaPickup.getText().toString().trim());
+                    databaseReference.child(userId).child("harga").child("pickup").setValue(inputHargaPickup.getText().toString().trim());
                 }
 
                 if (txtDesc.getText().toString().trim().isEmpty() && txtName.getText().toString().trim().isEmpty() && txtPhone.getText().toString().trim().isEmpty() &&

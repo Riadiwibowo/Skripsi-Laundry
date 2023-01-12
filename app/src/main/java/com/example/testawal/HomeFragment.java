@@ -277,6 +277,9 @@ public class HomeFragment extends Fragment {
             case R.id.itemProfile:
                 startActivity(new Intent(getActivity(), ProfileUser.class));
                 return true;
+            case R.id.itemSetting:
+                startActivity(new Intent(getActivity(), Setting.class));
+                return true;
         }
         if(toggle.onOptionsItemSelected(item)){
             return true;

@@ -165,14 +165,14 @@ public class OrderDetailNew extends AppCompatActivity {
                         else {
                             alamat.setText("-");
                         }
-                        if (dataSnapshot.child("satuan").exists()){
-                            subCalcSatuan = Integer.valueOf(dataSnapshot.child("satuan").getValue().toString());
+                        if (dataSnapshot.child("harga").child("satuan").exists()){
+                            subCalcSatuan = Integer.valueOf(dataSnapshot.child("harga").child("satuan").getValue().toString());
                         }
-                        if (dataSnapshot.child("kiloan").exists()){
-                            subCalcKiloan = Integer.valueOf(dataSnapshot.child("kiloan").getValue().toString());
+                        if (dataSnapshot.child("harga").child("kiloan").exists()){
+                            subCalcKiloan = Integer.valueOf(dataSnapshot.child("harga").child("kiloan").getValue().toString());
                         }
-                        if (dataSnapshot.child("sepatu").exists()){
-                            subCalcSepatu = Integer.valueOf(dataSnapshot.child("sepatu").getValue().toString());
+                        if (dataSnapshot.child("harga").child("sepatu").exists()){
+                            subCalcSepatu = Integer.valueOf(dataSnapshot.child("harga").child("sepatu").getValue().toString());
                         }
                     }
                 }

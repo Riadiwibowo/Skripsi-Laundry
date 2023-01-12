@@ -63,10 +63,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                 btnPopup = myDialog.findViewById(R.id.btnPopup);
                 Services = myDialog.findViewById(R.id.Service);
                 NamaLaundry = myDialog.findViewById(R.id.txtNamaLaundry);
-                Kg = myDialog.findViewById(R.id.Kg);
-                Satuan = myDialog.findViewById(R.id.Satuan);
-                Pair = myDialog.findViewById(R.id.Pair);
-                Pickup = myDialog.findViewById(R.id.Pickup);
 
                 if(userList.get(viewHolder.getAdapterPosition()).getImageUrl().toString().equals("")){
                     iconPopup.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_profile_icon));
@@ -90,25 +86,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
 //                }else{
 //                    Kg.setText(userList.get(viewHolder.getAdapterPosition()).getKiloan());
 //                }
-                Kg.setText(userList.get(viewHolder.getAdapterPosition()).getKiloan());
+//                Kg.setText(userList.get(viewHolder.getAdapterPosition()).getKiloan());
 //                if (userList.get(viewHolder.getAdapterPosition()).getSatuan().equals(null)){
 //                    Satuan.setText("-");
 //                }else{
 //                    Satuan.setText(userList.get(viewHolder.getAdapterPosition()).getSatuan());
 //                }
-                Satuan.setText(userList.get(viewHolder.getAdapterPosition()).getSatuan());
+//                Satuan.setText(userList.get(viewHolder.getAdapterPosition()).getSatuan());
 //                if (userList.get(viewHolder.getAdapterPosition()).getSepatu().equals(null)){
 //                    Pair.setText("-");
 //                }else{
 //                    Pair.setText(userList.get(viewHolder.getAdapterPosition()).getSepatu());
 //                }
-                Pair.setText(userList.get(viewHolder.getAdapterPosition()).getSepatu());
+//                Pair.setText(userList.get(viewHolder.getAdapterPosition()).getSepatu());
 //                if (userList.get(viewHolder.getAdapterPosition()).getPickup().equals(null)){
 //                    Pickup.setText("-");
 //                }else{
 //                    Pickup.setText(userList.get(viewHolder.getAdapterPosition()).getPickup());
 //                }
-                Pickup.setText(userList.get(viewHolder.getAdapterPosition()).getPickup());
+//                Pickup.setText(userList.get(viewHolder.getAdapterPosition()).getPickup());
 
                 myDialog.show();
                 btnPopup.setOnClickListener(new View.OnClickListener() {

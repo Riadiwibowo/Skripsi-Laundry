@@ -82,6 +82,8 @@ public class OrderProcess extends AppCompatActivity {
     TextView harga, txtHarga;
 
     Button btnHarga, btnSubmit;
+    LinearLayout layoutHargaSatuan, layoutHargaKiloan, layoutHargaPickup, layoutHargaSepatu;
+    TextView txtHargaSatuan, txtHargaKiloan, txtHargaSepatu, txtHargaPickup;
     //endregion
 
     @Override
@@ -241,6 +243,17 @@ public class OrderProcess extends AppCompatActivity {
         });
         //endregion
 
+        //region harga properties
+        layoutHargaSatuan = findViewById(R.id.layoutHargaSatuan);
+        layoutHargaKiloan = findViewById(R.id.layoutHargaKiloan);
+        layoutHargaSepatu = findViewById(R.id.layoutHargaSepatu);
+        layoutHargaPickup = findViewById(R.id.layoutHargaPickup);
+        txtHargaKiloan = findViewById(R.id.txtHargaKiloan);
+        txtHargaSatuan = findViewById(R.id.txtHargaSatuan);
+        txtHargaSepatu = findViewById(R.id.txtHargaSepatu);
+        txtHargaPickup = findViewById(R.id.txtHargaPickup);
+        //endregion
+
         //region get services reguler/kilat
         cardKil = findViewById(R.id.cardKilat);
         cardReg = findViewById(R.id.cardReguler);
@@ -271,16 +284,34 @@ public class OrderProcess extends AppCompatActivity {
                             if (dataSnapshot.child("services").getValue().toString().contains("Satuan")){
                                 kilatSatuan.setVisibility(View.VISIBLE);
                                 regulerSatuan.setVisibility(View.VISIBLE);
+                                layoutHargaSatuan.setVisibility(View.VISIBLE);
+                                if (dataSnapshot.child("harga").child("satuan").exists()){
+                                    txtHargaSatuan.setText(dataSnapshot.child("harga").child("satuan").getValue().toString());
+                                }else{
+                                    txtHargaSatuan.setText("0");
+                                }
                             }
                             if (dataSnapshot.child("services").getValue().toString().contains("Kiloan")){
                                 kilatKiloan.setVisibility(View.VISIBLE);
                                 regulerKiloan.setVisibility(View.VISIBLE);
+                                layoutHargaKiloan.setVisibility(View.VISIBLE);
+                                if (dataSnapshot.child("harga").child("kiloan").exists()){
+                                    txtHargaKiloan.setText(dataSnapshot.child("harga").child("kiloan").getValue().toString());
+                                }else{
+                                    txtHargaKiloan.setText("0");
+                                }
                             }
                             if (dataSnapshot.child("category").getValue().toString().contains("Sepatu")){
                                 kilatPair.setVisibility(View.VISIBLE);
                                 regulerPair.setVisibility(View.VISIBLE);
                                 kilatPair.setEnabled(false);
                                 regulerPair.setEnabled(false);
+                                layoutHargaSepatu.setVisibility(View.VISIBLE);
+                                if (dataSnapshot.child("harga").child("sepatu").exists()){
+                                    txtHargaSepatu.setText(dataSnapshot.child("harga").child("sepatu").getValue().toString());
+                                }else{
+                                    txtHargaSepatu.setText("0");
+                                }
                                 if (dataSnapshot.child("category").getValue().toString().equals("Sepatu")){
                                     kilatPair.setVisibility(View.VISIBLE);
                                     regulerPair.setVisibility(View.VISIBLE);
@@ -290,6 +321,12 @@ public class OrderProcess extends AppCompatActivity {
                                     kilatKiloan.setVisibility(View.GONE);
                                     regulerKiloan.setVisibility(View.GONE);
                                     regulerSatuan.setVisibility(View.GONE);
+                                    layoutHargaSepatu.setVisibility(View.VISIBLE);
+                                    if (dataSnapshot.child("harga").child("sepatu").exists()){
+                                        txtHargaSepatu.setText(dataSnapshot.child("harga").child("sepatu").getValue().toString());
+                                    }else{
+                                        txtHargaSepatu.setText("0");
+                                    }
                                 }
                             }
                         }else{
@@ -299,18 +336,42 @@ public class OrderProcess extends AppCompatActivity {
                             regulerKiloan.setVisibility(View.GONE);
                             if (dataSnapshot.child("services").getValue().toString().contains("Satuan")){
                                 regulerSatuan.setVisibility(View.VISIBLE);
+                                layoutHargaSatuan.setVisibility(View.VISIBLE);
+                                if (dataSnapshot.child("harga").child("satuan").exists()){
+                                    txtHargaSatuan.setText(dataSnapshot.child("harga").child("satuan").getValue().toString());
+                                }else{
+                                    txtHargaSatuan.setText("0");
+                                }
                             }
                             if (dataSnapshot.child("services").getValue().toString().contains("Kiloan")){
                                 regulerKiloan.setVisibility(View.VISIBLE);
+                                layoutHargaKiloan.setVisibility(View.VISIBLE);
+                                if (dataSnapshot.child("harga").child("kiloan").exists()){
+                                    txtHargaKiloan.setText(dataSnapshot.child("harga").child("kiloan").getValue().toString());
+                                }else{
+                                    txtHargaKiloan.setText("0");
+                                }
                             }
                             if (dataSnapshot.child("category").getValue().toString().contains("Sepatu")){
                                 regulerPair.setVisibility(View.VISIBLE);
                                 regulerPair.setEnabled(false);
+                                layoutHargaSepatu.setVisibility(View.VISIBLE);
+                                if (dataSnapshot.child("harga").child("sepatu").exists()){
+                                    txtHargaSepatu.setText(dataSnapshot.child("harga").child("sepatu").getValue().toString());
+                                }else{
+                                    txtHargaSepatu.setText("0");
+                                }
                                 if (dataSnapshot.child("category").getValue().toString().equals("Sepatu")){
                                     regulerPair.setVisibility(View.VISIBLE);
                                     regulerPair.setEnabled(false);
                                     regulerKiloan.setVisibility(View.GONE);
                                     regulerSatuan.setVisibility(View.GONE);
+                                    layoutHargaSepatu.setVisibility(View.VISIBLE);
+                                    if (dataSnapshot.child("harga").child("sepatu").exists()){
+                                        txtHargaSepatu.setText(dataSnapshot.child("harga").child("sepatu").getValue().toString());
+                                    }else{
+                                        txtHargaSepatu.setText("0");
+                                    }
                                 }
                             }
                         }
@@ -343,6 +404,12 @@ public class OrderProcess extends AppCompatActivity {
                             cardPickup.setVisibility(View.VISIBLE);
                             bodyPickupTop.setVisibility(View.VISIBLE);
                             bodyPickupBottom.setVisibility(View.GONE);
+                            layoutHargaPickup.setVisibility(View.VISIBLE);
+                            if (dataSnapshot.child("harga").child("pickup").exists()){
+                                txtHargaPickup.setText(dataSnapshot.child("harga").child("pickup").getValue().toString());
+                            }else{
+                                txtHargaPickup.setText("0");
+                            }
                         }
                         else {
                             headerPickup.setVisibility(View.GONE);
@@ -381,6 +448,8 @@ public class OrderProcess extends AppCompatActivity {
         });
         //endregion
 
+
+
         for (int i=0;i<1;i++){
             try {
                 Thread.sleep(1000);
@@ -409,26 +478,26 @@ public class OrderProcess extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (dataSnapshot.child("nama").getValue().toString().equals(namaLaundry)) {
-                        if (dataSnapshot.child("kiloan").exists()) {
-                            hargaKiloan = dataSnapshot.child("kiloan").getValue().toString();
+                        if (dataSnapshot.child("harga").child("kiloan").exists()) {
+                            hargaKiloan = dataSnapshot.child("harga").child("kiloan").getValue().toString();
                         }
                         else {
                             hargaKiloan = "0";
                         }
-                        if (dataSnapshot.child("satuan").exists()) {
-                            hargaSatuan = dataSnapshot.child("satuan").getValue().toString();
+                        if (dataSnapshot.child("harga").child("satuan").exists()) {
+                            hargaSatuan = dataSnapshot.child("harga").child("satuan").getValue().toString();
                         }
                         else {
                             hargaSatuan = "0";
                         }
-                        if (dataSnapshot.child("sepatu").exists()) {
-                            hargaPair = dataSnapshot.child("sepatu").getValue().toString();
+                        if (dataSnapshot.child("harga").child("sepatu").exists()) {
+                            hargaPair = dataSnapshot.child("harga").child("sepatu").getValue().toString();
                         }
                         else {
                             hargaPair = "0";
                         }
-                        if (dataSnapshot.child("pickup").exists()) {
-                            hargaPickup = dataSnapshot.child("pickup").getValue().toString();
+                        if (dataSnapshot.child("harga").child("pickup").exists()) {
+                            hargaPickup = dataSnapshot.child("harga").child("pickup").getValue().toString();
                         }
                         else {
                             hargaPickup = "0";
@@ -595,7 +664,13 @@ public class OrderProcess extends AppCompatActivity {
                             databaseReferenceT.child(trId).child("isPickup").setValue("No");
                             databaseReferenceT.child(trId).child("status").setValue("0");
                             databaseReferenceT.child(trId).child("id").setValue(trId);
-                            databaseReferenceT.child(trId).child("harga").setValue(txtHarga.getText().toString());
+                            if (txtHarga.getText().toString().equals("0")){
+                                Toast.makeText(OrderProcess.this, "Tekan tombol \"Tampilkan Harga\"", Toast.LENGTH_SHORT).show();
+//                                btnHarga.requestFocus();
+                                return;
+                            }else{
+                                databaseReferenceT.child(trId).child("harga").setValue(txtHarga.getText().toString());
+                            }
                         }
                     }
                     else if (catSepatu.isChecked()) {
@@ -659,7 +734,13 @@ public class OrderProcess extends AppCompatActivity {
                             databaseReferenceT.child(trId).child("isPickup").setValue("No");
                             databaseReferenceT.child(trId).child("status").setValue("0");
                             databaseReferenceT.child(trId).child("id").setValue(trId);
-                            databaseReferenceT.child(trId).child("harga").setValue(txtHarga.getText().toString());
+                            if (txtHarga.getText().toString().equals("0")){
+                                Toast.makeText(OrderProcess.this, "Tekan tombol \"Tampilkan Harga\"", Toast.LENGTH_SHORT).show();
+//                                btnHarga.requestFocus();
+                                return;
+                            }else{
+                                databaseReferenceT.child(trId).child("harga").setValue(txtHarga.getText().toString());
+                            }
                         }
                     }
                     else if (catOthers.isChecked()) {
@@ -697,7 +778,13 @@ public class OrderProcess extends AppCompatActivity {
                         databaseReferenceT.child(trId).child("isPickup").setValue("No");
                         databaseReferenceT.child(trId).child("status").setValue("0");
                         databaseReferenceT.child(trId).child("id").setValue(trId);
-                        databaseReferenceT.child(trId).child("harga").setValue(txtHarga.getText().toString());
+                        if (txtHarga.getText().toString().equals("0")){
+                            Toast.makeText(OrderProcess.this, "Tekan tombol \"Tampilkan Harga\"", Toast.LENGTH_SHORT).show();
+//                                btnHarga.requestFocus();
+                            return;
+                        }else{
+                            databaseReferenceT.child(trId).child("harga").setValue(txtHarga.getText().toString());
+                        }
                     }
                 }
                 else {

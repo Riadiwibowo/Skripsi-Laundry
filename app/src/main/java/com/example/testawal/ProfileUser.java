@@ -50,7 +50,6 @@ public class ProfileUser extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
-                Toast.makeText(ProfileUser.this, "a " + user.nama, Toast.LENGTH_LONG).show();
                 if(user != null){
                     Nama.setText(user.nama);
                     Email.setText(user.email);

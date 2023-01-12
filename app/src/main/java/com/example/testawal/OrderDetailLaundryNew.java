@@ -147,16 +147,16 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                     if (dataSnapshot.child("nama").getValue().toString().equals(namaLaundry1)) {
                         noTelp.setText(dataSnapshot.child("phone").getValue().toString());
                         if (dataSnapshot.child("satuan").exists()){
-                            subCalcSatuan = Integer.valueOf(dataSnapshot.child("satuan").getValue().toString());
+                            subCalcSatuan = Integer.valueOf(dataSnapshot.child("harga").child("satuan").getValue().toString());
                         }
                         if (dataSnapshot.child("kiloan").exists()){
-                            subCalcKiloan = Integer.valueOf(dataSnapshot.child("kiloan").getValue().toString());
+                            subCalcKiloan = Integer.valueOf(dataSnapshot.child("harga").child("kiloan").getValue().toString());
                         }
                         if (dataSnapshot.child("sepatu").exists()){
-                            subCalcSepatu = Integer.valueOf(dataSnapshot.child("sepatu").getValue().toString());
+                            subCalcSepatu = Integer.valueOf(dataSnapshot.child("harga").child("sepatu").getValue().toString());
                         }
                         if (dataSnapshot.child("pickup").exists()) {
-                            hargaPickup.setText(dataSnapshot.child("pickup").getValue().toString());
+                            hargaPickup.setText(dataSnapshot.child("harga").child("pickup").getValue().toString());
                         }
                         else {
                             layoutHargaPickup.setVisibility(View.GONE);
