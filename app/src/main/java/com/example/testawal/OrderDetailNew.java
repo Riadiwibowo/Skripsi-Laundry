@@ -2,15 +2,19 @@ package com.example.testawal;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.appwidget.AppWidgetHost;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.View;
@@ -41,6 +45,8 @@ import java.util.Locale;
 
 public class OrderDetailNew extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
+
     TextView Id, namaLaundry, noTelp, alamat, category, service, hargaPickup, price, tanggalpickup, jampickup, alamatpickup, editTanggal, editJam;
     private int jam, menit;
     private int tanggal, bulan, tahun;
@@ -49,7 +55,7 @@ public class OrderDetailNew extends AppCompatActivity {
     FirebaseUser fUser;
     String userId, trId;
     Spinner rescheduleSpinner;
-    LinearLayout layoutPickup, layoutReschedule, layoutHargaPickup;
+    LinearLayout layoutPickup, layoutReschedule, layoutHargaPickup, parentLayout, footerLayout;
     Button btnCancel, btnSave, btnAccept;
     Space space;
 
@@ -66,6 +72,9 @@ public class OrderDetailNew extends AppCompatActivity {
     ImageView lineblack;
     LinearLayout alasan1, alasan2, alasan3, alasan4;
     Dialog dialog;
+
+    TextView titleOrderId, titleService, titleInfo, titleDetail, titleBaju, titleSepatu, titlePickup, titleNamaLaundry, titleNoTelp, titleAlamat, titleAlamatPickup, linearPickup, titleTanggal,
+            titleJam, titleReschedule, titleReschedule1, td1, td2, td3, td4, td5, td6, td7, td8, rp1, rp2, rp3, rp4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,11 +150,90 @@ public class OrderDetailNew extends AppCompatActivity {
         alasan4 = dialog.findViewById(R.id.alasan4);
         lineblack = dialog.findViewById(R.id.lineblack);
 
+        parentLayout = findViewById(R.id.parentLayout);
+        footerLayout = findViewById(R.id.footerLayout);
+        titleOrderId = findViewById(R.id.titleOrderId);
+        titleService = findViewById(R.id.titleService);
+        titleInfo = findViewById(R.id.titleInfo);
+        titleDetail = findViewById(R.id.titleDetail);
+        titleBaju = findViewById(R.id.titleBaju);
+        titleSepatu = findViewById(R.id.titleSepatu);
+        titlePickup = findViewById(R.id.titlePickup);
+        titleNamaLaundry = findViewById(R.id.titleNamaLaundry);
+        titleNoTelp = findViewById(R.id.titleNoTelp);
+        titleAlamat = findViewById(R.id.titleAlamat);
+        titleAlamatPickup = findViewById(R.id.titleAlamatPickup);
+        linearPickup = findViewById(R.id.linearPickup);
+        titleTanggal = findViewById(R.id.titleTanggal);
+        titleJam = findViewById(R.id.titleJam);
+        titleReschedule = findViewById(R.id.titleReschedule);
+        titleReschedule1 = findViewById(R.id.titleReschedule1);
+        td1 = findViewById(R.id.td1);
+        td2 = findViewById(R.id.td2);
+        td3 = findViewById(R.id.td3);
+        td4 = findViewById(R.id.td4);
+        td5 = findViewById(R.id.td5);
+        td6 = findViewById(R.id.td6);
+        td7 = findViewById(R.id.td7);
+        td8 = findViewById(R.id.td8);
+        rp1 = findViewById(R.id.rp1);
+        rp2 = findViewById(R.id.rp2);
+        rp3 = findViewById(R.id.rp3);
+        rp4 = findViewById(R.id.rp4);
+
+
         Bundle b = getIntent().getExtras();
         String orderid = (String) b.get("orderid");
         String namaLaundry1 = (String) b.get("namaLaundry1");
 
         Id.setText(orderid);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        final int black = ContextCompat.getColor(this, R.color.black);
+        final int white = ContextCompat.getColor(this, R.color.white);
+
+        if (sharedPreferences.getBoolean("dark_mode", true)) {
+            parentLayout.setBackgroundColor(black);
+            footerLayout.setBackgroundColor(black);
+            titleOrderId.setTextColor(white);
+            titleService.setTextColor(white);
+            titleInfo.setTextColor(white);
+            titleDetail.setTextColor(white);
+            titlePickup.setTextColor(white);
+            titleNamaLaundry.setTextColor(white);
+            titleNoTelp.setTextColor(white);
+            titleAlamat.setTextColor(white);
+            titleAlamatPickup.setTextColor(white);
+            linearPickup.setTextColor(white);
+            titleTanggal.setTextColor(white);
+            titleJam.setTextColor(white);
+            titleReschedule.setTextColor(white);
+            titleReschedule1.setTextColor(white);
+            td1.setTextColor(white);
+            td2.setTextColor(white);
+            td3.setTextColor(white);
+            td4.setTextColor(white);
+            td5.setTextColor(white);
+            td6.setTextColor(white);
+            td7.setTextColor(white);
+            td8.setTextColor(white);
+            rp3.setTextColor(white);
+            rp4.setTextColor(white);
+            Id.setTextColor(white);
+            service.setTextColor(white);
+            namaLaundry.setTextColor(white);
+            noTelp.setTextColor(white);
+            alamat.setTextColor(white);
+            hargaPickup.setTextColor(white);
+            price.setTextColor(white);
+            tanggalpickup.setTextColor(white);
+            jampickup.setTextColor(white);
+            editTanggal.setTextColor(white);
+            editJam.setTextColor(white);
+            alamatpickup.setTextColor(white);
+            Id.setTextColor(white);
+        }
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

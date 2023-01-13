@@ -1,13 +1,20 @@
 package com.example.testawal;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -51,12 +58,16 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
+    Context context;
+
     DrawerLayout drawerLayout;
+    ConstraintLayout constraintLayoutTop;
+    CardView constraintLayoutMid;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
     ImageSlider imageSlider;
     ViewFlipper viewFlipper;
-    TextView txtArtikel, txtSeeAll, txtNamaUser, txtNo, txtYes;
+    TextView txtArtikel, txtSeeAll, txtNamaUser, txtNo, txtYes, textViewCart1, textViewCart2, textViewCart3, textViewCart4, txtHeader;
     ImageView img1, img2, img3, img4;
     FirebaseUser fUser;
     String userId;
@@ -69,41 +80,77 @@ public class HomeFragment extends Fragment {
     Integer idx=0;
     Dialog dialog;
 
+    SharedPreferences sharedPreferences;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Home Page");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        context = container.getContext();
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
+
         txtNamaUser = view.findViewById(R.id.txtNamaUser);
         txtArtikel = view.findViewById(R.id.txtArtikel);
         txtSeeAll = view.findViewById(R.id.txtSeeAll);
+        txtHeader = view.findViewById(R.id.txtHeader);
+        textViewCart1 = view.findViewById(R.id.textViewCart);
+        textViewCart2 = view.findViewById(R.id.textViewCart2);
+        textViewCart3 = view.findViewById(R.id.textViewCart3);
+        textViewCart4 = view.findViewById(R.id.textViewCart4);
         img1 = view.findViewById(R.id.img1);
         img2 = view.findViewById(R.id.img2);
         img3 = view.findViewById(R.id.img3);
         img4 = view.findViewById(R.id.img4);
         drawerLayout = view.findViewById(R.id.home_layout);
+        constraintLayoutTop = view.findViewById(R.id.constraintLayoutTop);
+        constraintLayoutMid = view.findViewById(R.id.constraintLayoutMid);
         navigationView = view.findViewById(R.id.nav_home);
+        rv = view.findViewById(R.id.recyclerLaundry);
         toggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        final Drawable black = ContextCompat.getDrawable(context, R.color.black);
+        final Drawable bluex = ContextCompat.getDrawable(context, R.color.bluex);
+        final int lightbluex = ContextCompat.getColor(context, R.color.lightbluex);
+        final int white = ContextCompat.getColor(context, R.color.white);
+        final int grey = ContextCompat.getColor(context, R.color.greynavigation);
+        final Drawable backgroundmaindark = ContextCompat.getDrawable(context, R.drawable.belakangmaindark);
+        final Drawable recyclerdark = ContextCompat.getDrawable(context, R.drawable.background_recycler_home_dark);
+
+        if (sharedPreferences.getBoolean("dark_mode", true)) {
+            drawerLayout.setBackground(black);
+            txtNamaUser.setBackground(bluex);
+            constraintLayoutTop.setBackground(backgroundmaindark);
+            constraintLayoutMid.setCardBackgroundColor(lightbluex);
+            rv.setBackground(recyclerdark);
+            textViewCart1.setTextColor(white);
+            textViewCart2.setTextColor(white);
+            textViewCart3.setTextColor(white);
+            textViewCart4.setTextColor(white);
+            txtHeader.setTextColor(white);
+            txtSeeAll.setTextColor(white);
+            navigationView.setBackgroundColor(grey);
+        }
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.catBaju:
                         startActivity(new Intent(getActivity(), CategoryBaju.class));
-                        Toast.makeText(getActivity(), "Category Baju", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.catSepatu:
                         startActivity(new Intent(getActivity(), CategorySepatu.class));
-                        Toast.makeText(getActivity(), "Category Sepatu", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.catOther:
                         startActivity(new Intent(getActivity(), CategoryLain.class));
-                        Toast.makeText(getActivity(), "Category Others", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menuAbout:
                         startActivity(new Intent(getActivity(), AboutUs.class));
@@ -141,7 +188,6 @@ public class HomeFragment extends Fragment {
         txtArtikel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Pindah ke halaman artikel", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getActivity(), Artikel.class));
             }
         });
@@ -150,7 +196,6 @@ public class HomeFragment extends Fragment {
         //endregion
 
         //region recyclerView
-        rv = view.findViewById(R.id.recyclerLaundry);
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         storageReference = FirebaseStorage.getInstance().getReference();
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -278,7 +323,7 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getActivity(), ProfileUser.class));
                 return true;
             case R.id.itemSetting:
-                startActivity(new Intent(getActivity(), Setting.class));
+                startActivity(new Intent(getActivity(), SettingActivity.class));
                 return true;
         }
         if(toggle.onOptionsItemSelected(item)){

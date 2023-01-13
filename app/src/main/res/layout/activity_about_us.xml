@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AboutUs"
+    android:id="@+id/parentLayoutAboutUs"
     android:background="#1572A1">
 
     <ImageView

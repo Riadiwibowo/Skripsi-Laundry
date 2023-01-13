@@ -4,10 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,13 +30,15 @@ import java.util.ArrayList;
 
 public class ServiceKilat extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
+
     //region properties recyclerView
     RecyclerView rv;
     DatabaseReference databaseReference;
     StorageReference storageReference;
     MyAdapter myAdapter;
     ArrayList<User> users;
-    CardView parentLayout;
+    ConstraintLayout parentLayout;
     //endregion
 
     //region properties search
@@ -52,7 +58,7 @@ public class ServiceKilat extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_kilat);
 
-        getSupportActionBar().setTitle("Kilat Laundry List");
+        getSupportActionBar().setTitle("Laundry Kilat List");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //region recyclerView
@@ -64,6 +70,14 @@ public class ServiceKilat extends AppCompatActivity {
         users = new ArrayList<>();
         myAdapter = new MyAdapter(ServiceKilat.this, users);
         rv.setAdapter(myAdapter);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        final int bluex = ContextCompat.getColor(this, R.color.bluex);
+
+        if (sharedPreferences.getBoolean("dark_mode", true)) {
+            parentLayout.setBackgroundColor(bluex);
+        }
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             //fetch data

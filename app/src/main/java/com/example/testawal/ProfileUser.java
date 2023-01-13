@@ -2,10 +2,14 @@ package com.example.testawal;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,11 +27,15 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProfileUser extends AppCompatActivity {
 
-    TextView Nama, Email, Telp;
+    SharedPreferences sharedPreferences;
+
+    TextView textView, Nama, Email, Telp;
     private DatabaseReference databaseReference;
     private FirebaseUser fUser;
     private String userId;
     Button btnEdit;
+
+    ConstraintLayout parentLayout, constraintNama, constraintEmail, constraintPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +45,36 @@ public class ProfileUser extends AppCompatActivity {
         getSupportActionBar().setTitle("User Profile Setting");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        textView = findViewById(R.id.textView);
         Nama = (TextView) findViewById(R.id.Nama);
         Email = (TextView) findViewById(R.id.Email);
         Telp = (TextView) findViewById(R.id.Phone);
         btnEdit = findViewById(R.id.btnEdit);
+        parentLayout = findViewById(R.id.parentLayout);
+        constraintNama = findViewById(R.id.constraintNama);
+        constraintEmail = findViewById(R.id.constraintEmail);
+        constraintPhone = findViewById(R.id.constraintPhone);
 
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         userId = fUser.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        final int black = ContextCompat.getColor(this, R.color.black);
+        final int white = ContextCompat.getColor(this, R.color.white);
+        final int lightbluex = ContextCompat.getColor(this, R.color.lightbluex);
+        final Drawable constraintprofile = ContextCompat.getDrawable(this, R.drawable.belakangdetailuserdark);
+
+        if (sharedPreferences.getBoolean("dark_mode", true)) {
+            parentLayout.setBackgroundColor(black);
+            constraintNama.setBackground(constraintprofile);
+            constraintEmail.setBackground(constraintprofile);
+            constraintPhone.setBackground(constraintprofile);
+            btnEdit.setTextColor(white);
+            btnEdit.setBackgroundColor(lightbluex);
+            textView.setTextColor(white);
+        }
 
         databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="380dp"
-    android:layout_height="664dp"
+    android:layout_height="580dp"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:background="@drawable/backgroundmainpopup">
+    android:background="@drawable/backgroundmainpopup"
+    android:id="@+id/parentLayout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@drawable/edittextdetaillaundry"
+        android:background="@drawable/popupatas"
         android:id="@+id/constraintTop"
-        android:backgroundTint="#9AD0EC"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -178,161 +178,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <!--<TextView
-        android:id="@+id/namePopup"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="NAMA LAUNDRY"
-        android:textAlignment="center"
-        android:textSize="24dp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/txtAbout"/>-->
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/contstraintPrice"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintServices"
-        app:layout_constraintVertical_bias="0.0">
-
-<!--        <TextView-->
-<!--            android:id="@+id/txtPrice"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Price"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="20dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/txtKg"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="36dp"-->
-<!--            android:text="Per kg"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="16dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.047"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/txtPrice" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/Kg"-->
-<!--            android:layout_width="232dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginLeft="52dp"-->
-<!--            android:layout_marginTop="36dp"-->
-<!--            android:background="@drawable/edittextdetaillaundry"-->
-<!--            android:paddingLeft="5dp"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="16dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="@id/txtKg"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/txtPrice" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/txtSatuan"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="28dp"-->
-<!--            android:text="Per satuan"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="16dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.046"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/txtKg" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/Satuan"-->
-<!--            android:layout_width="232dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginLeft="52dp"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:background="@drawable/edittextdetaillaundry"-->
-<!--            android:paddingLeft="5dp"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="16dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="@id/txtSatuan"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/Kg" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/txtPair"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:text="Per pasang"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="16dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.049"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/txtSatuan" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/Pair"-->
-<!--            android:layout_width="232dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginLeft="52dp"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:background="@drawable/edittextdetaillaundry"-->
-<!--            android:paddingLeft="5dp"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="16dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="@id/txtSatuan"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/Satuan" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/txtPickup"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="28dp"-->
-<!--            android:text="Jasa Pickup"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="16dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.049"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/txtPair" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/Pickup"-->
-<!--            android:layout_width="232dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginLeft="52dp"-->
-<!--            android:layout_marginTop="28dp"-->
-<!--            android:background="@drawable/edittextdetaillaundry"-->
-<!--            android:paddingLeft="5dp"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="16dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="@id/txtPair"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/Pair" />-->
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contstraintPrice">
+        app:layout_constraintTop_toBottomOf="@+id/constraintServices">
 
         <Button
             android:id="@+id/btnPopup"
@@ -340,7 +194,7 @@
             android:layout_height="52dp"
             android:text="Order"
             android:backgroundTint="#9AD0EC"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="18dp"
             android:fontFamily="@font/ralewayregular"
             android:textAllCaps="false"

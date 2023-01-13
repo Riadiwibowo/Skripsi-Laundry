@@ -3,8 +3,11 @@ package com.example.testawal;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +29,10 @@ import com.google.android.material.imageview.ShapeableImageView;
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
+
+    SharedPreferences sharedPreferences;
+
+    ConstraintLayout constraintTop, parentLayout;
 
     Context context;
     ArrayList<User> userList = new ArrayList<>();
@@ -53,6 +61,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
         myDialog.setContentView(R.layout.popup);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +73,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                 btnPopup = myDialog.findViewById(R.id.btnPopup);
                 Services = myDialog.findViewById(R.id.Service);
                 NamaLaundry = myDialog.findViewById(R.id.txtNamaLaundry);
+                constraintTop = myDialog.findViewById(R.id.constraintTop);
+                parentLayout = myDialog.findViewById(R.id.parentLayout);
+
+                final Drawable popupatasdark = ContextCompat.getDrawable(context, R.drawable.popupatasdark);
+                final Drawable backgroundmainpopupdark = ContextCompat.getDrawable(context, R.drawable.backgroundmainpopupdark);
+                final int lightbluex = ContextCompat.getColor(context, R.color.lightbluex);
+                final int white = ContextCompat.getColor(context, R.color.white);
+
+                if (sharedPreferences.getBoolean("dark_mode", true)) {
+                    constraintTop.setBackground(popupatasdark);
+                    parentLayout.setBackground(backgroundmainpopupdark);
+                    btnPopup.setBackgroundColor(lightbluex);
+                    btnPopup.setTextColor(white);
+                }
 
                 if(userList.get(viewHolder.getAdapterPosition()).getImageUrl().toString().equals("")){
                     iconPopup.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_profile_icon));
@@ -152,6 +176,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
             myText2 = itemView.findViewById(R.id.txtDescriptionLaundry);
             myImage = itemView.findViewById(R.id.imgLogo);
             parentLayout = itemView.findViewById(R.id.parentLayout);
+
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+            final int lightbluex = ContextCompat.getColor(context, R.color.lightbluex);
+            final int greyimage = ContextCompat.getColor(context, R.color.greyimage);
+
+            if (sharedPreferences.getBoolean("dark_mode", true)) {
+                parentLayout.setCardBackgroundColor(lightbluex);
+                myImage.setBackgroundColor(greyimage);
+            }
 
             //respons click on recyclerView
 //            itemView.setOnClickListener(new View.OnClickListener() {

@@ -18,50 +18,51 @@
 
             <!--        start of body-->
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintTop"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:id="@+id/constraintTop"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="120dp"-->
+<!--                android:background="@color/white"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="20dp"
-                    android:paddingTop="28px"
-                    android:text="Anda akan melakukan transaksi di"
-                    android:textSize="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+<!--                <TextView-->
+<!--                    android:id="@+id/textView2"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_margin="20dp"-->
+<!--                    android:paddingTop="28px"-->
+<!--                    android:text="Anda akan melakukan transaksi di"-->
+<!--                    android:textSize="20dp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
-                <TextView
-                    android:id="@+id/txtNamaLaundry"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="20dp"
-                    android:fontFamily="@font/ralewayregular"
-                    android:text="nama laundry"
-                    android:textSize="24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                <TextView-->
+<!--                    android:id="@+id/txtNamaLaundry"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_margin="20dp"-->
+<!--                    android:fontFamily="@font/ralewayregular"-->
+<!--                    android:text="nama laundry"-->
+<!--                    android:textSize="24dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/textView2" />-->
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
             <LinearLayout
+                android:id="@+id/parentLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/blue"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/constraintTop">
+                android:orientation="vertical">
 
                 <!--            ini category-->
                 <LinearLayout
+                    android:id="@+id/titleCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/blue"
@@ -86,6 +87,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layoutCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="12dp"
@@ -125,6 +127,7 @@
 
                 <!--            ini services-->
                 <LinearLayout
+                    android:id="@+id/titleService"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/blue"
@@ -168,6 +171,7 @@
                         android:animateLayoutChanges="true">
 
                         <TextView
+                            android:id="@+id/titleReguler"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Reguler"
@@ -261,6 +265,7 @@
                         android:animateLayoutChanges="true">
 
                         <TextView
+                            android:id="@+id/titleKilat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Kilat"
@@ -367,7 +372,7 @@
                     android:layout_margin="12dp"
                     app:contentPadding="18dp"
                     android:elevation="16dp"
-                    app:cardBackgroundColor="#9AD0EC"
+                    app:cardBackgroundColor="@color/lightblue"
                     app:cardCornerRadius="28dp">
 
                     <LinearLayout
@@ -383,6 +388,7 @@
                             android:layout_height="20dp">
 
                             <TextView
+                                android:id="@+id/titlePickup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:text="Ingin menggunakan jasa pickup?"
@@ -432,6 +438,7 @@
 
                 <!--            ini detail-->
                 <LinearLayout
+                    android:id="@+id/titleDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/blue"
@@ -440,8 +447,8 @@
                     android:layout_marginLeft="20dp"
                     android:gravity="center_vertical">
                     <ImageView
-                        android:layout_width="42dp"
-                        android:layout_height="42dp"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
                         android:src="@drawable/info"/>
 
                     <TextView
@@ -449,12 +456,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Detail"
-                        android:textSize="32dp"
+                        android:textSize="26dp"
                         android:textStyle="bold"
                         android:textColor="@color/white"/>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layoutDetail"
                     android:layout_margin="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -474,7 +482,7 @@
 
                         <TextView
                             android:layout_marginRight="4dp"
-                            android:id="@+id/hargaSatuan"
+                            android:id="@+id/teksHargaSatuan"
                             android:layout_width="108dp"
                             android:layout_height="wrap_content"
                             android:text="Harga Satuan"
@@ -482,6 +490,7 @@
                             android:textColor="@color/black"
                             android:buttonTint="@color/blue"/>
                         <TextView
+                            android:id="@+id/td1"
                             android:layout_width="4dp"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -489,6 +498,7 @@
                             android:textColor="@color/black"
                             android:buttonTint="@color/blue"/>
                         <TextView
+                            android:id="@+id/rp1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
@@ -518,7 +528,7 @@
 
                         <TextView
                             android:layout_marginRight="4dp"
-                            android:id="@+id/hargaSepatu"
+                            android:id="@+id/teksHargaSepatu"
                             android:layout_width="108dp"
                             android:layout_height="wrap_content"
                             android:text="Harga Sepatu"
@@ -526,6 +536,7 @@
                             android:textColor="@color/black"
                             android:buttonTint="@color/blue"/>
                         <TextView
+                            android:id="@+id/td2"
                             android:layout_width="4dp"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -533,6 +544,7 @@
                             android:textColor="@color/black"
                             android:buttonTint="@color/blue"/>
                         <TextView
+                            android:id="@+id/rp2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
@@ -562,7 +574,7 @@
 
                         <TextView
                             android:layout_marginRight="4dp"
-                            android:id="@+id/hargaKiloan"
+                            android:id="@+id/teksHargaKiloan"
                             android:layout_width="108dp"
                             android:layout_height="wrap_content"
                             android:text="Harga Kiloan"
@@ -570,6 +582,7 @@
                             android:textColor="@color/black"
                             android:buttonTint="@color/blue"/>
                         <TextView
+                            android:id="@+id/td3"
                             android:layout_width="4dp"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -577,6 +590,7 @@
                             android:textColor="@color/black"
                             android:buttonTint="@color/blue"/>
                         <TextView
+                            android:id="@+id/rp3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
@@ -606,7 +620,7 @@
 
                         <TextView
                             android:layout_marginRight="4dp"
-                            android:id="@+id/hargaPickup"
+                            android:id="@+id/teksHargaPickup"
                             android:layout_width="108dp"
                             android:layout_height="wrap_content"
                             android:text="Harga Pickup"
@@ -615,6 +629,7 @@
                             android:buttonTint="@color/blue"/>
 
                         <TextView
+                            android:id="@+id/td4"
                             android:layout_width="4dp"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -623,6 +638,7 @@
                             android:buttonTint="@color/blue"/>
 
                         <TextView
+                            android:id="@+id/rp4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
@@ -664,6 +680,7 @@
                             android:buttonTint="@color/blue"/>
 
                         <TextView
+                            android:id="@+id/rp5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="24dp"

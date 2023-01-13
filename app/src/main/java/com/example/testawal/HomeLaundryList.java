@@ -4,11 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ClipData;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Adapter;
@@ -35,13 +40,15 @@ import java.util.Locale;
 
 public class HomeLaundryList extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
+
     //region properties recyclerView
     RecyclerView rv;
     DatabaseReference databaseReference;
     StorageReference storageReference;
     MyAdapter myAdapter;
     ArrayList<User> users;
-    CardView parentLayout;
+    ConstraintLayout parentLayout;
     //endregion
 
     //region properties search
@@ -61,6 +68,8 @@ public class HomeLaundryList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_laundry_list);
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
         getSupportActionBar().setTitle("Laundry List");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -73,6 +82,12 @@ public class HomeLaundryList extends AppCompatActivity {
         users = new ArrayList<>();
         myAdapter = new MyAdapter(HomeLaundryList.this, users);
         rv.setAdapter(myAdapter);
+
+        final int bluex = ContextCompat.getColor(this, R.color.bluex);
+
+        if (sharedPreferences.getBoolean("dark_mode", true)) {
+            parentLayout.setBackgroundColor(bluex);
+        }
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             //fetch data

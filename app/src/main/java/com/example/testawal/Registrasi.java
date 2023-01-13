@@ -2,15 +2,21 @@ package com.example.testawal;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -23,6 +29,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Registrasi extends AppCompatActivity {
+
+    SharedPreferences sharedPreferences;
+
+    LinearLayout parentLayout;
+    FrameLayout frameLayout;
 
     private EditText editrgsfullName, editrgsEmail, editrgsTelp, editrgsPassword, editrgsConfirm;
     private Button btnRegister;
@@ -56,10 +67,26 @@ public class Registrasi extends AppCompatActivity {
         editrgsConfirm = findViewById(R.id.editrgsConfirm);
         btnRegister = findViewById(R.id.btnRegister);
         spinner = findViewById(R.id.fidgetSpinner);
+        parentLayout = findViewById(R.id.parentLayout);
+        frameLayout = findViewById(R.id.frameLayout);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
 
         mAuth = FirebaseAuth.getInstance();
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        final Drawable belakangregistrasidark = ContextCompat.getDrawable(this, R.drawable.belakangregistrasidark);
+        final int bluex = ContextCompat.getColor(this, R.color.bluex);
+        final int lightbluex = ContextCompat.getColor(this, R.color.lightbluex);
+        final int white = ContextCompat.getColor(this, R.color.white);
+
+        if (sharedPreferences.getBoolean("dark_mode", true)) {
+            parentLayout.setBackgroundColor(bluex);
+            frameLayout.setBackground(belakangregistrasidark);
+            btnRegister.setBackgroundColor(lightbluex);
+            btnRegister.setTextColor(white);
+        }
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

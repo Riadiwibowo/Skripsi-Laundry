@@ -3,8 +3,11 @@ package com.example.testawal;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,14 +61,29 @@ public class MyAdapterArtikel extends RecyclerView.Adapter<MyAdapterArtikel.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
+        SharedPreferences sharedPreferences;
+
         TextView myText1;
         ImageView myImage;
+
+        CardView artikelLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             myText1 = itemView.findViewById(R.id.txtJudulArtikel);
             myImage = itemView.findViewById(R.id.imgArtikel);
+            artikelLayout = itemView.findViewById(R.id.artikelLayout);
+
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+            final int lightbluex = ContextCompat.getColor(context, R.color.lightbluex);
+            final int greyimage = ContextCompat.getColor(context, R.color.greyimage);
+
+            if (sharedPreferences.getBoolean("dark_mode", true)) {
+                artikelLayout.setCardBackgroundColor(lightbluex);
+                myImage.setBackgroundColor(greyimage);
+            }
         }
     }
 }

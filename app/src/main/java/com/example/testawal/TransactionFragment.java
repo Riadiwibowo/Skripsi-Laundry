@@ -2,6 +2,7 @@ package com.example.testawal;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,12 +10,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,6 +44,8 @@ import java.util.ArrayList;
 
 public class TransactionFragment extends Fragment {
 
+    SharedPreferences sharedPreferences;
+
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
@@ -60,6 +65,7 @@ public class TransactionFragment extends Fragment {
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Home Page");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         View view = inflater.inflate(R.layout.fragment_transaction, container, false);
         fUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -70,7 +76,15 @@ public class TransactionFragment extends Fragment {
         toggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
+
+        final int black = ContextCompat.getColor(container.getContext(), R.color.black);
+
+        if (sharedPreferences.getBoolean("dark_mode", true)) {
+            drawerLayout.setBackgroundColor(black);
+        }
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

@@ -3,12 +3,16 @@ package com.example.testawal;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,6 +45,10 @@ import com.google.firebase.storage.UploadTask;
 
 public class EditUser extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
+
+    ConstraintLayout parentLayout;
+
     //region properties
     private Button btnAdd;
     EditText txtName, txtPhone;
@@ -62,6 +70,15 @@ public class EditUser extends AppCompatActivity {
         txtName = findViewById(R.id.txtUserNama);
         txtPhone = findViewById(R.id.txtUserPhone);
         btnAdd = findViewById(R.id.buttonAdd);
+        parentLayout = findViewById(R.id.parentLayout);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        final int black = ContextCompat.getColor(this, R.color.black);
+
+        if (sharedPreferences.getBoolean("dark_mode", true)) {
+            parentLayout.setBackgroundColor(black);
+        }
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override

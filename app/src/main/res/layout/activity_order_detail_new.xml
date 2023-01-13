@@ -33,7 +33,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:id="@+id/parentLayout">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,6 +49,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/titleOrderId"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:text="Order ID"
@@ -57,6 +59,7 @@
                         android:fontFamily="@font/ralewayregular"/>
 
                     <TextView
+                        android:id="@+id/td1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=":"
@@ -94,6 +97,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/titleService"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:text="Service"
@@ -103,6 +107,7 @@
                         android:fontFamily="@font/ralewayregular"/>
 
                     <TextView
+                        android:id="@+id/td2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=":"
@@ -144,6 +149,7 @@
                     android:paddingBottom="16dp">
 
                     <LinearLayout
+                        android:id="@+id/layoutInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -155,6 +161,7 @@
                             android:layout_width="4dp"
                             android:layout_height="0dp"/>
                         <TextView
+                            android:id="@+id/titleInfo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ralewayregular"
@@ -173,6 +180,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/titleNamaLaundry"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Nama Laundry"
@@ -181,6 +189,7 @@
                             android:fontFamily="@font/ralewayregular"/>
 
                         <TextView
+                            android:id="@+id/td3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -206,6 +215,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/titleNoTelp"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="No. Telp"
@@ -214,6 +224,7 @@
                             android:fontFamily="@font/ralewayregular"/>
 
                         <TextView
+                            android:id="@+id/td4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -239,6 +250,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/titleAlamat"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Alamat"
@@ -247,6 +259,7 @@
                             android:fontFamily="@font/ralewayregular"/>
 
                         <TextView
+                            android:id="@+id/td5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -294,6 +307,7 @@
                             android:layout_height="0dp"/>
 
                         <TextView
+                            android:id="@+id/titleDetail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ralewayregular"
@@ -331,6 +345,7 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
                                     <TextView
+                                        android:id="@+id/titleBaju"
                                         android:layout_width="120dp"
                                         android:layout_height="wrap_content"
                                         android:text="Baju/Lain-lain"
@@ -342,6 +357,7 @@
                                         android:layout_width="152dp"
                                         android:layout_height="0dp"/>
                                     <TextView
+                                        android:id="@+id/rp1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Rp "
@@ -379,6 +395,7 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
                                     <TextView
+                                        android:id="@+id/titleSepatu"
                                         android:layout_width="120dp"
                                         android:layout_height="wrap_content"
                                         android:text="Sepatu"
@@ -390,6 +407,7 @@
                                         android:layout_width="152dp"
                                         android:layout_height="0dp"/>
                                     <TextView
+                                        android:id="@+id/rp2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Rp "
@@ -438,6 +456,7 @@
                     android:layout_marginBottom="4dp">
 
                     <TextView
+                        android:id="@+id/titlePickup"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="Pickup"
@@ -450,6 +469,7 @@
                         android:layout_height="0dp"/>
 
                     <TextView
+                        android:id="@+id/rp3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp "
@@ -478,6 +498,7 @@
                     android:paddingBottom="14dp">
 
                     <TextView
+                        android:id="@+id/titleTotalHarga"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="Total Harga"
@@ -491,6 +512,7 @@
                         android:layout_height="0dp"/>
 
                     <TextView
+                        android:id="@+id/rp4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp "
@@ -544,6 +566,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/titleTanggal"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Tanggal"
@@ -552,6 +575,7 @@
                             android:fontFamily="@font/ralewayregular"/>
 
                         <TextView
+                            android:id="@+id/td6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -578,6 +602,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/titleJam"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Jam"
@@ -586,6 +611,7 @@
                             android:fontFamily="@font/ralewayregular"/>
 
                         <TextView
+                            android:id="@+id/td7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -612,6 +638,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/titleAlamatPickup"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:text="Alamat Pickup"
@@ -620,6 +647,7 @@
                             android:fontFamily="@font/ralewayregular"/>
 
                         <TextView
+                            android:id="@+id/td8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -650,6 +678,7 @@
                     android:layout_marginLeft="16dp">
 
                     <TextView
+                        android:id="@+id/titleReschedule"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="Ingin reschedule?"
@@ -676,6 +705,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/titleReschedule1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Reschedule"
@@ -746,7 +776,8 @@
     </ScrollView>
 
     <LinearLayout
-        android:layout_marginTop="20dp"
+        android:id="@+id/footerLayout"
+        android:paddingTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"

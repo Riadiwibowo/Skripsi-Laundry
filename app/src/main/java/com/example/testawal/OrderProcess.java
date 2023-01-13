@@ -3,12 +3,16 @@ package com.example.testawal;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import android.animation.LayoutTransition;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -46,9 +50,10 @@ import java.util.Locale;
 
 public class OrderProcess extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
+
     //region properties
-    TextView editTanggal,  editJam;
-    TextView txtNamaLaundry, txtNamaUser;
+    TextView editTanggal, editJam;
     String userId, trId, laundryId, namaUser;
     ArrayList<User> users;
     FirebaseUser fUser;
@@ -84,15 +89,69 @@ public class OrderProcess extends AppCompatActivity {
     Button btnHarga, btnSubmit;
     LinearLayout layoutHargaSatuan, layoutHargaKiloan, layoutHargaPickup, layoutHargaSepatu;
     TextView txtHargaSatuan, txtHargaKiloan, txtHargaSepatu, txtHargaPickup;
+
+    LinearLayout parentLayout, layoutCategory,  layoutDetail, titleCategory, titleService, titleDetail;
+    TextView titleReguler, titleKilat, titlePickup, rp1, rp2, rp3, rp4, rp5, teksHargaSatuan, teksHargaKiloan, teksHargaSepatu, teksHargaPickup, td1, td2, td3, td4;
     //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_process);
-
-        getSupportActionBar().setTitle("Order Form");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        parentLayout = findViewById(R.id.parentLayout);
+        layoutCategory = findViewById(R.id.layoutCategory);
+        layoutDetail = findViewById(R.id.layoutDetail);
+        titleCategory = findViewById(R.id.titleCategory);
+        titleService = findViewById(R.id.titleService);
+        titleDetail = findViewById(R.id.titleDetail);
+        titlePickup = findViewById(R.id.titlePickup);
+        titleKilat = findViewById(R.id.titleKilat);
+        titleReguler = findViewById(R.id.titleReguler);
+        headerPickup = findViewById(R.id.headerPickup);
+
+        cardKil = findViewById(R.id.cardKilat);
+        cardReg = findViewById(R.id.cardReguler);
+        cardPickup = findViewById(R.id.cardPickup);
+
+        catBaju = findViewById(R.id.categoryBaju);
+        catSepatu = findViewById(R.id.categorySepatu);
+        catOthers = findViewById(R.id.categoryOthers);
+
+        kilatSatuan = findViewById(R.id.kilatSatuan);
+        kilatSatuan.setEnabled(false);
+        kilatKiloan = findViewById(R.id.kilatKiloan);
+        kilatKiloan.setEnabled(false);
+        kilatPair = findViewById(R.id.kilatPair);
+        regulerSatuan = findViewById(R.id.regulerSatuan);
+        regulerSatuan.setEnabled(false);
+        regulerKiloan = findViewById(R.id.regulerKiloan);
+        regulerKiloan.setEnabled(false);
+        regulerPair = findViewById(R.id.regulerPair);
+
+        teksHargaSatuan = findViewById(R.id.teksHargaSatuan);
+        teksHargaKiloan = findViewById(R.id.teksHargaKiloan);
+        teksHargaSepatu = findViewById(R.id.teksHargaSepatu);
+        teksHargaPickup = findViewById(R.id.teksHargaPickup);
+
+        txtHargaKiloan = findViewById(R.id.txtHargaKiloan);
+        txtHargaSatuan = findViewById(R.id.txtHargaSatuan);
+        txtHargaSepatu = findViewById(R.id.txtHargaSepatu);
+        txtHargaPickup = findViewById(R.id.txtHargaPickup);
+
+        rp1 = findViewById(R.id.rp1);
+        rp2 = findViewById(R.id.rp2);
+        rp3 = findViewById(R.id.rp3);
+        rp4 = findViewById(R.id.rp4);
+        rp5 = findViewById(R.id.rp5);
+
+        td1 = findViewById(R.id.td1);
+        td2 = findViewById(R.id.td2);
+        td3 = findViewById(R.id.td3);
+        td4 = findViewById(R.id.td4);
+
+        editAlamat = findViewById(R.id.editAlamat);
 
         //region expand properties
         layoutKilat = findViewById(R.id.layoutKilat);
@@ -191,17 +250,77 @@ public class OrderProcess extends AppCompatActivity {
         userId = fUser.getUid();
         //endregion
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        final int bluex = ContextCompat.getColor(this, R.color.bluex);
+        final int white = ContextCompat.getColor(this, R.color.white);
+        final int lightbluex = ContextCompat.getColor(this, R.color.lightbluex);
+        final Drawable belakangcategoryorderdark = ContextCompat.getDrawable(this, R.drawable.belakangcategoryorderdark);
+
+        if (sharedPreferences.getBoolean("dark_mode", true)) {
+            parentLayout.setBackgroundColor(bluex);
+            layoutDetail.setBackground(belakangcategoryorderdark);
+            layoutCategory.setBackground(belakangcategoryorderdark);
+            titleCategory.setBackgroundColor(bluex);
+            titleService.setBackgroundColor(bluex);
+            titleDetail.setBackgroundColor(bluex);
+            headerPickup.setBackgroundColor(bluex);
+            cardKil.setCardBackgroundColor(lightbluex);
+            cardReg.setCardBackgroundColor(lightbluex);
+            cardPickup.setCardBackgroundColor(lightbluex);
+            editTanggal.setTextColor(white);
+            editJam.setTextColor(white);
+            titlePickup.setTextColor(white);
+            regulerSatuan.setTextColor(white);
+            regulerKiloan.setTextColor(white);
+            regulerPair.setTextColor(white);
+            inputKg1.setTextColor(white);
+            inputKg1.setHintTextColor(white);
+            inputPair1.setTextColor(white);
+            inputPair1.setHintTextColor(white);
+            kilatSatuan.setTextColor(white);
+            kilatKiloan.setTextColor(white);
+            kilatPair.setTextColor(white);
+            inputKg.setTextColor(white);
+            inputKg.setHintTextColor(white);
+            inputPair.setTextColor(white);
+            inputPair.setHintTextColor(white);
+            rp1.setTextColor(white);
+            rp2.setTextColor(white);
+            rp3.setTextColor(white);
+            rp4.setTextColor(white);
+            rp5.setTextColor(white);
+            titleKilat.setTextColor(white);
+            titleReguler.setTextColor(white);
+            harga.setTextColor(white);
+            teksHargaSatuan.setTextColor(white);
+            teksHargaKiloan.setTextColor(white);
+            teksHargaSepatu.setTextColor(white);
+            teksHargaPickup.setTextColor(white);
+            td1.setTextColor(white);
+            td2.setTextColor(white);
+            td3.setTextColor(white);
+            td4.setTextColor(white);
+            txtHarga.setTextColor(white);
+            txtHargaKiloan.setTextColor(white);
+            txtHargaSatuan.setTextColor(white);
+            txtHargaPickup.setTextColor(white);
+            txtHargaSepatu.setTextColor(white);
+            catBaju.setTextColor(white);
+            catSepatu.setTextColor(white);
+            catOthers.setTextColor(white);
+            editAlamat.setTextColor(white);
+            editAlamat.setHintTextColor(white);
+        }
+
         //region get current laundry
         Bundle b = getIntent().getExtras();
         String namaLaundry = (String) b.get("namaLaundry");
-        txtNamaLaundry = findViewById(R.id.txtNamaLaundry);
-        txtNamaLaundry.setText(namaLaundry);
         //endregion
 
+        getSupportActionBar().setTitle("Form Pesanan: " + namaLaundry);
+
         //region get category
-        catBaju = findViewById(R.id.categoryBaju);
-        catSepatu = findViewById(R.id.categorySepatu);
-        catOthers = findViewById(R.id.categoryOthers);
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -248,25 +367,9 @@ public class OrderProcess extends AppCompatActivity {
         layoutHargaKiloan = findViewById(R.id.layoutHargaKiloan);
         layoutHargaSepatu = findViewById(R.id.layoutHargaSepatu);
         layoutHargaPickup = findViewById(R.id.layoutHargaPickup);
-        txtHargaKiloan = findViewById(R.id.txtHargaKiloan);
-        txtHargaSatuan = findViewById(R.id.txtHargaSatuan);
-        txtHargaSepatu = findViewById(R.id.txtHargaSepatu);
-        txtHargaPickup = findViewById(R.id.txtHargaPickup);
         //endregion
 
         //region get services reguler/kilat
-        cardKil = findViewById(R.id.cardKilat);
-        cardReg = findViewById(R.id.cardReguler);
-        kilatSatuan = findViewById(R.id.kilatSatuan);
-        kilatSatuan.setEnabled(false);
-        kilatKiloan = findViewById(R.id.kilatKiloan);
-        kilatKiloan.setEnabled(false);
-        kilatPair = findViewById(R.id.kilatPair);
-        regulerSatuan = findViewById(R.id.regulerSatuan);
-        regulerSatuan.setEnabled(false);
-        regulerKiloan = findViewById(R.id.regulerKiloan);
-        regulerKiloan.setEnabled(false);
-        regulerPair = findViewById(R.id.regulerPair);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -387,13 +490,10 @@ public class OrderProcess extends AppCompatActivity {
         //endregion
 
         //region get pickup
-        headerPickup = findViewById(R.id.headerPickup);
         bodyPickup = findViewById(R.id.bodyPickup);
         bodyPickupTop = findViewById(R.id.bodyPickupTop);
         bodyPickupBottom = findViewById(R.id.bodyPickupBottom);
-        cardPickup = findViewById(R.id.cardPickup);
         layoutAlamat = findViewById(R.id.layoutAlamat);
-        editAlamat = findViewById(R.id.editAlamat);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -450,13 +550,13 @@ public class OrderProcess extends AppCompatActivity {
 
 
 
-        for (int i=0;i<1;i++){
-            try {
-                Thread.sleep(1000);
-            }catch (InterruptedException e){
-                e.printStackTrace();
-            }
-        }
+//        for (int i=0;i<1;i++){
+//            try {
+//                Thread.sleep(1000);
+//            }catch (InterruptedException e){
+//                e.printStackTrace();
+//            }
+//        }
 
         databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

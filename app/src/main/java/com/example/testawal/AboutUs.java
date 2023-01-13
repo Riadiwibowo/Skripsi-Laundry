@@ -1,10 +1,20 @@
 package com.example.testawal;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.widget.TextView;
 
 public class AboutUs extends AppCompatActivity {
+
+    SharedPreferences sharedPreferences;
+    TextView namaAplikasi;
+    ConstraintLayout parentLayoutAboutUs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,6 +23,18 @@ public class AboutUs extends AppCompatActivity {
 
         getSupportActionBar().setTitle("About Us");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        namaAplikasi = findViewById(R.id.namaAplikasi);
+        parentLayoutAboutUs = findViewById(R.id.parentLayoutAboutUs);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        final int bluex = ContextCompat.getColor(this, R.color.bluex);
+
+        if (sharedPreferences.getBoolean("dark_mode", true)) {
+            parentLayoutAboutUs.setBackgroundColor(bluex);
+        }
     }
 
     @Override

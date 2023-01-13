@@ -8,7 +8,8 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"
     tools:context=".MainActivity"
-    android:background="#1572A1">
+    android:background="@color/blue"
+    android:id="@+id/parentLayout">
 
     <ImageView
         android:id="@+id/logo"
@@ -68,10 +69,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:backgroundTint="#9AD0EC"
+        android:backgroundTint="@color/lightblue"
         android:fontFamily="@font/ralewayregular"
         android:text="LOGIN"
-        android:textAllCaps="false"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

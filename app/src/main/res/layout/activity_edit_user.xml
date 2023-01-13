@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditUser"
-    android:background="#1572A1">
+    android:background="@color/blue"
+    android:id="@+id/parentLayout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintProfile"

@@ -2,14 +2,19 @@ package com.example.testawal;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser fUser;
     String role, uid;
     ProgressBar progressBar;
+    SharedPreferences sharedPreferences;
+
+    LinearLayout parentLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +60,20 @@ public class MainActivity extends AppCompatActivity {
         registerNow = findViewById(R.id.registernow);
         progressBar = findViewById(R.id.progressBarLogin);
         progressBar.setVisibility(View.INVISIBLE);
+
+        parentLayout = findViewById(R.id.parentLayout);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        final Drawable bluex = ContextCompat.getDrawable(this, R.color.bluex);
+        final int lightbluex = ContextCompat.getColor(this, R.color.lightbluex);
+        final int white = ContextCompat.getColor(this, R.color.white);
+
+        if (sharedPreferences.getBoolean("dark_mode", true)) {
+            parentLayout.setBackground(bluex);
+            btnLogin.setBackgroundColor(lightbluex);
+            btnLogin.setTextColor(white);
+        }
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 //        Toast.makeText(MainActivity.this, databaseReference.toString(), Toast.LENGTH_SHORT).show();

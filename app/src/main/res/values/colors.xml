@@ -8,7 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#1572A1</color>
+    <color name="bluex">#185474</color>
     <color name="lightblue">#9AD0EC</color>
+    <color name="lightbluex">#083444</color>
+    <color name="greynavigation">#858585</color>
+    <color name="greyimage">#858585</color>
     <color name="orange">#F29339</color>
     <color name="red">#B90E0A</color>
     <color name="green">#299617</color>

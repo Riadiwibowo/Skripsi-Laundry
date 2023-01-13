@@ -13,7 +13,7 @@
         android:id="@+id/constraintLayoutMain">
 
         <TextView
-            android:background="#1572A1"
+            android:background="@color/blue"
             android:paddingTop="20dp"
             android:paddingLeft="12dp"
             android:id="@+id/txtNamaUser"
@@ -234,7 +234,7 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView3"
+                            android:id="@+id/textViewCart3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Satuan"
@@ -281,14 +281,14 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView5"
+                            android:id="@+id/textViewCart4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/ralewayregular"
                             android:text="Kiloan"
                             android:textAlignment="center"
                             android:textColor="@color/black"
-                            android:textSize="15dp"
-                            android:fontFamily="@font/ralewayregular"/>
+                            android:textSize="15dp" />
                     </LinearLayout>
 
                 </TableRow>

@@ -3,8 +3,10 @@ package com.example.testawal;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,8 @@ import com.google.android.material.imageview.ShapeableImageView;
 import java.util.ArrayList;
 
 public class MyAdapterTransaction extends RecyclerView.Adapter<MyAdapterTransaction.MyViewHolder>{
+
+    SharedPreferences sharedPreferences;
 
     Context context;
     ArrayList<Transaction> transactionList;
@@ -108,6 +112,16 @@ public class MyAdapterTransaction extends RecyclerView.Adapter<MyAdapterTransact
             myText4 = itemView.findViewById(R.id.txtId);
             myImage = itemView.findViewById(R.id.imgLaundryTransaction);
             parentLayout = itemView.findViewById(R.id.parentLayout);
+
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+            final int lightbluex = ContextCompat.getColor(context, R.color.lightbluex);
+            final int greyimage = ContextCompat.getColor(context, R.color.greyimage);
+
+            if (sharedPreferences.getBoolean("dark_mode", true)) {
+                parentLayout.setCardBackgroundColor(lightbluex);
+                myImage.setBackgroundColor(greyimage);
+            }
         }
     }
 
