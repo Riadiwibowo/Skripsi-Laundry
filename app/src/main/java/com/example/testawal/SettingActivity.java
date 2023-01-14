@@ -12,15 +12,46 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class SettingActivity extends PreferenceActivity {
+
+    String userId, role;
+    FirebaseUser fUser;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+//        fUser = FirebaseAuth.getInstance().getCurrentUser();
+//        userId = fUser.getUid();
+//        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+//
+//        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                User user = snapshot.getValue(User.class);
+//                if(user != null){
+//                    role = user.role;
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             setTheme(R.style.TEXTBlack);
@@ -30,10 +61,13 @@ public class SettingActivity extends PreferenceActivity {
         }
 
         getFragmentManager().beginTransaction().replace(android.R.id.content, new Myprefences()).commit();
-
     }
 
     public static class Myprefences extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+        String userId, role;
+        FirebaseUser fUser;
+        DatabaseReference databaseReference;
 
         SharedPreferences sharedPreferences;
         SwitchPreference darkmode;
@@ -44,6 +78,24 @@ public class SettingActivity extends PreferenceActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settingxml);
 
+            fUser = FirebaseAuth.getInstance().getCurrentUser();
+            userId = fUser.getUid();
+            databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+            databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User user = snapshot.getValue(User.class);
+                    if(user != null){
+                        role = user.role;
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
             darkmode = (SwitchPreference) findPreference("dark_mode");
 
             darkmode.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -53,53 +105,52 @@ public class SettingActivity extends PreferenceActivity {
                     boolean isChecked = (Boolean) newValue;
 
                     if (isChecked) {
-
                         DarkModeisOn();
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                Intent intent = new Intent(getActivity(), HomeActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
+                                if (role.equals("laundry")){
+                                    Intent intent = new Intent(getActivity(), LaundryMain.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }else if (role.equals("user")){
+                                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
                             }
                         },1000);
-
-
-
-
                     } else if (!isChecked) {
-
                         DarkModeisOff();
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                Intent intent = new Intent(getActivity(), HomeActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
+                                if (role.equals("laundry")){
+                                    Intent intent = new Intent(getActivity(), LaundryMain.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }else if (role.equals("user")){
+                                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
                             }
                         },1000);
-
-
                     }
-
                     return true;
                 }
             });
         }
 
         public void DarkModeisOff() {
-
-
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.apply();
         }
 
         public void DarkModeisOn() {
-
-
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("dark_mode", true);

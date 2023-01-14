@@ -181,7 +181,7 @@
 
                         <TextView
                             android:id="@+id/titleNamaLaundry"
-                            android:layout_width="120dp"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:text="Nama Laundry"
                             android:textSize="14sp"
@@ -216,7 +216,7 @@
 
                         <TextView
                             android:id="@+id/titleNoTelp"
-                            android:layout_width="120dp"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:text="No. Telp"
                             android:textSize="14sp"
@@ -251,7 +251,7 @@
 
                         <TextView
                             android:id="@+id/titleAlamat"
-                            android:layout_width="120dp"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:text="Alamat"
                             android:textSize="14sp"
@@ -567,7 +567,7 @@
 
                         <TextView
                             android:id="@+id/titleTanggal"
-                            android:layout_width="120dp"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:text="Tanggal"
                             android:textSize="14sp"
@@ -603,7 +603,7 @@
 
                         <TextView
                             android:id="@+id/titleJam"
-                            android:layout_width="120dp"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:text="Jam"
                             android:textSize="14sp"
@@ -639,7 +639,7 @@
 
                         <TextView
                             android:id="@+id/titleAlamatPickup"
-                            android:layout_width="120dp"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:text="Alamat Pickup"
                             android:textSize="14sp"

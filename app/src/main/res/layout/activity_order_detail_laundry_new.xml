@@ -5,25 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OrderDetailLaundry"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/parentLayout">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:background="@drawable/backgroundorderid">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:gravity="center"-->
+<!--        android:background="@drawable/backgroundorderid">-->
 
-        <TextView
-            android:id="@+id/IdX"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pesanan"
-            android:textColor="@color/white"
-            android:textSize="28dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/ralewayregular"/>
+<!--        <TextView-->
+<!--            android:id="@+id/IdX"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Pesanan"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="28dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:fontFamily="@font/ralewayregular"/>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -48,7 +49,8 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="120dp"
+                        android:id="@+id/titleId"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:text="Order ID"
                         android:textColor="@color/black"
@@ -57,6 +59,7 @@
                         android:fontFamily="@font/ralewayregular"/>
 
                     <TextView
+                        android:id="@+id/td1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=":"
@@ -66,7 +69,7 @@
 
                     <TextView
                         android:id="@+id/Id"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:text="Order ID"
@@ -75,7 +78,7 @@
                         android:fontFamily="@font/ralewayregular"/>
 
                     <Space
-                        android:layout_width="8dp"
+                        android:layout_width="16dp"
                         android:layout_height="wrap_content"/>
 
                     <TextView
@@ -94,7 +97,8 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="120dp"
+                        android:id="@+id/titleService"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:text="Service"
                         android:textSize="14sp"
@@ -103,6 +107,7 @@
                         android:fontFamily="@font/ralewayregular"/>
 
                     <TextView
+                        android:id="@+id/td2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=":"
@@ -156,6 +161,7 @@
                             android:layout_width="4dp"
                             android:layout_height="0dp"/>
                         <TextView
+                            android:id="@+id/headerInfo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ralewayregular"
@@ -174,7 +180,8 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="120dp"
+                            android:id="@+id/titleNamaUser"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:text="Nama Customer"
                             android:textSize="12sp"
@@ -182,6 +189,7 @@
                             android:fontFamily="@font/ralewayregular"/>
 
                         <TextView
+                            android:id="@+id/td3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -207,7 +215,8 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="120dp"
+                            android:id="@+id/titleNoTelp"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:text="No. Telp"
                             android:textSize="12sp"
@@ -215,6 +224,7 @@
                             android:fontFamily="@font/ralewayregular"/>
 
                         <TextView
+                            android:id="@+id/td4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -262,6 +272,7 @@
                             android:layout_height="0dp"/>
 
                         <TextView
+                            android:id="@+id/headerDetail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ralewayregular"
@@ -299,6 +310,7 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
                                     <TextView
+                                        android:id="@+id/titleBaju"
                                         android:layout_width="120dp"
                                         android:layout_height="wrap_content"
                                         android:text="Baju/Others"
@@ -312,6 +324,7 @@
                                         android:layout_height="0dp"/>
 
                                     <TextView
+                                        android:id="@+id/rp1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Rp "
@@ -355,6 +368,7 @@
                                     android:orientation="horizontal">
 
                                     <TextView
+                                        android:id="@+id/titleSepatu"
                                         android:layout_width="120dp"
                                         android:layout_height="wrap_content"
                                         android:text="Sepatu"
@@ -368,6 +382,7 @@
                                         android:layout_height="0dp"/>
 
                                     <TextView
+                                        android:id="@+id/rp2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Rp "
@@ -419,6 +434,7 @@
                     android:paddingRight="16dp">
 
                     <TextView
+                        android:id="@+id/titlePickup"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="Pickup"
@@ -431,6 +447,7 @@
                         android:layout_height="0dp"/>
 
                     <TextView
+                        android:id="@+id/rp3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp "
@@ -441,11 +458,11 @@
                     <TextView
                         android:id="@+id/hargaPickup"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="20dp"
+                        android:fontFamily="@font/ralewayregular"
                         android:text="hargapickup"
-                        android:textSize="12sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/ralewayregular"/>
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -459,6 +476,7 @@
                     android:paddingBottom="14dp">
 
                     <TextView
+                        android:id="@+id/titleTotalHarga"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="Total Harga"
@@ -472,9 +490,10 @@
                         android:layout_height="0dp"/>
 
                     <TextView
+                        android:id="@+id/rp4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rp."
+                        android:text="Rp "
                         android:textSize="14sp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/ralewayregular"/>
@@ -523,7 +542,8 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="120dp"
+                            android:id="@+id/titleTanggal"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:text="Tanggal"
                             android:textSize="12sp"
@@ -531,6 +551,7 @@
                             android:fontFamily="@font/ralewayregular"/>
 
                         <TextView
+                            android:id="@+id/td5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -557,7 +578,8 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="120dp"
+                            android:id="@+id/titleJam"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:text="Jam"
                             android:textSize="12sp"
@@ -565,6 +587,7 @@
                             android:fontFamily="@font/ralewayregular"/>
 
                         <TextView
+                            android:id="@+id/td6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -591,7 +614,8 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="120dp"
+                            android:id="@+id/titleAlamatPickup"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:text="Alamat Pickup"
                             android:textSize="12sp"
@@ -599,6 +623,7 @@
                             android:fontFamily="@font/ralewayregular"/>
 
                         <TextView
+                            android:id="@+id/td7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
@@ -672,6 +697,9 @@
                         android:layout_height="30dp"
                         android:layout_gravity="center_horizontal"
                         android:text="Cancel"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
                         android:fontFamily="@font/ralewayregular"
                         android:background="@drawable/backgroundcancel"/>
 
@@ -686,6 +714,9 @@
                         android:layout_height="30dp"
                         android:layout_gravity="center_horizontal"
                         android:text="Accept"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
                         android:fontFamily="@font/ralewayregular"
                         android:background="@drawable/buttonsave"/>
 
@@ -700,6 +731,9 @@
                         android:layout_height="30dp"
                         android:layout_gravity="center_horizontal"
                         android:text="Go Pickup"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
                         android:fontFamily="@font/ralewayregular"
                         android:background="@drawable/buttonsave"/>
 

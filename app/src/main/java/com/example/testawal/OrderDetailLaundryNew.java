@@ -2,15 +2,18 @@ package com.example.testawal;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.appwidget.AppWidgetHost;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.View;
@@ -41,7 +44,8 @@ import java.util.Locale;
 
 public class OrderDetailLaundryNew extends AppCompatActivity {
 
-    TextView Id, namaUser, noTelp, alamat, category, service, hargaPickup, price, tanggalpickup, jampickup, alamatpickup, editTanggal, editJam;
+    SharedPreferences sharedPreferences;
+    TextView Id, namaUser, noTelp, category, service, hargaPickup, price, tanggalpickup, jampickup, alamatpickup, editTanggal, editJam;
     private int jam, menit;
     private int tanggal, bulan, tahun;
     DatabaseReference databaseReference, databaseReferenceT;
@@ -61,6 +65,11 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
     TextView subTotalBaju, subTotalSepatu, subTotalOthers;
     Integer subCalcSatuan=0, subCalcKiloan=0, subCalcSepatu=0;
     ImageView lastLine;
+
+    LinearLayout parentLayout;
+    TextView titleId, titleService, headerInfo, titleNamaUser, titleNoTelp, headerDetail, titleBaju, titleSepatu, rp1, rp2,
+    rp3, titlePickup, titleTotalHarga, rp4, linearPickup, titleTanggal, titleAlamatPickup, titleJam;
+    TextView td1, td2, td3, td4, td5, td6, td7;
 
     //popupcancel
     ImageView lineblack;
@@ -84,7 +93,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
 
         Id = findViewById(R.id.Id);
 
-        //daniel properties UI new
+        //region daniel properties UI new
         status = findViewById(R.id.Status);
         detailBaju = findViewById(R.id.detailBaju);
         detailSepatu = findViewById(R.id.detailSepatu);
@@ -96,7 +105,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
         subTotalBaju = findViewById(R.id.subTotalBaju);
         subTotalSepatu = findViewById(R.id.subTotalSepatu);
 //        subTotalOthers = findViewById(R.id.subTotalOthers);
-
+        //endregion
 
         //laundry properties
         namaUser = findViewById(R.id.namaUser);
@@ -136,6 +145,79 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
         String namaUser1 = (String) b.get("namaUser1");
 
         Id.setText(orderid);
+
+        parentLayout = findViewById(R.id.parentLayout);
+        titleId = findViewById(R.id.titleId);
+        titleService = findViewById(R.id.titleService);
+        headerInfo = findViewById(R.id.headerInfo);
+        titleNamaUser = findViewById(R.id.titleNamaUser);
+        titleNoTelp = findViewById(R.id.titleNoTelp);
+        td1 = findViewById(R.id.td1);
+        td2 = findViewById(R.id.td2);
+        td3 = findViewById(R.id.td3);
+        td4 = findViewById(R.id.td4);
+        td5 = findViewById(R.id.td5);
+        td6 = findViewById(R.id.td6);
+        td7 = findViewById(R.id.td7);
+        headerDetail = findViewById(R.id.headerDetail);
+        titleBaju = findViewById(R.id.titleBaju);
+        titleSepatu = findViewById(R.id.titleSepatu);
+        titlePickup = findViewById(R.id.titleSepatu);
+        titleTotalHarga = findViewById(R.id.titleTotalHarga);
+        rp1 = findViewById(R.id.rp1);
+        rp2 = findViewById(R.id.rp2);
+        rp3 = findViewById(R.id.rp3);
+        rp4 = findViewById(R.id.rp4);
+        linearPickup = findViewById(R.id.linearPickup);
+        titleTanggal = findViewById(R.id.titleTanggal);
+        titleJam = findViewById(R.id.titleJam);
+        titleAlamatPickup = findViewById(R.id.titleAlamatPickup);
+
+        //region dark mode
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        final int black = ContextCompat.getColor(this, R.color.black);
+        final int white = ContextCompat.getColor(this, R.color.white);
+
+        if (sharedPreferences.getBoolean("dark_mode", true)) {
+            parentLayout.setBackgroundColor(black);
+            titleId.setTextColor(white);
+            td1.setTextColor(white);
+            Id.setTextColor(white);
+            titleService.setTextColor(white);
+            td2.setTextColor(white);
+            service.setTextColor(white);
+            headerInfo.setTextColor(white);
+            titleNamaUser.setTextColor(white);
+            td3.setTextColor(white);
+            namaUser.setTextColor(white);
+            titleNoTelp.setTextColor(white);
+            td4.setTextColor(white);
+            noTelp.setTextColor(white);
+            headerDetail.setTextColor(white);
+            titleBaju.setTextColor(black);
+            rp1.setTextColor(black);
+            subTotalBaju.setTextColor(black);
+            titleSepatu.setTextColor(black);
+            rp2.setTextColor(black);
+            subTotalSepatu.setTextColor(black);
+            titlePickup.setTextColor(white);
+            rp3.setTextColor(white);
+            hargaPickup.setTextColor(white);
+            titleTotalHarga.setTextColor(white);
+            rp4.setTextColor(white);
+            price.setTextColor(white);
+            linearPickup.setTextColor(white);
+            td5.setTextColor(white);
+            td6.setTextColor(white);
+            td7.setTextColor(white);
+            titleAlamatPickup.setTextColor(white);
+            titleTanggal.setTextColor(white);
+            titleJam.setTextColor(white);
+            alamatpickup.setTextColor(white);
+            jampickup.setTextColor(white);
+            alamatpickup.setTextColor(white);
+        }
+        //endregion
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

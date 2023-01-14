@@ -9,15 +9,15 @@
             <menu>
                 <item
                     android:id="@+id/catBaju"
-                    android:icon="@drawable/categories"
+                    android:icon="@drawable/catbaju"
                     android:title="Baju"/>
                 <item
                     android:id="@+id/catSepatu"
-                    android:icon="@drawable/categories"
+                    android:icon="@drawable/catsepatu"
                     android:title="Sepatu"/>
                 <item
                     android:id="@+id/catOther"
-                    android:icon="@drawable/categories"
+                    android:icon="@drawable/catothers"
                     android:title="Others"/>
             </menu>
         </item>

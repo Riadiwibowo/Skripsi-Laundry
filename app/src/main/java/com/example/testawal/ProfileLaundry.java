@@ -2,10 +2,14 @@ package com.example.testawal;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,6 +34,11 @@ public class ProfileLaundry extends AppCompatActivity {
     private String userId;
     Button btnEdit;
 
+    //region dark properties
+    SharedPreferences sharedPreferences;
+    ConstraintLayout parentLayout, constraintDesc, constraintNama, constraintPhone;
+    //endregion
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +56,29 @@ public class ProfileLaundry extends AppCompatActivity {
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         userId = fUser.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        parentLayout = findViewById(R.id.parentLayout);
+        constraintDesc = findViewById(R.id.constraintDesc);
+        constraintNama = findViewById(R.id.constraintNama);
+        constraintPhone = findViewById(R.id.constraintPhone);
+
+        final int black = ContextCompat.getColor(this, R.color.black);
+        final int white = ContextCompat.getColor(this, R.color.white);
+        final int lightbluex = ContextCompat.getColor(this, R.color.lightbluex);
+        final Drawable constraintprofile = ContextCompat.getDrawable(this, R.drawable.belakangdetailuserdark);
+
+        if (sharedPreferences.getBoolean("dark_mode", true)) {
+            parentLayout.setBackgroundColor(black);
+            constraintNama.setBackground(constraintprofile);
+            constraintDesc.setBackground(constraintprofile);
+            constraintPhone.setBackground(constraintprofile);
+            constraintPhone.setMinHeight(270);
+            constraintNama.setMinHeight(270);
+            btnEdit.setTextColor(white);
+            btnEdit.setBackgroundColor(lightbluex);
+        }
 
         databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

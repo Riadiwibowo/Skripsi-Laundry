@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileLaundry">
+    tools:context=".ProfileLaundry"
+    android:id="@+id/parentLayout">
 
     <ImageView
         android:id="@+id/imageLaundry"
@@ -29,7 +30,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintNama"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             android:layout_marginTop="40dp"
             android:background="@drawable/belakangdetailuser"
             app:layout_constraintEnd_toEndOf="parent"
@@ -80,11 +83,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintPhone"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/belakangdetailuser"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintNama">
 
@@ -135,7 +139,6 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/belakangdetailuser"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintPhone">
 
