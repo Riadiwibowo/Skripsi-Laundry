@@ -80,9 +80,11 @@ public class TransactionFragment extends Fragment {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
 
         final int black = ContextCompat.getColor(container.getContext(), R.color.black);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             drawerLayout.setBackgroundColor(black);
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -189,6 +191,9 @@ public class TransactionFragment extends Fragment {
                 return true;
             case R.id.itemProfile:
                 startActivity(new Intent(getActivity(), ProfileUser.class));
+                return true;
+            case R.id.itemSetting:
+                startActivity(new Intent(getActivity(), SettingActivity.class));
                 return true;
         }
         if(toggle.onOptionsItemSelected(item)){

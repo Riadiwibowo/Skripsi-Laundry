@@ -6,6 +6,8 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -80,12 +82,14 @@ public class Registrasi extends AppCompatActivity {
         final int bluex = ContextCompat.getColor(this, R.color.bluex);
         final int lightbluex = ContextCompat.getColor(this, R.color.lightbluex);
         final int white = ContextCompat.getColor(this, R.color.white);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             parentLayout.setBackgroundColor(bluex);
             frameLayout.setBackground(belakangregistrasidark);
             btnRegister.setBackgroundColor(lightbluex);
             btnRegister.setTextColor(white);
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
 
         btnRegister.setOnClickListener(new View.OnClickListener() {

@@ -2,6 +2,8 @@ package com.example.testawal;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -66,9 +68,13 @@ public class LaundryTransaction extends AppCompatActivity {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         parentLayout = findViewById(R.id.parentLayout);
+
         final int black = ContextCompat.getColor(this, R.color.black);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
+
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             parentLayout.setBackgroundColor(black);
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
 
         rv = findViewById(R.id.recyclerTransactions);

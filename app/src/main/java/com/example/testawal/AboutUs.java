@@ -5,16 +5,19 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class AboutUs extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     TextView namaAplikasi;
-    ConstraintLayout parentLayoutAboutUs;
+    LinearLayout parentLayoutAboutUs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +34,11 @@ public class AboutUs extends AppCompatActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
         final int bluex = ContextCompat.getColor(this, R.color.bluex);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             parentLayoutAboutUs.setBackgroundColor(bluex);
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
     }
 

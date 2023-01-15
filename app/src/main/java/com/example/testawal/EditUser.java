@@ -9,6 +9,8 @@ import androidx.core.content.ContextCompat;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -75,9 +77,11 @@ public class EditUser extends AppCompatActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
         final int black = ContextCompat.getColor(this, R.color.black);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             parentLayout.setBackgroundColor(black);
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
 
         btnAdd.setOnClickListener(new View.OnClickListener() {

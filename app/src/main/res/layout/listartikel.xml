@@ -40,7 +40,7 @@
         <TextView
             android:layout_gravity="center_vertical"
             android:id="@+id/txtJudulArtikel"
-            android:layout_width="252dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="Judul Artikel"

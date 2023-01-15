@@ -41,17 +41,46 @@ public class MyAdapterArtikel extends RecyclerView.Adapter<MyAdapterArtikel.MyVi
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyAdapterArtikel.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.listartikel, parent, false);
+
+        final MyViewHolder viewHolder = new MyViewHolder(view);
 
         return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyAdapterArtikel.MyViewHolder holder, int position) {
         holder.myText1.setText(judul[position]);
         holder.myImage.setImageResource(images[position]);
+
+        holder.artikelLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String pos = String.valueOf(holder.getAdapterPosition());
+                if (pos.equals("0")) {
+                    Intent intent = new Intent(context, ArtikelSatu.class);
+                    context.startActivity(intent);
+                }
+                if (pos.equals("1")) {
+                    Intent intent = new Intent(context, ArtikelDua.class);
+                    context.startActivity(intent);
+                }
+                if (pos.equals("2")) {
+                    Intent intent = new Intent(context, ArtikelTiga.class);
+                    context.startActivity(intent);
+                }
+                if (pos.equals("3")) {
+                    Intent intent = new Intent(context, ArtikelEmpat.class);
+                    context.startActivity(intent);
+                }
+                if (pos.equals("4")) {
+                    Intent intent = new Intent(context, ArtikelLima.class);
+                    context.startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override

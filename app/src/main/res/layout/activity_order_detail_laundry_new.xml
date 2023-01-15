@@ -28,7 +28,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="640dp"
         android:fillViewport="true">
 
         <LinearLayout
@@ -562,13 +562,12 @@
                         <TextView
                             android:id="@+id/tanggalPickup"
                             android:layout_width="110dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/ralewayregular"
                             android:text="Tanggal"
-                            android:textSize="12sp"
                             android:textColor="@color/black"
-                            android:textStyle="italic"
-                            android:fontFamily="@font/ralewayregular"/>
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
@@ -603,7 +602,6 @@
                             android:text="Jam"
                             android:textSize="12sp"
                             android:textColor="@color/black"
-                            android:textStyle="italic"
                             android:fontFamily="@font/ralewayregular"/>
 
                     </LinearLayout>
@@ -639,7 +637,6 @@
                             android:text="Alamat Pickup"
                             android:textSize="12sp"
                             android:textColor="@color/black"
-                            android:textStyle="italic"
                             android:fontFamily="@font/ralewayregular"/>
 
                     </LinearLayout>
@@ -685,65 +682,67 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_horizontal">
-
-                    <android.widget.Button
-                        android:id="@+id/btnCancel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Cancel"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:textAllCaps="false"
-                        android:fontFamily="@font/ralewayregular"
-                        android:background="@drawable/backgroundcancel"/>
-
-                    <Space
-                        android:id="@+id/space"
-                        android:layout_width="12dp"
-                        android:layout_height="match_parent"/>
-
-                    <android.widget.Button
-                        android:id="@+id/btnAccept"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Accept"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:textAllCaps="false"
-                        android:fontFamily="@font/ralewayregular"
-                        android:background="@drawable/buttonsave"/>
-
-                    <Space
-                        android:id="@+id/space1"
-                        android:layout_width="12dp"
-                        android:layout_height="match_parent"/>
-
-                    <android.widget.Button
-                        android:id="@+id/btnPickup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Go Pickup"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:textAllCaps="false"
-                        android:fontFamily="@font/ralewayregular"
-                        android:background="@drawable/buttonsave"/>
-
-                </LinearLayout>
-
             </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/footerLayout"
+        android:paddingTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <android.widget.Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Cancel"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:fontFamily="@font/ralewayregular"
+            android:background="@drawable/backgroundcancel"/>
+
+        <Space
+            android:id="@+id/space"
+            android:layout_width="12dp"
+            android:layout_height="match_parent"/>
+
+        <android.widget.Button
+            android:id="@+id/btnAccept"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Accept"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:fontFamily="@font/ralewayregular"
+            android:background="@drawable/buttonsave"/>
+
+        <Space
+            android:id="@+id/space1"
+            android:layout_width="12dp"
+            android:layout_height="match_parent"/>
+
+        <android.widget.Button
+            android:id="@+id/btnPickup"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Go Pickup"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:fontFamily="@font/ralewayregular"
+            android:background="@drawable/buttonsave"/>
+
+    </LinearLayout>
 
 <!--    <LinearLayout-->
 <!--        android:layout_marginTop="20dp"-->

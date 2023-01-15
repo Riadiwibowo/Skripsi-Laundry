@@ -3,6 +3,8 @@ package com.example.testawal;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.EditTextPreference;
@@ -14,6 +16,7 @@ import android.preference.SwitchPreference;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -53,17 +56,17 @@ public class SettingActivity extends PreferenceActivity {
 //            }
 //        });
 
+        final int black = ContextCompat.getColor(this, R.color.black);
+
         if (sharedPreferences.getBoolean("dark_mode", true)) {
-            setTheme(R.style.TEXTBlack);
-        }
-        else {
+            getListView().setBackgroundColor(black);
             setTheme(R.style.TEXTWhite);
         }
 
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new Myprefences()).commit();
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new Mypreferences()).commit();
     }
 
-    public static class Myprefences extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+    public static class Mypreferences extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
         String userId, role;
         FirebaseUser fUser;

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".EditLaundry"
     android:orientation="vertical"
-    android:background="#1572A1">
+    android:background="@color/blue"
+    android:id="@+id/parentLayout">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -144,6 +145,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutServices1"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:orientation="vertical"
@@ -239,6 +241,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutCategory1"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:paddingLeft="12dp"
@@ -303,6 +306,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutHarga1"
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
                 android:orientation="horizontal"

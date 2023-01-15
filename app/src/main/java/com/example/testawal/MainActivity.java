@@ -6,6 +6,8 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -68,11 +70,13 @@ public class MainActivity extends AppCompatActivity {
         final Drawable bluex = ContextCompat.getDrawable(this, R.color.bluex);
         final int lightbluex = ContextCompat.getColor(this, R.color.lightbluex);
         final int white = ContextCompat.getColor(this, R.color.white);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             parentLayout.setBackground(bluex);
             btnLogin.setBackgroundColor(lightbluex);
             btnLogin.setTextColor(white);
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");

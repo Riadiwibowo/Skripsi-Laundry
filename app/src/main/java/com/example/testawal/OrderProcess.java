@@ -9,6 +9,8 @@ import android.animation.LayoutTransition;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -256,6 +258,7 @@ public class OrderProcess extends AppCompatActivity {
         final int white = ContextCompat.getColor(this, R.color.white);
         final int lightbluex = ContextCompat.getColor(this, R.color.lightbluex);
         final Drawable belakangcategoryorderdark = ContextCompat.getDrawable(this, R.drawable.belakangcategoryorderdark);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             parentLayout.setBackgroundColor(bluex);
@@ -311,6 +314,7 @@ public class OrderProcess extends AppCompatActivity {
             catOthers.setTextColor(white);
             editAlamat.setTextColor(white);
             editAlamat.setHintTextColor(white);
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
 
         //region get current laundry
@@ -679,31 +683,26 @@ public class OrderProcess extends AppCompatActivity {
                         else {
                             if (!inputKg1.getText().toString().trim().isEmpty()){
                                 if (regulerSatuan.isChecked()){
-//                                    Toast.makeText(OrderProcess.this, "insert Reguler; Satuan", Toast.LENGTH_SHORT).show();
                                     databaseReferenceT.child(trId).child("services").setValue("Reguler, satuan");
                                     databaseReferenceT.child(trId).child("jumlah").setValue(inputKg1.getText().toString().trim());
                                 }
                                 else if (regulerKiloan.isChecked()){
-//                                    Toast.makeText(OrderProcess.this, "insert Reguler; Kiloan", Toast.LENGTH_SHORT).show();
                                     databaseReferenceT.child(trId).child("services").setValue("Reguler, kiloan");
                                     databaseReferenceT.child(trId).child("berat").setValue(inputKg1.getText().toString().trim());
                                 }
                             }
                             if (!inputKg.getText().toString().trim().isEmpty()){
                                 if (kilatSatuan.isChecked()){
-//                                    Toast.makeText(OrderProcess.this, "insert Kilat; Satuan", Toast.LENGTH_SHORT).show();
                                     databaseReferenceT.child(trId).child("services").setValue("Kilat, satuan");
                                     databaseReferenceT.child(trId).child("jumlah").setValue(inputKg.getText().toString().trim());
 
                                 }
                                 else if (kilatKiloan.isChecked()){
-//                                    Toast.makeText(OrderProcess.this, "insert Kilat; Kiloan", Toast.LENGTH_SHORT).show();
                                     databaseReferenceT.child(trId).child("services").setValue("Kilat, kiloan");
                                     databaseReferenceT.child(trId).child("berat").setValue(inputKg.getText().toString().trim());
                                 }
                             }
                             databaseReferenceT.child(trId).child("category").setValue("Baju");
-//                            Toast.makeText(OrderProcess.this, "insert Baju", Toast.LENGTH_SHORT).show();
 
                             if (catSepatu.isChecked()) {
                                 if (!regulerPair.isChecked() && !kilatPair.isChecked()) {
@@ -711,20 +710,54 @@ public class OrderProcess extends AppCompatActivity {
                                     return;
                                 }//else cek inputPair dan inputPair1
                                 else {
-                                    if (!inputPair1.getText().toString().trim().isEmpty()){
-                                        if (regulerPair.isChecked()){
-//                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair1.getText(), Toast.LENGTH_SHORT).show();
-                                            databaseReferenceT.child(trId).child("services").setValue("Reguler, pair");
-                                            databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString().trim());
+                                    if (!inputKg1.getText().toString().trim().isEmpty()){
+                                        if (regulerSatuan.isChecked()){
+                                            if (!inputPair1.getText().toString().trim().isEmpty()){
+                                                if (regulerPair.isChecked()){
+                                                    databaseReferenceT.child(trId).child("services").setValue("Reguler, satuan, pair");
+                                                    databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString().trim());
+                                                }
+                                            }
+                                        }
+                                        else if (regulerKiloan.isChecked()){
+                                            if (!inputPair1.getText().toString().trim().isEmpty()){
+                                                if (regulerPair.isChecked()){
+                                                    databaseReferenceT.child(trId).child("services").setValue("Reguler, kiloan, pair");
+                                                    databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString().trim());
+                                                }
+                                            }
                                         }
                                     }
-                                    if (!inputPair.getText().toString().trim().isEmpty()){
-                                        if (kilatPair.isChecked()){
-//                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair.getText(), Toast.LENGTH_SHORT).show();
-                                            databaseReferenceT.child(trId).child("services").setValue("Kilat, pair");
-                                            databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString().trim());
+//                                    if (!inputPair1.getText().toString().trim().isEmpty()){
+//                                        if (regulerPair.isChecked()){
+//                                            databaseReferenceT.child(trId).child("services").setValue("Reguler, pair");
+//                                            databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString().trim());
+//                                        }
+//                                    }
+                                    if (!inputKg.getText().toString().trim().isEmpty()){
+                                        if (kilatSatuan.isChecked()){
+                                            if (!inputPair.getText().toString().trim().isEmpty()){
+                                                if (kilatPair.isChecked()){
+                                                    databaseReferenceT.child(trId).child("services").setValue("Kilat, satuan, pair");
+                                                    databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString().trim());
+                                                }
+                                            }
+                                        }
+                                        else if (kilatKiloan.isChecked()){
+                                            if (!inputPair.getText().toString().trim().isEmpty()){
+                                                if (kilatPair.isChecked()){
+                                                    databaseReferenceT.child(trId).child("services").setValue("Kilat, kiloan, pair");
+                                                    databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString().trim());
+                                                }
+                                            }
                                         }
                                     }
+//                                    if (!inputPair.getText().toString().trim().isEmpty()){
+//                                        if (kilatPair.isChecked()){
+//                                            databaseReferenceT.child(trId).child("services").setValue("Kilat, pair");
+//                                            databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString().trim());
+//                                        }
+//                                    }
 //                                    Toast.makeText(OrderProcess.this, "insert Baju; Sepatu", Toast.LENGTH_SHORT).show();
                                     databaseReferenceT.child(trId).child("category").setValue("Baju, sepatu");
                                 }
@@ -742,21 +775,54 @@ public class OrderProcess extends AppCompatActivity {
                                     return;
                                 }//else cek inputPair dan inputPair1
                                 else {
-                                    if (!inputPair1.getText().toString().trim().isEmpty()){
-                                        if (regulerPair.isChecked()){
-//                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair1.getText(), Toast.LENGTH_SHORT).show();
-                                            databaseReferenceT.child(trId).child("services").setValue("Reguler, pair");
-                                            databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString().trim());
+                                    if (!inputKg1.getText().toString().trim().isEmpty()){
+                                        if (regulerSatuan.isChecked()){
+                                            if (!inputPair1.getText().toString().trim().isEmpty()){
+                                                if (regulerPair.isChecked()){
+                                                    databaseReferenceT.child(trId).child("services").setValue("Reguler, satuan, pair");
+                                                    databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString().trim());
+                                                }
+                                            }
+                                        }
+                                        else if (regulerKiloan.isChecked()){
+                                            if (!inputPair1.getText().toString().trim().isEmpty()){
+                                                if (regulerPair.isChecked()){
+                                                    databaseReferenceT.child(trId).child("services").setValue("Reguler, kiloan, pair");
+                                                    databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString().trim());
+                                                }
+                                            }
                                         }
                                     }
-                                    if (!inputPair.getText().toString().trim().isEmpty()){
-                                        if (kilatPair.isChecked()){
-//                                            Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair.getText(), Toast.LENGTH_SHORT).show();
-                                            databaseReferenceT.child(trId).child("services").setValue("Kilat, pair");
-                                            databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString().trim());
+//                                    if (!inputPair1.getText().toString().trim().isEmpty()){
+//                                        if (regulerPair.isChecked()){
+//                                            databaseReferenceT.child(trId).child("services").setValue("Reguler, pair");
+//                                            databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString().trim());
+//                                        }
+//                                    }
+                                    if (!inputKg.getText().toString().trim().isEmpty()){
+                                        if (kilatSatuan.isChecked()){
+                                            if (!inputPair.getText().toString().trim().isEmpty()){
+                                                if (kilatPair.isChecked()){
+                                                    databaseReferenceT.child(trId).child("services").setValue("Kilat, satuan, pair");
+                                                    databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString().trim());
+                                                }
+                                            }
+                                        }
+                                        else if (kilatKiloan.isChecked()){
+                                            if (!inputPair.getText().toString().trim().isEmpty()){
+                                                if (kilatPair.isChecked()){
+                                                    databaseReferenceT.child(trId).child("services").setValue("Kilat, kiloan, pair");
+                                                    databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString().trim());
+                                                }
+                                            }
                                         }
                                     }
-//                                    Toast.makeText(OrderProcess.this, "insert Baju; Sepatu; Others", Toast.LENGTH_SHORT).show();
+//                                    if (!inputPair.getText().toString().trim().isEmpty()){
+//                                        if (kilatPair.isChecked()){
+//                                            databaseReferenceT.child(trId).child("services").setValue("Kilat, pair");
+//                                            databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString().trim());
+//                                        }
+//                                    }
                                     databaseReferenceT.child(trId).child("category").setValue("Baju, sepatu, others");
                                 }
                             }
@@ -775,28 +841,23 @@ public class OrderProcess extends AppCompatActivity {
                     }
                     else if (catSepatu.isChecked()) {
                         if (!regulerPair.isChecked() && !kilatPair.isChecked()) {
-                            Toast.makeText(OrderProcess.this, "Pilih hanya satu servis untuk Pair!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(OrderProcess.this, "Pilih salah satu servis untuk Sepatu!", Toast.LENGTH_SHORT).show();
                             return;
                         }//else cek inputPair dan inputPair1
                         else {
                             if (!inputPair1.getText().toString().trim().isEmpty()){
                                 if (regulerPair.isChecked()){
-//                                    Toast.makeText(OrderProcess.this, "insert Reguler", Toast.LENGTH_SHORT).show();
-//                                    Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair1.getText(), Toast.LENGTH_SHORT).show();
                                     databaseReferenceT.child(trId).child("services").setValue("Reguler, pair");
                                     databaseReferenceT.child(trId).child("pair").setValue(inputPair1.getText().toString().trim());
                                 }
                             }
                             if (!inputPair.getText().toString().trim().isEmpty()){
                                 if (kilatPair.isChecked()){
-//                                    Toast.makeText(OrderProcess.this, "insert Kilat", Toast.LENGTH_SHORT).show();
-//                                    Toast.makeText(OrderProcess.this, "insert Pair = " + inputPair.getText(), Toast.LENGTH_SHORT).show();
                                     databaseReferenceT.child(trId).child("services").setValue("Kilat, pair");
                                     databaseReferenceT.child(trId).child("pair").setValue(inputPair.getText().toString().trim());
                                 }
                             }
                             databaseReferenceT.child(trId).child("category").setValue("Sepatu");
-//                            Toast.makeText(OrderProcess.this, "insert Sepatu", Toast.LENGTH_SHORT).show();
 
                             if (catOthers.isChecked()) {
                                 if (!regulerSatuan.isChecked() && !regulerKiloan.isChecked() && !kilatSatuan.isChecked() && !kilatKiloan.isChecked()) {
@@ -807,22 +868,22 @@ public class OrderProcess extends AppCompatActivity {
                                     if (!inputKg1.getText().toString().trim().isEmpty()) {
                                         if (regulerSatuan.isChecked()) {
 //                                            Toast.makeText(OrderProcess.this, "insert Reguler; Satuan", Toast.LENGTH_SHORT).show();
-                                            databaseReferenceT.child(trId).child("services").setValue("Reguler, satuan");
+                                            databaseReferenceT.child(trId).child("services").setValue("Reguler, satuan, pair");
                                             databaseReferenceT.child(trId).child("jumlah").setValue(inputKg1.getText().toString().trim());
                                         } else if (regulerKiloan.isChecked()) {
 //                                            Toast.makeText(OrderProcess.this, "insert Reguler; Kiloan", Toast.LENGTH_SHORT).show();
-                                            databaseReferenceT.child(trId).child("services").setValue("Reguler, kiloan");
+                                            databaseReferenceT.child(trId).child("services").setValue("Reguler, kiloan, pair");
                                             databaseReferenceT.child(trId).child("berat").setValue(inputKg1.getText().toString().trim());
                                         }
                                     }
                                     if (!inputKg.getText().toString().trim().isEmpty()) {
                                         if (kilatSatuan.isChecked()) {
 //                                            Toast.makeText(OrderProcess.this, "insert Kilat; Satuan", Toast.LENGTH_SHORT).show();
-                                            databaseReferenceT.child(trId).child("services").setValue("Kilat, satuan");
+                                            databaseReferenceT.child(trId).child("services").setValue("Kilat, satuan, pair");
                                             databaseReferenceT.child(trId).child("jumlah").setValue(inputKg.getText().toString().trim());
                                         } else if (kilatKiloan.isChecked()) {
 //                                            Toast.makeText(OrderProcess.this, "insert Kilat; Kiloan", Toast.LENGTH_SHORT).show();
-                                            databaseReferenceT.child(trId).child("services").setValue("Kilat, kiloan");
+                                            databaseReferenceT.child(trId).child("services").setValue("Kilat, kiloan, pair");
                                             databaseReferenceT.child(trId).child("berat").setValue(inputKg.getText().toString().trim());
                                         }
                                     }
@@ -845,7 +906,7 @@ public class OrderProcess extends AppCompatActivity {
                     }
                     else if (catOthers.isChecked()) {
                         if (!regulerSatuan.isChecked() && !regulerKiloan.isChecked() && !kilatSatuan.isChecked() && !kilatKiloan.isChecked()) {
-                            Toast.makeText(OrderProcess.this, "Pilih salah satu servis untuk Others!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(OrderProcess.this, "Pilih salah satu servis untuk Lain-lain!", Toast.LENGTH_SHORT).show();
                             return;
                         }//else cek inputKg dan inputKg1
                         else {
@@ -907,9 +968,30 @@ public class OrderProcess extends AppCompatActivity {
                 //region order process with pickup
                 if (dropdown.getSelectedItem().toString().equals("Ya")){
                     databaseReferenceT.child(trId).child("isPickup").setValue("Yes");
-                    databaseReferenceT.child(trId).child("Tanggal pickup").setValue(editTanggal.getText().toString());
-                    databaseReferenceT.child(trId).child("Jam pickup").setValue(editJam.getText().toString());
-                    databaseReferenceT.child(trId).child("address").setValue(editAlamat.getText().toString());
+                    if (!editTanggal.getText().toString().equals("Tanggal")) {
+                        databaseReferenceT.child(trId).child("Tanggal pickup").setValue(editTanggal.getText().toString());
+                    }
+                    else {
+                        Toast.makeText(OrderProcess.this, "Tanggal pickup harus diisi", Toast.LENGTH_SHORT).show();
+                        databaseReferenceT.child(trId).removeValue();
+                        return;
+                    }
+                    if (!editJam.getText().toString().equals("Jam")) {
+                        databaseReferenceT.child(trId).child("Jam pickup").setValue(editJam.getText().toString());
+                    }
+                    else {
+                        Toast.makeText(OrderProcess.this, "Jam pickup harus diisi", Toast.LENGTH_SHORT).show();
+                        databaseReferenceT.child(trId).removeValue();
+                        return;
+                    }
+                    if (!editAlamat.getText().toString().trim().isEmpty()) {
+                        databaseReferenceT.child(trId).child("address").setValue(editAlamat.getText().toString());
+                    }
+                    else {
+                        Toast.makeText(OrderProcess.this, "Alamat pickup harus diisi", Toast.LENGTH_SHORT).show();
+                        databaseReferenceT.child(trId).removeValue();
+                        return;
+                    }
                 }
                 //endregion
 

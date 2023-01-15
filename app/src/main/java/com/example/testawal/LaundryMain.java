@@ -72,6 +72,7 @@ public class LaundryMain extends AppCompatActivity {
         final int white = ContextCompat.getColor(this, R.color.white);
         final int greyimage = ContextCompat.getColor(this, R.color.greyimage);
         final Drawable backgroundTopDark = ContextCompat.getDrawable(this, R.drawable.belakangmaindark);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             parentLayout.setBackgroundColor(black);
@@ -82,6 +83,7 @@ public class LaundryMain extends AppCompatActivity {
             DrawableCompat.setTint(imageTransaksi.getDrawable(),ContextCompat.getColor(getApplicationContext(), R.color.white));
             teksProfile.setTextColor(white);
             teksTransaksi.setTextColor(white);
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
 
         laundryName = (TextView) findViewById(R.id.txtTop);

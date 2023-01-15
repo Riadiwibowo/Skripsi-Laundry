@@ -53,7 +53,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
     FirebaseUser fUser;
     String userId, trId;
     Spinner rescheduleSpinner;
-    LinearLayout layoutPickup, layoutReschedule, layoutHargaPickup;
+    LinearLayout layoutPickup, layoutReschedule, layoutHargaPickup, footerLayout;
     Button btnCancel, btnAccept, btnPickup;
     Space space, space1;
 
@@ -147,6 +147,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
         Id.setText(orderid);
 
         parentLayout = findViewById(R.id.parentLayout);
+        footerLayout = findViewById(R.id.footerLayout);
         titleId = findViewById(R.id.titleId);
         titleService = findViewById(R.id.titleService);
         headerInfo = findViewById(R.id.headerInfo);
@@ -162,7 +163,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
         headerDetail = findViewById(R.id.headerDetail);
         titleBaju = findViewById(R.id.titleBaju);
         titleSepatu = findViewById(R.id.titleSepatu);
-        titlePickup = findViewById(R.id.titleSepatu);
+        titlePickup = findViewById(R.id.titlePickup);
         titleTotalHarga = findViewById(R.id.titleTotalHarga);
         rp1 = findViewById(R.id.rp1);
         rp2 = findViewById(R.id.rp2);
@@ -177,9 +178,11 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         final int black = ContextCompat.getColor(this, R.color.black);
         final int white = ContextCompat.getColor(this, R.color.white);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             parentLayout.setBackgroundColor(black);
+            footerLayout.setBackgroundColor(black);
             titleId.setTextColor(white);
             td1.setTextColor(white);
             Id.setTextColor(white);
@@ -213,9 +216,10 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
             titleAlamatPickup.setTextColor(white);
             titleTanggal.setTextColor(white);
             titleJam.setTextColor(white);
-            alamatpickup.setTextColor(white);
+            tanggalpickup.setTextColor(white);
             jampickup.setTextColor(white);
             alamatpickup.setTextColor(white);
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
         //endregion
 
@@ -228,16 +232,16 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                     }
                     if (dataSnapshot.child("nama").getValue().toString().equals(namaLaundry1)) {
                         noTelp.setText(dataSnapshot.child("phone").getValue().toString());
-                        if (dataSnapshot.child("satuan").exists()){
+                        if (dataSnapshot.child("harga").child("satuan").exists()){
                             subCalcSatuan = Integer.valueOf(dataSnapshot.child("harga").child("satuan").getValue().toString());
                         }
-                        if (dataSnapshot.child("kiloan").exists()){
+                        if (dataSnapshot.child("harga").child("kiloan").exists()){
                             subCalcKiloan = Integer.valueOf(dataSnapshot.child("harga").child("kiloan").getValue().toString());
                         }
-                        if (dataSnapshot.child("sepatu").exists()){
+                        if (dataSnapshot.child("harga").child("sepatu").exists()){
                             subCalcSepatu = Integer.valueOf(dataSnapshot.child("harga").child("sepatu").getValue().toString());
                         }
-                        if (dataSnapshot.child("pickup").exists()) {
+                        if (dataSnapshot.child("harga").child("pickup").exists()) {
                             hargaPickup.setText(dataSnapshot.child("harga").child("pickup").getValue().toString());
                         }
                         else {
@@ -290,7 +294,6 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                         categoryDetail = dataSnapshot.child("category").getValue().toString();
                         servicesDetail = dataSnapshot.child("services").getValue().toString();
                         if (categoryDetail.contains("Baju") || categoryDetail.contains("Baju")){
-//                            detailOthers.setVisibility(View.GONE);
                             detailSepatu.setVisibility(View.GONE);
                             if (dataSnapshot.child("services").getValue().toString().contains("Satuan") || dataSnapshot.child("services").getValue().toString().contains("satuan")){
                                 jumlahbaju.setText(dataSnapshot.child("jumlah").getValue().toString() + " pcs");
@@ -305,7 +308,6 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                                 }
                             }
                             if (categoryDetail.contains("sepatu") || categoryDetail.contains("Sepatu")){
-//                                detailOthers.setVisibility(View.GONE);
                                 detailSepatu.setVisibility(View.VISIBLE);
                                 if (dataSnapshot.child("services").getValue().toString().contains("pair") || dataSnapshot.child("services").getValue().toString().contains("Pair")){
                                     jumlahsepatu.setText(dataSnapshot.child("pair").getValue().toString() + " pair(s)");
@@ -315,7 +317,6 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                                 }
                             }
                             if (categoryDetail.contains("others") || categoryDetail.contains("Others")){
-//                                detailOthers.setVisibility(View.VISIBLE);
                                 if (dataSnapshot.child("services").getValue().toString().contains("Satuan") || dataSnapshot.child("services").getValue().toString().contains("satuan")){
                                     jumlahbaju.setText(dataSnapshot.child("jumlah").getValue().toString() + " pcs");
                                     if (subCalcSatuan!=0){
@@ -331,7 +332,6 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                             }
                         }
                         else if (categoryDetail.contains("sepatu") || categoryDetail.contains("Sepatu")){
-//                            detailOthers.setVisibility(View.GONE);
                             detailBaju.setVisibility(View.GONE);
                             if (dataSnapshot.child("services").getValue().toString().contains("pair") || dataSnapshot.child("services").getValue().toString().contains("Pair")){
                                 jumlahsepatu.setText(dataSnapshot.child("pair").getValue().toString() + " pair(s)");
@@ -340,7 +340,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                                 }
                             }
                             if (categoryDetail.contains("others") || categoryDetail.contains("Others")){
-//                                detailOthers.setVisibility(View.VISIBLE);
+                                detailBaju.setVisibility(View.VISIBLE);
                                 if (dataSnapshot.child("services").getValue().toString().contains("Satuan") || dataSnapshot.child("services").getValue().toString().contains("satuan")){
                                     jumlahbaju.setText(dataSnapshot.child("jumlah").getValue().toString() + " pcs");
                                     if (subCalcSatuan!=0){
@@ -356,7 +356,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                             }
                         }
                         else if (categoryDetail.contains("others") || categoryDetail.contains("Others")){
-//                                detailOthers.setVisibility(View.VISIBLE);
+                                detailSepatu.setVisibility(View.GONE);
                             if (dataSnapshot.child("services").getValue().toString().contains("Satuan") || dataSnapshot.child("services").getValue().toString().contains("satuan")){
                                 jumlahbaju.setText(dataSnapshot.child("jumlah").getValue().toString() + " pcs");
                                 if (subCalcSatuan!=0){

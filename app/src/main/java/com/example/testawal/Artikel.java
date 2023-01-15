@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -18,7 +20,7 @@ public class Artikel extends AppCompatActivity {
     ConstraintLayout parentLayout;
 
     String s1[];
-    int image[] = {R.drawable.artikelsatu, R.drawable.artikeldua, R.drawable.artikeltiga, R.drawable.artikelsatu, R.drawable.artikeldua};
+    int image[] = {R.drawable.artikelsatu, R.drawable.artikeldua, R.drawable.artikeltiga, R.drawable.artikelempat, R.drawable.artikellima};
 
     RecyclerView rv;
 
@@ -37,13 +39,12 @@ public class Artikel extends AppCompatActivity {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-        final Drawable black = ContextCompat.getDrawable(this, R.color.black);
-        final Drawable bluex = ContextCompat.getDrawable(this, R.color.bluex);
-        final Drawable lightbluex = ContextCompat.getDrawable(this, R.color.lightbluex);
-        final Drawable backgroundmaindark = ContextCompat.getDrawable(this, R.drawable.belakangmaindark);
+        final int black = ContextCompat.getColor(this, R.color.black);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
-            parentLayout.setBackground(black);
+            parentLayout.setBackgroundColor(black);
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
 
         MyAdapterArtikel myAdapter = new MyAdapterArtikel(this, s1, image);

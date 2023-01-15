@@ -192,6 +192,7 @@ public class OrderDetailNew extends AppCompatActivity {
 
         final int black = ContextCompat.getColor(this, R.color.black);
         final int white = ContextCompat.getColor(this, R.color.white);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             parentLayout.setBackgroundColor(black);
@@ -233,6 +234,7 @@ public class OrderDetailNew extends AppCompatActivity {
             editJam.setTextColor(white);
             alamatpickup.setTextColor(white);
             Id.setTextColor(white);
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {

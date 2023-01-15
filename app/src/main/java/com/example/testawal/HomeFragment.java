@@ -123,6 +123,7 @@ public class HomeFragment extends Fragment {
         final int grey = ContextCompat.getColor(context, R.color.greynavigation);
         final Drawable backgroundmaindark = ContextCompat.getDrawable(context, R.drawable.belakangmaindark);
         final Drawable recyclerdark = ContextCompat.getDrawable(context, R.drawable.background_recycler_home_dark);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             drawerLayout.setBackground(black);
@@ -137,6 +138,7 @@ public class HomeFragment extends Fragment {
             txtHeader.setTextColor(white);
             txtSeeAll.setTextColor(white);
             navigationView.setBackgroundColor(grey);
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -163,9 +165,9 @@ public class HomeFragment extends Fragment {
         //region slider
         imageSlider = view.findViewById(R.id.imgSlider);
         ArrayList<SlideModel> img = new ArrayList<>();
-        img.add(new SlideModel("https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=831&q=80", "Cara Cuci Sepatu dengan Benar", null));
-        img.add(new SlideModel("https://images.unsplash.com/photo-1530558215369-ba361d8734f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=874&q=80", "Bingung Cara Setrika Pakaian?", null));
-        img.add(new SlideModel("https://images.unsplash.com/photo-1469329989238-48310798c014?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=873&q=80", "6 Keuntungan Menggunakan Jasa Laundry", null));
+        img.add(new SlideModel("https://static.indiemarket.news/static-content/uploads/2019/07/cuci-sepatu-e1562914986173.jpg", "Cara Cuci Sepatu dengan Benar", null));
+        img.add(new SlideModel("https://www.cleanipedia.com/images/5h1w0177knh8/1569e9334db43d16f9cc1402d6a7fbf8/56d5545128b30ece5ae80e97bf160bc1/aHR0cHNfX193d3cuY2xlYW5pcGVkaWEuY29tX2NvbnRlbnRfZGFtX3VuaWxldmVyX2NsZWFuaXBlZGlhX2dsb2JhbF9nZW5lcmFsX2ltYWdlX2NsZWFuaXBlZGlhc2hvdDQ1LTE0NDI3MzctanBnLmpwZw/990w-660h/setrika-pada-papan-setrika-dengan-latar-belakang-oranye.jpg", "Bingung Cara Setrika Pakaian?", null));
+        img.add(new SlideModel("https://siplah-oss.tokoladang.co.id/merchant/6313/product/xXMkBxcThTiIQrlkTnoAWQCfxf80nDu2p6pihsL8.jpg", "6 Keuntungan Menggunakan Jasa Laundry", null));
 
         imageSlider.setImageList(img, ScaleTypes.CENTER_CROP);
 

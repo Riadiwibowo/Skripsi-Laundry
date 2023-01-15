@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.AutoCompleteTextView;
@@ -74,9 +76,11 @@ public class ServiceKilat extends AppCompatActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
         final int bluex = ContextCompat.getColor(this, R.color.bluex);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             parentLayout.setBackgroundColor(bluex);
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
 
         databaseReference.addValueEventListener(new ValueEventListener() {

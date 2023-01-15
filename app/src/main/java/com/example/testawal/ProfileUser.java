@@ -7,6 +7,8 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -65,6 +67,7 @@ public class ProfileUser extends AppCompatActivity {
         final int white = ContextCompat.getColor(this, R.color.white);
         final int lightbluex = ContextCompat.getColor(this, R.color.lightbluex);
         final Drawable constraintprofile = ContextCompat.getDrawable(this, R.drawable.belakangdetailuserdark);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             parentLayout.setBackgroundColor(black);
@@ -74,6 +77,7 @@ public class ProfileUser extends AppCompatActivity {
             btnEdit.setTextColor(white);
             btnEdit.setBackgroundColor(lightbluex);
             textView.setTextColor(white);
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
 
         databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {

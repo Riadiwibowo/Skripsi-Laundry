@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ArtikelDua"
-    android:background="#1572A1"
-    android:orientation="vertical">
+    android:background="@color/blue"
+    android:orientation="vertical"
+    android:id="@+id/parentLayout">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,6 +15,7 @@
         android:fillViewport="true">
 
         <LinearLayout
+            android:id="@+id/layoutArtikel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -45,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:padding="4dp"
+                android:padding="12dp"
                 android:background="@drawable/backgroundeditlaundry"
                 android:textColor="@color/black"
                 android:text="Awal mula pertemuan setiap manusia dimulai dengan melihat tampilan mereka secara fisik mulai dari penampilan yang digunakan. Ketika penampilan terlihat rapi, maka kita akan terlihat lebih berwibawa dan menarik. Namun, sebaliknya ketika penampilan terlihat kurang rapi, maka kita akan di cap buruk oleh sekitar kita.\n\nUntuk memiliki penampilan yang rapi, kita harus mengetahui cara menyetrika pakaian dengan benar. Pertama-tama, kita harus menyiapkan alas setrika yang bersih. Kedua, aturlah temperatur setrika sesuai bahan pakaian yang akan disetrika. Kita tidak boleh sembarangan mengatur suhu karena dapat merusak pakaian seperti membuat pudarnya warna pakaian dan membuat bahan pakaian menjadi mulur. Untuk memudahkan pengaturan suhu, setrikalah pakaian mulai dari kain paling tipis hingga paling tebal seperti jeans.\n\nTerakhir, posisikanlah setrika dalam posisi vertikal sehingga ketika menggerakkannya secara bolak-balik, pakaian akan menjadi rapi. Lalu, hindarilah menyetrika pakaian dengan gerakan menyamping karena kurang efektif dan beban lengan menjadi lebih berat. Untuk menambahkan aroma pada pakaian, ketika menyetrika kita dapat menambahkan pengharum khusus pakaian agar pakaian tetap aman namun aromanya tetap menjadi penyemangat kita dalam beraktivitas."/>
