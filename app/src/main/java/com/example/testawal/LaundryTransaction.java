@@ -63,7 +63,7 @@ public class LaundryTransaction extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laundry_transaction);
 
-        getSupportActionBar().setTitle("Laundry Transactions");
+        getSupportActionBar().setTitle("Daftar Transaksi");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());

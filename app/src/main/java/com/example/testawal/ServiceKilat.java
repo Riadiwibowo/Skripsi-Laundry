@@ -60,7 +60,7 @@ public class ServiceKilat extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_kilat);
 
-        getSupportActionBar().setTitle("Laundry Kilat List");
+        getSupportActionBar().setTitle("Daftar Laundry Kilat");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //region recyclerView

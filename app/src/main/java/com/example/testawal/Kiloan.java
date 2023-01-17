@@ -69,7 +69,7 @@ public class Kiloan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pickup);
 
-        getSupportActionBar().setTitle("Laundry Kiloan List");
+        getSupportActionBar().setTitle("Daftar Laundry Kiloan");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //region recyclerView

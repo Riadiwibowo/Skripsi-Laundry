@@ -72,7 +72,7 @@ public class HomeLaundryList extends AppCompatActivity {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-        getSupportActionBar().setTitle("Laundry List");
+        getSupportActionBar().setTitle("Daftar Laundry");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //region recyclerView

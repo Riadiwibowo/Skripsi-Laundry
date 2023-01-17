@@ -69,7 +69,7 @@ public class Pickup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pickup);
 
-        getSupportActionBar().setTitle("Laundry Pickup List");
+        getSupportActionBar().setTitle("Daftar Laundry Pickup");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //region recyclerView

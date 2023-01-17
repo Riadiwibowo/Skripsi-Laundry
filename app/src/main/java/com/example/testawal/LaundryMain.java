@@ -55,7 +55,7 @@ public class LaundryMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laundry_main);
 
-        getSupportActionBar().setTitle("Laundry Home");
+        getSupportActionBar().setTitle("Home Page");
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 

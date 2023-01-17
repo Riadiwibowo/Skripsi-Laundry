@@ -69,7 +69,7 @@ public class Satuan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_satuan);
 
-        getSupportActionBar().setTitle("Laundry Satuan List");
+        getSupportActionBar().setTitle("Daftar Laundry Satuan");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //region recyclerView

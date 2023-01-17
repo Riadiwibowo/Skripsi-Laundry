@@ -75,7 +75,7 @@ public class EditLaundry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_laundry);
 
-        getSupportActionBar().setTitle("Laundry Profile Setting");
+        getSupportActionBar().setTitle("Edit Profil Laundry");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
@@ -359,7 +359,6 @@ public class EditLaundry extends AppCompatActivity {
                     String laundryName = user.nama;
                     String role = user.role;
                     String images = user.imageUrl;
-                    Toast.makeText(EditLaundry.this, "Hi " + laundryName + " role " + role, Toast.LENGTH_SHORT).show();
                     if(user.imageUrl!=null && !user.imageUrl.equals("")){
                         Glide.with(EditLaundry.this).load(user.getImageUrl()).into(imageProfile);
                     }else if (user.imageUrl.equals("")){

@@ -69,7 +69,7 @@ public class CategoryLain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pickup);
 
-        getSupportActionBar().setTitle("Laundry Lain List");
+        getSupportActionBar().setTitle("Daftar Laundry Lain-Lain");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //region recyclerView

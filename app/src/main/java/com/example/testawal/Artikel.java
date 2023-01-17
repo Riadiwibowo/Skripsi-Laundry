@@ -29,7 +29,7 @@ public class Artikel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artikel);
 
-        getSupportActionBar().setTitle("Artikel");
+        getSupportActionBar().setTitle("Daftar Artikel");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         rv = findViewById(R.id.recyclerArtikel);

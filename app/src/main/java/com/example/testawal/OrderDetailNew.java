@@ -81,7 +81,7 @@ public class OrderDetailNew extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail_new);
 
-        getSupportActionBar().setTitle("Transaction Detail");
+        getSupportActionBar().setTitle("Detail Transaksi");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");

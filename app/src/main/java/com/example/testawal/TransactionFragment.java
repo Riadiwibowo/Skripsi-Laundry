@@ -64,7 +64,7 @@ public class TransactionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Home Page");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Daftar Transaksi");
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         View view = inflater.inflate(R.layout.fragment_transaction, container, false);

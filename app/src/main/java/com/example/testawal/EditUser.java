@@ -66,7 +66,7 @@ public class EditUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
 
-        getSupportActionBar().setTitle("User Profile Setting");
+        getSupportActionBar().setTitle("Edit Profil");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         txtName = findViewById(R.id.txtUserNama);
@@ -119,7 +119,7 @@ public class EditUser extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 databaseReference.child(userId).child("nama").setValue(name.toString());
-                Toast.makeText(EditUser.this, "Name Inserted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditUser.this, "Berhasil ubah nama", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -135,7 +135,7 @@ public class EditUser extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 databaseReference.child(userId).child("phone").setValue(phone.toString());
-                Toast.makeText(EditUser.this, "Phone Inserted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditUser.this, "Berhasil ubah nomor telepon", Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -70,7 +70,7 @@ public class CategoryBaju extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pickup);
 
-        getSupportActionBar().setTitle("Laundry Baju List");
+        getSupportActionBar().setTitle("Daftar Laundry Baju");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //region recyclerView

@@ -44,7 +44,7 @@ public class ProfileUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_user);
 
-        getSupportActionBar().setTitle("User Profile Setting");
+        getSupportActionBar().setTitle("Profil User");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         textView = findViewById(R.id.textView);

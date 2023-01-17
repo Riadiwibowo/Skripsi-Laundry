@@ -81,7 +81,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail_laundry_new);
 
-        getSupportActionBar().setTitle("Transaction Detail");
+        getSupportActionBar().setTitle("Detail Transaksi");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
@@ -442,7 +442,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                                     public void onClick(View view) {
                                         databaseReferenceT.child(orderid).child("alasan").setValue("Pesanan melebihi batas maksimum");
                                         databaseReferenceT.child(orderid).child("status").setValue("5");
-                                        startActivity(new Intent(OrderDetailLaundryNew.this, LaundryMain.class));
+                                        startActivity(new Intent(OrderDetailLaundryNew.this, LaundryTransaction.class));
                                     }
                                 });
                                 if (dataSnapshot.child("isPickup").getValue().toString().equals("No")) {
@@ -456,7 +456,7 @@ public class OrderDetailLaundryNew extends AppCompatActivity {
                                         public void onClick(View view) {
                                             databaseReferenceT.child(orderid).child("alasan").setValue("Jarak pickup tidak sesuai");
                                             databaseReferenceT.child(orderid).child("status").setValue("5");
-                                            startActivity(new Intent(OrderDetailLaundryNew.this, LaundryMain.class));
+                                            startActivity(new Intent(OrderDetailLaundryNew.this, LaundryTransaction.class));
                                         }
                                     });
                                 }

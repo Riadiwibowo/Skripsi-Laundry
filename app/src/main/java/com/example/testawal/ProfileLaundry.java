@@ -46,7 +46,7 @@ public class ProfileLaundry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_laundry);
 
-        getSupportActionBar().setTitle("Laundry Profile");
+        getSupportActionBar().setTitle("Profil Laundry");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         imageLaundry = findViewById(R.id.imageLaundry);
