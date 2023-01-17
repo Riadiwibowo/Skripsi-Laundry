@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.text.LineBreaker;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.LinearLayout;
@@ -29,6 +30,8 @@ public class AboutUs extends AppCompatActivity {
 
 
         namaAplikasi = findViewById(R.id.namaAplikasi);
+
+        namaAplikasi.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         parentLayoutAboutUs = findViewById(R.id.parentLayoutAboutUs);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
