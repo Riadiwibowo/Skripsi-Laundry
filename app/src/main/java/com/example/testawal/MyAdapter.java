@@ -88,8 +88,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                     btnPopup.setTextColor(white);
                 }
 
-                if(userList.get(viewHolder.getAdapterPosition()).getImageUrl().toString().equals("")){
-                    iconPopup.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_profile_icon));
+                if(userList.get(viewHolder.getAdapterPosition()).getImageUrl().toString().equals("")||userList.get(viewHolder.getAdapterPosition()).getImageUrl().isEmpty()){
+//                    iconPopup.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_profile_icon));
+                    Glide.with(context).load(ContextCompat.getDrawable(context, R.drawable.ic_profile_icon)).into(iconPopup);
                 }else{
                     Glide.with(context).load(userList.get(viewHolder.getAdapterPosition()).getImageUrl()).into(iconPopup);
                 }

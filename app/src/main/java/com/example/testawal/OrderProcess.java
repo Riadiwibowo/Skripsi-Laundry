@@ -328,7 +328,7 @@ public class OrderProcess extends AppCompatActivity {
         String namaLaundry = (String) b.get("namaLaundry");
         //endregion
 
-        getSupportActionBar().setTitle("Form Pesanan: " + namaLaundry);
+        getSupportActionBar().setTitle("Form Pemesanan: " + namaLaundry);
 
         //region get category
 

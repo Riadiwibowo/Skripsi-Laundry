@@ -74,7 +74,10 @@ public class MyAdapterTransaction extends RecyclerView.Adapter<MyAdapterTransact
         if(transactionList.get(position).getStatus().toString().equals("0")){
             holder.myText3.setText("Awaiting");
         }
-        else if(transactionList.get(position).getStatus().toString().equals("1")){
+        else if(transactionList.get(position).getStatus().toString().equals("1")&&transactionList.get(position).getIsPickup().toString().equals("No")){
+            holder.myText3.setText("Accepted\nSegera kirimkan cucian anda.");
+        }
+        else if(transactionList.get(position).getStatus().toString().equals("1")&&transactionList.get(position).getIsPickup().toString().equals("Yes")){
             holder.myText3.setText("Accepted");
         }
         else if(transactionList.get(position).getStatus().toString().equals("2")){

@@ -345,8 +345,8 @@ public class EditLaundry extends AppCompatActivity {
                         !services1.isChecked() && !services2.isChecked() && !services3.isChecked() && !services4.isChecked() && !category1.isChecked() && !category2.isChecked() &&
                         !category3.isChecked() && inputHargaSatuan.getText().toString().trim().isEmpty() && inputHargaKiloan.getText().toString().trim().isEmpty() &&
                         inputHargaSepatu.getText().toString().trim().isEmpty() && inputHargaPickup.getText().toString().trim().isEmpty()) {
-                    Toast.makeText(EditLaundry.this, "Tidak ada perubahan data", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(EditLaundry.this, ProfileLaundry.class));
+                    Toast.makeText(EditLaundry.this, "Tidak ada perubahan informasi laundry", Toast.LENGTH_SHORT).show();
+//                    startActivity(new Intent(EditLaundry.this, ProfileLaundry.class));
                 }
             }
         });
@@ -395,7 +395,6 @@ public class EditLaundry extends AppCompatActivity {
             imageUrl = data.getData();
             imageProfile.setImageURI(imageUrl);
         }
-        Toast.makeText(EditLaundry.this, "foto di home", Toast.LENGTH_SHORT).show();
     }
 
     //4
@@ -462,7 +461,6 @@ public class EditLaundry extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 databaseReference.child(userId).child("description").setValue(description.toString());
-                Toast.makeText(EditLaundry.this, "Description Inserted", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -487,7 +485,6 @@ public class EditLaundry extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 databaseReference.child(userId).child("address").setValue(alamat.toString());
-                Toast.makeText(EditLaundry.this, "Alamat Inserted", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -512,7 +509,6 @@ public class EditLaundry extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 databaseReference.child(userId).child("nama").setValue(name.toString());
-                Toast.makeText(EditLaundry.this, "Name Inserted", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -537,7 +533,6 @@ public class EditLaundry extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 databaseReference.child(userId).child("phone").setValue(phone.toString());
-                Toast.makeText(EditLaundry.this, "Phone Inserted", Toast.LENGTH_SHORT).show();
             }
 
             @Override

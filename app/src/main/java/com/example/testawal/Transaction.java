@@ -4,7 +4,7 @@ public class Transaction {
 
     public Transaction(){}
 
-    public Transaction(String namaUser, String namaLaundry, String tanggal, String jam, String harga, String imageUrl, String status, String id, String alamat) {
+    public Transaction(String namaUser, String namaLaundry, String tanggal, String jam, String harga, String imageUrl, String status, String id, String alamat, String isPickup) {
         this.namaUser = namaUser;
         this.namaLaundry = namaLaundry;
         this.tanggal = tanggal;
@@ -14,6 +14,7 @@ public class Transaction {
         this.status = status;
         this.id = id;
         this.alamat = alamat;
+        this.isPickup = isPickup;
     }
 
     public String namaUser;
@@ -25,6 +26,7 @@ public class Transaction {
     public String status;
     public String id;
     public String alamat;
+    public String isPickup;
 
     public String getNamaUser() {
         return namaUser;
@@ -60,5 +62,9 @@ public class Transaction {
 
     public String getAlamat() {
         return alamat;
+    }
+
+    public String getIsPickup() {
+        return isPickup;
     }
 }
