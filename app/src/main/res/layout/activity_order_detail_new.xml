@@ -591,7 +591,6 @@
                             android:text="Tanggal"
                             android:textSize="14sp"
                             android:textColor="@color/black"
-                            android:textStyle="italic"
                             android:fontFamily="@font/ralewayregular"/>
 
                     </LinearLayout>
@@ -627,7 +626,6 @@
                             android:text="Jam"
                             android:textSize="14sp"
                             android:textColor="@color/black"
-                            android:textStyle="italic"
                             android:fontFamily="@font/ralewayregular"/>
 
                     </LinearLayout>
@@ -663,7 +661,6 @@
                             android:text="Alamat Pickup"
                             android:textSize="14sp"
                             android:textColor="@color/black"
-                            android:textStyle="italic"
                             android:fontFamily="@font/ralewayregular"/>
 
                     </LinearLayout>
