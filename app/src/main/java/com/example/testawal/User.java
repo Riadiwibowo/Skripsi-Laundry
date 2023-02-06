@@ -8,7 +8,7 @@ public class User {
     public User(){}
 
     public User(String nama, String email, String password, String role, String phone, String description, String imageUrl, String services, String category, String address,
-                String kiloan, String satuan, String sepatu, String pickup) {
+                String jambuka, String jamtutup, String kiloan, String satuan, String sepatu, String pickup) {
         this.nama = nama;
         this.email = email;
         this.password = password;
@@ -19,6 +19,8 @@ public class User {
         this.services = services;
         this.category = category;
         this.address = address;
+        this.jambuka = jambuka;
+        this.jamtutup = jamtutup;
         this.kiloan = kiloan;
         this.satuan = satuan;
         this.pickup = pickup;
@@ -35,6 +37,8 @@ public class User {
     public String services;
     public String category;
     public String address;
+    public String jambuka;
+    public String jamtutup;
     public String kiloan;
     public String satuan;
     public String sepatu;
@@ -78,6 +82,14 @@ public class User {
 
     public String getAddress() {
         return address;
+    }
+
+    public String getJambuka() {
+        return jambuka;
+    }
+
+    public String getJamtutup() {
+        return jamtutup;
     }
 
     public String getKiloan() {

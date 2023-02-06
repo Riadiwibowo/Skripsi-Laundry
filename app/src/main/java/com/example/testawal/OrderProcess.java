@@ -216,9 +216,15 @@ public class OrderProcess extends AppCompatActivity {
 
                         if (jam <= 12) {
                             editJam.setText(String.format(Locale.getDefault(), "%d:%d am", jam, menit));
+                            if (menit < 10) {
+                                editJam.setText(String.format(Locale.getDefault(), "%d:0%d am", jam, menit));
+                            }
                         }
                         else {
                             editJam.setText(String.format(Locale.getDefault(), "%d:%d pm", jam, menit));
+                            if (menit < 10) {
+                                editJam.setText(String.format(Locale.getDefault(), "%d:0%d pm", jam, menit));
+                            }
                         }
                     }
                 }, jam, menit, true);

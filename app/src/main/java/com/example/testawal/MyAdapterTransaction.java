@@ -102,7 +102,7 @@ public class MyAdapterTransaction extends RecyclerView.Adapter<MyAdapterTransact
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         //    isi dari viewHolder yaitu namaLaundry dan harga
-        TextView myText1, myText2, myText3, myText4;
+        TextView myText1, myText2, myText3, myText4, txtTidak;
         CardView parentLayout;
         ImageView myImage;
         //    membuat new viewHolder

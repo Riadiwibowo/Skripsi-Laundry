@@ -37,7 +37,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     Context context;
     ArrayList<User> userList = new ArrayList<>();
     Dialog myDialog;
-    TextView Alamat, Description, Phone, Services, NamaLaundry;
+    TextView Alamat, Description, Phone, Services, NamaLaundry, Jam;
     ImageView iconPopup;
     Button btnPopup;
     TextView Kg, Satuan, Pair, Pickup;
@@ -70,6 +70,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                 Alamat = myDialog.findViewById(R.id.Alamat);
                 Description = myDialog.findViewById(R.id.description);
                 Phone = myDialog.findViewById(R.id.Telp);
+                Jam = myDialog.findViewById(R.id.Jam);
                 btnPopup = myDialog.findViewById(R.id.btnPopup);
                 Services = myDialog.findViewById(R.id.Service);
                 NamaLaundry = myDialog.findViewById(R.id.txtNamaLaundry);
@@ -96,10 +97,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                 }
                 NamaLaundry.setText(userList.get(viewHolder.getAdapterPosition()).getNama());
                 Phone.setText(userList.get(viewHolder.getAdapterPosition()).getPhone());
-
                 Alamat.setText(userList.get(viewHolder.getAdapterPosition()).getAddress());
-
                 Description.setText(userList.get(viewHolder.getAdapterPosition()).getDescription());
+                Jam.setText(userList.get(viewHolder.getAdapterPosition()).getJambuka() + " - " + userList.get(viewHolder.getAdapterPosition()).getJamtutup());
 
                 if (userList.get(viewHolder.getAdapterPosition()).getServices().equals(null)){
                     Services.setText("-");

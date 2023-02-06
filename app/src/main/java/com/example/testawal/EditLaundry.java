@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,11 +25,13 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -48,16 +52,20 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 public class EditLaundry extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
     //region properties
     private Button btnAdd;
+    TextView txtJamBuka, txtJamTutup, editJamBuka, editJamTutup;
     EditText txtDesc, txtName, txtPhone, txtAlamat, inputHargaSatuan, inputHargaKiloan, inputHargaSepatu, inputHargaPickup;
     CheckBox services1, services2, services3, services4, category1, category2, category3;
     ProgressBar progressBar;
-    LinearLayout linearSatuan, linearKiloan, linearSepatu, parentLayout, layoutServices1, layoutCategory1, layoutHarga1;
+    LinearLayout linearSatuan, linearKiloan, linearSepatu, parentLayout, layoutJam, layoutServices1, layoutCategory1, layoutHarga1;
     private ImageView imageView, imageProfile;
     private DatabaseReference databaseReference;
     //storageReference to store image data
@@ -65,6 +73,8 @@ public class EditLaundry extends AppCompatActivity {
     private Uri imageUrl;
     private FirebaseUser fUser;
     private String userId;
+
+    private int jam, menit;
 
     CardView cardView2;
     TextView txtHargaSatuan, txtHargaKiloan, txtHargaSepatu, txtHargaPickup;
@@ -90,6 +100,10 @@ public class EditLaundry extends AppCompatActivity {
         txtName = findViewById(R.id.txtLaunName);
         txtPhone = findViewById(R.id.txtLaunPhone);
         txtAlamat = findViewById(R.id.txtLaunAddress);
+        txtJamBuka = findViewById(R.id.txtJamBuka);
+        txtJamTutup = findViewById(R.id.txtJamTutup);
+        editJamBuka = findViewById(R.id.editJamBuka);
+        editJamTutup = findViewById(R.id.editJamTutup);
         services1 = findViewById(R.id.services1);
         services2 = findViewById(R.id.services2);
         services3 = findViewById(R.id.services3);
@@ -106,6 +120,7 @@ public class EditLaundry extends AppCompatActivity {
         inputHargaPickup = findViewById(R.id.inputHargaPickup);
 
         parentLayout = findViewById(R.id.parentLayout);
+        layoutJam = findViewById(R.id.layoutJam);
         layoutServices1 = findViewById(R.id.layoutServices1);
         layoutCategory1 = findViewById(R.id.layoutCategory1);
         layoutHarga1 = findViewById(R.id.layoutHarga1);
@@ -128,10 +143,15 @@ public class EditLaundry extends AppCompatActivity {
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             parentLayout.setBackgroundColor(bluex);
+            layoutJam.setBackground(backgroundeditlaundrydark);
             layoutServices1.setBackground(backgroundeditlaundrydark);
             layoutCategory1.setBackground(backgroundeditlaundrydark);
             layoutHarga1.setBackground(backgroundeditlaundrydark);
             cardView2.setCardBackgroundColor(bluex);
+            txtJamBuka.setTextColor(white);
+            txtJamTutup.setTextColor(white);
+            editJamBuka.setTextColor(white);
+            editJamTutup.setTextColor(white);
             services1.setTextColor(white);
             services2.setTextColor(white);
             services3.setTextColor(white);
@@ -154,6 +174,70 @@ public class EditLaundry extends AppCompatActivity {
                 myGallery.setAction(Intent.ACTION_GET_CONTENT);
                 myGallery.setType("image/*");
                 startActivityForResult(myGallery, 2);
+            }
+        });
+
+        editJamBuka.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                jam = calendar.get(Calendar.HOUR_OF_DAY);
+                menit = calendar.get(Calendar.MINUTE);
+
+                TimePickerDialog timedialog;
+                timedialog = new TimePickerDialog(EditLaundry.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                        jam = hour;
+                        menit = minute;
+
+                        if (jam <= 12) {
+                            editJamBuka.setText(String.format(Locale.getDefault(), "%d:%d am", jam, menit));
+                            if (menit < 10) {
+                                editJamBuka.setText(String.format(Locale.getDefault(), "%d:0%d am", jam, menit));
+                            }
+                        }
+                        else {
+                            editJamBuka.setText(String.format(Locale.getDefault(), "%d:%d pm", jam, menit));
+                            if (menit < 10) {
+                                editJamBuka.setText(String.format(Locale.getDefault(), "%d:0%d pm", jam, menit));
+                            }
+                        }
+                    }
+                }, jam, menit, true);
+                timedialog.show();
+            }
+        });
+
+        editJamTutup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                jam = calendar.get(Calendar.HOUR_OF_DAY);
+                menit = calendar.get(Calendar.MINUTE);
+
+                TimePickerDialog timedialog;
+                timedialog = new TimePickerDialog(EditLaundry.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                        jam = hour;
+                        menit = minute;
+
+                        if (jam <= 12) {
+                            editJamTutup.setText(String.format(Locale.getDefault(), "%d:%d am", jam, menit));
+                            if (menit < 10) {
+                                editJamTutup.setText(String.format(Locale.getDefault(), "%d:0%d am", jam, menit));
+                            }
+                        }
+                        else {
+                            editJamTutup.setText(String.format(Locale.getDefault(), "%d:%d pm", jam, menit));
+                            if (menit < 10) {
+                                editJamTutup.setText(String.format(Locale.getDefault(), "%d:0%d pm", jam, menit));
+                            }
+                        }
+                    }
+                }, jam, menit, true);
+                timedialog.show();
             }
         });
 
@@ -251,6 +335,16 @@ public class EditLaundry extends AppCompatActivity {
                     insertDescription();
                     insertAlamat();
                 }
+
+                //region editJamBuka dan editJamTutup
+                if (!editJamBuka.getText().toString().equals("Pilih jam buka")) {
+                    databaseReference.child(userId).child("jambuka").setValue(editJamBuka.getText().toString());
+                }
+                if (!editJamTutup.getText().toString().equals("Pilih jam tutup")) {
+                    databaseReference.child(userId).child("jamtutup").setValue(editJamTutup.getText().toString());
+                }
+                //endregion
+
 //                else{
 //                    Toast.makeText(EditLaundry.this, "Salah satu harus diisi", Toast.LENGTH_SHORT).show();
 //                }
@@ -342,6 +436,7 @@ public class EditLaundry extends AppCompatActivity {
                 }
 
                 if (txtDesc.getText().toString().trim().isEmpty() && txtName.getText().toString().trim().isEmpty() && txtPhone.getText().toString().trim().isEmpty() &&
+                        txtAlamat.getText().toString().trim().isEmpty() && editJamBuka.getText().toString().equals("Pilih jam buka") && editJamTutup.getText().toString().equals("Pilih jam tutup") &&
                         !services1.isChecked() && !services2.isChecked() && !services3.isChecked() && !services4.isChecked() && !category1.isChecked() && !category2.isChecked() &&
                         !category3.isChecked() && inputHargaSatuan.getText().toString().trim().isEmpty() && inputHargaKiloan.getText().toString().trim().isEmpty() &&
                         inputHargaSepatu.getText().toString().trim().isEmpty() && inputHargaPickup.getText().toString().trim().isEmpty()) {

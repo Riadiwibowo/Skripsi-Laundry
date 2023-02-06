@@ -6,6 +6,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tanggal"><u>Tanggal</u></string>
     <string name="jam"><u>Jam</u></string>
+    <string name="jamBuka"><u>Pilih jam buka</u></string>
+    <string name="jamTutup"><u>Pilih jam tutup</u></string>
 
     <string-array name="judul_artikel">
         <item>Cara Cuci Sepatu dengan Benar</item>

@@ -137,6 +137,35 @@
             app:layout_constraintStart_toStartOf="@id/txtService"
             app:layout_constraintTop_toTopOf="@+id/Telp" />
 
+        <TextView
+            android:id="@+id/txtJam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:paddingLeft="5dp"
+            android:text="Jam buka"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.049"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtService" />
+
+        <TextView
+            android:id="@+id/Jam"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/edittextdetaillaundry"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textAlignment="textStart"
+            android:paddingLeft="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txtService"
+            app:layout_constraintTop_toTopOf="@+id/Service" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

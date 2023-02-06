@@ -25,6 +25,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -51,6 +52,7 @@ public class LaundryTransaction extends AppCompatActivity {
     ArrayList<Transaction> transactions;
     FirebaseUser fUser;
     String userId;
+    TextView txtTidak;
 
     SharedPreferences sharedPreferences;
 
@@ -66,14 +68,18 @@ public class LaundryTransaction extends AppCompatActivity {
         getSupportActionBar().setTitle("Daftar Transaksi");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        txtTidak = findViewById(R.id.txtTidak);
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         parentLayout = findViewById(R.id.parentLayout);
 
         final int black = ContextCompat.getColor(this, R.color.black);
+        final int white = ContextCompat.getColor(this, R.color.white);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             parentLayout.setBackgroundColor(black);
+            txtTidak.setTextColor(white);
             getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
 
@@ -113,6 +119,23 @@ public class LaundryTransaction extends AppCompatActivity {
 
                         }
                     });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.hasChild("transactions")) {
+                    txtTidak.setVisibility(View.VISIBLE);
+                }
+                else if (snapshot.hasChild("transactions")) {
+                    txtTidak.setVisibility(View.GONE);
                 }
             }
 

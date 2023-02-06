@@ -58,7 +58,7 @@ public class TransactionFragment extends Fragment {
     FirebaseUser fUser;
     String userId;
     Dialog dialog;
-    TextView txtNo, txtYes;
+    TextView txtNo, txtYes, txtTidak;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,6 +71,7 @@ public class TransactionFragment extends Fragment {
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         userId = fUser.getUid();
 
+        txtTidak = view.findViewById(R.id.txtTidak);
         drawerLayout = view.findViewById(R.id.home_layout);
         navigationView = view.findViewById(R.id.nav_home);
         toggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, R.string.open, R.string.close);
@@ -80,10 +81,12 @@ public class TransactionFragment extends Fragment {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext());
 
         final int black = ContextCompat.getColor(container.getContext(), R.color.black);
+        final int white = ContextCompat.getColor(container.getContext(), R.color.white);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#083444"));
 
         if (sharedPreferences.getBoolean("dark_mode", true)) {
             drawerLayout.setBackgroundColor(black);
+            txtTidak.setTextColor(white);
             ((AppCompatActivity)getActivity()).getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
 
@@ -145,6 +148,23 @@ public class TransactionFragment extends Fragment {
 
                         }
                     });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.hasChild("transactions")) {
+                    txtTidak.setVisibility(View.VISIBLE);
+                }
+                else if (snapshot.hasChild("transactions")) {
+                    txtTidak.setVisibility(View.GONE);
                 }
             }
 
