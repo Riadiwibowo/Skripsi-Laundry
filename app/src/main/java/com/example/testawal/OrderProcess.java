@@ -1162,6 +1162,7 @@ public class OrderProcess extends AppCompatActivity {
     public void expand(View view) {
         int v = (radioGrp.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
         int w = (radioGrpPair.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
+        //ketika cardview di kilat diclose
         if (radioGrp.getVisibility()==View.VISIBLE){
             if (catBaju.isChecked() || catOthers.isChecked()){
                 regulerSatuan.setEnabled(true);
@@ -1197,6 +1198,7 @@ public class OrderProcess extends AppCompatActivity {
     public void expand1(View view) {
         int v = (radioGrp1.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
         int w = (radioGrpPair1.getVisibility() == View.GONE)?View.VISIBLE: View.GONE;
+        //ketika cardview di reguler diclose
         if (radioGrp1.getVisibility()==View.VISIBLE){
             if (catBaju.isChecked() || catOthers.isChecked()){
                 kilatSatuan.setEnabled(true);
@@ -1305,6 +1307,7 @@ public class OrderProcess extends AppCompatActivity {
                 regulerPair.setEnabled(false);
             }
         } else if (catSepatu.isChecked()==false) {
+            //dihilangkan saat checkbox sepatu diuncheck
             if (radioGrpPair.getVisibility() == View.VISIBLE) {
                 inputPair.setText("");
                 inputPair.setVisibility(View.GONE);

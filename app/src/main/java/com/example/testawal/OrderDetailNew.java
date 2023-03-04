@@ -40,7 +40,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class OrderDetailNew extends AppCompatActivity {
@@ -58,6 +62,8 @@ public class OrderDetailNew extends AppCompatActivity {
     LinearLayout layoutPickup, layoutReschedule, layoutHargaPickup, parentLayout, footerLayout;
     Button btnCancel, btnSave, btnAccept;
     Space space;
+
+    String dateTime;
 
     //daniel
     TextView status;
@@ -544,6 +550,7 @@ public class OrderDetailNew extends AppCompatActivity {
                                     startActivity(new Intent(OrderDetailNew.this, HomeActivity.class));
                                 }
                             }
+
                         });
                     }
                 }
@@ -604,7 +611,20 @@ public class OrderDetailNew extends AppCompatActivity {
                         bulan = month+1;
                         tahun = year;
 
-                        editTanggal.setText(tahun + "/" + bulan + "/" + tanggal);
+                        Calendar current = Calendar.getInstance();
+                        // tanggal lebih kecil dari current dan bulan sama dengan current atau lebih kecil dari current
+                        if (tahun < Integer.valueOf(current.get(Calendar.DAY_OF_MONTH)) && (bulan == Integer.valueOf(current.get(Calendar.MONTH)+1) || bulan < Integer.valueOf(current.get(Calendar.MONTH)+1))) {
+                            editTanggal.setText("Tanggal?");
+                            Toast.makeText(OrderDetailNew.this, "Tanggal reschedule tidak boleh\nlebih kecil dari tanggal hari ini", Toast.LENGTH_SHORT).show();
+                        }
+                        // tanggal lebih besar dan bulan bulan lebih kecil dari current
+                        else if (tahun > Integer.valueOf(current.get(Calendar.DAY_OF_MONTH)) && bulan < Integer.valueOf(current.get(Calendar.MONTH)+1)) {
+                            editTanggal.setText("Tanggal?");
+                            Toast.makeText(OrderDetailNew.this, "Tanggal reschedule tidak boleh\nlebih kecil dari tanggal hari ini", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            editTanggal.setText(tahun + "/" + bulan + "/" + tanggal);
+                        }
                     }
                 }, tahun, bulan, tanggal);
                 datedialog.show();
